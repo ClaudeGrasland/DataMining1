@@ -2,6 +2,11 @@
 
 ```{r}
 library(knitr)
+library(httr)
+library(jsonlite)
+library(insee)
+library(dplyr)
+library(lubridate)
 ```
 
 ## Qu'est-ce qu'une API ?
@@ -58,8 +63,8 @@ library(jsonlite)
 
 Une requête adressé à une API va suivre le schéma suivant :
 
-```{r}
-knitr::include_graphics("img/API_GET.png")
+```{r, fig.width=6}
+knitr::include_graphics("img/API_GET.png",)
 ```
 
 
@@ -310,11 +315,12 @@ Comme on peut le voir, l'utilisation d'un package simplifie l'usage des API mais
 
 ## Exercices
 
-**Exercice 1**
+### Exercice 1 : utilisation de httr et jsonlite
 
 Déterminer la durée et la date des 10 prochains dates de passage de l'ISS au dessus de Paris (Latitude = 48.86, Longitude = 2.35)
 
 ```{r echo=FALSE}
+
 titi <- GET("http://api.open-notify.org/iss-pass.json",
             query = list(lat = 48.86, lon = 2.35, n=10))
 titi2 <- fromJSON(rawToChar(titi$content))
@@ -336,7 +342,7 @@ kable(titi3, caption = "Prochains passages de l'ISS au dessus de Paris")
 </div>
 \fi
 
-**Exercice 2**
+### Exercice 2 : utilisation du package 'insee'
 
 Construire à l'aide du package INSEE un graphique de l'évolution mensuelle de l'espérance de vie des femmes à la naissance en France Métropolitaine de 1945 à 2020.
 
@@ -404,3 +410,11 @@ p
 ```
 </div>
 \fi
+
+### Exercice 3 : Exploration de nouvelles API
+
+Vous devez identifier une API intéressante, accessible soit par un package R, soit par une combinaison de comandes GET() puis montrer son utilisation à l'aide d'un exemple de création d'un tableau puis d'un graphique. 
+
+Vous présenterez le résultat sous la forme d'un document markdown d'une à deux pages maximum. 
+
+

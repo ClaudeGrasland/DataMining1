@@ -1,6 +1,7 @@
 --- 
-title: "DATA MINING 1: La collecte des données"
-author: "Claude Grasland"
+title: "DATA MINING"
+subtitle: "Master Meci - Parcours Data - Options PISE et CCESE"
+author: "Claude Grasland, Professeur de Géographie, Université de Paris (Diderot)"
 date: "`r Sys.Date()`"
 documentclass: book
 link-citations: yes

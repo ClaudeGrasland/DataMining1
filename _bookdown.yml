@@ -1,11 +1,11 @@
 book_filename: "Data Mining 1"
-repo: https://github.com/ClaudeGrasland/xxx
+repo: https://github.com/ClaudeGrasland/DataMining1
 delete_merged_file: true
 output_dir: "docs"
-edit: https://github.com/ClaudeGrasland/xxx/blob/master/%s
+edit: https://github.com/ClaudeGrasland/DataMining1/blob/master/%s
 language:
   ui:
-    chapter_name: "Partie "
+    chapter_name: "Chapitre "
     edit: "Source"
 
 

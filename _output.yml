@@ -12,9 +12,9 @@ bookdown::gitbook:
     toc:
       collapse: section
       before: |
-        <li><a href="./index.html">Data Mining 1 :  <em>La collecte des données</em></a></li>
+        <li><a href="./index.html">Data Mining:  <em>C. Grasland (2021)</em></a></li>
     sharing:
-      twitter: yes
+      twitter: no
       github: no
       facebook: no
       weibo: no
