@@ -1,0 +1,17 @@
+c01-API
+quest-ce-quune-api
+définitions
+domaine-dapplication
+système-client-serveur
+comment-utiliser-une-api-dans-r
+pourquoi-utiliser-des-api
+installer-les-packages-jsonlite-et-httr
+structure-dune-requête
+extraction-des-données
+api-et-mise-à-jour-en-temps-réel
+api-et-requête-paramétrique
+api-ou-data-packages
+installation-et-chargement-du-package
+obtenir-la-liste-des-séries
+examiner
+exercices

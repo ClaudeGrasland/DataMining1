@@ -197,57 +197,114 @@ On commence par installer le package `insee` ce qui peut prendre quelques minute
 
 On peut ensuite lancer le package pour l'utiliser avec *library()* et on ajoute le package *tidyverse* que l'INSEE semble privilégier pour l'exploitation des données :
 
-```{r}
+```{r, warning = F, comment = F, error = F, message =F}
 library(insee)
 library(tidyverse,warn.conflicts = F)
 ```
 
-### Obtenir la liste des séries
+### Chargement de la liste des tableaux
 
-On commence par télécharger le catalogue des tableaux de données disponibles. 
+On commence par télécharger le catalogue des tableaux de données disponibles,à l'aide de la commande *get_dataset_list()*
 
-```{r}
+```{r, warning = F, comment = F, error = F, message =F}
 catalogue = get_dataset_list()
-head(catalogue)
+kable(head(catalogue))
+
 ```
 
-### Examiner 
+Chaque tableau comporte un très grand nombre de séries chronologiques parmi lesquelles il faut opérer un choix afin d'extraire exactement ce que l'on veut.
 
-```{r}
+
+
+### Examen des séries présentes dans un tableau
+
+Une fois que l'on a choisi un tableau, on peut examiner plus en détail les différentes séries qui y sont présentes à l'aide de la commande *get_idbank_list()*. On va par exemple examiner le contenu de la base de données "DECES-MORTALITE" : 
+
+
+```{r, warning = F, comment = F, error = F, message =F}
 var<-get_idbank_list("DECES-MORTALITE")
-
+str(var)
 ```
 
-```{r}
-list_idbank_selected = 
+Le résultat est un tibble comportant 1905 lignes et 39 colonnes. Il correspond en pratique aux 1905 séries chronologiques que l'on peut extraire de la base de données. Chaque série dispose d'un code unique contenu dans la variable *idbank*. 
+
+
+### Extraction d'une série à l'aide de son identifiant
+
+Une première solution pour extraire une série consiste à parcourir le tableau des variables jusqu'à repérer la ligne qui nous intéresse puis à noter son idbank et à extraire la série correspondante à l'aide de la fonction **get_insee_idbank()**. Par exemple, la première ligne du tableau des variables dont le code est "000436398" va renvoyer un tableau du taux brut de mortalité infantile en France métropolitaine de Janvier 1975  à Décembre 2014. On peut en faire rapidement un graphique avec la fonction *plot()* de R-Base
+
+
+```{r, warning = F, comment = F, error = F, message =F}
+don<-get_insee_idbank("000436398")
+don<-don[order(don$DATE),1:3]
+plot(don$DATE,don$OBS_VALUE, 
+     type ="l", 
+     col="red", 
+     ylab = "Décès 0-1 ans pour  1000 naissances",
+     xlab = "Données mensuelles",
+     main = "Evolution de la mortalité infantile en France (1975-2014)",
+     sub = "Source : Insee")
+```
+
+On remarque que la courbe a des oscillations saisonnières beaucoup moins fortes après 1995 ce qui est sans doute lié à un changement dans le mode de collecte des données plutôt qu'à la réalité. 
+
+On note aussi que les données s'arrêtent en 2014 ce qui est bizarre puisque l'API devrait nous donner les chiffres les plus récents. en fait les données plus récentes sont disponibles mais elles font partie d'une autre série de données. 
+
+
+
+### Extraction d'un ensemble de séries d'un même tableau
+
+Supposons que l'on veuille extraire trois courbes décrivant l'espérance de vie des hommes en France métropolitaine, à 20, 40 et 60 ans. Nous lançons alors une requête pour ne retenir dans le tableau des variables que les lignes qui nous intéressent.  
+
+```{r, warning = F, comment = F, error = F, message =F}
+
+sel  = 
   get_idbank_list("DECES-MORTALITE") %>% 
-  filter(FREQ == "M") %>% #monthly
-  filter(REF_AREA == "FM") %>% #metropolitan territory
-  filter(DEMOGRAPHIE == "TXMORINF") # Taux de mortalité infanfile
-```
-```{r}
-idbank_selected = list_idbank_selected %>% pull(idbank)
-```
+  filter(SEXE == "1") %>%
+  filter(FREQ == "A") %>% #données annuelles
+  filter(REF_AREA == "FM") %>% #France métropolitaine
+  filter(DEMOGRAPHIE %in% c("ESPV-20","ESPV-40","ESPV-60")) # Espérance de vie
 
-
-```{r}
-data = get_insee_idbank(idbank_selected)
+kable(head(sel))
 ```
 
-```{r}
+On découvre que le programme renvoie **6 lignes au lieu de 3**. Pourquoi ? Parce que l'INSEE stocke différemment des séries anciennes et des séries récentes. Il faut donc effectuer une requête sur les 4 codes à la fois pour avoir la série la plus longue. 
 
-p<-ggplot(data) + 
-   aes(x=DATE,y=OBS_VALUE) +
-    geom_line(col="red") +
-    geom_smooth()+
-    ggtitle(label= "Taux de mortalité infantile en France",
+
+### Recupération et nettoyage des données 
+
+On récupère les données puis on procède à un petit nettoyage du tableau pour ne conserver que les colonnes utiles.
+
+```{r, warning = F, comment = F, error = F, message =F}
+
+don = get_insee_idbank(sel$idbank)
+
+don2<-don %>% select(ANNEE = DATE, ESPVIE= OBS_VALUE, AGE = TITLE_FR) %>% 
+              mutate(AGE = as.factor(AGE)) %>% 
+              arrange(AGE, ANNEE)
+levels(don2$AGE) <- c("20 ans", "40 ans","60 ans")
+kable(head(don2))
+```
+
+### Construction d'un graphique
+
+On peut maintenant construire notre graphique à l'aide par exemple de `ggplot2` :
+
+```{r, warning = F, comment = F, error = F, message =F}
+
+p<-ggplot(don2) + 
+   aes(x=ANNEE,y=ESPVIE, color = AGE) +
+    geom_line() +
+    ggtitle(label= "Espérance de vie en France Métropolitaine",
             subtitle = "Source : INSEE")+
-    scale_x_date("Données mensuelles") +
-    scale_y_continuous("Décès 0-1 an pour 1000 naissances",limits = c(0,NA))
+    scale_x_date("Données annuelles") +
+    scale_y_continuous("Années de vie restantes",limits = c(0,NA))
 p
 ```
 
+### Discussion 
 
+Comme on peut le voir, l'utilisation d'un package simplifie l'usage des API mais ne dispense pas d'un apprentissage souvent long pour comprendre toutes les finesses du package (et parfois ses bugs ...). Dans le cas du package INSEE, l'utilisation s'avère assez lourde mais permet d'accéder à un nombre considérable de données !
 
 
 
@@ -274,22 +331,76 @@ titi <- GET("http://api.open-notify.org/iss-pass.json",
 titi2 <- fromJSON(rawToChar(titi$content))
 titi3 <- titi2$response
 titi3$time<-as_datetime(titi3$risetime)
-titi3
+kable(titi3, caption = "Prochains passages de l'ISS au dessus de Paris")
 ```
 </div>
 \fi
 
 **Exercice 2**
 
-```{r echo=FALSE}
-x <- c(120, 134, 256, 12)
-x
+Construire à l'aide du package INSEE un graphique de l'évolution mensuelle de l'espérance de vie des femmes à la naissance en France Métropolitaine de 1945 à 2020.
+
+```{r, warning = F, comment = F, error = F, message =F, echo=FALSE}
+#library(insee)
+#library(tidyverse)
+
+sel  = 
+  get_idbank_list("DECES-MORTALITE") %>% 
+  filter(SEXE == "2") %>%
+  filter(FREQ == "A") %>% #données mensuelles
+  filter(REF_AREA == "FM") %>% #France métropolitaine
+  filter(DEMOGRAPHIE %in% c("ESPV")) # Espérance de vie
+
+don = 
+  get_insee_idbank(sel$idbank) %>%
+  select(ANNEE = DATE, ESPVIE= OBS_VALUE) %>% 
+  arrange(ANNEE)
+
+
+p = 
+    ggplot(don) + 
+    aes(x=ANNEE,y=ESPVIE) +
+    geom_line(col="red") +
+    geom_smooth(method= "lm",col="blue")+
+    ggtitle(label= "Espérance de vie à la naissance des femmes en France Métropolitaine",
+            subtitle = "Source : INSEE")+
+    scale_x_date("Année", limits =as.Date(c("1940-01-01","2020-01-01"))) +
+    scale_y_continuous("Durée de vie moyenne")
+p
+
+
 ```
 
 \iffalse
 <div class="solution-exo">
 ```{r eval=FALSE}
-x <- c(120, 134, 256, 12)
+#library(insee)
+#library(tidyverse)
+
+sel  = 
+  get_idbank_list("DECES-MORTALITE") %>% 
+  filter(SEXE == "2") %>%
+  filter(FREQ == "A") %>% #données mensuelles
+  filter(REF_AREA == "FM") %>% #France métropolitaine
+  filter(DEMOGRAPHIE %in% c("ESPV")) # Espérance de vie
+
+don = 
+  get_insee_idbank(sel$idbank) %>%
+  select(ANNEE = DATE, ESPVIE= OBS_VALUE) %>% 
+  arrange(ANNEE)
+
+
+p = 
+    ggplot(don) + 
+    aes(x=ANNEE,y=ESPVIE) +
+    geom_line(col="red") +
+    geom_smooth(method= "lm",col="blue")+
+    ggtitle(label= "Espérance de vie à la naissance des femmes en France Métropolitaine",
+            subtitle = "Source : INSEE")+
+    scale_x_date("Année", limits =as.Date(c("1940-01-01","2020-01-01"))) +
+    scale_y_continuous("Durée de vie moyenne")
+p
+
 ```
 </div>
 \fi

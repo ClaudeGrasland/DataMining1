@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>DATA MINING 1: La collecte des données</title>
+  <meta name="description" content="Titre du cours" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="DATA MINING 1: La collecte des données" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Titre du cours" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="DATA MINING 1: La collecte des données" />
+  
+  <meta name="twitter:description" content="Titre du cours" />
+  
+
+<meta name="author" content="Claude Grasland" />
+
+
+<meta name="date" content="2021-02-09" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="00-presentation.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+
+<link rel="stylesheet" href="css/tidyverse.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./index.html">Data Mining 1 :  <em>La collecte des données</em></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html"><i class="fa fa-check"></i>Présentation</a>
+<ul>
+<li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html#à-propos-de-ce-document"><i class="fa fa-check"></i>À propos de ce document</a></li>
+<li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html#prérequis"><i class="fa fa-check"></i>Prérequis</a></li>
+<li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html#remerciements"><i class="fa fa-check"></i>Remerciements</a></li>
+<li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html#licence"><i class="fa fa-check"></i>Licence</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="01-API-intro.html"><a href="01-API-intro.html"><i class="fa fa-check"></i><b>1</b> Collecter des données à l’aide d’une API</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="01-API-intro.html"><a href="01-API-intro.html#quest-ce-quune-api"><i class="fa fa-check"></i><b>1.1</b> Qu’est-ce qu’une API ?</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="01-API-intro.html"><a href="01-API-intro.html#définitions"><i class="fa fa-check"></i><b>1.1.1</b> Définitions</a></li>
+<li class="chapter" data-level="1.1.2" data-path="01-API-intro.html"><a href="01-API-intro.html#domaine-dapplication"><i class="fa fa-check"></i><b>1.1.2</b> Domaine d’application</a></li>
+<li class="chapter" data-level="1.1.3" data-path="01-API-intro.html"><a href="01-API-intro.html#système-client-serveur"><i class="fa fa-check"></i><b>1.1.3</b> Système client-serveur</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="01-API-intro.html"><a href="01-API-intro.html#comment-utiliser-une-api-dans-r"><i class="fa fa-check"></i><b>1.2</b> Comment utiliser une API dans R ?</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="01-API-intro.html"><a href="01-API-intro.html#pourquoi-utiliser-des-api"><i class="fa fa-check"></i><b>1.2.1</b> Pourquoi utiliser des API ?</a></li>
+<li class="chapter" data-level="1.2.2" data-path="01-API-intro.html"><a href="01-API-intro.html#installer-les-packages-jsonlite-et-httr"><i class="fa fa-check"></i><b>1.2.2</b> Installer les packages jsonlite et httr</a></li>
+<li class="chapter" data-level="1.2.3" data-path="01-API-intro.html"><a href="01-API-intro.html#structure-dune-requête"><i class="fa fa-check"></i><b>1.2.3</b> Structure d’une requête</a></li>
+<li class="chapter" data-level="1.2.4" data-path="01-API-intro.html"><a href="01-API-intro.html#extraction-des-données"><i class="fa fa-check"></i><b>1.2.4</b> Extraction des données</a></li>
+<li class="chapter" data-level="1.2.5" data-path="01-API-intro.html"><a href="01-API-intro.html#api-et-mise-à-jour-en-temps-réel"><i class="fa fa-check"></i><b>1.2.5</b> API et mise à jour en temps réel</a></li>
+<li class="chapter" data-level="1.2.6" data-path="01-API-intro.html"><a href="01-API-intro.html#api-et-requête-paramétrique"><i class="fa fa-check"></i><b>1.2.6</b> API et requête paramétrique</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="01-API-intro.html"><a href="01-API-intro.html#api-ou-data-packages"><i class="fa fa-check"></i><b>1.3</b> API ou data packages ?</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="01-API-intro.html"><a href="01-API-intro.html#installation-et-chargement-du-package"><i class="fa fa-check"></i><b>1.3.1</b> Installation et chargement du package</a></li>
+<li class="chapter" data-level="1.3.2" data-path="01-API-intro.html"><a href="01-API-intro.html#obtenir-la-liste-des-séries"><i class="fa fa-check"></i><b>1.3.2</b> Obtenir la liste des séries</a></li>
+<li class="chapter" data-level="1.3.3" data-path="01-API-intro.html"><a href="01-API-intro.html#examiner"><i class="fa fa-check"></i><b>1.3.3</b> Examiner</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="01-API-intro.html"><a href="01-API-intro.html#exercices"><i class="fa fa-check"></i><b>1.4</b> Exercices</a></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">DATA MINING 1: La collecte des données</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">DATA MINING 1: La collecte des données</h1>
+<p class="author"><em>Claude Grasland</em></p>
+<p class="date"><em>2021-02-09</em></p>
+</div>
+
+<script src="js/tidyverse.js"></script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="00-presentation.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"],
+"instapper": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/ClaudeGrasland/xxx/blob/master/index.Rmd",
+"text": "Source"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
