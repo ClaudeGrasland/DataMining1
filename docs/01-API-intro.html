@@ -24,7 +24,7 @@
 <meta name="author" content="Claude Grasland, Professeur de Géographie, Université de Paris (Diderot)" />
 
 
-<meta name="date" content="2021-02-09" />
+<meta name="date" content="2021-02-11" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,6 +33,7 @@
   
 <link rel="prev" href="00-presentation.html"/>
 
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -51,23 +52,20 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
-<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -88,7 +86,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-le
 div.sourceCode
   { color: #1f1c1b; background-color: #ffffff; }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span. { color: #1f1c1b; } /* Normal */
 code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
@@ -139,19 +137,23 @@ code span.wa { color: #bf0303; } /* Warning */
 <li><a href="./index.html">Data Mining:  <em>C. Grasland (2021)</em></a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html"><i class="fa fa-check"></i>Présentation</a><ul>
+<li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html"><i class="fa fa-check"></i>Présentation</a>
+<ul>
 <li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html#à-propos-de-ce-document"><i class="fa fa-check"></i>À propos de ce document</a></li>
 <li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html#prérequis"><i class="fa fa-check"></i>Prérequis</a></li>
 <li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html#remerciements"><i class="fa fa-check"></i>Remerciements</a></li>
 <li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html#licence"><i class="fa fa-check"></i>Licence</a></li>
 </ul></li>
-<li class="chapter" data-level="1" data-path="01-API-intro.html"><a href="01-API-intro.html"><i class="fa fa-check"></i><b>1</b> Collecter des données à l’aide d’une API</a><ul>
-<li class="chapter" data-level="1.1" data-path="01-API-intro.html"><a href="01-API-intro.html#quest-ce-quune-api"><i class="fa fa-check"></i><b>1.1</b> Qu’est-ce qu’une API ?</a><ul>
+<li class="chapter" data-level="1" data-path="01-API-intro.html"><a href="01-API-intro.html"><i class="fa fa-check"></i><b>1</b> Collecter des données à l’aide d’une API</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="01-API-intro.html"><a href="01-API-intro.html#quest-ce-quune-api"><i class="fa fa-check"></i><b>1.1</b> Qu’est-ce qu’une API ?</a>
+<ul>
 <li class="chapter" data-level="1.1.1" data-path="01-API-intro.html"><a href="01-API-intro.html#définitions"><i class="fa fa-check"></i><b>1.1.1</b> Définitions</a></li>
 <li class="chapter" data-level="1.1.2" data-path="01-API-intro.html"><a href="01-API-intro.html#domaine-dapplication"><i class="fa fa-check"></i><b>1.1.2</b> Domaine d’application</a></li>
 <li class="chapter" data-level="1.1.3" data-path="01-API-intro.html"><a href="01-API-intro.html#système-client-serveur"><i class="fa fa-check"></i><b>1.1.3</b> Système client-serveur</a></li>
 </ul></li>
-<li class="chapter" data-level="1.2" data-path="01-API-intro.html"><a href="01-API-intro.html#comment-utiliser-une-api-dans-r"><i class="fa fa-check"></i><b>1.2</b> Comment utiliser une API dans R ?</a><ul>
+<li class="chapter" data-level="1.2" data-path="01-API-intro.html"><a href="01-API-intro.html#comment-utiliser-une-api-dans-r"><i class="fa fa-check"></i><b>1.2</b> Comment utiliser une API dans R ?</a>
+<ul>
 <li class="chapter" data-level="1.2.1" data-path="01-API-intro.html"><a href="01-API-intro.html#pourquoi-utiliser-des-api"><i class="fa fa-check"></i><b>1.2.1</b> Pourquoi utiliser des API ?</a></li>
 <li class="chapter" data-level="1.2.2" data-path="01-API-intro.html"><a href="01-API-intro.html#installer-les-packages-jsonlite-et-httr"><i class="fa fa-check"></i><b>1.2.2</b> Installer les packages jsonlite et httr</a></li>
 <li class="chapter" data-level="1.2.3" data-path="01-API-intro.html"><a href="01-API-intro.html#structure-dune-requête"><i class="fa fa-check"></i><b>1.2.3</b> Structure d’une requête</a></li>
@@ -159,7 +161,8 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="1.2.5" data-path="01-API-intro.html"><a href="01-API-intro.html#api-et-mise-à-jour-en-temps-réel"><i class="fa fa-check"></i><b>1.2.5</b> API et mise à jour en temps réel</a></li>
 <li class="chapter" data-level="1.2.6" data-path="01-API-intro.html"><a href="01-API-intro.html#api-et-requête-paramétrique"><i class="fa fa-check"></i><b>1.2.6</b> API et requête paramétrique</a></li>
 </ul></li>
-<li class="chapter" data-level="1.3" data-path="01-API-intro.html"><a href="01-API-intro.html#api-ou-data-packages"><i class="fa fa-check"></i><b>1.3</b> API ou data packages ?</a><ul>
+<li class="chapter" data-level="1.3" data-path="01-API-intro.html"><a href="01-API-intro.html#api-ou-data-packages"><i class="fa fa-check"></i><b>1.3</b> API ou data packages ?</a>
+<ul>
 <li class="chapter" data-level="1.3.1" data-path="01-API-intro.html"><a href="01-API-intro.html#installation-et-chargement-du-package"><i class="fa fa-check"></i><b>1.3.1</b> Installation et chargement du package</a></li>
 <li class="chapter" data-level="1.3.2" data-path="01-API-intro.html"><a href="01-API-intro.html#chargement-de-la-liste-des-tableaux"><i class="fa fa-check"></i><b>1.3.2</b> Chargement de la liste des tableaux</a></li>
 <li class="chapter" data-level="1.3.3" data-path="01-API-intro.html"><a href="01-API-intro.html#examen-des-séries-présentes-dans-un-tableau"><i class="fa fa-check"></i><b>1.3.3</b> Examen des séries présentes dans un tableau</a></li>
@@ -169,10 +172,12 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="1.3.7" data-path="01-API-intro.html"><a href="01-API-intro.html#construction-dun-graphique"><i class="fa fa-check"></i><b>1.3.7</b> Construction d’un graphique</a></li>
 <li class="chapter" data-level="1.3.8" data-path="01-API-intro.html"><a href="01-API-intro.html#discussion"><i class="fa fa-check"></i><b>1.3.8</b> Discussion</a></li>
 </ul></li>
-<li class="chapter" data-level="1.4" data-path="01-API-intro.html"><a href="01-API-intro.html#exercices"><i class="fa fa-check"></i><b>1.4</b> Exercices</a><ul>
+<li class="chapter" data-level="1.4" data-path="01-API-intro.html"><a href="01-API-intro.html#exercices"><i class="fa fa-check"></i><b>1.4</b> Exercices</a>
+<ul>
 <li class="chapter" data-level="1.4.1" data-path="01-API-intro.html"><a href="01-API-intro.html#exercice-1-utilisation-de-httr-et-jsonlite"><i class="fa fa-check"></i><b>1.4.1</b> Exercice 1 : utilisation de httr et jsonlite</a></li>
 <li class="chapter" data-level="1.4.2" data-path="01-API-intro.html"><a href="01-API-intro.html#exercice-2-utilisation-du-package-insee"><i class="fa fa-check"></i><b>1.4.2</b> Exercice 2 : utilisation du package ‘insee’</a></li>
-<li class="chapter" data-level="1.4.3" data-path="01-API-intro.html"><a href="01-API-intro.html#exercice-3-exploration-de-nouvelles-api"><i class="fa fa-check"></i><b>1.4.3</b> Exercice 3 : Exploration de nouvelles API</a></li>
+<li class="chapter" data-level="1.4.3" data-path="01-API-intro.html"><a href="01-API-intro.html#exercice-3-osrm"><i class="fa fa-check"></i><b>1.4.3</b> Exercice 3 : Osrm</a></li>
+<li class="chapter" data-level="1.4.4" data-path="01-API-intro.html"><a href="01-API-intro.html#exercice-4-exploration-de-nouvelles-api"><i class="fa fa-check"></i><b>1.4.4</b> Exercice 4 : Exploration de nouvelles API</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -192,7 +197,7 @@ code span.wa { color: #bf0303; } /* Warning */
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="c01-API" class="section level1">
+<div id="c01-API" class="section level1" number="1">
 <h1><span class="header-section-number">Chapitre 1</span> Collecter des données à l’aide d’une API</h1>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="01-API-intro.html#cb1-1"></a><span class="kw">library</span>(knitr)</span>
 <span id="cb1-2"><a href="01-API-intro.html#cb1-2"></a><span class="kw">library</span>(httr)</span>
@@ -200,28 +205,23 @@ code span.wa { color: #bf0303; } /* Warning */
 <span id="cb1-4"><a href="01-API-intro.html#cb1-4"></a><span class="kw">library</span>(insee)</span>
 <span id="cb1-5"><a href="01-API-intro.html#cb1-5"></a><span class="kw">library</span>(dplyr)</span>
 <span id="cb1-6"><a href="01-API-intro.html#cb1-6"></a><span class="kw">library</span>(lubridate)</span></code></pre></div>
-<pre><code>
-Attaching package: &#39;lubridate&#39;</code></pre>
-<pre><code>The following objects are masked from &#39;package:base&#39;:
-
-    date, intersect, setdiff, union</code></pre>
-<div id="quest-ce-quune-api" class="section level2">
+<div id="quest-ce-quune-api" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> Qu’est-ce qu’une API ?</h2>
-<div id="définitions" class="section level3">
+<div id="définitions" class="section level3" number="1.1.1">
 <h3><span class="header-section-number">1.1.1</span> Définitions</h3>
 <p>On peut partir de la définition suivante</p>
 <blockquote>
 <p>En informatique, API est l’acronyme d’<em>Application Programming Interface</em>, que l’on traduit en français par <strong>interface de programmation applicative</strong> ou <strong>interface de programmation d’application</strong>. L’API peut être résumée à une solution informatique qui permet à des applications de communiquer entre elles et de s’échanger mutuellement des services ou des données. Il s’agit en réalité d’un ensemble de fonctions qui facilitent, via un langage de programmation, l’accès aux services d’une application. (Source : <a href="https://www.journaldunet.fr/web-tech/dictionnaire-du-webmastering/1203559-api-application-programming-interface-definition-traduction/">Journal du Net</a>)</p>
 </blockquote>
 </div>
-<div id="domaine-dapplication" class="section level3">
+<div id="domaine-dapplication" class="section level3" number="1.1.2">
 <h3><span class="header-section-number">1.1.2</span> Domaine d’application</h3>
 <p>Une API peut remplir des fonctions très diverses :</p>
 <blockquote>
 <p>Dans le domaine d’internet, l’API permet aux développeurs de pouvoir utiliser un programme sans avoir à se soucier du fonctionnement complexe d’une application. Les API peuvent par exemple être utilisées pour déclencher des campagnes publicitaires d’e-mailing de façon automatique sans avoir à passer par la compréhension d’une telle application (c’est le cas avec l’API AdWords de Google, par exemple). On les retrouve aujourd’hui dans de nombreux logiciels, en particulier dans les systèmes d’exploitation, les serveurs d’applications, dans le monde du graphisme (OpenGL), dans les applications SaaS (Office 365, G Suite, Salesforce…), les bases de données, l’open data, etc.(Source : <a href="https://www.journaldunet.fr/web-tech/dictionnaire-du-webmastering/1203559-api-application-programming-interface-definition-traduction/">Journal du Net</a>)</p>
 </blockquote>
 </div>
-<div id="système-client-serveur" class="section level3">
+<div id="système-client-serveur" class="section level3" number="1.1.3">
 <h3><span class="header-section-number">1.1.3</span> Système client-serveur</h3>
 <p>D’une manière générale, les API supposent un échange d’informations entre un <em>client</em> et un <em>serveur</em>.</p>
 <blockquote>
@@ -229,13 +229,13 @@ Attaching package: &#39;lubridate&#39;</code></pre>
 </blockquote>
 </div>
 </div>
-<div id="comment-utiliser-une-api-dans-r" class="section level2">
+<div id="comment-utiliser-une-api-dans-r" class="section level2" number="1.2">
 <h2><span class="header-section-number">1.2</span> Comment utiliser une API dans R ?</h2>
 <p>Le métier de data analyst implique presque nécessairement l’emploi d’API. Les langages de programmation R ou Python ont donc l’un comme l’autre mis au point des packages pour faciliter l’envoi de requêtes sur des serveurs dotés d’API. A titre d’introduction, nous allons reprendre (et traduire en français) quelques extraits d’un billet proposé par un étudiant en doctorat de biostatistiques à l’université de Californie San Diego.</p>
 <ul>
 <li>Pascual C., 2020, <a href="https://www.dataquest.io/blog/r-api-tutorial/">Getting Started with APIs in R</a></li>
 </ul>
-<div id="pourquoi-utiliser-des-api" class="section level3">
+<div id="pourquoi-utiliser-des-api" class="section level3" number="1.2.1">
 <h3><span class="header-section-number">1.2.1</span> Pourquoi utiliser des API ?</h3>
 <blockquote>
 <p>«API» est un terme général désignant le lieu où un programme informatique interagit avec un autre ou avec lui-même. Dans ce didacticiel, nous travaillerons spécifiquement avec des API Web, où deux ordinateurs différents - un client et un serveur - interagiront l’un avec l’autre pour demander et fournir des données, respectivement.</p>
@@ -254,27 +254,27 @@ Attaching package: &#39;lubridate&#39;</code></pre>
 </blockquote>
 <p>Source : Traduction française d’un billet de <a href="https://www.dataquest.io/blog/r-api-tutorial/">Pascual C., 2020</a></p>
 </div>
-<div id="installer-les-packages-jsonlite-et-httr" class="section level3">
+<div id="installer-les-packages-jsonlite-et-httr" class="section level3" number="1.2.2">
 <h3><span class="header-section-number">1.2.2</span> Installer les packages jsonlite et httr</h3>
 <p>Pour travailler avec des API dans R, nous devons intégrer certaines bibliothèques (<em>library</em>). Ces bibliothèques prennent toutes les complexités d’une requête d’API et les enveloppent dans des fonctions que nous pouvons utiliser dans des lignes de code uniques. Les bibliothèques R que nous utiliserons sont <code>httr</code> et <code>jsonlite</code>. Elles remplissent des rôles différents dans notre introduction des API, mais les deux sont essentiels.Si vous ne disposez pas de ces bibliothèques dans votre console R ou RStudio, vous devez d’abord les télécharger.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="01-API-intro.html#cb4-1"></a><span class="kw">library</span>(httr)</span>
-<span id="cb4-2"><a href="01-API-intro.html#cb4-2"></a><span class="kw">library</span>(jsonlite)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="01-API-intro.html#cb2-1"></a><span class="kw">library</span>(httr)</span>
+<span id="cb2-2"><a href="01-API-intro.html#cb2-2"></a><span class="kw">library</span>(jsonlite)</span></code></pre></div>
 <pre><code>
 Attachement du package : &#39;jsonlite&#39;</code></pre>
 <pre><code>The following object is masked from &#39;package:purrr&#39;:
 
     flatten</code></pre>
 </div>
-<div id="structure-dune-requête" class="section level3">
+<div id="structure-dune-requête" class="section level3" number="1.2.3">
 <h3><span class="header-section-number">1.2.3</span> Structure d’une requête</h3>
 <p>Une requête adressé à une API va suivre le schéma suivant :</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="01-API-intro.html#cb7-1"></a>knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;img/API_GET.png&quot;</span>,)</span></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="01-API-intro.html#cb5-1"></a>knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;img/API_GET.png&quot;</span>,)</span></code></pre></div>
 <p><img src="img/API_GET.png" width="226" /></p>
 <p>Il existe plusieurs types de requêtes que l’on peut adresser à un serveur API. Pour nos besoins, nous allons simplement demander des données, ce qui correspond à une demande <strong>GET</strong>. Les autres types de requêtes sont POST et PUT, mais nous n’avons pas à nous en préoccuper dans l’immédiat</p>
 <p>Afin de créer une requête GET, nous devons utiliser la fonction <em>GET()</em> de la bibliothèque <code>httr</code>. La fonction GET() nécessite une URL, qui spécifie l’adresse du serveur auquel la demande doit être envoyée. A titre d’exemple, C. Pascual propose de travailler avec l’<strong>API Open Notify</strong>, qui donne accès à des données sur divers projets de la NASA. À l’aide de l’API Open Notify, nous pouvons notamment en savoir plus sur l’emplacement de la Station spatiale internationale et sur le nombre de personnes actuellement dans l’espace.</p>
 <p>Notre programme télécharge les données disponibles à l’adresse du serveur et les stocke dans un objet auquel on peut donner le nom que l’on souhaite, par exemple <em>toto</em></p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="01-API-intro.html#cb8-1"></a>toto &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;http://api.open-notify.org/astros.json&quot;</span>)</span>
-<span id="cb8-2"><a href="01-API-intro.html#cb8-2"></a>toto</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="01-API-intro.html#cb6-1"></a>toto &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;http://api.open-notify.org/astros.json&quot;</span>)</span>
+<span id="cb6-2"><a href="01-API-intro.html#cb6-2"></a>toto</span></code></pre></div>
 <pre><code>Response [http://api.open-notify.org/astros.json]
   Date: 2021-02-09 06:59
   Status: 200
@@ -288,7 +288,7 @@ Attachement du package : &#39;jsonlite&#39;</code></pre>
 <li><strong>Size</strong> : la taille du fichier résultant du transfert.</li>
 </ul>
 <p>On pourrait également en savoir plus en tapant la commande <em>str()</em> qui nous indique que le résultat est une liste comportant 10 branches et de nombreuses sous-branches :</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="01-API-intro.html#cb10-1"></a><span class="kw">str</span>(toto)</span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="01-API-intro.html#cb8-1"></a><span class="kw">str</span>(toto)</span></code></pre></div>
 <pre><code>List of 10
  $ url        : chr &quot;http://api.open-notify.org/astros.json&quot;
  $ status_code: int 200
@@ -341,19 +341,19 @@ Attachement du package : &#39;jsonlite&#39;</code></pre>
  - attr(*, &quot;class&quot;)= chr &quot;response&quot;</code></pre>
 <p>La branche qui nous intéresse le plus est <em>content</em> puisque c’est celle qui contient les données.</p>
 </div>
-<div id="extraction-des-données" class="section level3">
+<div id="extraction-des-données" class="section level3" number="1.2.4">
 <h3><span class="header-section-number">1.2.4</span> Extraction des données</h3>
 <p>Les données contenues dans la réponse ont été stockées au format <em>JSON (JavaScript Object Notation)</em> qui est devenu un standard pour les échanges de données. Sans entrer dans le détail de ce langage, on retiendra qu’il va falloir convertir les données JSON dans un format de tableau lisible par R ce qui se fait ici en deux étapes.</p>
 <p>Tout d’abord extraire le champ content et le convertir en mode caractère :</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="01-API-intro.html#cb12-1"></a><span class="co"># conversion du contenu de toto en mode character</span></span>
-<span id="cb12-2"><a href="01-API-intro.html#cb12-2"></a>toto2&lt;-<span class="kw">rawToChar</span>(toto<span class="op">$</span>content)</span>
-<span id="cb12-3"><a href="01-API-intro.html#cb12-3"></a>toto2</span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="01-API-intro.html#cb10-1"></a><span class="co"># conversion du contenu de toto en mode character</span></span>
+<span id="cb10-2"><a href="01-API-intro.html#cb10-2"></a>toto2&lt;-<span class="kw">rawToChar</span>(toto<span class="op">$</span>content)</span>
+<span id="cb10-3"><a href="01-API-intro.html#cb10-3"></a>toto2</span></code></pre></div>
 <pre><code>[1] &quot;{\&quot;message\&quot;: \&quot;success\&quot;, \&quot;number\&quot;: 7, \&quot;people\&quot;: [{\&quot;craft\&quot;: \&quot;ISS\&quot;, \&quot;name\&quot;: \&quot;Sergey Ryzhikov\&quot;}, {\&quot;craft\&quot;: \&quot;ISS\&quot;, \&quot;name\&quot;: \&quot;Kate Rubins\&quot;}, {\&quot;craft\&quot;: \&quot;ISS\&quot;, \&quot;name\&quot;: \&quot;Sergey Kud-Sverchkov\&quot;}, {\&quot;craft\&quot;: \&quot;ISS\&quot;, \&quot;name\&quot;: \&quot;Mike Hopkins\&quot;}, {\&quot;craft\&quot;: \&quot;ISS\&quot;, \&quot;name\&quot;: \&quot;Victor Glover\&quot;}, {\&quot;craft\&quot;: \&quot;ISS\&quot;, \&quot;name\&quot;: \&quot;Shannon Walker\&quot;}, {\&quot;craft\&quot;: \&quot;ISS\&quot;, \&quot;name\&quot;: \&quot;Soichi Noguchi\&quot;}]}&quot;</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="01-API-intro.html#cb14-1"></a><span class="kw">str</span>(toto2)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="01-API-intro.html#cb12-1"></a><span class="kw">str</span>(toto2)</span></code></pre></div>
 <pre><code> chr &quot;{\&quot;message\&quot;: \&quot;success\&quot;, \&quot;number\&quot;: 7, \&quot;people\&quot;: [{\&quot;craft\&quot;: \&quot;ISS\&quot;, \&quot;name\&quot;: \&quot;Sergey Ryzhikov\&quot;}, {\&quot;&quot;| __truncated__</code></pre>
 <p>Puis convertir ces données de type JSON en données utilisables par R à l’aide de la fonction <em>fromJson()</em> du package <code>jsonlite()</code></p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="01-API-intro.html#cb16-1"></a>toto3 &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(toto2)</span>
-<span id="cb16-2"><a href="01-API-intro.html#cb16-2"></a><span class="kw">str</span>(toto3)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="01-API-intro.html#cb14-1"></a>toto3 &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(toto2)</span>
+<span id="cb14-2"><a href="01-API-intro.html#cb14-2"></a><span class="kw">str</span>(toto3)</span></code></pre></div>
 <pre><code>List of 3
  $ message: chr &quot;success&quot;
  $ number : int 7
@@ -361,12 +361,12 @@ Attachement du package : &#39;jsonlite&#39;</code></pre>
   ..$ craft: chr [1:7] &quot;ISS&quot; &quot;ISS&quot; &quot;ISS&quot; &quot;ISS&quot; ...
   ..$ name : chr [1:7] &quot;Sergey Ryzhikov&quot; &quot;Kate Rubins&quot; &quot;Sergey Kud-Sverchkov&quot; &quot;Mike Hopkins&quot; ...</code></pre>
 <p>On obtient finalement une liste de trois éléments dont le dernier est un <em>data.frame</em> décrivant les astronautes présents dans la station spatiale internationale au moment de l’execution du programme.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="01-API-intro.html#cb18-1"></a>toto4&lt;-toto3<span class="op">$</span>people</span>
-<span id="cb18-2"><a href="01-API-intro.html#cb18-2"></a><span class="kw">str</span>(toto4)</span></code></pre></div>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="01-API-intro.html#cb16-1"></a>toto4&lt;-toto3<span class="op">$</span>people</span>
+<span id="cb16-2"><a href="01-API-intro.html#cb16-2"></a><span class="kw">str</span>(toto4)</span></code></pre></div>
 <pre><code>&#39;data.frame&#39;:   7 obs. of  2 variables:
  $ craft: chr  &quot;ISS&quot; &quot;ISS&quot; &quot;ISS&quot; &quot;ISS&quot; ...
  $ name : chr  &quot;Sergey Ryzhikov&quot; &quot;Kate Rubins&quot; &quot;Sergey Kud-Sverchkov&quot; &quot;Mike Hopkins&quot; ...</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="01-API-intro.html#cb20-1"></a><span class="kw">kable</span>(toto4,<span class="dt">caption =</span> <span class="st">&quot;Passagers de l&#39;ISS en temps réel&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="01-API-intro.html#cb18-1"></a><span class="kw">kable</span>(toto4,<span class="dt">caption =</span> <span class="st">&quot;Passagers de l&#39;ISS en temps réel&quot;</span>)</span></code></pre></div>
 <table>
 <caption><span id="tab:unnamed-chunk-8">Table 1.1: </span>Passagers de l’ISS en temps réel</caption>
 <thead>
@@ -407,7 +407,7 @@ Attachement du package : &#39;jsonlite&#39;</code></pre>
 </tbody>
 </table>
 </div>
-<div id="api-et-mise-à-jour-en-temps-réel" class="section level3">
+<div id="api-et-mise-à-jour-en-temps-réel" class="section level3" number="1.2.5">
 <h3><span class="header-section-number">1.2.5</span> API et mise à jour en temps réel</h3>
 <p>Sur le site web du <a href="https://www.dataquest.io/blog/r-api-tutorial/">billet proposé par C. Pascual en février 2020</a>, on trouve une autre liste ne comportant que 6 passagers et avec des noms totalement différents :</p>
 <table>
@@ -448,16 +448,16 @@ Attachement du package : &#39;jsonlite&#39;</code></pre>
 <p>En effet, l’API renvoie les résultats au moment de l’execution de la fonction <em>GET()</em> ce qui correspond à février 2020 pour le billet de blog. Or, les astronautes sont remplacés au plus tous les six mois ce qui explique que tous les noms soient différents un an après.</p>
 <p><strong>NB : Cet exemple permet de mettre en évidence une fonction centrale des API qui est la mise à jour en temps réel des données !</strong></p>
 </div>
-<div id="api-et-requête-paramétrique" class="section level3">
+<div id="api-et-requête-paramétrique" class="section level3" number="1.2.6">
 <h3><span class="header-section-number">1.2.6</span> API et requête paramétrique</h3>
 <p>L’exemple précédent consistait à télécharger la totalité d’un tableau et ne demandait donc pas de paramètres particuliers. Mais il peut aussi arriver (par exemple si une base de données est très volumineuse) que l’on précise à l’aide de paramètres ce que l’on veut précisément télécharger.</p>
 <p>A titre d’exemple, C. Pascual propose d’utiliser une autre API de la NASA intitulée <a href="http://open-notify.org/Open-Notify-API/ISS-Pass-Times/">ISS Pass Time</a> qui permet de savoir à quel moment la station ISS passera au dessus d’un certain point du globe.</p>
 <p>L’exemple choisi par C.Pascual est la recherche des trois prochaines dates de passage de l’ISS au dessus de New York dont les coordonnées de latitude et de longitude sont 40.7 et -74.0 :</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="01-API-intro.html#cb21-1"></a>titi &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;http://api.open-notify.org/iss-pass.json&quot;</span>,</span>
-<span id="cb21-2"><a href="01-API-intro.html#cb21-2"></a>            <span class="dt">query =</span> <span class="kw">list</span>(<span class="dt">lat =</span> <span class="fl">40.7</span>, <span class="dt">lon =</span> <span class="dv">-74</span>, <span class="dt">n=</span><span class="dv">3</span>))</span>
-<span id="cb21-3"><a href="01-API-intro.html#cb21-3"></a>titi2 &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(<span class="kw">rawToChar</span>(titi<span class="op">$</span>content))</span>
-<span id="cb21-4"><a href="01-API-intro.html#cb21-4"></a>titi3 &lt;-<span class="st"> </span>titi2<span class="op">$</span>response</span>
-<span id="cb21-5"><a href="01-API-intro.html#cb21-5"></a>titi3</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="01-API-intro.html#cb19-1"></a>titi &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;http://api.open-notify.org/iss-pass.json&quot;</span>,</span>
+<span id="cb19-2"><a href="01-API-intro.html#cb19-2"></a>            <span class="dt">query =</span> <span class="kw">list</span>(<span class="dt">lat =</span> <span class="fl">40.7</span>, <span class="dt">lon =</span> <span class="dv">-74</span>, <span class="dt">n=</span><span class="dv">3</span>))</span>
+<span id="cb19-3"><a href="01-API-intro.html#cb19-3"></a>titi2 &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(<span class="kw">rawToChar</span>(titi<span class="op">$</span>content))</span>
+<span id="cb19-4"><a href="01-API-intro.html#cb19-4"></a>titi3 &lt;-<span class="st"> </span>titi2<span class="op">$</span>response</span>
+<span id="cb19-5"><a href="01-API-intro.html#cb19-5"></a>titi3</span></code></pre></div>
 <pre><code># A tibble: 3 x 2
   duration   risetime
      &lt;int&gt;      &lt;int&gt;
@@ -470,14 +470,14 @@ Attachement du package : &#39;jsonlite&#39;</code></pre>
 <li><em>risetime</em> : moment de passage exprimé en <a href="https://en.wikipedia.org/wiki/Unix_time">Unix Time</a> c’est-à-dire en nombre de secondes écoulées depuis le 1er Janvier 1970 UTC.</li>
 </ul>
 <p>Si l’on veut se ramener à une date précise, il faut donc convertir ce temps à l’aide d’une fonction R. Le plus simple est pour cela d’utiliser la fonction <em>as_datetime()</em> du package <code>lubridate</code>.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="01-API-intro.html#cb23-1"></a><span class="kw">library</span>(lubridate)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="01-API-intro.html#cb21-1"></a><span class="kw">library</span>(lubridate)</span></code></pre></div>
 <pre><code>
 Attachement du package : &#39;lubridate&#39;</code></pre>
 <pre><code>The following objects are masked from &#39;package:base&#39;:
 
     date, intersect, setdiff, union</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="01-API-intro.html#cb26-1"></a>titi3<span class="op">$</span>risetime&lt;-<span class="kw">as_datetime</span>(titi3<span class="op">$</span>risetime)</span>
-<span id="cb26-2"><a href="01-API-intro.html#cb26-2"></a><span class="kw">kable</span>(titi3)</span></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="01-API-intro.html#cb24-1"></a>titi3<span class="op">$</span>risetime&lt;-<span class="kw">as_datetime</span>(titi3<span class="op">$</span>risetime)</span>
+<span id="cb24-2"><a href="01-API-intro.html#cb24-2"></a><span class="kw">kable</span>(titi3)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -502,7 +502,7 @@ Attachement du package : &#39;lubridate&#39;</code></pre>
 </table>
 </div>
 </div>
-<div id="api-ou-data-packages" class="section level2">
+<div id="api-ou-data-packages" class="section level2" number="1.3">
 <h2><span class="header-section-number">1.3</span> API ou data packages ?</h2>
 <p>L’utilisation d’API à l’aide des fonctions de base <code>httpr</code> et <code>jsonlite</code> constitue à moyen terme une étape indispensable de la formation d’un data analyste. Mais heureusement elle n’est pas toujours indispensable pour le débutant car plusieurs packages R (ou Python) ont été développées par des programmeurs pour faciliter l’usage des API.</p>
 <p>Ces packages executent en pratique les commandes de l’API, mais sans que l’utilisateur ait besoin d’avoir aucune connaissance sur la syntaxe de la fonction <em>GET()</em> qui a collecté les données ni des transformations effectuées sur les résultats pour transformer les données JSON en <em>data.frame</em> ou <em>tibble</em>. La connaissance de ces packages spécialisées offre donc une grosse économie de temps … s’ils ont été bien conçus.</p>
@@ -510,19 +510,19 @@ Attachement du package : &#39;lubridate&#39;</code></pre>
 <p><a href="https://www.data.gouv.fr/fr/reuses/insee-package-r/" class="uri">https://www.data.gouv.fr/fr/reuses/insee-package-r/</a></p>
 <p>Cette page renvoie vers une “vignette” c’est-à-dire une suite de programmes exemples.</p>
 <p><a href="https://inseefr.github.io/R-Insee-Data/" class="uri">https://inseefr.github.io/R-Insee-Data/</a></p>
-<div id="installation-et-chargement-du-package" class="section level3">
+<div id="installation-et-chargement-du-package" class="section level3" number="1.3.1">
 <h3><span class="header-section-number">1.3.1</span> Installation et chargement du package</h3>
 <p>On commence par installer le package <code>insee</code> ce qui peut prendre quelques minutes mais sera fait une seule fois (sauf mise à jour).</p>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="01-API-intro.html#cb27-1"></a><span class="co"># install.packages(&quot;insee&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="01-API-intro.html#cb25-1"></a><span class="co"># install.packages(&quot;insee&quot;)</span></span></code></pre></div>
 <p>On peut ensuite lancer le package pour l’utiliser avec <em>library()</em> et on ajoute le package <em>tidyverse</em> que l’INSEE semble privilégier pour l’exploitation des données :</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="01-API-intro.html#cb28-1"></a><span class="kw">library</span>(insee)</span>
-<span id="cb28-2"><a href="01-API-intro.html#cb28-2"></a><span class="kw">library</span>(tidyverse,<span class="dt">warn.conflicts =</span> F)</span></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="01-API-intro.html#cb26-1"></a><span class="kw">library</span>(insee)</span>
+<span id="cb26-2"><a href="01-API-intro.html#cb26-2"></a><span class="kw">library</span>(tidyverse,<span class="dt">warn.conflicts =</span> F)</span></code></pre></div>
 </div>
-<div id="chargement-de-la-liste-des-tableaux" class="section level3">
+<div id="chargement-de-la-liste-des-tableaux" class="section level3" number="1.3.2">
 <h3><span class="header-section-number">1.3.2</span> Chargement de la liste des tableaux</h3>
 <p>On commence par télécharger le catalogue des tableaux de données disponibles,à l’aide de la commande <em>get_dataset_list()</em></p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="01-API-intro.html#cb29-1"></a>catalogue =<span class="st"> </span><span class="kw">get_dataset_list</span>()</span>
-<span id="cb29-2"><a href="01-API-intro.html#cb29-2"></a><span class="kw">kable</span>(<span class="kw">head</span>(catalogue))</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="01-API-intro.html#cb27-1"></a>catalogue =<span class="st"> </span><span class="kw">get_dataset_list</span>()</span>
+<span id="cb27-2"><a href="01-API-intro.html#cb27-2"></a><span class="kw">kable</span>(<span class="kw">head</span>(catalogue))</span></code></pre></div>
 <table>
 <colgroup>
 <col width="8%" />
@@ -587,11 +587,11 @@ Attachement du package : &#39;lubridate&#39;</code></pre>
 </table>
 <p>Chaque tableau comporte un très grand nombre de séries chronologiques parmi lesquelles il faut opérer un choix afin d’extraire exactement ce que l’on veut.</p>
 </div>
-<div id="examen-des-séries-présentes-dans-un-tableau" class="section level3">
+<div id="examen-des-séries-présentes-dans-un-tableau" class="section level3" number="1.3.3">
 <h3><span class="header-section-number">1.3.3</span> Examen des séries présentes dans un tableau</h3>
 <p>Une fois que l’on a choisi un tableau, on peut examiner plus en détail les différentes séries qui y sont présentes à l’aide de la commande <em>get_idbank_list()</em>. On va par exemple examiner le contenu de la base de données “DECES-MORTALITE” :</p>
-<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="01-API-intro.html#cb30-1"></a>var&lt;-<span class="kw">get_idbank_list</span>(<span class="st">&quot;DECES-MORTALITE&quot;</span>)</span>
-<span id="cb30-2"><a href="01-API-intro.html#cb30-2"></a><span class="kw">str</span>(var)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="01-API-intro.html#cb28-1"></a>var&lt;-<span class="kw">get_idbank_list</span>(<span class="st">&quot;DECES-MORTALITE&quot;</span>)</span>
+<span id="cb28-2"><a href="01-API-intro.html#cb28-2"></a><span class="kw">str</span>(var)</span></code></pre></div>
 <pre><code>FALSE tibble [1,905 × 39] (S3: tbl_df/tbl/data.frame)
 FALSE  $ nomflow              : chr [1:1905] &quot;DECES-MORTALITE&quot; &quot;DECES-MORTALITE&quot; &quot;DECES-MORTALITE&quot; &quot;DECES-MORTALITE&quot; ...
 FALSE  $ idbank               : chr [1:1905] &quot;000436398&quot; &quot;001641606&quot; &quot;000869058&quot; &quot;001780755&quot; ...
@@ -634,38 +634,38 @@ FALSE  $ dim8                 : chr [1:1905] &quot;SO&quot; &quot;SO&quot; &quot
 FALSE  $ dim9                 : chr [1:1905] &quot;BRUT&quot; &quot;BRUT&quot; &quot;BRUT&quot; &quot;BRUT&quot; ...</code></pre>
 <p>Le résultat est un tibble comportant 1905 lignes et 39 colonnes. Il correspond en pratique aux 1905 séries chronologiques que l’on peut extraire de la base de données. Chaque série dispose d’un code unique contenu dans la variable <em>idbank</em>.</p>
 </div>
-<div id="extraction-dune-série-à-laide-de-son-identifiant" class="section level3">
+<div id="extraction-dune-série-à-laide-de-son-identifiant" class="section level3" number="1.3.4">
 <h3><span class="header-section-number">1.3.4</span> Extraction d’une série à l’aide de son identifiant</h3>
 <p>Une première solution pour extraire une série consiste à parcourir le tableau des variables jusqu’à repérer la ligne qui nous intéresse puis à noter son idbank et à extraire la série correspondante à l’aide de la fonction <strong>get_insee_idbank()</strong>. Par exemple, la première ligne du tableau des variables dont le code est “000436398” va renvoyer un tableau du taux brut de mortalité infantile en France métropolitaine de Janvier 1975 à Décembre 2014. On peut en faire rapidement un graphique avec la fonction <em>plot()</em> de R-Base</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="01-API-intro.html#cb32-1"></a>don&lt;-<span class="kw">get_insee_idbank</span>(<span class="st">&quot;000436398&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="01-API-intro.html#cb30-1"></a>don&lt;-<span class="kw">get_insee_idbank</span>(<span class="st">&quot;000436398&quot;</span>)</span></code></pre></div>
 <pre><code>FALSE 
   |                                                                            
   |                                                                      |   0%
   |                                                                            
   |======================================================================| 100%</code></pre>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="01-API-intro.html#cb34-1"></a>don&lt;-don[<span class="kw">order</span>(don<span class="op">$</span>DATE),<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</span>
-<span id="cb34-2"><a href="01-API-intro.html#cb34-2"></a><span class="kw">plot</span>(don<span class="op">$</span>DATE,don<span class="op">$</span>OBS_VALUE, </span>
-<span id="cb34-3"><a href="01-API-intro.html#cb34-3"></a>     <span class="dt">type =</span><span class="st">&quot;l&quot;</span>, </span>
-<span id="cb34-4"><a href="01-API-intro.html#cb34-4"></a>     <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, </span>
-<span id="cb34-5"><a href="01-API-intro.html#cb34-5"></a>     <span class="dt">ylab =</span> <span class="st">&quot;Décès 0-1 ans pour  1000 naissances&quot;</span>,</span>
-<span id="cb34-6"><a href="01-API-intro.html#cb34-6"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Données mensuelles&quot;</span>,</span>
-<span id="cb34-7"><a href="01-API-intro.html#cb34-7"></a>     <span class="dt">main =</span> <span class="st">&quot;Evolution de la mortalité infantile en France (1975-2014)&quot;</span>,</span>
-<span id="cb34-8"><a href="01-API-intro.html#cb34-8"></a>     <span class="dt">sub =</span> <span class="st">&quot;Source : Insee&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="01-API-intro.html#cb32-1"></a>don&lt;-don[<span class="kw">order</span>(don<span class="op">$</span>DATE),<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</span>
+<span id="cb32-2"><a href="01-API-intro.html#cb32-2"></a><span class="kw">plot</span>(don<span class="op">$</span>DATE,don<span class="op">$</span>OBS_VALUE, </span>
+<span id="cb32-3"><a href="01-API-intro.html#cb32-3"></a>     <span class="dt">type =</span><span class="st">&quot;l&quot;</span>, </span>
+<span id="cb32-4"><a href="01-API-intro.html#cb32-4"></a>     <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, </span>
+<span id="cb32-5"><a href="01-API-intro.html#cb32-5"></a>     <span class="dt">ylab =</span> <span class="st">&quot;Décès 0-1 ans pour  1000 naissances&quot;</span>,</span>
+<span id="cb32-6"><a href="01-API-intro.html#cb32-6"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Données mensuelles&quot;</span>,</span>
+<span id="cb32-7"><a href="01-API-intro.html#cb32-7"></a>     <span class="dt">main =</span> <span class="st">&quot;Evolution de la mortalité infantile en France (1975-2014)&quot;</span>,</span>
+<span id="cb32-8"><a href="01-API-intro.html#cb32-8"></a>     <span class="dt">sub =</span> <span class="st">&quot;Source : Insee&quot;</span>)</span></code></pre></div>
 <p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-16-1.svg" width="672" /></p>
 <p>On remarque que la courbe a des oscillations saisonnières beaucoup moins fortes après 1995 ce qui est sans doute lié à un changement dans le mode de collecte des données plutôt qu’à la réalité.</p>
 <p>On note aussi que les données s’arrêtent en 2014 ce qui est bizarre puisque l’API devrait nous donner les chiffres les plus récents. en fait les données plus récentes sont disponibles mais elles font partie d’une autre série de données.</p>
 </div>
-<div id="extraction-dun-ensemble-de-séries-dun-même-tableau" class="section level3">
+<div id="extraction-dun-ensemble-de-séries-dun-même-tableau" class="section level3" number="1.3.5">
 <h3><span class="header-section-number">1.3.5</span> Extraction d’un ensemble de séries d’un même tableau</h3>
 <p>Supposons que l’on veuille extraire trois courbes décrivant l’espérance de vie des hommes en France métropolitaine, à 20, 40 et 60 ans. Nous lançons alors une requête pour ne retenir dans le tableau des variables que les lignes qui nous intéressent.</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="01-API-intro.html#cb35-1"></a>sel  =<span class="st"> </span></span>
-<span id="cb35-2"><a href="01-API-intro.html#cb35-2"></a><span class="st">  </span><span class="kw">get_idbank_list</span>(<span class="st">&quot;DECES-MORTALITE&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb35-3"><a href="01-API-intro.html#cb35-3"></a><span class="st">  </span><span class="kw">filter</span>(SEXE <span class="op">==</span><span class="st"> &quot;1&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb35-4"><a href="01-API-intro.html#cb35-4"></a><span class="st">  </span><span class="kw">filter</span>(FREQ <span class="op">==</span><span class="st"> &quot;A&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#données annuelles</span></span>
-<span id="cb35-5"><a href="01-API-intro.html#cb35-5"></a><span class="st">  </span><span class="kw">filter</span>(REF_AREA <span class="op">==</span><span class="st"> &quot;FM&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#France métropolitaine</span></span>
-<span id="cb35-6"><a href="01-API-intro.html#cb35-6"></a><span class="st">  </span><span class="kw">filter</span>(DEMOGRAPHIE <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ESPV-20&quot;</span>,<span class="st">&quot;ESPV-40&quot;</span>,<span class="st">&quot;ESPV-60&quot;</span>)) <span class="co"># Espérance de vie</span></span>
-<span id="cb35-7"><a href="01-API-intro.html#cb35-7"></a></span>
-<span id="cb35-8"><a href="01-API-intro.html#cb35-8"></a><span class="kw">kable</span>(<span class="kw">head</span>(sel))</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="01-API-intro.html#cb33-1"></a>sel  =<span class="st"> </span></span>
+<span id="cb33-2"><a href="01-API-intro.html#cb33-2"></a><span class="st">  </span><span class="kw">get_idbank_list</span>(<span class="st">&quot;DECES-MORTALITE&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb33-3"><a href="01-API-intro.html#cb33-3"></a><span class="st">  </span><span class="kw">filter</span>(SEXE <span class="op">==</span><span class="st"> &quot;1&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb33-4"><a href="01-API-intro.html#cb33-4"></a><span class="st">  </span><span class="kw">filter</span>(FREQ <span class="op">==</span><span class="st"> &quot;A&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#données annuelles</span></span>
+<span id="cb33-5"><a href="01-API-intro.html#cb33-5"></a><span class="st">  </span><span class="kw">filter</span>(REF_AREA <span class="op">==</span><span class="st"> &quot;FM&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#France métropolitaine</span></span>
+<span id="cb33-6"><a href="01-API-intro.html#cb33-6"></a><span class="st">  </span><span class="kw">filter</span>(DEMOGRAPHIE <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ESPV-20&quot;</span>,<span class="st">&quot;ESPV-40&quot;</span>,<span class="st">&quot;ESPV-60&quot;</span>)) <span class="co"># Espérance de vie</span></span>
+<span id="cb33-7"><a href="01-API-intro.html#cb33-7"></a></span>
+<span id="cb33-8"><a href="01-API-intro.html#cb33-8"></a><span class="kw">kable</span>(<span class="kw">head</span>(sel))</span></code></pre></div>
 <table>
 <colgroup>
 <col width="2%" />
@@ -1002,10 +1002,10 @@ FALSE  $ dim9                 : chr [1:1905] &quot;BRUT&quot; &quot;BRUT&quot; &
 </table>
 <p>On découvre que le programme renvoie <strong>6 lignes au lieu de 3</strong>. Pourquoi ? Parce que l’INSEE stocke différemment des séries anciennes et des séries récentes. Il faut donc effectuer une requête sur les 4 codes à la fois pour avoir la série la plus longue.</p>
 </div>
-<div id="recupération-et-nettoyage-des-données" class="section level3">
+<div id="recupération-et-nettoyage-des-données" class="section level3" number="1.3.6">
 <h3><span class="header-section-number">1.3.6</span> Recupération et nettoyage des données</h3>
 <p>On récupère les données puis on procède à un petit nettoyage du tableau pour ne conserver que les colonnes utiles.</p>
-<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="01-API-intro.html#cb36-1"></a>don =<span class="st"> </span><span class="kw">get_insee_idbank</span>(sel<span class="op">$</span>idbank)</span></code></pre></div>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="01-API-intro.html#cb34-1"></a>don =<span class="st"> </span><span class="kw">get_insee_idbank</span>(sel<span class="op">$</span>idbank)</span></code></pre></div>
 <pre><code>FALSE 
   |                                                                            
   |                                                                      |   0%
@@ -1021,11 +1021,11 @@ FALSE  $ dim9                 : chr [1:1905] &quot;BRUT&quot; &quot;BRUT&quot; &
   |====================================================                  |  74%
   |                                                                            
   |======================================================================| 100%</code></pre>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="01-API-intro.html#cb38-1"></a>don2&lt;-don <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="dt">ANNEE =</span> DATE, <span class="dt">ESPVIE=</span> OBS_VALUE, <span class="dt">AGE =</span> TITLE_FR) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb38-2"><a href="01-API-intro.html#cb38-2"></a><span class="st">              </span><span class="kw">mutate</span>(<span class="dt">AGE =</span> <span class="kw">as.factor</span>(AGE)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb38-3"><a href="01-API-intro.html#cb38-3"></a><span class="st">              </span><span class="kw">arrange</span>(AGE, ANNEE)</span>
-<span id="cb38-4"><a href="01-API-intro.html#cb38-4"></a><span class="kw">levels</span>(don2<span class="op">$</span>AGE) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;20 ans&quot;</span>, <span class="st">&quot;40 ans&quot;</span>,<span class="st">&quot;60 ans&quot;</span>)</span>
-<span id="cb38-5"><a href="01-API-intro.html#cb38-5"></a><span class="kw">kable</span>(<span class="kw">head</span>(don2))</span></code></pre></div>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="01-API-intro.html#cb36-1"></a>don2&lt;-don <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="dt">ANNEE =</span> DATE, <span class="dt">ESPVIE=</span> OBS_VALUE, <span class="dt">AGE =</span> TITLE_FR) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb36-2"><a href="01-API-intro.html#cb36-2"></a><span class="st">              </span><span class="kw">mutate</span>(<span class="dt">AGE =</span> <span class="kw">as.factor</span>(AGE)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb36-3"><a href="01-API-intro.html#cb36-3"></a><span class="st">              </span><span class="kw">arrange</span>(AGE, ANNEE)</span>
+<span id="cb36-4"><a href="01-API-intro.html#cb36-4"></a><span class="kw">levels</span>(don2<span class="op">$</span>AGE) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;20 ans&quot;</span>, <span class="st">&quot;40 ans&quot;</span>,<span class="st">&quot;60 ans&quot;</span>)</span>
+<span id="cb36-5"><a href="01-API-intro.html#cb36-5"></a><span class="kw">kable</span>(<span class="kw">head</span>(don2))</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1068,27 +1068,27 @@ FALSE  $ dim9                 : chr [1:1905] &quot;BRUT&quot; &quot;BRUT&quot; &
 </tbody>
 </table>
 </div>
-<div id="construction-dun-graphique" class="section level3">
+<div id="construction-dun-graphique" class="section level3" number="1.3.7">
 <h3><span class="header-section-number">1.3.7</span> Construction d’un graphique</h3>
 <p>On peut maintenant construire notre graphique à l’aide par exemple de <code>ggplot2</code> :</p>
-<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="01-API-intro.html#cb39-1"></a>p&lt;-<span class="kw">ggplot</span>(don2) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb39-2"><a href="01-API-intro.html#cb39-2"></a><span class="st">   </span><span class="kw">aes</span>(<span class="dt">x=</span>ANNEE,<span class="dt">y=</span>ESPVIE, <span class="dt">color =</span> AGE) <span class="op">+</span></span>
-<span id="cb39-3"><a href="01-API-intro.html#cb39-3"></a><span class="st">    </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
-<span id="cb39-4"><a href="01-API-intro.html#cb39-4"></a><span class="st">    </span><span class="kw">ggtitle</span>(<span class="dt">label=</span> <span class="st">&quot;Espérance de vie en France Métropolitaine&quot;</span>,</span>
-<span id="cb39-5"><a href="01-API-intro.html#cb39-5"></a>            <span class="dt">subtitle =</span> <span class="st">&quot;Source : INSEE&quot;</span>)<span class="op">+</span></span>
-<span id="cb39-6"><a href="01-API-intro.html#cb39-6"></a><span class="st">    </span><span class="kw">scale_x_date</span>(<span class="st">&quot;Données annuelles&quot;</span>) <span class="op">+</span></span>
-<span id="cb39-7"><a href="01-API-intro.html#cb39-7"></a><span class="st">    </span><span class="kw">scale_y_continuous</span>(<span class="st">&quot;Années de vie restantes&quot;</span>,<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="ot">NA</span>))</span>
-<span id="cb39-8"><a href="01-API-intro.html#cb39-8"></a>p</span></code></pre></div>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="01-API-intro.html#cb37-1"></a>p&lt;-<span class="kw">ggplot</span>(don2) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb37-2"><a href="01-API-intro.html#cb37-2"></a><span class="st">   </span><span class="kw">aes</span>(<span class="dt">x=</span>ANNEE,<span class="dt">y=</span>ESPVIE, <span class="dt">color =</span> AGE) <span class="op">+</span></span>
+<span id="cb37-3"><a href="01-API-intro.html#cb37-3"></a><span class="st">    </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb37-4"><a href="01-API-intro.html#cb37-4"></a><span class="st">    </span><span class="kw">ggtitle</span>(<span class="dt">label=</span> <span class="st">&quot;Espérance de vie en France Métropolitaine&quot;</span>,</span>
+<span id="cb37-5"><a href="01-API-intro.html#cb37-5"></a>            <span class="dt">subtitle =</span> <span class="st">&quot;Source : INSEE&quot;</span>)<span class="op">+</span></span>
+<span id="cb37-6"><a href="01-API-intro.html#cb37-6"></a><span class="st">    </span><span class="kw">scale_x_date</span>(<span class="st">&quot;Données annuelles&quot;</span>) <span class="op">+</span></span>
+<span id="cb37-7"><a href="01-API-intro.html#cb37-7"></a><span class="st">    </span><span class="kw">scale_y_continuous</span>(<span class="st">&quot;Années de vie restantes&quot;</span>,<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="ot">NA</span>))</span>
+<span id="cb37-8"><a href="01-API-intro.html#cb37-8"></a>p</span></code></pre></div>
 <p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-19-1.svg" width="672" /></p>
 </div>
-<div id="discussion" class="section level3">
+<div id="discussion" class="section level3" number="1.3.8">
 <h3><span class="header-section-number">1.3.8</span> Discussion</h3>
 <p>Comme on peut le voir, l’utilisation d’un package simplifie l’usage des API mais ne dispense pas d’un apprentissage souvent long pour comprendre toutes les finesses du package (et parfois ses bugs …). Dans le cas du package INSEE, l’utilisation s’avère assez lourde mais permet d’accéder à un nombre considérable de données !</p>
 </div>
 </div>
-<div id="exercices" class="section level2">
+<div id="exercices" class="section level2" number="1.4">
 <h2><span class="header-section-number">1.4</span> Exercices</h2>
-<div id="exercice-1-utilisation-de-httr-et-jsonlite" class="section level3">
+<div id="exercice-1-utilisation-de-httr-et-jsonlite" class="section level3" number="1.4.1">
 <h3><span class="header-section-number">1.4.1</span> Exercice 1 : utilisation de httr et jsonlite</h3>
 <p>Déterminer la durée et la date des 10 prochains dates de passage de l’ISS au dessus de Paris (Latitude = 48.86, Longitude = 2.35)</p>
 <table>
@@ -1101,59 +1101,57 @@ FALSE  $ dim9                 : chr [1:1905] &quot;BRUT&quot; &quot;BRUT&quot; &
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">653</td>
-<td align="left">2021-02-09 13:08:06</td>
-</tr>
-<tr class="even">
 <td align="right">657</td>
 <td align="left">2021-02-09 14:45:07</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="right">625</td>
 <td align="left">2021-02-09 16:22:00</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="right">366</td>
 <td align="left">2021-02-09 18:00:03</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="right">541</td>
 <td align="left">2021-02-10 09:08:27</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="right">651</td>
 <td align="left">2021-02-10 10:43:48</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="right">654</td>
 <td align="left">2021-02-10 12:20:39</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="right">656</td>
 <td align="left">2021-02-10 13:57:42</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="right">643</td>
 <td align="left">2021-02-10 15:34:34</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="right">478</td>
 <td align="left">2021-02-10 17:12:02</td>
 </tr>
+<tr class="even">
+<td align="right">468</td>
+<td align="left">2021-02-11 08:21:56</td>
+</tr>
 </tbody>
 </table>
-
 <div class="solution-exo">
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="01-API-intro.html#cb40-1"></a>titi &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;http://api.open-notify.org/iss-pass.json&quot;</span>,</span>
-<span id="cb40-2"><a href="01-API-intro.html#cb40-2"></a>            <span class="dt">query =</span> <span class="kw">list</span>(<span class="dt">lat =</span> <span class="fl">40.7</span>, <span class="dt">lon =</span> <span class="dv">-74</span>, <span class="dt">n=</span><span class="dv">3</span>))</span>
-<span id="cb40-3"><a href="01-API-intro.html#cb40-3"></a>titi2 &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(<span class="kw">rawToChar</span>(titi<span class="op">$</span>content))</span>
-<span id="cb40-4"><a href="01-API-intro.html#cb40-4"></a>titi3 &lt;-<span class="st"> </span>titi2<span class="op">$</span>response</span>
-<span id="cb40-5"><a href="01-API-intro.html#cb40-5"></a>titi3<span class="op">$</span>time&lt;-<span class="kw">as_datetime</span>(titi3<span class="op">$</span>risetime)</span>
-<span id="cb40-6"><a href="01-API-intro.html#cb40-6"></a><span class="kw">kable</span>(titi3, <span class="dt">caption =</span> <span class="st">&quot;Prochains passages de l&#39;ISS au dessus de Paris&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="01-API-intro.html#cb38-1"></a>titi &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;http://api.open-notify.org/iss-pass.json&quot;</span>,</span>
+<span id="cb38-2"><a href="01-API-intro.html#cb38-2"></a>            <span class="dt">query =</span> <span class="kw">list</span>(<span class="dt">lat =</span> <span class="fl">40.7</span>, <span class="dt">lon =</span> <span class="dv">-74</span>, <span class="dt">n=</span><span class="dv">3</span>))</span>
+<span id="cb38-3"><a href="01-API-intro.html#cb38-3"></a>titi2 &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(<span class="kw">rawToChar</span>(titi<span class="op">$</span>content))</span>
+<span id="cb38-4"><a href="01-API-intro.html#cb38-4"></a>titi3 &lt;-<span class="st"> </span>titi2<span class="op">$</span>response</span>
+<span id="cb38-5"><a href="01-API-intro.html#cb38-5"></a>titi3<span class="op">$</span>time&lt;-<span class="kw">as_datetime</span>(titi3<span class="op">$</span>risetime)</span>
+<span id="cb38-6"><a href="01-API-intro.html#cb38-6"></a><span class="kw">kable</span>(titi3, <span class="dt">caption =</span> <span class="st">&quot;Prochains passages de l&#39;ISS au dessus de Paris&quot;</span>)</span></code></pre></div>
 </div>
-
 </div>
-<div id="exercice-2-utilisation-du-package-insee" class="section level3">
+<div id="exercice-2-utilisation-du-package-insee" class="section level3" number="1.4.2">
 <h3><span class="header-section-number">1.4.2</span> Exercice 2 : utilisation du package ‘insee’</h3>
 <p>Construire à l’aide du package INSEE un graphique de l’évolution mensuelle de l’espérance de vie des femmes à la naissance en France Métropolitaine de 1945 à 2020.</p>
 <pre><code>FALSE 
@@ -1164,51 +1162,58 @@ FALSE  $ dim9                 : chr [1:1905] &quot;BRUT&quot; &quot;BRUT&quot; &
   |                                                                            
   |======================================================================| 100%</code></pre>
 <p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-22-1.svg" width="672" /></p>
-
 <div class="solution-exo">
-<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="01-API-intro.html#cb42-1"></a><span class="co">#library(insee)</span></span>
-<span id="cb42-2"><a href="01-API-intro.html#cb42-2"></a><span class="co">#library(tidyverse)</span></span>
-<span id="cb42-3"><a href="01-API-intro.html#cb42-3"></a></span>
-<span id="cb42-4"><a href="01-API-intro.html#cb42-4"></a>sel  =<span class="st"> </span></span>
-<span id="cb42-5"><a href="01-API-intro.html#cb42-5"></a><span class="st">  </span><span class="kw">get_idbank_list</span>(<span class="st">&quot;DECES-MORTALITE&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb42-6"><a href="01-API-intro.html#cb42-6"></a><span class="st">  </span><span class="kw">filter</span>(SEXE <span class="op">==</span><span class="st"> &quot;2&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb42-7"><a href="01-API-intro.html#cb42-7"></a><span class="st">  </span><span class="kw">filter</span>(FREQ <span class="op">==</span><span class="st"> &quot;A&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#données mensuelles</span></span>
-<span id="cb42-8"><a href="01-API-intro.html#cb42-8"></a><span class="st">  </span><span class="kw">filter</span>(REF_AREA <span class="op">==</span><span class="st"> &quot;FM&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#France métropolitaine</span></span>
-<span id="cb42-9"><a href="01-API-intro.html#cb42-9"></a><span class="st">  </span><span class="kw">filter</span>(DEMOGRAPHIE <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ESPV&quot;</span>)) <span class="co"># Espérance de vie</span></span>
-<span id="cb42-10"><a href="01-API-intro.html#cb42-10"></a></span>
-<span id="cb42-11"><a href="01-API-intro.html#cb42-11"></a>don =<span class="st"> </span></span>
-<span id="cb42-12"><a href="01-API-intro.html#cb42-12"></a><span class="st">  </span><span class="kw">get_insee_idbank</span>(sel<span class="op">$</span>idbank) <span class="op">%&gt;%</span></span>
-<span id="cb42-13"><a href="01-API-intro.html#cb42-13"></a><span class="st">  </span><span class="kw">select</span>(<span class="dt">ANNEE =</span> DATE, <span class="dt">ESPVIE=</span> OBS_VALUE) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb42-14"><a href="01-API-intro.html#cb42-14"></a><span class="st">  </span><span class="kw">arrange</span>(ANNEE)</span>
-<span id="cb42-15"><a href="01-API-intro.html#cb42-15"></a></span>
-<span id="cb42-16"><a href="01-API-intro.html#cb42-16"></a></span>
-<span id="cb42-17"><a href="01-API-intro.html#cb42-17"></a>p =<span class="st"> </span></span>
-<span id="cb42-18"><a href="01-API-intro.html#cb42-18"></a><span class="st">    </span><span class="kw">ggplot</span>(don) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb42-19"><a href="01-API-intro.html#cb42-19"></a><span class="st">    </span><span class="kw">aes</span>(<span class="dt">x=</span>ANNEE,<span class="dt">y=</span>ESPVIE) <span class="op">+</span></span>
-<span id="cb42-20"><a href="01-API-intro.html#cb42-20"></a><span class="st">    </span><span class="kw">geom_line</span>(<span class="dt">col=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
-<span id="cb42-21"><a href="01-API-intro.html#cb42-21"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span> <span class="st">&quot;lm&quot;</span>,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)<span class="op">+</span></span>
-<span id="cb42-22"><a href="01-API-intro.html#cb42-22"></a><span class="st">    </span><span class="kw">ggtitle</span>(<span class="dt">label=</span> <span class="st">&quot;Espérance de vie à la naissance des femmes en France Métropolitaine&quot;</span>,</span>
-<span id="cb42-23"><a href="01-API-intro.html#cb42-23"></a>            <span class="dt">subtitle =</span> <span class="st">&quot;Source : INSEE&quot;</span>)<span class="op">+</span></span>
-<span id="cb42-24"><a href="01-API-intro.html#cb42-24"></a><span class="st">    </span><span class="kw">scale_x_date</span>(<span class="st">&quot;Année&quot;</span>, <span class="dt">limits =</span><span class="kw">as.Date</span>(<span class="kw">c</span>(<span class="st">&quot;1940-01-01&quot;</span>,<span class="st">&quot;2020-01-01&quot;</span>))) <span class="op">+</span></span>
-<span id="cb42-25"><a href="01-API-intro.html#cb42-25"></a><span class="st">    </span><span class="kw">scale_y_continuous</span>(<span class="st">&quot;Durée de vie moyenne&quot;</span>)</span>
-<span id="cb42-26"><a href="01-API-intro.html#cb42-26"></a>p</span></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="01-API-intro.html#cb40-1"></a><span class="co">#library(insee)</span></span>
+<span id="cb40-2"><a href="01-API-intro.html#cb40-2"></a><span class="co">#library(tidyverse)</span></span>
+<span id="cb40-3"><a href="01-API-intro.html#cb40-3"></a></span>
+<span id="cb40-4"><a href="01-API-intro.html#cb40-4"></a>sel  =<span class="st"> </span></span>
+<span id="cb40-5"><a href="01-API-intro.html#cb40-5"></a><span class="st">  </span><span class="kw">get_idbank_list</span>(<span class="st">&quot;DECES-MORTALITE&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb40-6"><a href="01-API-intro.html#cb40-6"></a><span class="st">  </span><span class="kw">filter</span>(SEXE <span class="op">==</span><span class="st"> &quot;2&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb40-7"><a href="01-API-intro.html#cb40-7"></a><span class="st">  </span><span class="kw">filter</span>(FREQ <span class="op">==</span><span class="st"> &quot;A&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#données mensuelles</span></span>
+<span id="cb40-8"><a href="01-API-intro.html#cb40-8"></a><span class="st">  </span><span class="kw">filter</span>(REF_AREA <span class="op">==</span><span class="st"> &quot;FM&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#France métropolitaine</span></span>
+<span id="cb40-9"><a href="01-API-intro.html#cb40-9"></a><span class="st">  </span><span class="kw">filter</span>(DEMOGRAPHIE <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ESPV&quot;</span>)) <span class="co"># Espérance de vie</span></span>
+<span id="cb40-10"><a href="01-API-intro.html#cb40-10"></a></span>
+<span id="cb40-11"><a href="01-API-intro.html#cb40-11"></a>don =<span class="st"> </span></span>
+<span id="cb40-12"><a href="01-API-intro.html#cb40-12"></a><span class="st">  </span><span class="kw">get_insee_idbank</span>(sel<span class="op">$</span>idbank) <span class="op">%&gt;%</span></span>
+<span id="cb40-13"><a href="01-API-intro.html#cb40-13"></a><span class="st">  </span><span class="kw">select</span>(<span class="dt">ANNEE =</span> DATE, <span class="dt">ESPVIE=</span> OBS_VALUE) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb40-14"><a href="01-API-intro.html#cb40-14"></a><span class="st">  </span><span class="kw">arrange</span>(ANNEE)</span>
+<span id="cb40-15"><a href="01-API-intro.html#cb40-15"></a></span>
+<span id="cb40-16"><a href="01-API-intro.html#cb40-16"></a></span>
+<span id="cb40-17"><a href="01-API-intro.html#cb40-17"></a>p =<span class="st"> </span></span>
+<span id="cb40-18"><a href="01-API-intro.html#cb40-18"></a><span class="st">    </span><span class="kw">ggplot</span>(don) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb40-19"><a href="01-API-intro.html#cb40-19"></a><span class="st">    </span><span class="kw">aes</span>(<span class="dt">x=</span>ANNEE,<span class="dt">y=</span>ESPVIE) <span class="op">+</span></span>
+<span id="cb40-20"><a href="01-API-intro.html#cb40-20"></a><span class="st">    </span><span class="kw">geom_line</span>(<span class="dt">col=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
+<span id="cb40-21"><a href="01-API-intro.html#cb40-21"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span> <span class="st">&quot;lm&quot;</span>,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)<span class="op">+</span></span>
+<span id="cb40-22"><a href="01-API-intro.html#cb40-22"></a><span class="st">    </span><span class="kw">ggtitle</span>(<span class="dt">label=</span> <span class="st">&quot;Espérance de vie à la naissance des femmes en France Métropolitaine&quot;</span>,</span>
+<span id="cb40-23"><a href="01-API-intro.html#cb40-23"></a>            <span class="dt">subtitle =</span> <span class="st">&quot;Source : INSEE&quot;</span>)<span class="op">+</span></span>
+<span id="cb40-24"><a href="01-API-intro.html#cb40-24"></a><span class="st">    </span><span class="kw">scale_x_date</span>(<span class="st">&quot;Année&quot;</span>, <span class="dt">limits =</span><span class="kw">as.Date</span>(<span class="kw">c</span>(<span class="st">&quot;1940-01-01&quot;</span>,<span class="st">&quot;2020-01-01&quot;</span>))) <span class="op">+</span></span>
+<span id="cb40-25"><a href="01-API-intro.html#cb40-25"></a><span class="st">    </span><span class="kw">scale_y_continuous</span>(<span class="st">&quot;Durée de vie moyenne&quot;</span>)</span>
+<span id="cb40-26"><a href="01-API-intro.html#cb40-26"></a>p</span></code></pre></div>
 </div>
-
 </div>
-<div id="exercice-3-exploration-de-nouvelles-api" class="section level3">
-<h3><span class="header-section-number">1.4.3</span> Exercice 3 : Exploration de nouvelles API</h3>
+<div id="exercice-3-osrm" class="section level3" number="1.4.3">
+<h3><span class="header-section-number">1.4.3</span> Exercice 3 : Osrm</h3>
+<p>On se propose de calculer la distance routière Paris Rouen en temps et en kilomètre à l’aide de l’API osrm.</p>
+<p>Paris (48.863186 ; 2.339754)
+Rouen (49.443232.; 1.099971)</p>
+<p>Vous pouvez effectuer le calcul :</p>
+<ul>
+<li>soit avec l’API osrm</li>
+</ul>
+<p><a href="http://project-osrm.org/docs/v5.15.2/api/#general-options" class="uri">http://project-osrm.org/docs/v5.15.2/api/#general-options</a></p>
+<ul>
+<li>soit avec le package R osrm de Thimotee Giraud qui émule l’API</li>
+</ul>
+<p><a href="https://rgeomatic.hypotheses.org/1798" class="uri">https://rgeomatic.hypotheses.org/1798</a></p>
+</div>
+<div id="exercice-4-exploration-de-nouvelles-api" class="section level3" number="1.4.4">
+<h3><span class="header-section-number">1.4.4</span> Exercice 4 : Exploration de nouvelles API</h3>
 <p>Vous devez identifier une API intéressante, accessible soit par un package R, soit par une combinaison de comandes GET() puis montrer son utilisation à l’aide d’un exemple de création d’un tableau puis d’un graphique.</p>
 <p>Vous présenterez le résultat sous la forme d’un document markdown d’une à deux pages maximum.</p>
 
 </div>
 </div>
 </div>
-
-
-
-
-
-
 <script src="js/tidyverse.js"></script>
             </section>
 

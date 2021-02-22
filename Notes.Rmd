@@ -1,0 +1,29 @@
+---
+title: "Cours CG1 Datamining"
+author: "Moi"
+date: "2/11/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Qu'est ce qu'une API ?
+
+## Définition 
+
+## Protocoles
+
+
+
+
+# Comment utiliser des API dans R
+
+
+# Packages R émulant des API
+
+
+# Exercices
+
+

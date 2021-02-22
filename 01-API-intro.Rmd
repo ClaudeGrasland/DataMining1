@@ -411,10 +411,30 @@ p
 </div>
 \fi
 
-### Exercice 3 : Exploration de nouvelles API
+
+### Exercice 3 : Osrm
+
+On se propose de calculer la distance routière Paris Rouen en temps et en kilomètre à l'aide de l'API osrm.
+
+Paris (48.863186 ; 2.339754)
+Rouen (49.443232.; 1.099971)
+
+Vous pouvez effectuer le calcul :
+
+- soit avec l'API osrm 
+
+http://project-osrm.org/docs/v5.15.2/api/#general-options
+
+- soit avec le package R osrm de Thimotee Giraud qui émule l'API
+
+https://rgeomatic.hypotheses.org/1798
+
+
+### Exercice 4 : Exploration de nouvelles API
 
 Vous devez identifier une API intéressante, accessible soit par un package R, soit par une combinaison de comandes GET() puis montrer son utilisation à l'aide d'un exemple de création d'un tableau puis d'un graphique. 
 
 Vous présenterez le résultat sous la forme d'un document markdown d'une à deux pages maximum. 
+
 
 
