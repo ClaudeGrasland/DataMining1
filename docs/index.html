@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>DATA MINING</title>
+  <meta name="description" content="Titre du cours" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="DATA MINING" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Titre du cours" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="DATA MINING" />
+  
+  <meta name="twitter:description" content="Titre du cours" />
+  
+
+<meta name="author" content="Claude Grasland, Professeur de Géographie, Université de Paris (Diderot)" />
+
+
+<meta name="date" content="2021-02-23" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+
+<link rel="next" href="00-presentation.html"/>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2.2/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span. { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css/tidyverse.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./index.html">Data Mining:  <em>C. Grasland (2021)</em></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html"><i class="fa fa-check"></i>Présentation</a>
+<ul>
+<li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html#à-propos-de-ce-document"><i class="fa fa-check"></i>À propos de ce document</a></li>
+<li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html#prérequis"><i class="fa fa-check"></i>Prérequis</a></li>
+<li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html#remerciements"><i class="fa fa-check"></i>Remerciements</a></li>
+<li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html#licence"><i class="fa fa-check"></i>Licence</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="01-API-intro.html"><a href="01-API-intro.html"><i class="fa fa-check"></i><b>1</b> Collecter des données à l’aide d’une API</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="01-API-intro.html"><a href="01-API-intro.html#quest-ce-quune-api"><i class="fa fa-check"></i><b>1.1</b> Qu’est-ce qu’une API ?</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="01-API-intro.html"><a href="01-API-intro.html#définitions"><i class="fa fa-check"></i><b>1.1.1</b> Définitions</a></li>
+<li class="chapter" data-level="1.1.2" data-path="01-API-intro.html"><a href="01-API-intro.html#domaine-dapplication"><i class="fa fa-check"></i><b>1.1.2</b> Domaine d’application</a></li>
+<li class="chapter" data-level="1.1.3" data-path="01-API-intro.html"><a href="01-API-intro.html#système-client-serveur"><i class="fa fa-check"></i><b>1.1.3</b> Système client-serveur</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="01-API-intro.html"><a href="01-API-intro.html#comment-utiliser-une-api-dans-r"><i class="fa fa-check"></i><b>1.2</b> Comment utiliser une API dans R ?</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="01-API-intro.html"><a href="01-API-intro.html#pourquoi-utiliser-des-api"><i class="fa fa-check"></i><b>1.2.1</b> Pourquoi utiliser des API ?</a></li>
+<li class="chapter" data-level="1.2.2" data-path="01-API-intro.html"><a href="01-API-intro.html#installer-les-packages-jsonlite-et-httr"><i class="fa fa-check"></i><b>1.2.2</b> Installer les packages jsonlite et httr</a></li>
+<li class="chapter" data-level="1.2.3" data-path="01-API-intro.html"><a href="01-API-intro.html#structure-dune-requête"><i class="fa fa-check"></i><b>1.2.3</b> Structure d’une requête</a></li>
+<li class="chapter" data-level="1.2.4" data-path="01-API-intro.html"><a href="01-API-intro.html#extraction-des-données"><i class="fa fa-check"></i><b>1.2.4</b> Extraction des données</a></li>
+<li class="chapter" data-level="1.2.5" data-path="01-API-intro.html"><a href="01-API-intro.html#api-et-mise-à-jour-en-temps-réel"><i class="fa fa-check"></i><b>1.2.5</b> API et mise à jour en temps réel</a></li>
+<li class="chapter" data-level="1.2.6" data-path="01-API-intro.html"><a href="01-API-intro.html#api-et-requête-paramétrique"><i class="fa fa-check"></i><b>1.2.6</b> API et requête paramétrique</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="01-API-intro.html"><a href="01-API-intro.html#api-ou-data-packages"><i class="fa fa-check"></i><b>1.3</b> API ou data packages ?</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="01-API-intro.html"><a href="01-API-intro.html#installation-et-chargement-du-package"><i class="fa fa-check"></i><b>1.3.1</b> Installation et chargement du package</a></li>
+<li class="chapter" data-level="1.3.2" data-path="01-API-intro.html"><a href="01-API-intro.html#chargement-de-la-liste-des-tableaux"><i class="fa fa-check"></i><b>1.3.2</b> Chargement de la liste des tableaux</a></li>
+<li class="chapter" data-level="1.3.3" data-path="01-API-intro.html"><a href="01-API-intro.html#examen-des-séries-présentes-dans-un-tableau"><i class="fa fa-check"></i><b>1.3.3</b> Examen des séries présentes dans un tableau</a></li>
+<li class="chapter" data-level="1.3.4" data-path="01-API-intro.html"><a href="01-API-intro.html#extraction-dune-série-à-laide-de-son-identifiant"><i class="fa fa-check"></i><b>1.3.4</b> Extraction d’une série à l’aide de son identifiant</a></li>
+<li class="chapter" data-level="1.3.5" data-path="01-API-intro.html"><a href="01-API-intro.html#extraction-dun-ensemble-de-séries-dun-même-tableau"><i class="fa fa-check"></i><b>1.3.5</b> Extraction d’un ensemble de séries d’un même tableau</a></li>
+<li class="chapter" data-level="1.3.6" data-path="01-API-intro.html"><a href="01-API-intro.html#recupération-et-nettoyage-des-données"><i class="fa fa-check"></i><b>1.3.6</b> Recupération et nettoyage des données</a></li>
+<li class="chapter" data-level="1.3.7" data-path="01-API-intro.html"><a href="01-API-intro.html#construction-dun-graphique"><i class="fa fa-check"></i><b>1.3.7</b> Construction d’un graphique</a></li>
+<li class="chapter" data-level="1.3.8" data-path="01-API-intro.html"><a href="01-API-intro.html#discussion"><i class="fa fa-check"></i><b>1.3.8</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="01-API-intro.html"><a href="01-API-intro.html#exercices"><i class="fa fa-check"></i><b>1.4</b> Exercices</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="01-API-intro.html"><a href="01-API-intro.html#exercice-1-utilisation-de-httr-et-jsonlite"><i class="fa fa-check"></i><b>1.4.1</b> Exercice 1 : utilisation de httr et jsonlite</a></li>
+<li class="chapter" data-level="1.4.2" data-path="01-API-intro.html"><a href="01-API-intro.html#exercice-2-utilisation-du-package-insee"><i class="fa fa-check"></i><b>1.4.2</b> Exercice 2 : utilisation du package ‘insee’</a></li>
+<li class="chapter" data-level="1.4.3" data-path="01-API-intro.html"><a href="01-API-intro.html#exercice-3-osrm"><i class="fa fa-check"></i><b>1.4.3</b> Exercice 3 : Osrm</a></li>
+<li class="chapter" data-level="1.4.4" data-path="01-API-intro.html"><a href="01-API-intro.html#exercice-4-exploration-de-nouvelles-api"><i class="fa fa-check"></i><b>1.4.4</b> Exercice 4 : Exploration de nouvelles API</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="02-API-worldstat.html"><a href="02-API-worldstat.html"><i class="fa fa-check"></i><b>2</b> L’API Wbstats (Banque Mondiale)</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="02-API-worldstat.html"><a href="02-API-worldstat.html#objectifs"><i class="fa fa-check"></i><b>2.1</b> Objectifs</a></li>
+<li class="chapter" data-level="2.2" data-path="02-API-worldstat.html"><a href="02-API-worldstat.html#le-tableau-countries"><i class="fa fa-check"></i><b>2.2</b> Le tableau “countries”</a></li>
+<li class="chapter" data-level="2.3" data-path="02-API-worldstat.html"><a href="02-API-worldstat.html#le-tableau-indicators"><i class="fa fa-check"></i><b>2.3</b> Le tableau indicators</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="02-API-worldstat.html"><a href="02-API-worldstat.html#recherche-du-code-dun-indicateur"><i class="fa fa-check"></i><b>2.3.1</b> Recherche du code d’un indicateur</a></li>
+<li class="chapter" data-level="2.3.2" data-path="02-API-worldstat.html"><a href="02-API-worldstat.html#extraction-des-métadonnées"><i class="fa fa-check"></i><b>2.3.2</b> Extraction des métadonnées</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="02-API-worldstat.html"><a href="02-API-worldstat.html#lextraction-des-données"><i class="fa fa-check"></i><b>2.4</b> L’extraction des données</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="02-API-worldstat.html"><a href="02-API-worldstat.html#le-paramètre-indicator"><i class="fa fa-check"></i><b>2.4.1</b> le paramètre <code>indicator =</code></a></li>
+<li class="chapter" data-level="2.4.2" data-path="02-API-worldstat.html"><a href="02-API-worldstat.html#le-choix-dune-période-de-temps"><i class="fa fa-check"></i><b>2.4.2</b> le choix d’une période de temps</a></li>
+<li class="chapter" data-level="2.4.3" data-path="02-API-worldstat.html"><a href="02-API-worldstat.html#le-choix-des-unités-géographiques"><i class="fa fa-check"></i><b>2.4.3</b> Le choix des unités géographiques</a></li>
+<li class="chapter" data-level="2.4.4" data-path="02-API-worldstat.html"><a href="02-API-worldstat.html#le-format-de-sortie-du-tableau"><i class="fa fa-check"></i><b>2.4.4</b> Le format de sortie du tableau</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="02-API-worldstat.html"><a href="02-API-worldstat.html#exercices-1"><i class="fa fa-check"></i><b>2.5</b> Exercices</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="02-API-worldstat.html"><a href="02-API-worldstat.html#exercice-1"><i class="fa fa-check"></i><b>2.5.1</b> Exercice 1</a></li>
+<li class="chapter" data-level="2.5.2" data-path="02-API-worldstat.html"><a href="02-API-worldstat.html#exercice-2"><i class="fa fa-check"></i><b>2.5.2</b> Exercice 2</a></li>
+<li class="chapter" data-level="2.5.3" data-path="02-API-worldstat.html"><a href="02-API-worldstat.html#exercice-3"><i class="fa fa-check"></i><b>2.5.3</b> Exercice 3</a></li>
+<li class="chapter" data-level="2.5.4" data-path="02-API-worldstat.html"><a href="02-API-worldstat.html#exercice-4"><i class="fa fa-check"></i><b>2.5.4</b> Exercice 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html"><i class="fa fa-check"></i><b>3</b> L’API Natural Earth</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#objectifs-1"><i class="fa fa-check"></i><b>3.1</b> Objectifs</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#quel-fonds-de-carte-choisir"><i class="fa fa-check"></i><b>3.1.1</b> Quel fonds de carte choisir ?</a></li>
+<li class="chapter" data-level="3.1.2" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#le-fonds-de-carte-countries110-175-unités"><i class="fa fa-check"></i><b>3.1.2</b> le fonds de carte <em>countries110</em> (175 unités)</a></li>
+<li class="chapter" data-level="3.1.3" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#le-fonds-de-carte-sovereignty110-171-unités"><i class="fa fa-check"></i><b>3.1.3</b> le fonds de carte <em>sovereignty110</em> (171 unités)</a></li>
+<li class="chapter" data-level="3.1.4" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#le-fonds-de-carte-tinycountries110"><i class="fa fa-check"></i><b>3.1.4</b> Le fonds de carte <em>tinycountries110</em></a></li>
+<li class="chapter" data-level="3.1.5" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#le-fonds-de-carte-countries50"><i class="fa fa-check"></i><b>3.1.5</b> Le fonds de carte <em>countries50</em></a></li>
+<li class="chapter" data-level="3.1.6" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#autres-fonds-de-carte"><i class="fa fa-check"></i><b>3.1.6</b> Autres fonds de carte :</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#exemple-de-combinaison-des-api-wbstats-et-naturalearth"><i class="fa fa-check"></i><b>3.2</b> Exemple de combinaison des API wbstats et naturalearth</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#etape-1-récupération-des-données-statistiques"><i class="fa fa-check"></i><b>3.2.1</b> Etape 1 : récupération des données statistiques</a></li>
+<li class="chapter" data-level="3.2.2" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#etape-2-récupération-du-fonds-de-carte"><i class="fa fa-check"></i><b>3.2.2</b> Etape 2 : Récupération du fonds de carte</a></li>
+<li class="chapter" data-level="3.2.3" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#etape-3-jointure-du-fonds-de-carte-et-des-statistiques"><i class="fa fa-check"></i><b>3.2.3</b> Etape 3 : Jointure du fonds de carte et des statistiques</a></li>
+<li class="chapter" data-level="3.2.4" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#etape-4-visualisation-avec-plotly"><i class="fa fa-check"></i><b>3.2.4</b> Etape 4 :Visualisation avec plotly</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">DATA MINING</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="header">
+<h1 class="title">DATA MINING</h1>
+<h2 class="subtitle"><em>Master Meci - Parcours Data - Options PISE et CCESE</em></h2>
+<p class="author"><em>Claude Grasland, Professeur de Géographie, Université de Paris (Diderot)</em></p>
+<p class="date"><em>2021-02-23</em></p>
+</div>
+
+<script src="js/tidyverse.js"></script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+
+<a href="00-presentation.html" class="navigation navigation-next navigation-unique" aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"],
+"instapper": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/ClaudeGrasland/DataMining1/blob/master/index.Rmd",
+"text": "Source"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
