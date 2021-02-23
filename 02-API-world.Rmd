@@ -1,0 +1,570 @@
+# L'API Wbstatsde la Banque Mondiale {#c02-API-world}
+
+```{r}
+## Global options
+library(knitr)
+library(dplyr)
+library(ggplot2)
+opts_chunk$set(echo=TRUE,
+               cache=TRUE,
+               prompt=FALSE,
+               tidy=FALSE,
+               comment=NA,
+               message=FALSE,
+               warning=FALSE)
+
+
+```
+
+
+## Objectifs
+
+Supposons que l'on souhaite télécharger la population, le PIB et les émisssions de CO2 des pays du monde de 2000 à 2015. Plutôt que d'aller chercher des fichiers sur un site web, nous allons utiliser une API proposée par la Banque Mondial qui permet de télécharger les données facilement et surtout de les mettre à jour régulièrement. Pour cela on va installer le package R correspondant à l'API `wbstats` de la Banque mondiale.
+
+https://cran.r-project.org/web/packages/wbstats/vignettes/Using_the_wbstats_package.html
+
+
+
+Au moment du chargement du package, il est créé un fichier wb_cachelist qui fournit l'ensemble des donnes disponibles sous la forme d'une liste de tableaux de méta-données.
+
+
+
+
+```{r}
+library("wbstats")
+cat<-wb_cachelist
+str(cat,max.level = 1)
+```
+
+
+## Le tableau "countries"
+
+Il fournit des renseignements de base sur les différents pays, leurs codes, etc.
+
+```{r}
+str(cat$countries)
+```
+
+Le tableau comporte 304 observation et il mélange des pays (France), des fragments de pays (Réunion) et des agrégats de pays (Europe). Il faudra donc bien faire attention lors de l'extraction à réfléchir à ce que l'on souhaite utiliser. Par exemple, si l'on veut juste les pays :
+
+```{r}
+## Programme en langage R_base
+# pays<-cat$countries[cat$countries$income_level!="Aggregates",c("iso3c", "country","capital_city","longitude","latitude", "region","income_level")]
+
+
+## Programme en langage dplyr
+
+pays <- cat$countries %>% 
+          filter(income_level !="Aggregates") %>%
+          select(iso3c,country, capital_city, latitude, longitude, region, income_level)
+
+
+kable(head(pays))
+
+```
+
+## Le tableau indicators
+
+Il comporte pas loin de 17000 variables ... Autant dire qu'il est difficile de l'explorer facilement si l'on ne sait pas ce que l'on cherche. 
+
+```{r}
+indic<-cat$indicators
+dim(indic)
+kable(head(indic))
+```
+### Recherche du code d'un indicateur
+
+Supposons qu'on recherche les données récentes sur les émissions de CO2. On va utiliser le mot-clé *CO2* pour rechercher les variables correspondantes dans le catalogue à l'aide de la fonction `wbsearch`, ce qui donne 45 réponses 
+
+```{r}
+vars <- wbsearch(pattern = "CO2",fields="indicator")
+kable(vars)
+```
+
+On va finalement trouver le code de la variable recherchée
+
+- *EN.ATM.CO2E.KT* : émissions de CO2 en kilotonnes
+
+Les deux autres variables dont nous avons besoin ont pour code 
+
+- *NY.GDP.MKTP.CD* : PIB en parités de pouvoir d'achat
+- *SP.POP.TOTL* : Population totale
+
+
+### Extraction des métadonnées 
+
+Une fois que l'on pense connaître le code de nos variables, on peut extraire les métadonnés pour vérifier qu'il s'agit bien de ce que l'on cherche, quelle est la source exacte, quelle est l'unité de mesure ...
+
+```{r}
+# Programme R-base
+meta<-cat$indicators[cat$indicators$indicator_id %in% c("SP.POP.TOTL","NY.GDP.MKTP.CD","EN.ATM.CO2E.KT"),]
+
+# Programme dplyr
+meta<-cat$indicators %>%
+        filter(indicator_id %in% c("SP.POP.TOTL","NY.GDP.MKTP.CD","EN.ATM.CO2E.KT"))
+
+kable(meta)
+```
+
+
+## L'extraction des données
+
+Elle se fait à l'aide de la fonction `wb_data` qui comporte de nombreuses options. 
+
+
+
+### le paramètre `indicator = `
+
+Ce paramètre permet de choisir les indicateurs à collecter, ce qui suppose que l'on connaisse leur code. Par exemple, supposons que l'on veuille extraire la population et le PIB pour pouvoir calculer ensuite le PIB par habitant
+
+```{r}
+df   <- wb_data(indicator  = c("NY.GDP.MKTP.CD","SP.POP.TOTL"))
+dim(df)
+kable(head(df,6))
+
+```
+
+- **commentaire** : Nous obtenons un tableau très grand (> 13000 lignes) qui comporte les valeurs pour toutes les dates disponibles depuis 1960 et pour tous les pays, même si les valeurs sont souvent manquantes. 
+
+
+### le choix d'une période de temps
+
+#### les paramètres `startdate = ` et `startdate = ` 
+
+Ces deux paramètres permettent de choisir une plage de temps. On peut par exemple décider de ne collecter que les données relatives aux années 2014, 2015 et 2016 
+
+```{r}
+df   <- wb_data(indicator  = c("NY.GDP.MKTP.CD","SP.POP.TOTL"),
+                start_date = 2014,
+                end_date = 2016)
+dim(df)
+kable(head(df,6))
+
+```
+
+- **commentaire** : Le tableau ne comporte donc plus que 651 lignes correspondant aux trois dates pour les différents pays du Monde. 
+
+
+#### Le paramètre `mrv` (most recent value)
+
+Lorsque l'on souhaite juste obtenir les données les plus récentes, on peut remplacer les paramètres `startdate = ` et `startdate = `  par le paramètre `mrv = ` suivit d'un chiffre indiquant le nombre d'années que l'on souhaite à partir de la date la plus récente. Avec mrv=1 on récupère uniquement la dernière année disponible pour au moins l'une des variables.
+
+```{r}
+df   <- wb_data(indicator  = c("NY.GDP.MKTP.CD","SP.POP.TOTL"),
+                mrv = 1)
+dim(df)
+kable(head(df,6))
+```
+
+L'inconvénient de cette méthode est que cela peut aboutir à un grand nombre de valeurs manquantes si l'une des variables recherchée n'a pas été mise à jour. Par exemple, la variable relative au CO2 n'est pas disponible après 2016 et du coup le tableau va mélanger des dates différentes.
+
+```{r}
+df   <- wb_data(indicator  = c("NY.GDP.MKTP.CD","SP.POP.TOTL","EN.ATM.CO2E.KT" ),
+                mrv =1)
+dim(df)
+kable(head(df,6))
+```
+Il est donc préférable de sélectioner une période plus longue mrv=5 et de faire ensuite soi-même le tri :
+
+### Le choix des unités géographiques
+
+
+
+Le paramètre `country = ` permet de choisir les entités spatiales à collecter, soit sous forme de liste de codes, soit à l'aide de valeurs spéciales. Par défaut; il renvoie la liste de tous les pays, mais on peut se limiter à quelques uns seulement à l'aide de leur nom en anglais (risqué ...) ou de leur code ISO3 (plus sûr)
+
+#### sélection de pays
+
+```{r}
+df   <- wb_data(indicator  = c("NY.GDP.MKTP.CD","SP.POP.TOTL"),
+                start_date = 2018,
+                end_date = 2018,
+                country = c("USA","CHN"))
+df$GDP.per.capita <- round(df$NY.GDP.MKTP.CD / df$SP.POP.TOTL,0)
+kable(head(df,6))
+```
+
+- **commentaire** : Il est donc facile de travailler sur un petit nombre de pays que l'on souhaite comparer.
+
+#### Opérateurs spéciaux
+
+Il existe un certain nombre de paramètres spéciaux que l'on peut utiliser à la place de la liste des pays :
+
+- "countries_only" (Default)
+- "regions_only"
+- "admin_regions_only"
+- "income_levels_only"
+- "aggregates_only"
+- "all"
+
+
+
+
+```{r}
+df   <- wb_data(indicator  = c("NY.GDP.MKTP.CD","SP.POP.TOTL"),
+                start_date = 2018,
+                end_date = 2018,
+                country = "regions_only")
+df$GDP.per.capita <- round(df$NY.GDP.MKTP.CD / df$SP.POP.TOTL,0)
+kable(df)
+```
+
+- **commentaire** : Nous avons extrait les données par grandes régions du Monde pour l'année 2016
+
+### Le format de sortie du tableau
+
+Il existe deux façons d'extraire un tableau comprenant plusieurs variables ou plusieurs dates, selon que l'on veut un tableau large (wide) ou étroit. On peut régler la sortie à l'aide du paramètre `return_wide` qui est TRUE par défaut mais que l'on peut régler sur FALSE.
+
+#### `return_wide` = FALSE
+
+```{r}
+df   <- wb_data(indicator  = c("NY.GDP.MKTP.CD","SP.POP.TOTL"),
+                return_wide = TRUE,
+                start_date = 2016,
+                end_date = 2018,
+                country = c("USA","CHN"))
+df
+```
+
+#### `return_wide` = FALSE
+
+```{r}
+df   <- wb_data(indicator  = c("NY.GDP.MKTP.CD","SP.POP.TOTL"),
+                return_wide = FALSE,
+                start_date = 2016,
+                end_date = 2018,
+                country = c("USA","CHN"))
+df[,1:7]
+```
+
+
+
+
+
+
+
+
+
+## Exercices
+
+### Exercice 1
+
+Extraire les métadonnées relatives à la variable *SP.URB.TOTL*
+
+
+```{r echo=FALSE}
+meta<-cat$indicators[cat$indicators$indicator_id %in% c("SP.URB.TOTL"),]
+kable(meta)
+```
+
+\iffalse
+<div class="solution-exo">
+```{r eval=FALSE}
+meta<-cat$indicators[cat$indicators$indicator_id %in% c("SP.URB.TOTL"),]
+
+```
+</div>
+\fi
+
+### Exercice 2
+
+Créer un tableau de la population des pays du monde en 2000, triez le par ordre décroissant et affichez les 10 pays les plus peuplés avec leur nom,leur code et la population en millions 
+
+```{r echo=FALSE}
+# Chargement des données avec l'API
+tab <- wb_data(indicator = c("SP.POP.TOTL"),
+                  start_date=2000,
+                  end_date = 2000)
+
+### Tri, sélection, transformation  et recodage en R-Base
+ # tab<-tab[order(tab$SP.POP.TOTL,decreasing = T),]
+ # tab<-tab[,c("iso3c","country","SP.POP.TOTL")]
+ # tab$SP.POP.TOTL<-tab$SP.POP.TOTL/1000000
+ # names(tab)<-c("Code", "Nom", "Population")
+
+### Tri, sélection, transformationet recodage en dplyr
+tab<- tab %>% 
+          arrange(desc(SP.POP.TOTL)) %>%
+          select(iso3c, country, SP.POP.TOTL) %>%
+          mutate(SP.POP.TOTL = SP.POP.TOTL/1000000) %>%
+          rename(Code=iso3c, Pays = country, Population = SP.POP.TOTL)
+
+# Affichage du résultat
+kable(head(tab,10), digits=1)
+```
+
+
+\iffalse
+<div class="solution-exo">
+```{r eval=FALSE}
+# Chargement des données avec l'API
+tab <- wb_data(indicator = c("SP.POP.TOTL"),
+                  start_date=2000,
+                  end_date = 2000)
+
+### Tri, sélection, transformation  et recodage en R-Base
+ # tab<-tab[order(tab$SP.POP.TOTL,decreasing = T),]
+ # tab<-tab[,c("iso3c","country","SP.POP.TOTL")]
+ # tab$SP.POP.TOTL<-tab$SP.POP.TOTL/1000000
+ # names(tab)<-c("Code", "Nom", "Population")
+
+### Tri, sélection, transformationet recodage en dplyr
+tab<- tab %>% 
+          arrange(desc(SP.POP.TOTL)) %>%
+          select(iso3c, country, SP.POP.TOTL) %>%
+          mutate(SP.POP.TOTL = SP.POP.TOTL/1000000) %>%
+          rename(Code=iso3c, Pays = country, Population = SP.POP.TOTL)
+
+# Affichage du résultat
+kable(head(tab,10), digits=1)
+```
+</div>
+\fi
+
+
+### Exercice 3 
+
+
+On se propose de comparer l'évolution des émissions de CO2 (EN.ATM.CO2E.KT)de la Chine (CHN), l'Inde (IND), la Russie (RUS) le Japon (JPN) et des Etats-Unis d'Amérique (USA) de 1995 à 2015.
+
+#### CO2 en valeur brute (tonnes)
+
+Réalisez un graphique présentant les valeurs de CO2 en milliers de tonnes avec une échelle logarithmique sur l'axe y pour mieux visualiser les taux de croissance.
+
+
+```{r echo=FALSE}
+# Chargement des données avec l'API
+tab <- wb_data(indicator = c("EN.ATM.CO2E.KT"),
+                  country = c("CHN","IND","RUS","USA","JPN"),
+                  start_date=1995,
+                  end_date = 2015)
+
+# Visualisation avec ggplot2
+p<-ggplot(tab) + aes(x=date, y = EN.ATM.CO2E.KT, color= country) +
+                  geom_line() +
+                  scale_y_log10("en milliers de t") +
+                  ggtitle(label = "Principaux pays émetteurs de CO2 (1995-2015)",
+                          subtitle = "Source : Banque Mondiale - API wbstat")
+
+p
+```
+
+\iffalse
+<div class="solution-exo">
+```{r eval=FALSE}
+# Chargement des données avec l'API
+tab <- wb_data(indicator = c("EN.ATM.CO2E.KT"),
+                  country = c("CHN","IND","RUS","USA","JPN"),
+                  start_date=1995,
+                  end_date = 2015)
+
+p<-ggplot(tab) + aes(x=date, y = EN.ATM.CO2E.KT, color= country) +
+                  geom_line() +
+                  scale_y_log10("en milliers de t") +
+                  ggtitle(label = "Principaux pays émetteurs de CO2 (1995-2015)",
+                          subtitle = "Source : Banque Mondiale - API wbstat")
+
+p
+```
+</div>
+\fi
+
+
+#### CO2 en valeur relative (tonnes par habitant)
+
+Même exercice mais en téléchargeant aussi la population (SP.POP.TOTL) de façon à calculer la variable CO2.per.capita qui mesure le nombre de tonnes de CO2 par habitant. On utilisera cette fois-ci une échelle arithmétique sur l'axe vertical.
+
+
+```{r echo=FALSE}
+# Chargement des données avec l'API
+tab <- wb_data(indicator = c("EN.ATM.CO2E.KT", "SP.POP.TOTL"),
+                  country = c("CHN","IND","RUS","USA","JPN"),
+                  start_date=1995,
+                  end_date = 2015)
+
+tab <- tab %>% mutate(CO2.per.capita = 1000*EN.ATM.CO2E.KT/SP.POP.TOTL)
+
+# Visualisation avec ggplot2
+p<-ggplot(tab) + aes(x=date, y = CO2.per.capita, color= country) +
+                  geom_line() +
+                  scale_y_continuous("en tonnes par habitant") +
+                  ggtitle(label = "Principaux pays émetteurs de CO2 (1995-2015)",
+                          subtitle = "Source : Banque Mondiale - API wbstat")
+
+p
+```
+
+\iffalse
+<div class="solution-exo">
+```{r eval=FALSE}
+# Chargement des données avec l'API
+tab <- wb_data(indicator = c("EN.ATM.CO2E.KT", "SP.POP.TOTL"),
+                  country = c("CHN","IND","RUS","USA","JPN"),
+                  start_date=1995,
+                  end_date = 2015)
+
+tab <- tab %>% mutate(CO2.per.capita = 1000*EN.ATM.CO2E.KT/SP.POP.TOTL)
+
+# Visualisation avec ggplot2
+p<-ggplot(tab) + aes(x=date, y = CO2.per.capita, color= country) +
+                  geom_line() +
+                  scale_y_continuous("en tonnes par habitant") +
+                  ggtitle(label = "Principaux pays émetteurs de CO2 (1995-2015)",
+                          subtitle = "Source : Banque Mondiale - API wbstat")
+
+p
+```
+</div>
+\fi
+
+
+### Exercice 4 
+
+
+On se propose de comparer les plus grands pays du Monde en combinant deux critères :
+
+- DEVDUR = Développement durable : mesuré par les quantités de CO2 par habitant
+- DEVECO = Développement économique : mesurée par le PIB par habitant
+
+
+
+#### Analyse pour une année (2010) et un seuil de population (10 millions)
+
+On construit un programme pour une année précise (2010)et en ne retenant que les pays ayant une population minimale (10 millions d'habitants)
+
+
+```{r echo=FALSE}
+# Chargement des données avec l'API
+tab <- wb_data(indicator = c("EN.ATM.CO2E.KT", "SP.POP.TOTL","NY.GDP.MKTP.CD"),
+                  start_date=2010,
+                  end_date = 2010)
+
+tab <- tab %>% mutate(DEVDUR = 1000*EN.ATM.CO2E.KT/SP.POP.TOTL,
+                      DEVECO = NY.GDP.MKTP.CD/SP.POP.TOTL,
+                      POP = SP.POP.TOTL/1000000) %>%
+                      rename(Code = iso3c, 
+                      Pays = country) %>%
+               select(Code,Pays, POP, DEVDUR, DEVECO)%>%
+               filter(POP > 10)
+        
+
+# Visualisation avec ggplot2
+p<-ggplot(tab) + aes(x=DEVECO, y = DEVDUR) +
+                  geom_point(aes(size=POP),col="red") +
+                  geom_text(aes(label=Code), size=2, nudge_y=1)+
+                  scale_x_log10("PIB par habitant (échelle logarithmique)") +
+                  scale_y_continuous("CO2 par habitant") +
+                  ggtitle(label = "Développement dans le Monde en 2010",
+                          subtitle = "Source : Banque Mondiale - API wbstat")
+
+p
+```
+
+
+\iffalse
+<div class="solution-exo">
+```{r eval=FALSE}
+# Chargement des données avec l'API
+tab <- wb_data(indicator = c("EN.ATM.CO2E.KT", "SP.POP.TOTL","NY.GDP.MKTP.CD"),
+                  start_date=2010,
+                  end_date = 2010)
+
+tab <- tab %>% mutate(DEVDUR = 1000*EN.ATM.CO2E.KT/SP.POP.TOTL,
+                      DEVECO = NY.GDP.MKTP.CD/SP.POP.TOTL,
+                      POP = SP.POP.TOTL/1000000) %>%
+                      rename(Code = iso3c, 
+                      Pays = country) %>%
+               select(Code,Pays, POP, DEVDUR, DEVECO)%>%
+               filter(POP > 10)
+        
+
+# Visualisation avec ggplot2
+p<-ggplot(tab) + aes(x=DEVECO, y = DEVDUR) +
+                  geom_point(aes(size=POP),col="red") +
+                  geom_text(aes(label=Code), size=2, nudge_y=1)+
+                  scale_x_log10("PIB par habitant (échelle logarithmique)") +
+                  scale_y_continuous("CO2 par habitant") +
+                  ggtitle(label = "Développement dans le Monde en 2010",
+                          subtitle = "Source : Banque Mondiale - API wbstat")
+
+p
+```
+</div>
+\fi
+
+#### Création d'une fonction f(année, population)
+
+On reprend le même programme mais sous forme d'une fonction `mongraphique()` renvoyant le diagramme en selon le choix  de deux paramètres : l'année et le seuil minimal de population. On teste ensuite la fonction pour l'année 1996 et l'année 2016 en prenant un seuil de 50 millions d'habitants.
+
+
+```{r echo=FALSE}
+mongraphique <-function(year = 2010, minpop = 10)
+{ 
+
+# Chargement des données avec l'API
+tab <- wb_data(indicator = c("EN.ATM.CO2E.KT", "SP.POP.TOTL","NY.GDP.MKTP.CD"),
+                  start_date=year,
+                  end_date = year)
+
+tab <- tab %>% mutate(DEVDUR = 1000*EN.ATM.CO2E.KT/SP.POP.TOTL,
+                      DEVECO = NY.GDP.MKTP.CD/SP.POP.TOTL,
+                      POP = SP.POP.TOTL/1000000) %>%
+                      rename(Code = iso3c, 
+                      Pays = country) %>%
+               select(Code,Pays, POP, DEVDUR, DEVECO)%>%
+               filter(POP > minpop)
+        
+
+# Visualisation avec ggplot2
+p<-ggplot(tab) + aes(x=DEVECO, y = DEVDUR) +
+                  geom_point(aes(size=POP),col="red") +
+                  geom_text(aes(label=Code), size=2, nudge_y=1)+
+                  scale_x_log10("PIB par habitant (échelle logarithmique)") +
+                  scale_y_continuous("CO2 par habitant") +
+                  ggtitle(label = paste("Développement dans le Monde en ", year),
+                          subtitle = "Source : Banque Mondiale - API wbstat")
+
+p
+}
+
+mongraphique(1996,50)
+mongraphique(2016,50)
+
+```
+\iffalse
+<div class="solution-exo">
+```{r eval=FALSE}
+mongraphique <-function(year = 2010, minpop = 10)
+{ 
+
+# Chargement des données avec l'API
+tab <- wb_data(indicator = c("EN.ATM.CO2E.KT", "SP.POP.TOTL","NY.GDP.MKTP.CD"),
+                  start_date=year,
+                  end_date = year)
+
+tab <- tab %>% mutate(DEVDUR = 1000*EN.ATM.CO2E.KT/SP.POP.TOTL,
+                      DEVECO = NY.GDP.MKTP.CD/SP.POP.TOTL,
+                      POP = SP.POP.TOTL/1000000) %>%
+                      rename(Code = iso3c, 
+                      Pays = country) %>%
+               select(Code,Pays, POP, DEVDUR, DEVECO)%>%
+               filter(POP > minpop)
+        
+
+# Visualisation avec ggplot2
+p<-ggplot(tab) + aes(x=DEVECO, y = DEVDUR) +
+                  geom_point(aes(size=POP),col="red") +
+                  geom_text(aes(label=Code), size=2, nudge_y=1)+
+                  scale_x_log10("PIB par habitant (échelle logarithmique)") +
+                  scale_y_continuous("CO2 par habitant") +
+                  ggtitle(label = paste("Développement dans le Monde en ", year),
+                          subtitle = "Source : Banque Mondiale - API wbstat")
+
+p
+}
+
+mongraphique(1996,50)
+mongraphique(2016,50)
+
+```
+</div>
+\fi
