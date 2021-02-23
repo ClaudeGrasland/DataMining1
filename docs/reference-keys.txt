@@ -42,6 +42,12 @@ le-format-de-sortie-du-tableau
 return_wide-false
 return_wide-false-1
 exercices-1
-tab:unnamed-chunk-8
-tab:unnamed-chunk-9
-tab:unnamed-chunk-20
+exercice-1
+exercice-2
+exercice-3
+co2-en-valeur-brute
+co2-en-valeur-brute-tonnes
+co2-en-valeur-relative-tonnes-par-habitant
+exercice-4
+analyse-pour-une-année-2010-et-un-seuil-de-population-10-millions
+création-dune-fonction-fannée-population

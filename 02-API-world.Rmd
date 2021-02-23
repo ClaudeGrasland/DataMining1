@@ -1,17 +1,17 @@
-# Collecter des données à l'aide d'une API  {#c02-API-world}
+# L'API Wbstatsde la Banque Mondiale {#c02-API-world}
 
 ```{r}
 ## Global options
 library(knitr)
 library(dplyr)
+library(ggplot2)
 opts_chunk$set(echo=TRUE,
                cache=TRUE,
                prompt=FALSE,
                tidy=FALSE,
                comment=NA,
                message=FALSE,
-               warning=FALSE,
-               options(scipen=999))
+               warning=FALSE)
 
 
 ```
@@ -246,7 +246,7 @@ df[,1:7]
 
 ## Exercices
 
-**Exercice 1**
+### Exercice 1
 
 Extraire les métadonnées relatives à la variable *SP.URB.TOTL*
 
@@ -265,7 +265,7 @@ meta<-cat$indicators[cat$indicators$indicator_id %in% c("SP.URB.TOTL"),]
 </div>
 \fi
 
-**Exercice 2**
+### Exercice 2
 
 Créer un tableau de la population des pays du monde en 2000, triez le par ordre décroissant et affichez les 10 pays les plus peuplés avec leur nom,leur code et la population en millions 
 
@@ -321,6 +321,250 @@ kable(head(tab,10), digits=1)
 \fi
 
 
+### Exercice 3 
+
+
+On se propose de comparer l'évolution des émissions de CO2 (EN.ATM.CO2E.KT)de la Chine (CHN), l'Inde (IND), la Russie (RUS) le Japon (JPN) et des Etats-Unis d'Amérique (USA) de 1995 à 2015.
+
+#### CO2 en valeur brute (tonnes)
+
+Réalisez un graphique présentant les valeurs de CO2 en milliers de tonnes avec une échelle logarithmique sur l'axe y pour mieux visualiser les taux de croissance.
+
+
+```{r echo=FALSE}
+# Chargement des données avec l'API
+tab <- wb_data(indicator = c("EN.ATM.CO2E.KT"),
+                  country = c("CHN","IND","RUS","USA","JPN"),
+                  start_date=1995,
+                  end_date = 2015)
+
+# Visualisation avec ggplot2
+p<-ggplot(tab) + aes(x=date, y = EN.ATM.CO2E.KT, color= country) +
+                  geom_line() +
+                  scale_y_log10("en milliers de t") +
+                  ggtitle(label = "Principaux pays émetteurs de CO2 (1995-2015)",
+                          subtitle = "Source : Banque Mondiale - API wbstat")
+
+p
+```
+
+\iffalse
+<div class="solution-exo">
+```{r eval=FALSE}
+# Chargement des données avec l'API
+tab <- wb_data(indicator = c("EN.ATM.CO2E.KT"),
+                  country = c("CHN","IND","RUS","USA","JPN"),
+                  start_date=1995,
+                  end_date = 2015)
+
+p<-ggplot(tab) + aes(x=date, y = EN.ATM.CO2E.KT, color= country) +
+                  geom_line() +
+                  scale_y_log10("en milliers de t") +
+                  ggtitle(label = "Principaux pays émetteurs de CO2 (1995-2015)",
+                          subtitle = "Source : Banque Mondiale - API wbstat")
+
+p
+```
+</div>
+\fi
+
+
+#### CO2 en valeur relative (tonnes par habitant)
+
+Même exercice mais en téléchargeant aussi la population (SP.POP.TOTL) de façon à calculer la variable CO2.per.capita qui mesure le nombre de tonnes de CO2 par habitant. On utilisera cette fois-ci une échelle arithmétique sur l'axe vertical.
+
+
+```{r echo=FALSE}
+# Chargement des données avec l'API
+tab <- wb_data(indicator = c("EN.ATM.CO2E.KT", "SP.POP.TOTL"),
+                  country = c("CHN","IND","RUS","USA","JPN"),
+                  start_date=1995,
+                  end_date = 2015)
+
+tab <- tab %>% mutate(CO2.per.capita = 1000*EN.ATM.CO2E.KT/SP.POP.TOTL)
+
+# Visualisation avec ggplot2
+p<-ggplot(tab) + aes(x=date, y = CO2.per.capita, color= country) +
+                  geom_line() +
+                  scale_y_continuous("en tonnes par habitant") +
+                  ggtitle(label = "Principaux pays émetteurs de CO2 (1995-2015)",
+                          subtitle = "Source : Banque Mondiale - API wbstat")
+
+p
+```
+
+\iffalse
+<div class="solution-exo">
+```{r eval=FALSE}
+# Chargement des données avec l'API
+tab <- wb_data(indicator = c("EN.ATM.CO2E.KT", "SP.POP.TOTL"),
+                  country = c("CHN","IND","RUS","USA","JPN"),
+                  start_date=1995,
+                  end_date = 2015)
+
+tab <- tab %>% mutate(CO2.per.capita = 1000*EN.ATM.CO2E.KT/SP.POP.TOTL)
+
+# Visualisation avec ggplot2
+p<-ggplot(tab) + aes(x=date, y = CO2.per.capita, color= country) +
+                  geom_line() +
+                  scale_y_continuous("en tonnes par habitant") +
+                  ggtitle(label = "Principaux pays émetteurs de CO2 (1995-2015)",
+                          subtitle = "Source : Banque Mondiale - API wbstat")
+
+p
+```
+</div>
+\fi
+
+
+### Exercice 4 
+
+
+On se propose de comparer les plus grands pays du Monde en combinant deux critères :
+
+- DEVDUR = Développement durable : mesuré par les quantités de CO2 par habitant
+- DEVECO = Développement économique : mesurée par le PIB par habitant
 
 
 
+#### Analyse pour une année (2010) et un seuil de population (10 millions)
+
+On construit un programme pour une année précise (2010)et en ne retenant que les pays ayant une population minimale (10 millions d'habitants)
+
+
+```{r echo=FALSE}
+# Chargement des données avec l'API
+tab <- wb_data(indicator = c("EN.ATM.CO2E.KT", "SP.POP.TOTL","NY.GDP.MKTP.CD"),
+                  start_date=2010,
+                  end_date = 2010)
+
+tab <- tab %>% mutate(DEVDUR = 1000*EN.ATM.CO2E.KT/SP.POP.TOTL,
+                      DEVECO = NY.GDP.MKTP.CD/SP.POP.TOTL,
+                      POP = SP.POP.TOTL/1000000) %>%
+                      rename(Code = iso3c, 
+                      Pays = country) %>%
+               select(Code,Pays, POP, DEVDUR, DEVECO)%>%
+               filter(POP > 10)
+        
+
+# Visualisation avec ggplot2
+p<-ggplot(tab) + aes(x=DEVECO, y = DEVDUR) +
+                  geom_point(aes(size=POP),col="red") +
+                  geom_text(aes(label=Code), size=2, nudge_y=1)+
+                  scale_x_log10("PIB par habitant (échelle logarithmique)") +
+                  scale_y_continuous("CO2 par habitant") +
+                  ggtitle(label = "Développement dans le Monde en 2010",
+                          subtitle = "Source : Banque Mondiale - API wbstat")
+
+p
+```
+
+
+\iffalse
+<div class="solution-exo">
+```{r eval=FALSE}
+# Chargement des données avec l'API
+tab <- wb_data(indicator = c("EN.ATM.CO2E.KT", "SP.POP.TOTL","NY.GDP.MKTP.CD"),
+                  start_date=2010,
+                  end_date = 2010)
+
+tab <- tab %>% mutate(DEVDUR = 1000*EN.ATM.CO2E.KT/SP.POP.TOTL,
+                      DEVECO = NY.GDP.MKTP.CD/SP.POP.TOTL,
+                      POP = SP.POP.TOTL/1000000) %>%
+                      rename(Code = iso3c, 
+                      Pays = country) %>%
+               select(Code,Pays, POP, DEVDUR, DEVECO)%>%
+               filter(POP > 10)
+        
+
+# Visualisation avec ggplot2
+p<-ggplot(tab) + aes(x=DEVECO, y = DEVDUR) +
+                  geom_point(aes(size=POP),col="red") +
+                  geom_text(aes(label=Code), size=2, nudge_y=1)+
+                  scale_x_log10("PIB par habitant (échelle logarithmique)") +
+                  scale_y_continuous("CO2 par habitant") +
+                  ggtitle(label = "Développement dans le Monde en 2010",
+                          subtitle = "Source : Banque Mondiale - API wbstat")
+
+p
+```
+</div>
+\fi
+
+#### Création d'une fonction f(année, population)
+
+On reprend le même programme mais sous forme d'une fonction `mongraphique()` renvoyant le diagramme en selon le choix  de deux paramètres : l'année et le seuil minimal de population. On teste ensuite la fonction pour l'année 1996 et l'année 2016 en prenant un seuil de 50 millions d'habitants.
+
+
+```{r echo=FALSE}
+mongraphique <-function(year = 2010, minpop = 10)
+{ 
+
+# Chargement des données avec l'API
+tab <- wb_data(indicator = c("EN.ATM.CO2E.KT", "SP.POP.TOTL","NY.GDP.MKTP.CD"),
+                  start_date=year,
+                  end_date = year)
+
+tab <- tab %>% mutate(DEVDUR = 1000*EN.ATM.CO2E.KT/SP.POP.TOTL,
+                      DEVECO = NY.GDP.MKTP.CD/SP.POP.TOTL,
+                      POP = SP.POP.TOTL/1000000) %>%
+                      rename(Code = iso3c, 
+                      Pays = country) %>%
+               select(Code,Pays, POP, DEVDUR, DEVECO)%>%
+               filter(POP > minpop)
+        
+
+# Visualisation avec ggplot2
+p<-ggplot(tab) + aes(x=DEVECO, y = DEVDUR) +
+                  geom_point(aes(size=POP),col="red") +
+                  geom_text(aes(label=Code), size=2, nudge_y=1)+
+                  scale_x_log10("PIB par habitant (échelle logarithmique)") +
+                  scale_y_continuous("CO2 par habitant") +
+                  ggtitle(label = paste("Développement dans le Monde en ", year),
+                          subtitle = "Source : Banque Mondiale - API wbstat")
+
+p
+}
+
+mongraphique(1996,50)
+mongraphique(2016,50)
+
+```
+\iffalse
+<div class="solution-exo">
+```{r eval=FALSE}
+mongraphique <-function(year = 2010, minpop = 10)
+{ 
+
+# Chargement des données avec l'API
+tab <- wb_data(indicator = c("EN.ATM.CO2E.KT", "SP.POP.TOTL","NY.GDP.MKTP.CD"),
+                  start_date=year,
+                  end_date = year)
+
+tab <- tab %>% mutate(DEVDUR = 1000*EN.ATM.CO2E.KT/SP.POP.TOTL,
+                      DEVECO = NY.GDP.MKTP.CD/SP.POP.TOTL,
+                      POP = SP.POP.TOTL/1000000) %>%
+                      rename(Code = iso3c, 
+                      Pays = country) %>%
+               select(Code,Pays, POP, DEVDUR, DEVECO)%>%
+               filter(POP > minpop)
+        
+
+# Visualisation avec ggplot2
+p<-ggplot(tab) + aes(x=DEVECO, y = DEVDUR) +
+                  geom_point(aes(size=POP),col="red") +
+                  geom_text(aes(label=Code), size=2, nudge_y=1)+
+                  scale_x_log10("PIB par habitant (échelle logarithmique)") +
+                  scale_y_continuous("CO2 par habitant") +
+                  ggtitle(label = paste("Développement dans le Monde en ", year),
+                          subtitle = "Source : Banque Mondiale - API wbstat")
+
+p
+}
+
+mongraphique(1996,50)
+mongraphique(2016,50)
+
+```
+</div>
+\fi

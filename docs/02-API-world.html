@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapitre 2 Collecter des données à l’aide d’une API | DATA MINING</title>
+  <title>Chapitre 2 L’API Wbstatsde la Banque Mondiale | DATA MINING</title>
   <meta name="description" content="Titre du cours" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapitre 2 Collecter des données à l’aide d’une API | DATA MINING" />
+  <meta property="og:title" content="Chapitre 2 L’API Wbstatsde la Banque Mondiale | DATA MINING" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapitre 2 Collecter des données à l’aide d’une API | DATA MINING" />
+  <meta name="twitter:title" content="Chapitre 2 L’API Wbstatsde la Banque Mondiale | DATA MINING" />
   
   <meta name="twitter:description" content="Titre du cours" />
   
@@ -180,7 +180,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="1.4.4" data-path="01-API-intro.html"><a href="01-API-intro.html#exercice-4-exploration-de-nouvelles-api"><i class="fa fa-check"></i><b>1.4.4</b> Exercice 4 : Exploration de nouvelles API</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="02-API-world.html"><a href="02-API-world.html"><i class="fa fa-check"></i><b>2</b> Collecter des données à l’aide d’une API</a>
+<li class="chapter" data-level="2" data-path="02-API-world.html"><a href="02-API-world.html"><i class="fa fa-check"></i><b>2</b> L’API Wbstatsde la Banque Mondiale</a>
 <ul>
 <li class="chapter" data-level="2.1" data-path="02-API-world.html"><a href="02-API-world.html#objectifs"><i class="fa fa-check"></i><b>2.1</b> Objectifs</a></li>
 <li class="chapter" data-level="2.2" data-path="02-API-world.html"><a href="02-API-world.html#le-tableau-countries"><i class="fa fa-check"></i><b>2.2</b> Le tableau “countries”</a></li>
@@ -196,7 +196,13 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="2.4.3" data-path="02-API-world.html"><a href="02-API-world.html#le-choix-des-unités-géographiques"><i class="fa fa-check"></i><b>2.4.3</b> Le choix des unités géographiques</a></li>
 <li class="chapter" data-level="2.4.4" data-path="02-API-world.html"><a href="02-API-world.html#le-format-de-sortie-du-tableau"><i class="fa fa-check"></i><b>2.4.4</b> Le format de sortie du tableau</a></li>
 </ul></li>
-<li class="chapter" data-level="2.5" data-path="02-API-world.html"><a href="02-API-world.html#exercices-1"><i class="fa fa-check"></i><b>2.5</b> Exercices</a></li>
+<li class="chapter" data-level="2.5" data-path="02-API-world.html"><a href="02-API-world.html#exercices-1"><i class="fa fa-check"></i><b>2.5</b> Exercices</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="02-API-world.html"><a href="02-API-world.html#exercice-1"><i class="fa fa-check"></i><b>2.5.1</b> Exercice 1</a></li>
+<li class="chapter" data-level="2.5.2" data-path="02-API-world.html"><a href="02-API-world.html#exercice-2"><i class="fa fa-check"></i><b>2.5.2</b> Exercice 2</a></li>
+<li class="chapter" data-level="2.5.3" data-path="02-API-world.html"><a href="02-API-world.html#exercice-3"><i class="fa fa-check"></i><b>2.5.3</b> Exercice 3</a></li>
+<li class="chapter" data-level="2.5.4" data-path="02-API-world.html"><a href="02-API-world.html#exercice-4"><i class="fa fa-check"></i><b>2.5.4</b> Exercice 4</a></li>
+</ul></li>
 </ul></li>
 </ul>
 
@@ -216,18 +222,18 @@ code span.wa { color: #bf0303; } /* Warning */
 
             <section class="normal" id="section-">
 <div id="c02-API-world" class="section level1" number="2">
-<h1><span class="header-section-number">Chapitre 2</span> Collecter des données à l’aide d’une API</h1>
+<h1><span class="header-section-number">Chapitre 2</span> L’API Wbstatsde la Banque Mondiale</h1>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="02-API-world.html#cb1-1"></a><span class="co">## Global options</span></span>
 <span id="cb1-2"><a href="02-API-world.html#cb1-2"></a><span class="kw">library</span>(knitr)</span>
 <span id="cb1-3"><a href="02-API-world.html#cb1-3"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb1-4"><a href="02-API-world.html#cb1-4"></a>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>,</span>
-<span id="cb1-5"><a href="02-API-world.html#cb1-5"></a>               <span class="dt">cache=</span><span class="ot">TRUE</span>,</span>
-<span id="cb1-6"><a href="02-API-world.html#cb1-6"></a>               <span class="dt">prompt=</span><span class="ot">FALSE</span>,</span>
-<span id="cb1-7"><a href="02-API-world.html#cb1-7"></a>               <span class="dt">tidy=</span><span class="ot">FALSE</span>,</span>
-<span id="cb1-8"><a href="02-API-world.html#cb1-8"></a>               <span class="dt">comment=</span><span class="ot">NA</span>,</span>
-<span id="cb1-9"><a href="02-API-world.html#cb1-9"></a>               <span class="dt">message=</span><span class="ot">FALSE</span>,</span>
-<span id="cb1-10"><a href="02-API-world.html#cb1-10"></a>               <span class="dt">warning=</span><span class="ot">FALSE</span>,</span>
-<span id="cb1-11"><a href="02-API-world.html#cb1-11"></a>               <span class="kw">options</span>(<span class="dt">scipen=</span><span class="dv">999</span>))</span></code></pre></div>
+<span id="cb1-4"><a href="02-API-world.html#cb1-4"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb1-5"><a href="02-API-world.html#cb1-5"></a>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">echo=</span><span class="ot">TRUE</span>,</span>
+<span id="cb1-6"><a href="02-API-world.html#cb1-6"></a>               <span class="dt">cache=</span><span class="ot">TRUE</span>,</span>
+<span id="cb1-7"><a href="02-API-world.html#cb1-7"></a>               <span class="dt">prompt=</span><span class="ot">FALSE</span>,</span>
+<span id="cb1-8"><a href="02-API-world.html#cb1-8"></a>               <span class="dt">tidy=</span><span class="ot">FALSE</span>,</span>
+<span id="cb1-9"><a href="02-API-world.html#cb1-9"></a>               <span class="dt">comment=</span><span class="ot">NA</span>,</span>
+<span id="cb1-10"><a href="02-API-world.html#cb1-10"></a>               <span class="dt">message=</span><span class="ot">FALSE</span>,</span>
+<span id="cb1-11"><a href="02-API-world.html#cb1-11"></a>               <span class="dt">warning=</span><span class="ot">FALSE</span>)</span></code></pre></div>
 <div id="objectifs" class="section level2" number="2.1">
 <h2><span class="header-section-number">2.1</span> Objectifs</h2>
 <p>Supposons que l’on souhaite télécharger la population, le PIB et les émisssions de CO2 des pays du monde de 2000 à 2015. Plutôt que d’aller chercher des fichiers sur un site web, nous allons utiliser une API proposée par la Banque Mondial qui permet de télécharger les données facilement et surtout de les mettre à jour régulièrement. Pour cela on va installer le package R correspondant à l’API <code>wbstats</code> de la Banque mondiale.</p>
@@ -1281,7 +1287,8 @@ Call `lifecycle::last_warnings()` to see where this warning was generated.</code
 </div>
 <div id="exercices-1" class="section level2" number="2.5">
 <h2><span class="header-section-number">2.5</span> Exercices</h2>
-<p><strong>Exercice 1</strong></p>
+<div id="exercice-1" class="section level3" number="2.5.1">
+<h3><span class="header-section-number">2.5.1</span> Exercice 1</h3>
 <p>Extraire les métadonnées relatives à la variable <em>SP.URB.TOTL</em></p>
 <table style="width:100%;">
 <colgroup>
@@ -1322,7 +1329,9 @@ Call `lifecycle::last_warnings()` to see where this warning was generated.</code
 <div class="solution-exo">
 <div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="02-API-world.html#cb32-1"></a>meta&lt;-cat<span class="op">$</span>indicators[cat<span class="op">$</span>indicators<span class="op">$</span>indicator_id <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;SP.URB.TOTL&quot;</span>),]</span></code></pre></div>
 </div>
-<p><strong>Exercice 2</strong></p>
+</div>
+<div id="exercice-2" class="section level3" number="2.5.2">
+<h3><span class="header-section-number">2.5.2</span> Exercice 2</h3>
 <p>Créer un tableau de la population des pays du monde en 2000, triez le par ordre décroissant et affichez les 10 pays les plus peuplés avec leur nom,leur code et la population en millions</p>
 <table>
 <thead>
@@ -1407,7 +1416,138 @@ Call `lifecycle::last_warnings()` to see where this warning was generated.</code
 <span id="cb33-19"><a href="02-API-world.html#cb33-19"></a><span class="co"># Affichage du résultat</span></span>
 <span id="cb33-20"><a href="02-API-world.html#cb33-20"></a><span class="kw">kable</span>(<span class="kw">head</span>(tab,<span class="dv">10</span>), <span class="dt">digits=</span><span class="dv">1</span>)</span></code></pre></div>
 </div>
+</div>
+<div id="exercice-3" class="section level3" number="2.5.3">
+<h3><span class="header-section-number">2.5.3</span> Exercice 3</h3>
+<p>On se propose de comparer l’évolution des émissions de CO2 (EN.ATM.CO2E.KT)de la Chine (CHN), l’Inde (IND), la Russie (RUS) le Japon (JPN) et des Etats-Unis d’Amérique (USA) de 1995 à 2015.</p>
+<div id="co2-en-valeur-brute-tonnes" class="section level4" number="2.5.3.1">
+<h4><span class="header-section-number">2.5.3.1</span> CO2 en valeur brute (tonnes)</h4>
+<p>Réalisez un graphique présentant les valeurs de CO2 en milliers de tonnes avec une échelle logarithmique sur l’axe y pour mieux visualiser les taux de croissance.</p>
+<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-20-1.svg" width="672" /></p>
+<div class="solution-exo">
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="02-API-world.html#cb34-1"></a><span class="co"># Chargement des données avec l&#39;API</span></span>
+<span id="cb34-2"><a href="02-API-world.html#cb34-2"></a>tab &lt;-<span class="st"> </span><span class="kw">wb_data</span>(<span class="dt">indicator =</span> <span class="kw">c</span>(<span class="st">&quot;EN.ATM.CO2E.KT&quot;</span>),</span>
+<span id="cb34-3"><a href="02-API-world.html#cb34-3"></a>                  <span class="dt">country =</span> <span class="kw">c</span>(<span class="st">&quot;CHN&quot;</span>,<span class="st">&quot;IND&quot;</span>,<span class="st">&quot;RUS&quot;</span>,<span class="st">&quot;USA&quot;</span>,<span class="st">&quot;JPN&quot;</span>),</span>
+<span id="cb34-4"><a href="02-API-world.html#cb34-4"></a>                  <span class="dt">start_date=</span><span class="dv">1995</span>,</span>
+<span id="cb34-5"><a href="02-API-world.html#cb34-5"></a>                  <span class="dt">end_date =</span> <span class="dv">2015</span>)</span>
+<span id="cb34-6"><a href="02-API-world.html#cb34-6"></a></span>
+<span id="cb34-7"><a href="02-API-world.html#cb34-7"></a>p&lt;-<span class="kw">ggplot</span>(tab) <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(<span class="dt">x=</span>date, <span class="dt">y =</span> EN.ATM.CO2E.KT, <span class="dt">color=</span> country) <span class="op">+</span></span>
+<span id="cb34-8"><a href="02-API-world.html#cb34-8"></a><span class="st">                  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb34-9"><a href="02-API-world.html#cb34-9"></a><span class="st">                  </span><span class="kw">scale_y_log10</span>(<span class="st">&quot;en milliers de t&quot;</span>) <span class="op">+</span></span>
+<span id="cb34-10"><a href="02-API-world.html#cb34-10"></a><span class="st">                  </span><span class="kw">ggtitle</span>(<span class="dt">label =</span> <span class="st">&quot;Principaux pays émetteurs de CO2 (1995-2015)&quot;</span>,</span>
+<span id="cb34-11"><a href="02-API-world.html#cb34-11"></a>                          <span class="dt">subtitle =</span> <span class="st">&quot;Source : Banque Mondiale - API wbstat&quot;</span>)</span>
+<span id="cb34-12"><a href="02-API-world.html#cb34-12"></a></span>
+<span id="cb34-13"><a href="02-API-world.html#cb34-13"></a>p</span></code></pre></div>
+</div>
+</div>
+<div id="co2-en-valeur-relative-tonnes-par-habitant" class="section level4" number="2.5.3.2">
+<h4><span class="header-section-number">2.5.3.2</span> CO2 en valeur relative (tonnes par habitant)</h4>
+<p>Même exercice mais en téléchargeant aussi la population (SP.POP.TOTL) de façon à calculer la variable CO2.per.capita qui mesure le nombre de tonnes de CO2 par habitant. On utilisera cette fois-ci une échelle arithmétique sur l’axe vertical.</p>
+<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-22-1.svg" width="672" /></p>
+<div class="solution-exo">
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="02-API-world.html#cb35-1"></a><span class="co"># Chargement des données avec l&#39;API</span></span>
+<span id="cb35-2"><a href="02-API-world.html#cb35-2"></a>tab &lt;-<span class="st"> </span><span class="kw">wb_data</span>(<span class="dt">indicator =</span> <span class="kw">c</span>(<span class="st">&quot;EN.ATM.CO2E.KT&quot;</span>, <span class="st">&quot;SP.POP.TOTL&quot;</span>),</span>
+<span id="cb35-3"><a href="02-API-world.html#cb35-3"></a>                  <span class="dt">country =</span> <span class="kw">c</span>(<span class="st">&quot;CHN&quot;</span>,<span class="st">&quot;IND&quot;</span>,<span class="st">&quot;RUS&quot;</span>,<span class="st">&quot;USA&quot;</span>,<span class="st">&quot;JPN&quot;</span>),</span>
+<span id="cb35-4"><a href="02-API-world.html#cb35-4"></a>                  <span class="dt">start_date=</span><span class="dv">1995</span>,</span>
+<span id="cb35-5"><a href="02-API-world.html#cb35-5"></a>                  <span class="dt">end_date =</span> <span class="dv">2015</span>)</span>
+<span id="cb35-6"><a href="02-API-world.html#cb35-6"></a></span>
+<span id="cb35-7"><a href="02-API-world.html#cb35-7"></a>tab &lt;-<span class="st"> </span>tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">CO2.per.capita =</span> <span class="dv">1000</span><span class="op">*</span>EN.ATM.CO2E.KT<span class="op">/</span>SP.POP.TOTL)</span>
+<span id="cb35-8"><a href="02-API-world.html#cb35-8"></a></span>
+<span id="cb35-9"><a href="02-API-world.html#cb35-9"></a><span class="co"># Visualisation avec ggplot2</span></span>
+<span id="cb35-10"><a href="02-API-world.html#cb35-10"></a>p&lt;-<span class="kw">ggplot</span>(tab) <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(<span class="dt">x=</span>date, <span class="dt">y =</span> CO2.per.capita, <span class="dt">color=</span> country) <span class="op">+</span></span>
+<span id="cb35-11"><a href="02-API-world.html#cb35-11"></a><span class="st">                  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb35-12"><a href="02-API-world.html#cb35-12"></a><span class="st">                  </span><span class="kw">scale_y_continuous</span>(<span class="st">&quot;en tonnes par habitant&quot;</span>) <span class="op">+</span></span>
+<span id="cb35-13"><a href="02-API-world.html#cb35-13"></a><span class="st">                  </span><span class="kw">ggtitle</span>(<span class="dt">label =</span> <span class="st">&quot;Principaux pays émetteurs de CO2 (1995-2015)&quot;</span>,</span>
+<span id="cb35-14"><a href="02-API-world.html#cb35-14"></a>                          <span class="dt">subtitle =</span> <span class="st">&quot;Source : Banque Mondiale - API wbstat&quot;</span>)</span>
+<span id="cb35-15"><a href="02-API-world.html#cb35-15"></a></span>
+<span id="cb35-16"><a href="02-API-world.html#cb35-16"></a>p</span></code></pre></div>
+</div>
+</div>
+</div>
+<div id="exercice-4" class="section level3" number="2.5.4">
+<h3><span class="header-section-number">2.5.4</span> Exercice 4</h3>
+<p>On se propose de comparer les plus grands pays du Monde en combinant deux critères :</p>
+<ul>
+<li>DEVDUR = Développement durable : mesuré par les quantités de CO2 par habitant</li>
+<li>DEVECO = Développement économique : mesurée par le PIB par habitant</li>
+</ul>
+<div id="analyse-pour-une-année-2010-et-un-seuil-de-population-10-millions" class="section level4" number="2.5.4.1">
+<h4><span class="header-section-number">2.5.4.1</span> Analyse pour une année (2010) et un seuil de population (10 millions)</h4>
+<p>On construit un programme pour une année précise (2010)et en ne retenant que les pays ayant une population minimale (10 millions d’habitants)</p>
+<pre><code>Warning: Removed 3 rows containing missing values (geom_point).</code></pre>
+<pre><code>Warning: Removed 3 rows containing missing values (geom_text).</code></pre>
+<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-24-1.svg" width="672" /></p>
+<div class="solution-exo">
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="02-API-world.html#cb38-1"></a><span class="co"># Chargement des données avec l&#39;API</span></span>
+<span id="cb38-2"><a href="02-API-world.html#cb38-2"></a>tab &lt;-<span class="st"> </span><span class="kw">wb_data</span>(<span class="dt">indicator =</span> <span class="kw">c</span>(<span class="st">&quot;EN.ATM.CO2E.KT&quot;</span>, <span class="st">&quot;SP.POP.TOTL&quot;</span>,<span class="st">&quot;NY.GDP.MKTP.CD&quot;</span>),</span>
+<span id="cb38-3"><a href="02-API-world.html#cb38-3"></a>                  <span class="dt">start_date=</span><span class="dv">2010</span>,</span>
+<span id="cb38-4"><a href="02-API-world.html#cb38-4"></a>                  <span class="dt">end_date =</span> <span class="dv">2010</span>)</span>
+<span id="cb38-5"><a href="02-API-world.html#cb38-5"></a></span>
+<span id="cb38-6"><a href="02-API-world.html#cb38-6"></a>tab &lt;-<span class="st"> </span>tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">DEVDUR =</span> <span class="dv">1000</span><span class="op">*</span>EN.ATM.CO2E.KT<span class="op">/</span>SP.POP.TOTL,</span>
+<span id="cb38-7"><a href="02-API-world.html#cb38-7"></a>                      <span class="dt">DEVECO =</span> NY.GDP.MKTP.CD<span class="op">/</span>SP.POP.TOTL,</span>
+<span id="cb38-8"><a href="02-API-world.html#cb38-8"></a>                      <span class="dt">POP =</span> SP.POP.TOTL<span class="op">/</span><span class="dv">1000000</span>) <span class="op">%&gt;%</span></span>
+<span id="cb38-9"><a href="02-API-world.html#cb38-9"></a><span class="st">                      </span><span class="kw">rename</span>(<span class="dt">Code =</span> iso3c, </span>
+<span id="cb38-10"><a href="02-API-world.html#cb38-10"></a>                      <span class="dt">Pays =</span> country) <span class="op">%&gt;%</span></span>
+<span id="cb38-11"><a href="02-API-world.html#cb38-11"></a><span class="st">               </span><span class="kw">select</span>(Code,Pays, POP, DEVDUR, DEVECO)<span class="op">%&gt;%</span></span>
+<span id="cb38-12"><a href="02-API-world.html#cb38-12"></a><span class="st">               </span><span class="kw">filter</span>(POP <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span>)</span>
+<span id="cb38-13"><a href="02-API-world.html#cb38-13"></a>        </span>
+<span id="cb38-14"><a href="02-API-world.html#cb38-14"></a></span>
+<span id="cb38-15"><a href="02-API-world.html#cb38-15"></a><span class="co"># Visualisation avec ggplot2</span></span>
+<span id="cb38-16"><a href="02-API-world.html#cb38-16"></a>p&lt;-<span class="kw">ggplot</span>(tab) <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(<span class="dt">x=</span>DEVECO, <span class="dt">y =</span> DEVDUR) <span class="op">+</span></span>
+<span id="cb38-17"><a href="02-API-world.html#cb38-17"></a><span class="st">                  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">size=</span>POP),<span class="dt">col=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
+<span id="cb38-18"><a href="02-API-world.html#cb38-18"></a><span class="st">                  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label=</span>Code), <span class="dt">size=</span><span class="dv">2</span>, <span class="dt">nudge_y=</span><span class="dv">1</span>)<span class="op">+</span></span>
+<span id="cb38-19"><a href="02-API-world.html#cb38-19"></a><span class="st">                  </span><span class="kw">scale_x_log10</span>(<span class="st">&quot;PIB par habitant (échelle logarithmique)&quot;</span>) <span class="op">+</span></span>
+<span id="cb38-20"><a href="02-API-world.html#cb38-20"></a><span class="st">                  </span><span class="kw">scale_y_continuous</span>(<span class="st">&quot;CO2 par habitant&quot;</span>) <span class="op">+</span></span>
+<span id="cb38-21"><a href="02-API-world.html#cb38-21"></a><span class="st">                  </span><span class="kw">ggtitle</span>(<span class="dt">label =</span> <span class="st">&quot;Développement dans le Monde en 2010&quot;</span>,</span>
+<span id="cb38-22"><a href="02-API-world.html#cb38-22"></a>                          <span class="dt">subtitle =</span> <span class="st">&quot;Source : Banque Mondiale - API wbstat&quot;</span>)</span>
+<span id="cb38-23"><a href="02-API-world.html#cb38-23"></a></span>
+<span id="cb38-24"><a href="02-API-world.html#cb38-24"></a>p</span></code></pre></div>
+</div>
+</div>
+<div id="création-dune-fonction-fannée-population" class="section level4" number="2.5.4.2">
+<h4><span class="header-section-number">2.5.4.2</span> Création d’une fonction f(année, population)</h4>
+<p>On reprend le même programme mais sous forme d’une fonction <code>mongraphique()</code> renvoyant le diagramme en selon le choix de deux paramètres : l’année et le seuil minimal de population. On teste ensuite la fonction pour l’année 1996 et l’année 2016 en prenant un seuil de 50 millions d’habitants.</p>
+<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-26-1.svg" width="672" /></p>
+<pre><code>Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
+<pre><code>Warning: Removed 2 rows containing missing values (geom_text).</code></pre>
+<img src="Data-Mining-1_files/figure-html/unnamed-chunk-26-2.svg" width="672" />
 
+<div class="solution-exo">
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="02-API-world.html#cb41-1"></a>mongraphique &lt;-<span class="cf">function</span>(<span class="dt">year =</span> <span class="dv">2010</span>, <span class="dt">minpop =</span> <span class="dv">10</span>)</span>
+<span id="cb41-2"><a href="02-API-world.html#cb41-2"></a>{ </span>
+<span id="cb41-3"><a href="02-API-world.html#cb41-3"></a></span>
+<span id="cb41-4"><a href="02-API-world.html#cb41-4"></a><span class="co"># Chargement des données avec l&#39;API</span></span>
+<span id="cb41-5"><a href="02-API-world.html#cb41-5"></a>tab &lt;-<span class="st"> </span><span class="kw">wb_data</span>(<span class="dt">indicator =</span> <span class="kw">c</span>(<span class="st">&quot;EN.ATM.CO2E.KT&quot;</span>, <span class="st">&quot;SP.POP.TOTL&quot;</span>,<span class="st">&quot;NY.GDP.MKTP.CD&quot;</span>),</span>
+<span id="cb41-6"><a href="02-API-world.html#cb41-6"></a>                  <span class="dt">start_date=</span>year,</span>
+<span id="cb41-7"><a href="02-API-world.html#cb41-7"></a>                  <span class="dt">end_date =</span> year)</span>
+<span id="cb41-8"><a href="02-API-world.html#cb41-8"></a></span>
+<span id="cb41-9"><a href="02-API-world.html#cb41-9"></a>tab &lt;-<span class="st"> </span>tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">DEVDUR =</span> <span class="dv">1000</span><span class="op">*</span>EN.ATM.CO2E.KT<span class="op">/</span>SP.POP.TOTL,</span>
+<span id="cb41-10"><a href="02-API-world.html#cb41-10"></a>                      <span class="dt">DEVECO =</span> NY.GDP.MKTP.CD<span class="op">/</span>SP.POP.TOTL,</span>
+<span id="cb41-11"><a href="02-API-world.html#cb41-11"></a>                      <span class="dt">POP =</span> SP.POP.TOTL<span class="op">/</span><span class="dv">1000000</span>) <span class="op">%&gt;%</span></span>
+<span id="cb41-12"><a href="02-API-world.html#cb41-12"></a><span class="st">                      </span><span class="kw">rename</span>(<span class="dt">Code =</span> iso3c, </span>
+<span id="cb41-13"><a href="02-API-world.html#cb41-13"></a>                      <span class="dt">Pays =</span> country) <span class="op">%&gt;%</span></span>
+<span id="cb41-14"><a href="02-API-world.html#cb41-14"></a><span class="st">               </span><span class="kw">select</span>(Code,Pays, POP, DEVDUR, DEVECO)<span class="op">%&gt;%</span></span>
+<span id="cb41-15"><a href="02-API-world.html#cb41-15"></a><span class="st">               </span><span class="kw">filter</span>(POP <span class="op">&gt;</span><span class="st"> </span>minpop)</span>
+<span id="cb41-16"><a href="02-API-world.html#cb41-16"></a>        </span>
+<span id="cb41-17"><a href="02-API-world.html#cb41-17"></a></span>
+<span id="cb41-18"><a href="02-API-world.html#cb41-18"></a><span class="co"># Visualisation avec ggplot2</span></span>
+<span id="cb41-19"><a href="02-API-world.html#cb41-19"></a>p&lt;-<span class="kw">ggplot</span>(tab) <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(<span class="dt">x=</span>DEVECO, <span class="dt">y =</span> DEVDUR) <span class="op">+</span></span>
+<span id="cb41-20"><a href="02-API-world.html#cb41-20"></a><span class="st">                  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">size=</span>POP),<span class="dt">col=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
+<span id="cb41-21"><a href="02-API-world.html#cb41-21"></a><span class="st">                  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label=</span>Code), <span class="dt">size=</span><span class="dv">2</span>, <span class="dt">nudge_y=</span><span class="dv">1</span>)<span class="op">+</span></span>
+<span id="cb41-22"><a href="02-API-world.html#cb41-22"></a><span class="st">                  </span><span class="kw">scale_x_log10</span>(<span class="st">&quot;PIB par habitant (échelle logarithmique)&quot;</span>) <span class="op">+</span></span>
+<span id="cb41-23"><a href="02-API-world.html#cb41-23"></a><span class="st">                  </span><span class="kw">scale_y_continuous</span>(<span class="st">&quot;CO2 par habitant&quot;</span>) <span class="op">+</span></span>
+<span id="cb41-24"><a href="02-API-world.html#cb41-24"></a><span class="st">                  </span><span class="kw">ggtitle</span>(<span class="dt">label =</span> <span class="kw">paste</span>(<span class="st">&quot;Développement dans le Monde en &quot;</span>, year),</span>
+<span id="cb41-25"><a href="02-API-world.html#cb41-25"></a>                          <span class="dt">subtitle =</span> <span class="st">&quot;Source : Banque Mondiale - API wbstat&quot;</span>)</span>
+<span id="cb41-26"><a href="02-API-world.html#cb41-26"></a></span>
+<span id="cb41-27"><a href="02-API-world.html#cb41-27"></a>p</span>
+<span id="cb41-28"><a href="02-API-world.html#cb41-28"></a>}</span>
+<span id="cb41-29"><a href="02-API-world.html#cb41-29"></a></span>
+<span id="cb41-30"><a href="02-API-world.html#cb41-30"></a><span class="kw">mongraphique</span>(<span class="dv">1996</span>,<span class="dv">50</span>)</span>
+<span id="cb41-31"><a href="02-API-world.html#cb41-31"></a><span class="kw">mongraphique</span>(<span class="dv">2016</span>,<span class="dv">50</span>)</span></code></pre></div>
+</div>
+
+</div>
+</div>
 </div>
 </div>
 <script src="js/tidyverse.js"></script>
