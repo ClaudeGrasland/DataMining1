@@ -1,4 +1,4 @@
-# L'API Wbstatsde la Banque Mondiale {#c02-API-world}
+# L'API Wbstats (Banque Mondiale) {#c02-API-worldstat}
 
 ```{r}
 ## Global options
@@ -19,7 +19,7 @@ opts_chunk$set(echo=TRUE,
 
 ## Objectifs
 
-Supposons que l'on souhaite télécharger la population, le PIB et les émisssions de CO2 des pays du monde de 2000 à 2015. Plutôt que d'aller chercher des fichiers sur un site web, nous allons utiliser une API proposée par la Banque Mondial qui permet de télécharger les données facilement et surtout de les mettre à jour régulièrement. Pour cela on va installer le package R correspondant à l'API `wbstats` de la Banque mondiale.
+Supposons que l'on souhaite télécharger la population, le PIB et les émisssions de CO2 des pays du monde de 2000 à 2015. Plutôt que d'aller chercher des fichiers sur un site web, nous allons utiliser une API proposée par la Banque Mondiale qui permet de télécharger les données facilement et surtout de les mettre à jour régulièrement. Pour cela on va installer le package R correspondant à l'API `wbstats` de la Banque mondiale.
 
 https://cran.r-project.org/web/packages/wbstats/vignettes/Using_the_wbstats_package.html
 
