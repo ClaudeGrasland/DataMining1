@@ -4,6 +4,7 @@
 ## Global options
 library(knitr)
 library(dplyr)
+library(ggplot2)
 library(sf)
 
 
@@ -44,9 +45,12 @@ On va télécharger tout d'abord le fonds de carte des pays du Monde avec une fo
 
 ```{r}
 map<-st_as_sf(countries110)
-par(mar=c(0,0,0,0), mfrow=c(1,1))
-plot(map$geometry,col="lightyellow")
-dim(map)
+class(map)
+
+ggplot(data = map) +
+        geom_sf(fill="lightyellow") +
+        theme_bw()
+
 
 ```
 
@@ -74,47 +78,48 @@ On peut obtenir un fonds différent en installant le package complémentaire `rn
 ```{r}
 library(rnaturalearthdata)
 map<-st_as_sf(sovereignty110)
-par(mar=c(0,0,0,0))
-plot(map$geometry,col="lightyellow")
-dim(map)
+
+ggplot(data = map) +
+ geom_sf(fill="lightyellow") +  
+  theme_bw()
+
 ```
 
 Le fonds de carte permet désormais de récupérer la plupart des pays souverains du Monde, y compris les petits états insulaires du Pacifique, mais il fait disparaître de façon sélective les territoires indéterminés ou disputés. Ainsi, le Sahra Occidental demeure partiellement séparé du Maroc mais les territoires palestiniens sont annexés à Israël ainsi que le plateau du Golan ce qui n'est évidemment pas un choix neutred'un point de vue géoolitique.
 
 ```{r}
 par(mfrow=c(1,2))
-plot(map[map$sov_a3 %in% c("ISR","JOR","SYR","LBN","EGY"),]$geometry, col=c("gray80","orange","gray80","gray80","gray80"))
-title("Limits of Israël",cex=0.5)
-plot(map[map$sov_a3 %in% c("MAR","SAH","DZA","MRT"),]$geometry, col=c("gray70","orange","gray70","lightyellow"))
-title("Limits of Morocco")
+
+map2<-map %>% filter(sov_a3 %in% c("ISR","JOR","SYR","LBN","EGY"))
+ggplot(data = map2) +
+    geom_sf(fill=c("gray80","orange","gray80","gray80","gray80")) +
+    ggtitle("Limits of Israël") +
+  theme_minimal()
+
+
+map3<-map %>% filter(sov_a3 %in%c("MAR","SAH","DZA","MRT"))
+ggplot(data = map3) +
+    geom_sf(fill=c("gray70","orange","gray70","lightyellow")) +
+    ggtitle("Limits of Morocco") +
+  theme_minimal()
+
+
 
 
 ```
 
 
-### Le fonds de carte *tinycountries110* 
-
-On peut aussi revenir au fonds de carte des countries et extraire les "petits pays" en ne conservant que leur point central, sans tracer un polygône de contour. On pourra ainsi les cartographier sous forme ponctuelle.
-
-```{r}
-
-map<-st_as_sf(countries110)
-small<-st_as_sf(tiny_countries110)
-par(mar=c(0,0,0,0), mfrow=c(1,1))
-plot(map$geometry,col="lightyellow")
-plot(small$geometry,col="red", add=T)
-```
 
 ### Le fonds de carte *countries50* 
 
-On peut également choisir un fonds moins généralisé dans leque tous les petits pays seront présents
+On peut également choisir un fonds moins généralisé dans lequel tous les petits pays seront présents
 
 ```{r}
 
 map<-st_as_sf(countries50)
-
-par(mar=c(0,0,0,0))
-plot(map$geometry,col="lightyellow")
+ggplot(data = map) +
+    geom_sf(fill="lightyellow") +
+  theme_bw()
 
 ```
 
@@ -155,8 +160,8 @@ kable(head(don))
 ### Etape 2 : Récupération du fonds de carte
 
 ```{r}
-map<-st_as_sf(sovereignty110)
-map<-st_as_sf(sovereignty110) %>% 
+map<-st_as_sf(countries110)
+map<-st_as_sf(countries110) %>% 
         select(adm0_a3,geometry) %>% 
         rename(ISO3 = adm0_a3)
 head(map)
@@ -165,10 +170,27 @@ head(map)
 ### Etape 3 : Jointure du fonds de carte et des statistiques
 
 ```{r}
-mapdon <- inner_join(don,map)
+mapdon <- right_join(don,map) %>% st_as_sf()
+class(mapdon)
 ```
 
-### Etape 4 :Visualisation avec plotly
+### Etape 4 : Visualisation avec ggplot
+
+
+```{r}
+
+
+ggplot(data = mapdon) +
+ geom_sf(fill="lightyellow")+
+  geom_point(aes(x=longitude,y=latitude, size=CO2), col = "red")+
+  theme_bw()
+
+```
+
+
+
+
+### Etape 5 :Visualisation avec plotly
 
 
 ```{r CO2 MAP, fig.width=6}
@@ -186,8 +208,8 @@ g <- list(showframe = TRUE,
           showcountries = TRUE,
           countrycolor = toRGB("black"),
           countrywidth = 0.2,
- #        projection = list(type = 'azimuthal equal area'))
-          projection = list(type = 'Mercator'))
+         projection = list(type = 'azimuthal equal area'))
+  #        projection = list(type = 'Mercator'))
 
 
 
@@ -196,14 +218,15 @@ p<- plot_geo(mapdon)%>%
               y = ~latitude,
               sizes = c(0, 1000),
               size = ~CO2,
-              color= "red",
+     #         color= "red",
+
               hoverinfo = "text",
               text = ~paste('Pays: ', country,
                             '<br /> CO2 en kT : ',CO2)) %>%
   layout(geo = g,
-         title = "Emissions de CO2 en 2015",
-         width=800,
-         height = 400)
+              width=800,
+              height=400,
+         title = "Emissions de CO2 en 2015")
 p
 ```
 

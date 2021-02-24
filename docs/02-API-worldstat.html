@@ -24,7 +24,7 @@
 <meta name="author" content="Claude Grasland, Professeur de Géographie, Université de Paris (Diderot)" />
 
 
-<meta name="date" content="2021-02-23" />
+<meta name="date" content="2021-02-24" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -218,16 +218,16 @@ code span.wa { color: #bf0303; } /* Warning */
 <li class="chapter" data-level="3.1.1" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#quel-fonds-de-carte-choisir"><i class="fa fa-check"></i><b>3.1.1</b> Quel fonds de carte choisir ?</a></li>
 <li class="chapter" data-level="3.1.2" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#le-fonds-de-carte-countries110-175-unités"><i class="fa fa-check"></i><b>3.1.2</b> le fonds de carte <em>countries110</em> (175 unités)</a></li>
 <li class="chapter" data-level="3.1.3" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#le-fonds-de-carte-sovereignty110-171-unités"><i class="fa fa-check"></i><b>3.1.3</b> le fonds de carte <em>sovereignty110</em> (171 unités)</a></li>
-<li class="chapter" data-level="3.1.4" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#le-fonds-de-carte-tinycountries110"><i class="fa fa-check"></i><b>3.1.4</b> Le fonds de carte <em>tinycountries110</em></a></li>
-<li class="chapter" data-level="3.1.5" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#le-fonds-de-carte-countries50"><i class="fa fa-check"></i><b>3.1.5</b> Le fonds de carte <em>countries50</em></a></li>
-<li class="chapter" data-level="3.1.6" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#autres-fonds-de-carte"><i class="fa fa-check"></i><b>3.1.6</b> Autres fonds de carte :</a></li>
+<li class="chapter" data-level="3.1.4" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#le-fonds-de-carte-countries50"><i class="fa fa-check"></i><b>3.1.4</b> Le fonds de carte <em>countries50</em></a></li>
+<li class="chapter" data-level="3.1.5" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#autres-fonds-de-carte"><i class="fa fa-check"></i><b>3.1.5</b> Autres fonds de carte :</a></li>
 </ul></li>
 <li class="chapter" data-level="3.2" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#exemple-de-combinaison-des-api-wbstats-et-naturalearth"><i class="fa fa-check"></i><b>3.2</b> Exemple de combinaison des API wbstats et naturalearth</a>
 <ul>
 <li class="chapter" data-level="3.2.1" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#etape-1-récupération-des-données-statistiques"><i class="fa fa-check"></i><b>3.2.1</b> Etape 1 : récupération des données statistiques</a></li>
 <li class="chapter" data-level="3.2.2" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#etape-2-récupération-du-fonds-de-carte"><i class="fa fa-check"></i><b>3.2.2</b> Etape 2 : Récupération du fonds de carte</a></li>
 <li class="chapter" data-level="3.2.3" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#etape-3-jointure-du-fonds-de-carte-et-des-statistiques"><i class="fa fa-check"></i><b>3.2.3</b> Etape 3 : Jointure du fonds de carte et des statistiques</a></li>
-<li class="chapter" data-level="3.2.4" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#etape-4-visualisation-avec-plotly"><i class="fa fa-check"></i><b>3.2.4</b> Etape 4 :Visualisation avec plotly</a></li>
+<li class="chapter" data-level="3.2.4" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#etape-4-visualisation-avec-ggplot"><i class="fa fa-check"></i><b>3.2.4</b> Etape 4 : Visualisation avec ggplot</a></li>
+<li class="chapter" data-level="3.2.5" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#etape-5-visualisation-avec-plotly"><i class="fa fa-check"></i><b>3.2.5</b> Etape 5 :Visualisation avec plotly</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -489,8 +489,12 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="recherche-du-code-dun-indicateur" class="section level3" number="2.3.1">
 <h3><span class="header-section-number">2.3.1</span> Recherche du code d’un indicateur</h3>
 <p>Supposons qu’on recherche les données récentes sur les émissions de CO2. On va utiliser le mot-clé <em>CO2</em> pour rechercher les variables correspondantes dans le catalogue à l’aide de la fonction <code>wbsearch</code>, ce qui donne 45 réponses</p>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="02-API-worldstat.html#cb45-1"></a>vars &lt;-<span class="st"> </span><span class="kw">wbsearch</span>(<span class="dt">pattern =</span> <span class="st">&quot;CO2&quot;</span>,<span class="dt">fields=</span><span class="st">&quot;indicator&quot;</span>)</span>
-<span id="cb45-2"><a href="02-API-worldstat.html#cb45-2"></a><span class="kw">kable</span>(vars)</span></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="02-API-worldstat.html#cb45-1"></a>vars &lt;-<span class="st"> </span><span class="kw">wbsearch</span>(<span class="dt">pattern =</span> <span class="st">&quot;CO2&quot;</span>,<span class="dt">fields=</span><span class="st">&quot;indicator&quot;</span>)</span></code></pre></div>
+<pre><code>Warning: `wbsearch()` is deprecated as of wbstats 1.0.0.
+Please use `wb_search()` instead.
+This warning is displayed once every 8 hours.
+Call `lifecycle::last_warnings()` to see where this warning was generated.</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="02-API-worldstat.html#cb47-1"></a><span class="kw">kable</span>(vars)</span></code></pre></div>
 <table>
 <colgroup>
 <col width="3%" />
@@ -745,14 +749,14 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="extraction-des-métadonnées" class="section level3" number="2.3.2">
 <h3><span class="header-section-number">2.3.2</span> Extraction des métadonnées</h3>
 <p>Une fois que l’on pense connaître le code de nos variables, on peut extraire les métadonnés pour vérifier qu’il s’agit bien de ce que l’on cherche, quelle est la source exacte, quelle est l’unité de mesure …</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="02-API-worldstat.html#cb46-1"></a><span class="co"># Programme R-base</span></span>
-<span id="cb46-2"><a href="02-API-worldstat.html#cb46-2"></a>meta&lt;-cat<span class="op">$</span>indicators[cat<span class="op">$</span>indicators<span class="op">$</span>indicator_id <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;SP.POP.TOTL&quot;</span>,<span class="st">&quot;NY.GDP.MKTP.CD&quot;</span>,<span class="st">&quot;EN.ATM.CO2E.KT&quot;</span>),]</span>
-<span id="cb46-3"><a href="02-API-worldstat.html#cb46-3"></a></span>
-<span id="cb46-4"><a href="02-API-worldstat.html#cb46-4"></a><span class="co"># Programme dplyr</span></span>
-<span id="cb46-5"><a href="02-API-worldstat.html#cb46-5"></a>meta&lt;-cat<span class="op">$</span>indicators <span class="op">%&gt;%</span></span>
-<span id="cb46-6"><a href="02-API-worldstat.html#cb46-6"></a><span class="st">        </span><span class="kw">filter</span>(indicator_id <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;SP.POP.TOTL&quot;</span>,<span class="st">&quot;NY.GDP.MKTP.CD&quot;</span>,<span class="st">&quot;EN.ATM.CO2E.KT&quot;</span>))</span>
-<span id="cb46-7"><a href="02-API-worldstat.html#cb46-7"></a></span>
-<span id="cb46-8"><a href="02-API-worldstat.html#cb46-8"></a><span class="kw">kable</span>(meta)</span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="02-API-worldstat.html#cb48-1"></a><span class="co"># Programme R-base</span></span>
+<span id="cb48-2"><a href="02-API-worldstat.html#cb48-2"></a>meta&lt;-cat<span class="op">$</span>indicators[cat<span class="op">$</span>indicators<span class="op">$</span>indicator_id <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;SP.POP.TOTL&quot;</span>,<span class="st">&quot;NY.GDP.MKTP.CD&quot;</span>,<span class="st">&quot;EN.ATM.CO2E.KT&quot;</span>),]</span>
+<span id="cb48-3"><a href="02-API-worldstat.html#cb48-3"></a></span>
+<span id="cb48-4"><a href="02-API-worldstat.html#cb48-4"></a><span class="co"># Programme dplyr</span></span>
+<span id="cb48-5"><a href="02-API-worldstat.html#cb48-5"></a>meta&lt;-cat<span class="op">$</span>indicators <span class="op">%&gt;%</span></span>
+<span id="cb48-6"><a href="02-API-worldstat.html#cb48-6"></a><span class="st">        </span><span class="kw">filter</span>(indicator_id <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;SP.POP.TOTL&quot;</span>,<span class="st">&quot;NY.GDP.MKTP.CD&quot;</span>,<span class="st">&quot;EN.ATM.CO2E.KT&quot;</span>))</span>
+<span id="cb48-7"><a href="02-API-worldstat.html#cb48-7"></a></span>
+<span id="cb48-8"><a href="02-API-worldstat.html#cb48-8"></a><span class="kw">kable</span>(meta)</span></code></pre></div>
 <table>
 <colgroup>
 <col width="1%" />
@@ -817,10 +821,10 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="le-paramètre-indicator" class="section level3" number="2.4.1">
 <h3><span class="header-section-number">2.4.1</span> le paramètre <code>indicator =</code></h3>
 <p>Ce paramètre permet de choisir les indicateurs à collecter, ce qui suppose que l’on connaisse leur code. Par exemple, supposons que l’on veuille extraire la population et le PIB pour pouvoir calculer ensuite le PIB par habitant</p>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="02-API-worldstat.html#cb47-1"></a>df   &lt;-<span class="st"> </span><span class="kw">wb_data</span>(<span class="dt">indicator  =</span> <span class="kw">c</span>(<span class="st">&quot;NY.GDP.MKTP.CD&quot;</span>,<span class="st">&quot;SP.POP.TOTL&quot;</span>))</span>
-<span id="cb47-2"><a href="02-API-worldstat.html#cb47-2"></a><span class="kw">dim</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="02-API-worldstat.html#cb49-1"></a>df   &lt;-<span class="st"> </span><span class="kw">wb_data</span>(<span class="dt">indicator  =</span> <span class="kw">c</span>(<span class="st">&quot;NY.GDP.MKTP.CD&quot;</span>,<span class="st">&quot;SP.POP.TOTL&quot;</span>))</span>
+<span id="cb49-2"><a href="02-API-worldstat.html#cb49-2"></a><span class="kw">dim</span>(df)</span></code></pre></div>
 <pre><code>[1] 13237     6</code></pre>
-<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="02-API-worldstat.html#cb49-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(df,<span class="dv">6</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="02-API-worldstat.html#cb51-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(df,<span class="dv">6</span>))</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -892,12 +896,12 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="les-paramètres-startdate-et-startdate" class="section level4" number="2.4.2.1">
 <h4><span class="header-section-number">2.4.2.1</span> les paramètres <code>startdate =</code> et <code>startdate =</code></h4>
 <p>Ces deux paramètres permettent de choisir une plage de temps. On peut par exemple décider de ne collecter que les données relatives aux années 2014, 2015 et 2016</p>
-<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="02-API-worldstat.html#cb50-1"></a>df   &lt;-<span class="st"> </span><span class="kw">wb_data</span>(<span class="dt">indicator  =</span> <span class="kw">c</span>(<span class="st">&quot;NY.GDP.MKTP.CD&quot;</span>,<span class="st">&quot;SP.POP.TOTL&quot;</span>),</span>
-<span id="cb50-2"><a href="02-API-worldstat.html#cb50-2"></a>                <span class="dt">start_date =</span> <span class="dv">2014</span>,</span>
-<span id="cb50-3"><a href="02-API-worldstat.html#cb50-3"></a>                <span class="dt">end_date =</span> <span class="dv">2016</span>)</span>
-<span id="cb50-4"><a href="02-API-worldstat.html#cb50-4"></a><span class="kw">dim</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="02-API-worldstat.html#cb52-1"></a>df   &lt;-<span class="st"> </span><span class="kw">wb_data</span>(<span class="dt">indicator  =</span> <span class="kw">c</span>(<span class="st">&quot;NY.GDP.MKTP.CD&quot;</span>,<span class="st">&quot;SP.POP.TOTL&quot;</span>),</span>
+<span id="cb52-2"><a href="02-API-worldstat.html#cb52-2"></a>                <span class="dt">start_date =</span> <span class="dv">2014</span>,</span>
+<span id="cb52-3"><a href="02-API-worldstat.html#cb52-3"></a>                <span class="dt">end_date =</span> <span class="dv">2016</span>)</span>
+<span id="cb52-4"><a href="02-API-worldstat.html#cb52-4"></a><span class="kw">dim</span>(df)</span></code></pre></div>
 <pre><code>[1] 651   6</code></pre>
-<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="02-API-worldstat.html#cb52-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(df,<span class="dv">6</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="02-API-worldstat.html#cb54-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(df,<span class="dv">6</span>))</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -967,11 +971,11 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="le-paramètre-mrv-most-recent-value" class="section level4" number="2.4.2.2">
 <h4><span class="header-section-number">2.4.2.2</span> Le paramètre <code>mrv</code> (most recent value)</h4>
 <p>Lorsque l’on souhaite juste obtenir les données les plus récentes, on peut remplacer les paramètres <code>startdate =</code> et <code>startdate =</code> par le paramètre <code>mrv =</code> suivit d’un chiffre indiquant le nombre d’années que l’on souhaite à partir de la date la plus récente. Avec mrv=1 on récupère uniquement la dernière année disponible pour au moins l’une des variables.</p>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="02-API-worldstat.html#cb53-1"></a>df   &lt;-<span class="st"> </span><span class="kw">wb_data</span>(<span class="dt">indicator  =</span> <span class="kw">c</span>(<span class="st">&quot;NY.GDP.MKTP.CD&quot;</span>,<span class="st">&quot;SP.POP.TOTL&quot;</span>),</span>
-<span id="cb53-2"><a href="02-API-worldstat.html#cb53-2"></a>                <span class="dt">mrv =</span> <span class="dv">1</span>)</span>
-<span id="cb53-3"><a href="02-API-worldstat.html#cb53-3"></a><span class="kw">dim</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="02-API-worldstat.html#cb55-1"></a>df   &lt;-<span class="st"> </span><span class="kw">wb_data</span>(<span class="dt">indicator  =</span> <span class="kw">c</span>(<span class="st">&quot;NY.GDP.MKTP.CD&quot;</span>,<span class="st">&quot;SP.POP.TOTL&quot;</span>),</span>
+<span id="cb55-2"><a href="02-API-worldstat.html#cb55-2"></a>                <span class="dt">mrv =</span> <span class="dv">1</span>)</span>
+<span id="cb55-3"><a href="02-API-worldstat.html#cb55-3"></a><span class="kw">dim</span>(df)</span></code></pre></div>
 <pre><code>[1] 217   6</code></pre>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="02-API-worldstat.html#cb55-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(df,<span class="dv">6</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="02-API-worldstat.html#cb57-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(df,<span class="dv">6</span>))</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1035,11 +1039,11 @@ code span.wa { color: #bf0303; } /* Warning */
 </tbody>
 </table>
 <p>L’inconvénient de cette méthode est que cela peut aboutir à un grand nombre de valeurs manquantes si l’une des variables recherchée n’a pas été mise à jour. Par exemple, la variable relative au CO2 n’est pas disponible après 2016 et du coup le tableau va mélanger des dates différentes.</p>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="02-API-worldstat.html#cb56-1"></a>df   &lt;-<span class="st"> </span><span class="kw">wb_data</span>(<span class="dt">indicator  =</span> <span class="kw">c</span>(<span class="st">&quot;NY.GDP.MKTP.CD&quot;</span>,<span class="st">&quot;SP.POP.TOTL&quot;</span>,<span class="st">&quot;EN.ATM.CO2E.KT&quot;</span> ),</span>
-<span id="cb56-2"><a href="02-API-worldstat.html#cb56-2"></a>                <span class="dt">mrv =</span><span class="dv">1</span>)</span>
-<span id="cb56-3"><a href="02-API-worldstat.html#cb56-3"></a><span class="kw">dim</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="02-API-worldstat.html#cb58-1"></a>df   &lt;-<span class="st"> </span><span class="kw">wb_data</span>(<span class="dt">indicator  =</span> <span class="kw">c</span>(<span class="st">&quot;NY.GDP.MKTP.CD&quot;</span>,<span class="st">&quot;SP.POP.TOTL&quot;</span>,<span class="st">&quot;EN.ATM.CO2E.KT&quot;</span> ),</span>
+<span id="cb58-2"><a href="02-API-worldstat.html#cb58-2"></a>                <span class="dt">mrv =</span><span class="dv">1</span>)</span>
+<span id="cb58-3"><a href="02-API-worldstat.html#cb58-3"></a><span class="kw">dim</span>(df)</span></code></pre></div>
 <pre><code>[1] 434   7</code></pre>
-<div class="sourceCode" id="cb58"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb58-1"><a href="02-API-worldstat.html#cb58-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(df,<span class="dv">6</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="02-API-worldstat.html#cb60-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(df,<span class="dv">6</span>))</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1117,12 +1121,12 @@ code span.wa { color: #bf0303; } /* Warning */
 <p>Le paramètre <code>country =</code> permet de choisir les entités spatiales à collecter, soit sous forme de liste de codes, soit à l’aide de valeurs spéciales. Par défaut; il renvoie la liste de tous les pays, mais on peut se limiter à quelques uns seulement à l’aide de leur nom en anglais (risqué …) ou de leur code ISO3 (plus sûr)</p>
 <div id="sélection-de-pays" class="section level4" number="2.4.3.1">
 <h4><span class="header-section-number">2.4.3.1</span> sélection de pays</h4>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="02-API-worldstat.html#cb59-1"></a>df   &lt;-<span class="st"> </span><span class="kw">wb_data</span>(<span class="dt">indicator  =</span> <span class="kw">c</span>(<span class="st">&quot;NY.GDP.MKTP.CD&quot;</span>,<span class="st">&quot;SP.POP.TOTL&quot;</span>),</span>
-<span id="cb59-2"><a href="02-API-worldstat.html#cb59-2"></a>                <span class="dt">start_date =</span> <span class="dv">2018</span>,</span>
-<span id="cb59-3"><a href="02-API-worldstat.html#cb59-3"></a>                <span class="dt">end_date =</span> <span class="dv">2018</span>,</span>
-<span id="cb59-4"><a href="02-API-worldstat.html#cb59-4"></a>                <span class="dt">country =</span> <span class="kw">c</span>(<span class="st">&quot;USA&quot;</span>,<span class="st">&quot;CHN&quot;</span>))</span>
-<span id="cb59-5"><a href="02-API-worldstat.html#cb59-5"></a>df<span class="op">$</span>GDP.per.capita &lt;-<span class="st"> </span><span class="kw">round</span>(df<span class="op">$</span>NY.GDP.MKTP.CD <span class="op">/</span><span class="st"> </span>df<span class="op">$</span>SP.POP.TOTL,<span class="dv">0</span>)</span>
-<span id="cb59-6"><a href="02-API-worldstat.html#cb59-6"></a><span class="kw">kable</span>(<span class="kw">head</span>(df,<span class="dv">6</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="02-API-worldstat.html#cb61-1"></a>df   &lt;-<span class="st"> </span><span class="kw">wb_data</span>(<span class="dt">indicator  =</span> <span class="kw">c</span>(<span class="st">&quot;NY.GDP.MKTP.CD&quot;</span>,<span class="st">&quot;SP.POP.TOTL&quot;</span>),</span>
+<span id="cb61-2"><a href="02-API-worldstat.html#cb61-2"></a>                <span class="dt">start_date =</span> <span class="dv">2018</span>,</span>
+<span id="cb61-3"><a href="02-API-worldstat.html#cb61-3"></a>                <span class="dt">end_date =</span> <span class="dv">2018</span>,</span>
+<span id="cb61-4"><a href="02-API-worldstat.html#cb61-4"></a>                <span class="dt">country =</span> <span class="kw">c</span>(<span class="st">&quot;USA&quot;</span>,<span class="st">&quot;CHN&quot;</span>))</span>
+<span id="cb61-5"><a href="02-API-worldstat.html#cb61-5"></a>df<span class="op">$</span>GDP.per.capita &lt;-<span class="st"> </span><span class="kw">round</span>(df<span class="op">$</span>NY.GDP.MKTP.CD <span class="op">/</span><span class="st"> </span>df<span class="op">$</span>SP.POP.TOTL,<span class="dv">0</span>)</span>
+<span id="cb61-6"><a href="02-API-worldstat.html#cb61-6"></a><span class="kw">kable</span>(<span class="kw">head</span>(df,<span class="dv">6</span>))</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1171,12 +1175,12 @@ code span.wa { color: #bf0303; } /* Warning */
 <li>“aggregates_only”</li>
 <li>“all”</li>
 </ul>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="02-API-worldstat.html#cb60-1"></a>df   &lt;-<span class="st"> </span><span class="kw">wb_data</span>(<span class="dt">indicator  =</span> <span class="kw">c</span>(<span class="st">&quot;NY.GDP.MKTP.CD&quot;</span>,<span class="st">&quot;SP.POP.TOTL&quot;</span>),</span>
-<span id="cb60-2"><a href="02-API-worldstat.html#cb60-2"></a>                <span class="dt">start_date =</span> <span class="dv">2018</span>,</span>
-<span id="cb60-3"><a href="02-API-worldstat.html#cb60-3"></a>                <span class="dt">end_date =</span> <span class="dv">2018</span>,</span>
-<span id="cb60-4"><a href="02-API-worldstat.html#cb60-4"></a>                <span class="dt">country =</span> <span class="st">&quot;regions_only&quot;</span>)</span>
-<span id="cb60-5"><a href="02-API-worldstat.html#cb60-5"></a>df<span class="op">$</span>GDP.per.capita &lt;-<span class="st"> </span><span class="kw">round</span>(df<span class="op">$</span>NY.GDP.MKTP.CD <span class="op">/</span><span class="st"> </span>df<span class="op">$</span>SP.POP.TOTL,<span class="dv">0</span>)</span>
-<span id="cb60-6"><a href="02-API-worldstat.html#cb60-6"></a><span class="kw">kable</span>(df)</span></code></pre></div>
+<div class="sourceCode" id="cb62"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb62-1"><a href="02-API-worldstat.html#cb62-1"></a>df   &lt;-<span class="st"> </span><span class="kw">wb_data</span>(<span class="dt">indicator  =</span> <span class="kw">c</span>(<span class="st">&quot;NY.GDP.MKTP.CD&quot;</span>,<span class="st">&quot;SP.POP.TOTL&quot;</span>),</span>
+<span id="cb62-2"><a href="02-API-worldstat.html#cb62-2"></a>                <span class="dt">start_date =</span> <span class="dv">2018</span>,</span>
+<span id="cb62-3"><a href="02-API-worldstat.html#cb62-3"></a>                <span class="dt">end_date =</span> <span class="dv">2018</span>,</span>
+<span id="cb62-4"><a href="02-API-worldstat.html#cb62-4"></a>                <span class="dt">country =</span> <span class="st">&quot;regions_only&quot;</span>)</span>
+<span id="cb62-5"><a href="02-API-worldstat.html#cb62-5"></a>df<span class="op">$</span>GDP.per.capita &lt;-<span class="st"> </span><span class="kw">round</span>(df<span class="op">$</span>NY.GDP.MKTP.CD <span class="op">/</span><span class="st"> </span>df<span class="op">$</span>SP.POP.TOTL,<span class="dv">0</span>)</span>
+<span id="cb62-6"><a href="02-API-worldstat.html#cb62-6"></a><span class="kw">kable</span>(df)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1265,12 +1269,12 @@ code span.wa { color: #bf0303; } /* Warning */
 <p>Il existe deux façons d’extraire un tableau comprenant plusieurs variables ou plusieurs dates, selon que l’on veut un tableau large (wide) ou étroit. On peut régler la sortie à l’aide du paramètre <code>return_wide</code> qui est TRUE par défaut mais que l’on peut régler sur FALSE.</p>
 <div id="return_wide-false" class="section level4" number="2.4.4.1">
 <h4><span class="header-section-number">2.4.4.1</span> <code>return_wide</code> = FALSE</h4>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="02-API-worldstat.html#cb61-1"></a>df   &lt;-<span class="st"> </span><span class="kw">wb_data</span>(<span class="dt">indicator  =</span> <span class="kw">c</span>(<span class="st">&quot;NY.GDP.MKTP.CD&quot;</span>,<span class="st">&quot;SP.POP.TOTL&quot;</span>),</span>
-<span id="cb61-2"><a href="02-API-worldstat.html#cb61-2"></a>                <span class="dt">return_wide =</span> <span class="ot">TRUE</span>,</span>
-<span id="cb61-3"><a href="02-API-worldstat.html#cb61-3"></a>                <span class="dt">start_date =</span> <span class="dv">2016</span>,</span>
-<span id="cb61-4"><a href="02-API-worldstat.html#cb61-4"></a>                <span class="dt">end_date =</span> <span class="dv">2018</span>,</span>
-<span id="cb61-5"><a href="02-API-worldstat.html#cb61-5"></a>                <span class="dt">country =</span> <span class="kw">c</span>(<span class="st">&quot;USA&quot;</span>,<span class="st">&quot;CHN&quot;</span>))</span>
-<span id="cb61-6"><a href="02-API-worldstat.html#cb61-6"></a>df</span></code></pre></div>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="02-API-worldstat.html#cb63-1"></a>df   &lt;-<span class="st"> </span><span class="kw">wb_data</span>(<span class="dt">indicator  =</span> <span class="kw">c</span>(<span class="st">&quot;NY.GDP.MKTP.CD&quot;</span>,<span class="st">&quot;SP.POP.TOTL&quot;</span>),</span>
+<span id="cb63-2"><a href="02-API-worldstat.html#cb63-2"></a>                <span class="dt">return_wide =</span> <span class="ot">TRUE</span>,</span>
+<span id="cb63-3"><a href="02-API-worldstat.html#cb63-3"></a>                <span class="dt">start_date =</span> <span class="dv">2016</span>,</span>
+<span id="cb63-4"><a href="02-API-worldstat.html#cb63-4"></a>                <span class="dt">end_date =</span> <span class="dv">2018</span>,</span>
+<span id="cb63-5"><a href="02-API-worldstat.html#cb63-5"></a>                <span class="dt">country =</span> <span class="kw">c</span>(<span class="st">&quot;USA&quot;</span>,<span class="st">&quot;CHN&quot;</span>))</span>
+<span id="cb63-6"><a href="02-API-worldstat.html#cb63-6"></a>df</span></code></pre></div>
 <pre><code># A tibble: 6 x 6
   iso2c iso3c country        date NY.GDP.MKTP.CD SP.POP.TOTL
   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;         &lt;dbl&gt;          &lt;dbl&gt;       &lt;dbl&gt;
@@ -1283,12 +1287,12 @@ code span.wa { color: #bf0303; } /* Warning */
 </div>
 <div id="return_wide-false-1" class="section level4" number="2.4.4.2">
 <h4><span class="header-section-number">2.4.4.2</span> <code>return_wide</code> = FALSE</h4>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="02-API-worldstat.html#cb63-1"></a>df   &lt;-<span class="st"> </span><span class="kw">wb_data</span>(<span class="dt">indicator  =</span> <span class="kw">c</span>(<span class="st">&quot;NY.GDP.MKTP.CD&quot;</span>,<span class="st">&quot;SP.POP.TOTL&quot;</span>),</span>
-<span id="cb63-2"><a href="02-API-worldstat.html#cb63-2"></a>                <span class="dt">return_wide =</span> <span class="ot">FALSE</span>,</span>
-<span id="cb63-3"><a href="02-API-worldstat.html#cb63-3"></a>                <span class="dt">start_date =</span> <span class="dv">2016</span>,</span>
-<span id="cb63-4"><a href="02-API-worldstat.html#cb63-4"></a>                <span class="dt">end_date =</span> <span class="dv">2018</span>,</span>
-<span id="cb63-5"><a href="02-API-worldstat.html#cb63-5"></a>                <span class="dt">country =</span> <span class="kw">c</span>(<span class="st">&quot;USA&quot;</span>,<span class="st">&quot;CHN&quot;</span>))</span>
-<span id="cb63-6"><a href="02-API-worldstat.html#cb63-6"></a>df[,<span class="dv">1</span><span class="op">:</span><span class="dv">7</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="02-API-worldstat.html#cb65-1"></a>df   &lt;-<span class="st"> </span><span class="kw">wb_data</span>(<span class="dt">indicator  =</span> <span class="kw">c</span>(<span class="st">&quot;NY.GDP.MKTP.CD&quot;</span>,<span class="st">&quot;SP.POP.TOTL&quot;</span>),</span>
+<span id="cb65-2"><a href="02-API-worldstat.html#cb65-2"></a>                <span class="dt">return_wide =</span> <span class="ot">FALSE</span>,</span>
+<span id="cb65-3"><a href="02-API-worldstat.html#cb65-3"></a>                <span class="dt">start_date =</span> <span class="dv">2016</span>,</span>
+<span id="cb65-4"><a href="02-API-worldstat.html#cb65-4"></a>                <span class="dt">end_date =</span> <span class="dv">2018</span>,</span>
+<span id="cb65-5"><a href="02-API-worldstat.html#cb65-5"></a>                <span class="dt">country =</span> <span class="kw">c</span>(<span class="st">&quot;USA&quot;</span>,<span class="st">&quot;CHN&quot;</span>))</span>
+<span id="cb65-6"><a href="02-API-worldstat.html#cb65-6"></a>df[,<span class="dv">1</span><span class="op">:</span><span class="dv">7</span>]</span></code></pre></div>
 <pre><code># A tibble: 12 x 7
    indicator_id   indicator         iso2c iso3c country        date   value
    &lt;chr&gt;          &lt;chr&gt;             &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;         &lt;dbl&gt;   &lt;dbl&gt;
@@ -1349,7 +1353,7 @@ code span.wa { color: #bf0303; } /* Warning */
 </tbody>
 </table>
 <div class="solution-exo">
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="02-API-worldstat.html#cb65-1"></a>meta&lt;-cat<span class="op">$</span>indicators[cat<span class="op">$</span>indicators<span class="op">$</span>indicator_id <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;SP.URB.TOTL&quot;</span>),]</span></code></pre></div>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="02-API-worldstat.html#cb67-1"></a>meta&lt;-cat<span class="op">$</span>indicators[cat<span class="op">$</span>indicators<span class="op">$</span>indicator_id <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;SP.URB.TOTL&quot;</span>),]</span></code></pre></div>
 </div>
 </div>
 <div id="exercice-2" class="section level3" number="2.5.2">
@@ -1417,26 +1421,26 @@ code span.wa { color: #bf0303; } /* Warning */
 </tbody>
 </table>
 <div class="solution-exo">
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="02-API-worldstat.html#cb66-1"></a><span class="co"># Chargement des données avec l&#39;API</span></span>
-<span id="cb66-2"><a href="02-API-worldstat.html#cb66-2"></a>tab &lt;-<span class="st"> </span><span class="kw">wb_data</span>(<span class="dt">indicator =</span> <span class="kw">c</span>(<span class="st">&quot;SP.POP.TOTL&quot;</span>),</span>
-<span id="cb66-3"><a href="02-API-worldstat.html#cb66-3"></a>                  <span class="dt">start_date=</span><span class="dv">2000</span>,</span>
-<span id="cb66-4"><a href="02-API-worldstat.html#cb66-4"></a>                  <span class="dt">end_date =</span> <span class="dv">2000</span>)</span>
-<span id="cb66-5"><a href="02-API-worldstat.html#cb66-5"></a></span>
-<span id="cb66-6"><a href="02-API-worldstat.html#cb66-6"></a><span class="co">### Tri, sélection, transformation  et recodage en R-Base</span></span>
-<span id="cb66-7"><a href="02-API-worldstat.html#cb66-7"></a> <span class="co"># tab&lt;-tab[order(tab$SP.POP.TOTL,decreasing = T),]</span></span>
-<span id="cb66-8"><a href="02-API-worldstat.html#cb66-8"></a> <span class="co"># tab&lt;-tab[,c(&quot;iso3c&quot;,&quot;country&quot;,&quot;SP.POP.TOTL&quot;)]</span></span>
-<span id="cb66-9"><a href="02-API-worldstat.html#cb66-9"></a> <span class="co"># tab$SP.POP.TOTL&lt;-tab$SP.POP.TOTL/1000000</span></span>
-<span id="cb66-10"><a href="02-API-worldstat.html#cb66-10"></a> <span class="co"># names(tab)&lt;-c(&quot;Code&quot;, &quot;Nom&quot;, &quot;Population&quot;)</span></span>
-<span id="cb66-11"><a href="02-API-worldstat.html#cb66-11"></a></span>
-<span id="cb66-12"><a href="02-API-worldstat.html#cb66-12"></a><span class="co">### Tri, sélection, transformationet recodage en dplyr</span></span>
-<span id="cb66-13"><a href="02-API-worldstat.html#cb66-13"></a>tab&lt;-<span class="st"> </span>tab <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb66-14"><a href="02-API-worldstat.html#cb66-14"></a><span class="st">          </span><span class="kw">arrange</span>(<span class="kw">desc</span>(SP.POP.TOTL)) <span class="op">%&gt;%</span></span>
-<span id="cb66-15"><a href="02-API-worldstat.html#cb66-15"></a><span class="st">          </span><span class="kw">select</span>(iso3c, country, SP.POP.TOTL) <span class="op">%&gt;%</span></span>
-<span id="cb66-16"><a href="02-API-worldstat.html#cb66-16"></a><span class="st">          </span><span class="kw">mutate</span>(<span class="dt">SP.POP.TOTL =</span> SP.POP.TOTL<span class="op">/</span><span class="dv">1000000</span>) <span class="op">%&gt;%</span></span>
-<span id="cb66-17"><a href="02-API-worldstat.html#cb66-17"></a><span class="st">          </span><span class="kw">rename</span>(<span class="dt">Code=</span>iso3c, <span class="dt">Pays =</span> country, <span class="dt">Population =</span> SP.POP.TOTL)</span>
-<span id="cb66-18"><a href="02-API-worldstat.html#cb66-18"></a></span>
-<span id="cb66-19"><a href="02-API-worldstat.html#cb66-19"></a><span class="co"># Affichage du résultat</span></span>
-<span id="cb66-20"><a href="02-API-worldstat.html#cb66-20"></a><span class="kw">kable</span>(<span class="kw">head</span>(tab,<span class="dv">10</span>), <span class="dt">digits=</span><span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="02-API-worldstat.html#cb68-1"></a><span class="co"># Chargement des données avec l&#39;API</span></span>
+<span id="cb68-2"><a href="02-API-worldstat.html#cb68-2"></a>tab &lt;-<span class="st"> </span><span class="kw">wb_data</span>(<span class="dt">indicator =</span> <span class="kw">c</span>(<span class="st">&quot;SP.POP.TOTL&quot;</span>),</span>
+<span id="cb68-3"><a href="02-API-worldstat.html#cb68-3"></a>                  <span class="dt">start_date=</span><span class="dv">2000</span>,</span>
+<span id="cb68-4"><a href="02-API-worldstat.html#cb68-4"></a>                  <span class="dt">end_date =</span> <span class="dv">2000</span>)</span>
+<span id="cb68-5"><a href="02-API-worldstat.html#cb68-5"></a></span>
+<span id="cb68-6"><a href="02-API-worldstat.html#cb68-6"></a><span class="co">### Tri, sélection, transformation  et recodage en R-Base</span></span>
+<span id="cb68-7"><a href="02-API-worldstat.html#cb68-7"></a> <span class="co"># tab&lt;-tab[order(tab$SP.POP.TOTL,decreasing = T),]</span></span>
+<span id="cb68-8"><a href="02-API-worldstat.html#cb68-8"></a> <span class="co"># tab&lt;-tab[,c(&quot;iso3c&quot;,&quot;country&quot;,&quot;SP.POP.TOTL&quot;)]</span></span>
+<span id="cb68-9"><a href="02-API-worldstat.html#cb68-9"></a> <span class="co"># tab$SP.POP.TOTL&lt;-tab$SP.POP.TOTL/1000000</span></span>
+<span id="cb68-10"><a href="02-API-worldstat.html#cb68-10"></a> <span class="co"># names(tab)&lt;-c(&quot;Code&quot;, &quot;Nom&quot;, &quot;Population&quot;)</span></span>
+<span id="cb68-11"><a href="02-API-worldstat.html#cb68-11"></a></span>
+<span id="cb68-12"><a href="02-API-worldstat.html#cb68-12"></a><span class="co">### Tri, sélection, transformationet recodage en dplyr</span></span>
+<span id="cb68-13"><a href="02-API-worldstat.html#cb68-13"></a>tab&lt;-<span class="st"> </span>tab <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb68-14"><a href="02-API-worldstat.html#cb68-14"></a><span class="st">          </span><span class="kw">arrange</span>(<span class="kw">desc</span>(SP.POP.TOTL)) <span class="op">%&gt;%</span></span>
+<span id="cb68-15"><a href="02-API-worldstat.html#cb68-15"></a><span class="st">          </span><span class="kw">select</span>(iso3c, country, SP.POP.TOTL) <span class="op">%&gt;%</span></span>
+<span id="cb68-16"><a href="02-API-worldstat.html#cb68-16"></a><span class="st">          </span><span class="kw">mutate</span>(<span class="dt">SP.POP.TOTL =</span> SP.POP.TOTL<span class="op">/</span><span class="dv">1000000</span>) <span class="op">%&gt;%</span></span>
+<span id="cb68-17"><a href="02-API-worldstat.html#cb68-17"></a><span class="st">          </span><span class="kw">rename</span>(<span class="dt">Code=</span>iso3c, <span class="dt">Pays =</span> country, <span class="dt">Population =</span> SP.POP.TOTL)</span>
+<span id="cb68-18"><a href="02-API-worldstat.html#cb68-18"></a></span>
+<span id="cb68-19"><a href="02-API-worldstat.html#cb68-19"></a><span class="co"># Affichage du résultat</span></span>
+<span id="cb68-20"><a href="02-API-worldstat.html#cb68-20"></a><span class="kw">kable</span>(<span class="kw">head</span>(tab,<span class="dv">10</span>), <span class="dt">digits=</span><span class="dv">1</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="exercice-3" class="section level3" number="2.5.3">
@@ -1447,19 +1451,19 @@ code span.wa { color: #bf0303; } /* Warning */
 <p>Réalisez un graphique présentant les valeurs de CO2 en milliers de tonnes avec une échelle logarithmique sur l’axe y pour mieux visualiser les taux de croissance.</p>
 <p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-43-1.svg" width="672" /></p>
 <div class="solution-exo">
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="02-API-worldstat.html#cb67-1"></a><span class="co"># Chargement des données avec l&#39;API</span></span>
-<span id="cb67-2"><a href="02-API-worldstat.html#cb67-2"></a>tab &lt;-<span class="st"> </span><span class="kw">wb_data</span>(<span class="dt">indicator =</span> <span class="kw">c</span>(<span class="st">&quot;EN.ATM.CO2E.KT&quot;</span>),</span>
-<span id="cb67-3"><a href="02-API-worldstat.html#cb67-3"></a>                  <span class="dt">country =</span> <span class="kw">c</span>(<span class="st">&quot;CHN&quot;</span>,<span class="st">&quot;IND&quot;</span>,<span class="st">&quot;RUS&quot;</span>,<span class="st">&quot;USA&quot;</span>,<span class="st">&quot;JPN&quot;</span>),</span>
-<span id="cb67-4"><a href="02-API-worldstat.html#cb67-4"></a>                  <span class="dt">start_date=</span><span class="dv">1995</span>,</span>
-<span id="cb67-5"><a href="02-API-worldstat.html#cb67-5"></a>                  <span class="dt">end_date =</span> <span class="dv">2015</span>)</span>
-<span id="cb67-6"><a href="02-API-worldstat.html#cb67-6"></a></span>
-<span id="cb67-7"><a href="02-API-worldstat.html#cb67-7"></a>p&lt;-<span class="kw">ggplot</span>(tab) <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(<span class="dt">x=</span>date, <span class="dt">y =</span> EN.ATM.CO2E.KT, <span class="dt">color=</span> country) <span class="op">+</span></span>
-<span id="cb67-8"><a href="02-API-worldstat.html#cb67-8"></a><span class="st">                  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
-<span id="cb67-9"><a href="02-API-worldstat.html#cb67-9"></a><span class="st">                  </span><span class="kw">scale_y_log10</span>(<span class="st">&quot;en milliers de t&quot;</span>) <span class="op">+</span></span>
-<span id="cb67-10"><a href="02-API-worldstat.html#cb67-10"></a><span class="st">                  </span><span class="kw">ggtitle</span>(<span class="dt">label =</span> <span class="st">&quot;Principaux pays émetteurs de CO2 (1995-2015)&quot;</span>,</span>
-<span id="cb67-11"><a href="02-API-worldstat.html#cb67-11"></a>                          <span class="dt">subtitle =</span> <span class="st">&quot;Source : Banque Mondiale - API wbstat&quot;</span>)</span>
-<span id="cb67-12"><a href="02-API-worldstat.html#cb67-12"></a></span>
-<span id="cb67-13"><a href="02-API-worldstat.html#cb67-13"></a>p</span></code></pre></div>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="02-API-worldstat.html#cb69-1"></a><span class="co"># Chargement des données avec l&#39;API</span></span>
+<span id="cb69-2"><a href="02-API-worldstat.html#cb69-2"></a>tab &lt;-<span class="st"> </span><span class="kw">wb_data</span>(<span class="dt">indicator =</span> <span class="kw">c</span>(<span class="st">&quot;EN.ATM.CO2E.KT&quot;</span>),</span>
+<span id="cb69-3"><a href="02-API-worldstat.html#cb69-3"></a>                  <span class="dt">country =</span> <span class="kw">c</span>(<span class="st">&quot;CHN&quot;</span>,<span class="st">&quot;IND&quot;</span>,<span class="st">&quot;RUS&quot;</span>,<span class="st">&quot;USA&quot;</span>,<span class="st">&quot;JPN&quot;</span>),</span>
+<span id="cb69-4"><a href="02-API-worldstat.html#cb69-4"></a>                  <span class="dt">start_date=</span><span class="dv">1995</span>,</span>
+<span id="cb69-5"><a href="02-API-worldstat.html#cb69-5"></a>                  <span class="dt">end_date =</span> <span class="dv">2015</span>)</span>
+<span id="cb69-6"><a href="02-API-worldstat.html#cb69-6"></a></span>
+<span id="cb69-7"><a href="02-API-worldstat.html#cb69-7"></a>p&lt;-<span class="kw">ggplot</span>(tab) <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(<span class="dt">x=</span>date, <span class="dt">y =</span> EN.ATM.CO2E.KT, <span class="dt">color=</span> country) <span class="op">+</span></span>
+<span id="cb69-8"><a href="02-API-worldstat.html#cb69-8"></a><span class="st">                  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb69-9"><a href="02-API-worldstat.html#cb69-9"></a><span class="st">                  </span><span class="kw">scale_y_log10</span>(<span class="st">&quot;en milliers de t&quot;</span>) <span class="op">+</span></span>
+<span id="cb69-10"><a href="02-API-worldstat.html#cb69-10"></a><span class="st">                  </span><span class="kw">ggtitle</span>(<span class="dt">label =</span> <span class="st">&quot;Principaux pays émetteurs de CO2 (1995-2015)&quot;</span>,</span>
+<span id="cb69-11"><a href="02-API-worldstat.html#cb69-11"></a>                          <span class="dt">subtitle =</span> <span class="st">&quot;Source : Banque Mondiale - API wbstat&quot;</span>)</span>
+<span id="cb69-12"><a href="02-API-worldstat.html#cb69-12"></a></span>
+<span id="cb69-13"><a href="02-API-worldstat.html#cb69-13"></a>p</span></code></pre></div>
 </div>
 </div>
 <div id="co2-en-valeur-relative-tonnes-par-habitant" class="section level4" number="2.5.3.2">
@@ -1467,22 +1471,22 @@ code span.wa { color: #bf0303; } /* Warning */
 <p>Même exercice mais en téléchargeant aussi la population (SP.POP.TOTL) de façon à calculer la variable CO2.per.capita qui mesure le nombre de tonnes de CO2 par habitant. On utilisera cette fois-ci une échelle arithmétique sur l’axe vertical.</p>
 <p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-45-1.svg" width="672" /></p>
 <div class="solution-exo">
-<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="02-API-worldstat.html#cb68-1"></a><span class="co"># Chargement des données avec l&#39;API</span></span>
-<span id="cb68-2"><a href="02-API-worldstat.html#cb68-2"></a>tab &lt;-<span class="st"> </span><span class="kw">wb_data</span>(<span class="dt">indicator =</span> <span class="kw">c</span>(<span class="st">&quot;EN.ATM.CO2E.KT&quot;</span>, <span class="st">&quot;SP.POP.TOTL&quot;</span>),</span>
-<span id="cb68-3"><a href="02-API-worldstat.html#cb68-3"></a>                  <span class="dt">country =</span> <span class="kw">c</span>(<span class="st">&quot;CHN&quot;</span>,<span class="st">&quot;IND&quot;</span>,<span class="st">&quot;RUS&quot;</span>,<span class="st">&quot;USA&quot;</span>,<span class="st">&quot;JPN&quot;</span>),</span>
-<span id="cb68-4"><a href="02-API-worldstat.html#cb68-4"></a>                  <span class="dt">start_date=</span><span class="dv">1995</span>,</span>
-<span id="cb68-5"><a href="02-API-worldstat.html#cb68-5"></a>                  <span class="dt">end_date =</span> <span class="dv">2015</span>)</span>
-<span id="cb68-6"><a href="02-API-worldstat.html#cb68-6"></a></span>
-<span id="cb68-7"><a href="02-API-worldstat.html#cb68-7"></a>tab &lt;-<span class="st"> </span>tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">CO2.per.capita =</span> <span class="dv">1000</span><span class="op">*</span>EN.ATM.CO2E.KT<span class="op">/</span>SP.POP.TOTL)</span>
-<span id="cb68-8"><a href="02-API-worldstat.html#cb68-8"></a></span>
-<span id="cb68-9"><a href="02-API-worldstat.html#cb68-9"></a><span class="co"># Visualisation avec ggplot2</span></span>
-<span id="cb68-10"><a href="02-API-worldstat.html#cb68-10"></a>p&lt;-<span class="kw">ggplot</span>(tab) <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(<span class="dt">x=</span>date, <span class="dt">y =</span> CO2.per.capita, <span class="dt">color=</span> country) <span class="op">+</span></span>
-<span id="cb68-11"><a href="02-API-worldstat.html#cb68-11"></a><span class="st">                  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
-<span id="cb68-12"><a href="02-API-worldstat.html#cb68-12"></a><span class="st">                  </span><span class="kw">scale_y_continuous</span>(<span class="st">&quot;en tonnes par habitant&quot;</span>) <span class="op">+</span></span>
-<span id="cb68-13"><a href="02-API-worldstat.html#cb68-13"></a><span class="st">                  </span><span class="kw">ggtitle</span>(<span class="dt">label =</span> <span class="st">&quot;Principaux pays émetteurs de CO2 (1995-2015)&quot;</span>,</span>
-<span id="cb68-14"><a href="02-API-worldstat.html#cb68-14"></a>                          <span class="dt">subtitle =</span> <span class="st">&quot;Source : Banque Mondiale - API wbstat&quot;</span>)</span>
-<span id="cb68-15"><a href="02-API-worldstat.html#cb68-15"></a></span>
-<span id="cb68-16"><a href="02-API-worldstat.html#cb68-16"></a>p</span></code></pre></div>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="02-API-worldstat.html#cb70-1"></a><span class="co"># Chargement des données avec l&#39;API</span></span>
+<span id="cb70-2"><a href="02-API-worldstat.html#cb70-2"></a>tab &lt;-<span class="st"> </span><span class="kw">wb_data</span>(<span class="dt">indicator =</span> <span class="kw">c</span>(<span class="st">&quot;EN.ATM.CO2E.KT&quot;</span>, <span class="st">&quot;SP.POP.TOTL&quot;</span>),</span>
+<span id="cb70-3"><a href="02-API-worldstat.html#cb70-3"></a>                  <span class="dt">country =</span> <span class="kw">c</span>(<span class="st">&quot;CHN&quot;</span>,<span class="st">&quot;IND&quot;</span>,<span class="st">&quot;RUS&quot;</span>,<span class="st">&quot;USA&quot;</span>,<span class="st">&quot;JPN&quot;</span>),</span>
+<span id="cb70-4"><a href="02-API-worldstat.html#cb70-4"></a>                  <span class="dt">start_date=</span><span class="dv">1995</span>,</span>
+<span id="cb70-5"><a href="02-API-worldstat.html#cb70-5"></a>                  <span class="dt">end_date =</span> <span class="dv">2015</span>)</span>
+<span id="cb70-6"><a href="02-API-worldstat.html#cb70-6"></a></span>
+<span id="cb70-7"><a href="02-API-worldstat.html#cb70-7"></a>tab &lt;-<span class="st"> </span>tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">CO2.per.capita =</span> <span class="dv">1000</span><span class="op">*</span>EN.ATM.CO2E.KT<span class="op">/</span>SP.POP.TOTL)</span>
+<span id="cb70-8"><a href="02-API-worldstat.html#cb70-8"></a></span>
+<span id="cb70-9"><a href="02-API-worldstat.html#cb70-9"></a><span class="co"># Visualisation avec ggplot2</span></span>
+<span id="cb70-10"><a href="02-API-worldstat.html#cb70-10"></a>p&lt;-<span class="kw">ggplot</span>(tab) <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(<span class="dt">x=</span>date, <span class="dt">y =</span> CO2.per.capita, <span class="dt">color=</span> country) <span class="op">+</span></span>
+<span id="cb70-11"><a href="02-API-worldstat.html#cb70-11"></a><span class="st">                  </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
+<span id="cb70-12"><a href="02-API-worldstat.html#cb70-12"></a><span class="st">                  </span><span class="kw">scale_y_continuous</span>(<span class="st">&quot;en tonnes par habitant&quot;</span>) <span class="op">+</span></span>
+<span id="cb70-13"><a href="02-API-worldstat.html#cb70-13"></a><span class="st">                  </span><span class="kw">ggtitle</span>(<span class="dt">label =</span> <span class="st">&quot;Principaux pays émetteurs de CO2 (1995-2015)&quot;</span>,</span>
+<span id="cb70-14"><a href="02-API-worldstat.html#cb70-14"></a>                          <span class="dt">subtitle =</span> <span class="st">&quot;Source : Banque Mondiale - API wbstat&quot;</span>)</span>
+<span id="cb70-15"><a href="02-API-worldstat.html#cb70-15"></a></span>
+<span id="cb70-16"><a href="02-API-worldstat.html#cb70-16"></a>p</span></code></pre></div>
 </div>
 </div>
 </div>
@@ -1496,71 +1500,76 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="analyse-pour-une-année-2010-et-un-seuil-de-population-10-millions" class="section level4" number="2.5.4.1">
 <h4><span class="header-section-number">2.5.4.1</span> Analyse pour une année (2010) et un seuil de population (10 millions)</h4>
 <p>On construit un programme pour une année précise (2010)et en ne retenant que les pays ayant une population minimale (10 millions d’habitants)</p>
+<pre><code>Warning: Removed 3 rows containing missing values (geom_point).</code></pre>
+<pre><code>Warning: Removed 3 rows containing missing values (geom_text).</code></pre>
 <p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-47-1.svg" width="672" /></p>
 <div class="solution-exo">
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="02-API-worldstat.html#cb69-1"></a><span class="co"># Chargement des données avec l&#39;API</span></span>
-<span id="cb69-2"><a href="02-API-worldstat.html#cb69-2"></a>tab &lt;-<span class="st"> </span><span class="kw">wb_data</span>(<span class="dt">indicator =</span> <span class="kw">c</span>(<span class="st">&quot;EN.ATM.CO2E.KT&quot;</span>, <span class="st">&quot;SP.POP.TOTL&quot;</span>,<span class="st">&quot;NY.GDP.MKTP.CD&quot;</span>),</span>
-<span id="cb69-3"><a href="02-API-worldstat.html#cb69-3"></a>                  <span class="dt">start_date=</span><span class="dv">2010</span>,</span>
-<span id="cb69-4"><a href="02-API-worldstat.html#cb69-4"></a>                  <span class="dt">end_date =</span> <span class="dv">2010</span>)</span>
-<span id="cb69-5"><a href="02-API-worldstat.html#cb69-5"></a></span>
-<span id="cb69-6"><a href="02-API-worldstat.html#cb69-6"></a>tab &lt;-<span class="st"> </span>tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">DEVDUR =</span> <span class="dv">1000</span><span class="op">*</span>EN.ATM.CO2E.KT<span class="op">/</span>SP.POP.TOTL,</span>
-<span id="cb69-7"><a href="02-API-worldstat.html#cb69-7"></a>                      <span class="dt">DEVECO =</span> NY.GDP.MKTP.CD<span class="op">/</span>SP.POP.TOTL,</span>
-<span id="cb69-8"><a href="02-API-worldstat.html#cb69-8"></a>                      <span class="dt">POP =</span> SP.POP.TOTL<span class="op">/</span><span class="dv">1000000</span>) <span class="op">%&gt;%</span></span>
-<span id="cb69-9"><a href="02-API-worldstat.html#cb69-9"></a><span class="st">                      </span><span class="kw">rename</span>(<span class="dt">Code =</span> iso3c, </span>
-<span id="cb69-10"><a href="02-API-worldstat.html#cb69-10"></a>                      <span class="dt">Pays =</span> country) <span class="op">%&gt;%</span></span>
-<span id="cb69-11"><a href="02-API-worldstat.html#cb69-11"></a><span class="st">               </span><span class="kw">select</span>(Code,Pays, POP, DEVDUR, DEVECO)<span class="op">%&gt;%</span></span>
-<span id="cb69-12"><a href="02-API-worldstat.html#cb69-12"></a><span class="st">               </span><span class="kw">filter</span>(POP <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span>)</span>
-<span id="cb69-13"><a href="02-API-worldstat.html#cb69-13"></a>        </span>
-<span id="cb69-14"><a href="02-API-worldstat.html#cb69-14"></a></span>
-<span id="cb69-15"><a href="02-API-worldstat.html#cb69-15"></a><span class="co"># Visualisation avec ggplot2</span></span>
-<span id="cb69-16"><a href="02-API-worldstat.html#cb69-16"></a>p&lt;-<span class="kw">ggplot</span>(tab) <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(<span class="dt">x=</span>DEVECO, <span class="dt">y =</span> DEVDUR) <span class="op">+</span></span>
-<span id="cb69-17"><a href="02-API-worldstat.html#cb69-17"></a><span class="st">                  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">size=</span>POP),<span class="dt">col=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
-<span id="cb69-18"><a href="02-API-worldstat.html#cb69-18"></a><span class="st">                  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label=</span>Code), <span class="dt">size=</span><span class="dv">2</span>, <span class="dt">nudge_y=</span><span class="dv">1</span>)<span class="op">+</span></span>
-<span id="cb69-19"><a href="02-API-worldstat.html#cb69-19"></a><span class="st">                  </span><span class="kw">scale_x_log10</span>(<span class="st">&quot;PIB par habitant (échelle logarithmique)&quot;</span>) <span class="op">+</span></span>
-<span id="cb69-20"><a href="02-API-worldstat.html#cb69-20"></a><span class="st">                  </span><span class="kw">scale_y_continuous</span>(<span class="st">&quot;CO2 par habitant&quot;</span>) <span class="op">+</span></span>
-<span id="cb69-21"><a href="02-API-worldstat.html#cb69-21"></a><span class="st">                  </span><span class="kw">ggtitle</span>(<span class="dt">label =</span> <span class="st">&quot;Développement dans le Monde en 2010&quot;</span>,</span>
-<span id="cb69-22"><a href="02-API-worldstat.html#cb69-22"></a>                          <span class="dt">subtitle =</span> <span class="st">&quot;Source : Banque Mondiale - API wbstat&quot;</span>)</span>
-<span id="cb69-23"><a href="02-API-worldstat.html#cb69-23"></a></span>
-<span id="cb69-24"><a href="02-API-worldstat.html#cb69-24"></a>p</span></code></pre></div>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="02-API-worldstat.html#cb73-1"></a><span class="co"># Chargement des données avec l&#39;API</span></span>
+<span id="cb73-2"><a href="02-API-worldstat.html#cb73-2"></a>tab &lt;-<span class="st"> </span><span class="kw">wb_data</span>(<span class="dt">indicator =</span> <span class="kw">c</span>(<span class="st">&quot;EN.ATM.CO2E.KT&quot;</span>, <span class="st">&quot;SP.POP.TOTL&quot;</span>,<span class="st">&quot;NY.GDP.MKTP.CD&quot;</span>),</span>
+<span id="cb73-3"><a href="02-API-worldstat.html#cb73-3"></a>                  <span class="dt">start_date=</span><span class="dv">2010</span>,</span>
+<span id="cb73-4"><a href="02-API-worldstat.html#cb73-4"></a>                  <span class="dt">end_date =</span> <span class="dv">2010</span>)</span>
+<span id="cb73-5"><a href="02-API-worldstat.html#cb73-5"></a></span>
+<span id="cb73-6"><a href="02-API-worldstat.html#cb73-6"></a>tab &lt;-<span class="st"> </span>tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">DEVDUR =</span> <span class="dv">1000</span><span class="op">*</span>EN.ATM.CO2E.KT<span class="op">/</span>SP.POP.TOTL,</span>
+<span id="cb73-7"><a href="02-API-worldstat.html#cb73-7"></a>                      <span class="dt">DEVECO =</span> NY.GDP.MKTP.CD<span class="op">/</span>SP.POP.TOTL,</span>
+<span id="cb73-8"><a href="02-API-worldstat.html#cb73-8"></a>                      <span class="dt">POP =</span> SP.POP.TOTL<span class="op">/</span><span class="dv">1000000</span>) <span class="op">%&gt;%</span></span>
+<span id="cb73-9"><a href="02-API-worldstat.html#cb73-9"></a><span class="st">                      </span><span class="kw">rename</span>(<span class="dt">Code =</span> iso3c, </span>
+<span id="cb73-10"><a href="02-API-worldstat.html#cb73-10"></a>                      <span class="dt">Pays =</span> country) <span class="op">%&gt;%</span></span>
+<span id="cb73-11"><a href="02-API-worldstat.html#cb73-11"></a><span class="st">               </span><span class="kw">select</span>(Code,Pays, POP, DEVDUR, DEVECO)<span class="op">%&gt;%</span></span>
+<span id="cb73-12"><a href="02-API-worldstat.html#cb73-12"></a><span class="st">               </span><span class="kw">filter</span>(POP <span class="op">&gt;</span><span class="st"> </span><span class="dv">10</span>)</span>
+<span id="cb73-13"><a href="02-API-worldstat.html#cb73-13"></a>        </span>
+<span id="cb73-14"><a href="02-API-worldstat.html#cb73-14"></a></span>
+<span id="cb73-15"><a href="02-API-worldstat.html#cb73-15"></a><span class="co"># Visualisation avec ggplot2</span></span>
+<span id="cb73-16"><a href="02-API-worldstat.html#cb73-16"></a>p&lt;-<span class="kw">ggplot</span>(tab) <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(<span class="dt">x=</span>DEVECO, <span class="dt">y =</span> DEVDUR) <span class="op">+</span></span>
+<span id="cb73-17"><a href="02-API-worldstat.html#cb73-17"></a><span class="st">                  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">size=</span>POP),<span class="dt">col=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
+<span id="cb73-18"><a href="02-API-worldstat.html#cb73-18"></a><span class="st">                  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label=</span>Code), <span class="dt">size=</span><span class="dv">2</span>, <span class="dt">nudge_y=</span><span class="dv">1</span>)<span class="op">+</span></span>
+<span id="cb73-19"><a href="02-API-worldstat.html#cb73-19"></a><span class="st">                  </span><span class="kw">scale_x_log10</span>(<span class="st">&quot;PIB par habitant (échelle logarithmique)&quot;</span>) <span class="op">+</span></span>
+<span id="cb73-20"><a href="02-API-worldstat.html#cb73-20"></a><span class="st">                  </span><span class="kw">scale_y_continuous</span>(<span class="st">&quot;CO2 par habitant&quot;</span>) <span class="op">+</span></span>
+<span id="cb73-21"><a href="02-API-worldstat.html#cb73-21"></a><span class="st">                  </span><span class="kw">ggtitle</span>(<span class="dt">label =</span> <span class="st">&quot;Développement dans le Monde en 2010&quot;</span>,</span>
+<span id="cb73-22"><a href="02-API-worldstat.html#cb73-22"></a>                          <span class="dt">subtitle =</span> <span class="st">&quot;Source : Banque Mondiale - API wbstat&quot;</span>)</span>
+<span id="cb73-23"><a href="02-API-worldstat.html#cb73-23"></a></span>
+<span id="cb73-24"><a href="02-API-worldstat.html#cb73-24"></a>p</span></code></pre></div>
 </div>
 </div>
 <div id="création-dune-fonction-fannée-population" class="section level4" number="2.5.4.2">
 <h4><span class="header-section-number">2.5.4.2</span> Création d’une fonction f(année, population)</h4>
 <p>On reprend le même programme mais sous forme d’une fonction <code>mongraphique()</code> renvoyant le diagramme en selon le choix de deux paramètres : l’année et le seuil minimal de population. On teste ensuite la fonction pour l’année 1996 et l’année 2016 en prenant un seuil de 50 millions d’habitants.</p>
-<img src="Data-Mining-1_files/figure-html/unnamed-chunk-49-1.svg" width="672" /><img src="Data-Mining-1_files/figure-html/unnamed-chunk-49-2.svg" width="672" />
+<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-49-1.svg" width="672" /></p>
+<pre><code>Warning: Removed 2 rows containing missing values (geom_point).</code></pre>
+<pre><code>Warning: Removed 2 rows containing missing values (geom_text).</code></pre>
+<img src="Data-Mining-1_files/figure-html/unnamed-chunk-49-2.svg" width="672" />
 
 <div class="solution-exo">
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="02-API-worldstat.html#cb70-1"></a>mongraphique &lt;-<span class="cf">function</span>(<span class="dt">year =</span> <span class="dv">2010</span>, <span class="dt">minpop =</span> <span class="dv">10</span>)</span>
-<span id="cb70-2"><a href="02-API-worldstat.html#cb70-2"></a>{ </span>
-<span id="cb70-3"><a href="02-API-worldstat.html#cb70-3"></a></span>
-<span id="cb70-4"><a href="02-API-worldstat.html#cb70-4"></a><span class="co"># Chargement des données avec l&#39;API</span></span>
-<span id="cb70-5"><a href="02-API-worldstat.html#cb70-5"></a>tab &lt;-<span class="st"> </span><span class="kw">wb_data</span>(<span class="dt">indicator =</span> <span class="kw">c</span>(<span class="st">&quot;EN.ATM.CO2E.KT&quot;</span>, <span class="st">&quot;SP.POP.TOTL&quot;</span>,<span class="st">&quot;NY.GDP.MKTP.CD&quot;</span>),</span>
-<span id="cb70-6"><a href="02-API-worldstat.html#cb70-6"></a>                  <span class="dt">start_date=</span>year,</span>
-<span id="cb70-7"><a href="02-API-worldstat.html#cb70-7"></a>                  <span class="dt">end_date =</span> year)</span>
-<span id="cb70-8"><a href="02-API-worldstat.html#cb70-8"></a></span>
-<span id="cb70-9"><a href="02-API-worldstat.html#cb70-9"></a>tab &lt;-<span class="st"> </span>tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">DEVDUR =</span> <span class="dv">1000</span><span class="op">*</span>EN.ATM.CO2E.KT<span class="op">/</span>SP.POP.TOTL,</span>
-<span id="cb70-10"><a href="02-API-worldstat.html#cb70-10"></a>                      <span class="dt">DEVECO =</span> NY.GDP.MKTP.CD<span class="op">/</span>SP.POP.TOTL,</span>
-<span id="cb70-11"><a href="02-API-worldstat.html#cb70-11"></a>                      <span class="dt">POP =</span> SP.POP.TOTL<span class="op">/</span><span class="dv">1000000</span>) <span class="op">%&gt;%</span></span>
-<span id="cb70-12"><a href="02-API-worldstat.html#cb70-12"></a><span class="st">                      </span><span class="kw">rename</span>(<span class="dt">Code =</span> iso3c, </span>
-<span id="cb70-13"><a href="02-API-worldstat.html#cb70-13"></a>                      <span class="dt">Pays =</span> country) <span class="op">%&gt;%</span></span>
-<span id="cb70-14"><a href="02-API-worldstat.html#cb70-14"></a><span class="st">               </span><span class="kw">select</span>(Code,Pays, POP, DEVDUR, DEVECO)<span class="op">%&gt;%</span></span>
-<span id="cb70-15"><a href="02-API-worldstat.html#cb70-15"></a><span class="st">               </span><span class="kw">filter</span>(POP <span class="op">&gt;</span><span class="st"> </span>minpop)</span>
-<span id="cb70-16"><a href="02-API-worldstat.html#cb70-16"></a>        </span>
-<span id="cb70-17"><a href="02-API-worldstat.html#cb70-17"></a></span>
-<span id="cb70-18"><a href="02-API-worldstat.html#cb70-18"></a><span class="co"># Visualisation avec ggplot2</span></span>
-<span id="cb70-19"><a href="02-API-worldstat.html#cb70-19"></a>p&lt;-<span class="kw">ggplot</span>(tab) <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(<span class="dt">x=</span>DEVECO, <span class="dt">y =</span> DEVDUR) <span class="op">+</span></span>
-<span id="cb70-20"><a href="02-API-worldstat.html#cb70-20"></a><span class="st">                  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">size=</span>POP),<span class="dt">col=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
-<span id="cb70-21"><a href="02-API-worldstat.html#cb70-21"></a><span class="st">                  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label=</span>Code), <span class="dt">size=</span><span class="dv">2</span>, <span class="dt">nudge_y=</span><span class="dv">1</span>)<span class="op">+</span></span>
-<span id="cb70-22"><a href="02-API-worldstat.html#cb70-22"></a><span class="st">                  </span><span class="kw">scale_x_log10</span>(<span class="st">&quot;PIB par habitant (échelle logarithmique)&quot;</span>) <span class="op">+</span></span>
-<span id="cb70-23"><a href="02-API-worldstat.html#cb70-23"></a><span class="st">                  </span><span class="kw">scale_y_continuous</span>(<span class="st">&quot;CO2 par habitant&quot;</span>) <span class="op">+</span></span>
-<span id="cb70-24"><a href="02-API-worldstat.html#cb70-24"></a><span class="st">                  </span><span class="kw">ggtitle</span>(<span class="dt">label =</span> <span class="kw">paste</span>(<span class="st">&quot;Développement dans le Monde en &quot;</span>, year),</span>
-<span id="cb70-25"><a href="02-API-worldstat.html#cb70-25"></a>                          <span class="dt">subtitle =</span> <span class="st">&quot;Source : Banque Mondiale - API wbstat&quot;</span>)</span>
-<span id="cb70-26"><a href="02-API-worldstat.html#cb70-26"></a></span>
-<span id="cb70-27"><a href="02-API-worldstat.html#cb70-27"></a>p</span>
-<span id="cb70-28"><a href="02-API-worldstat.html#cb70-28"></a>}</span>
-<span id="cb70-29"><a href="02-API-worldstat.html#cb70-29"></a></span>
-<span id="cb70-30"><a href="02-API-worldstat.html#cb70-30"></a><span class="kw">mongraphique</span>(<span class="dv">1996</span>,<span class="dv">50</span>)</span>
-<span id="cb70-31"><a href="02-API-worldstat.html#cb70-31"></a><span class="kw">mongraphique</span>(<span class="dv">2016</span>,<span class="dv">50</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="02-API-worldstat.html#cb76-1"></a>mongraphique &lt;-<span class="cf">function</span>(<span class="dt">year =</span> <span class="dv">2010</span>, <span class="dt">minpop =</span> <span class="dv">10</span>)</span>
+<span id="cb76-2"><a href="02-API-worldstat.html#cb76-2"></a>{ </span>
+<span id="cb76-3"><a href="02-API-worldstat.html#cb76-3"></a></span>
+<span id="cb76-4"><a href="02-API-worldstat.html#cb76-4"></a><span class="co"># Chargement des données avec l&#39;API</span></span>
+<span id="cb76-5"><a href="02-API-worldstat.html#cb76-5"></a>tab &lt;-<span class="st"> </span><span class="kw">wb_data</span>(<span class="dt">indicator =</span> <span class="kw">c</span>(<span class="st">&quot;EN.ATM.CO2E.KT&quot;</span>, <span class="st">&quot;SP.POP.TOTL&quot;</span>,<span class="st">&quot;NY.GDP.MKTP.CD&quot;</span>),</span>
+<span id="cb76-6"><a href="02-API-worldstat.html#cb76-6"></a>                  <span class="dt">start_date=</span>year,</span>
+<span id="cb76-7"><a href="02-API-worldstat.html#cb76-7"></a>                  <span class="dt">end_date =</span> year)</span>
+<span id="cb76-8"><a href="02-API-worldstat.html#cb76-8"></a></span>
+<span id="cb76-9"><a href="02-API-worldstat.html#cb76-9"></a>tab &lt;-<span class="st"> </span>tab <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">DEVDUR =</span> <span class="dv">1000</span><span class="op">*</span>EN.ATM.CO2E.KT<span class="op">/</span>SP.POP.TOTL,</span>
+<span id="cb76-10"><a href="02-API-worldstat.html#cb76-10"></a>                      <span class="dt">DEVECO =</span> NY.GDP.MKTP.CD<span class="op">/</span>SP.POP.TOTL,</span>
+<span id="cb76-11"><a href="02-API-worldstat.html#cb76-11"></a>                      <span class="dt">POP =</span> SP.POP.TOTL<span class="op">/</span><span class="dv">1000000</span>) <span class="op">%&gt;%</span></span>
+<span id="cb76-12"><a href="02-API-worldstat.html#cb76-12"></a><span class="st">                      </span><span class="kw">rename</span>(<span class="dt">Code =</span> iso3c, </span>
+<span id="cb76-13"><a href="02-API-worldstat.html#cb76-13"></a>                      <span class="dt">Pays =</span> country) <span class="op">%&gt;%</span></span>
+<span id="cb76-14"><a href="02-API-worldstat.html#cb76-14"></a><span class="st">               </span><span class="kw">select</span>(Code,Pays, POP, DEVDUR, DEVECO)<span class="op">%&gt;%</span></span>
+<span id="cb76-15"><a href="02-API-worldstat.html#cb76-15"></a><span class="st">               </span><span class="kw">filter</span>(POP <span class="op">&gt;</span><span class="st"> </span>minpop)</span>
+<span id="cb76-16"><a href="02-API-worldstat.html#cb76-16"></a>        </span>
+<span id="cb76-17"><a href="02-API-worldstat.html#cb76-17"></a></span>
+<span id="cb76-18"><a href="02-API-worldstat.html#cb76-18"></a><span class="co"># Visualisation avec ggplot2</span></span>
+<span id="cb76-19"><a href="02-API-worldstat.html#cb76-19"></a>p&lt;-<span class="kw">ggplot</span>(tab) <span class="op">+</span><span class="st"> </span><span class="kw">aes</span>(<span class="dt">x=</span>DEVECO, <span class="dt">y =</span> DEVDUR) <span class="op">+</span></span>
+<span id="cb76-20"><a href="02-API-worldstat.html#cb76-20"></a><span class="st">                  </span><span class="kw">geom_point</span>(<span class="kw">aes</span>(<span class="dt">size=</span>POP),<span class="dt">col=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
+<span id="cb76-21"><a href="02-API-worldstat.html#cb76-21"></a><span class="st">                  </span><span class="kw">geom_text</span>(<span class="kw">aes</span>(<span class="dt">label=</span>Code), <span class="dt">size=</span><span class="dv">2</span>, <span class="dt">nudge_y=</span><span class="dv">1</span>)<span class="op">+</span></span>
+<span id="cb76-22"><a href="02-API-worldstat.html#cb76-22"></a><span class="st">                  </span><span class="kw">scale_x_log10</span>(<span class="st">&quot;PIB par habitant (échelle logarithmique)&quot;</span>) <span class="op">+</span></span>
+<span id="cb76-23"><a href="02-API-worldstat.html#cb76-23"></a><span class="st">                  </span><span class="kw">scale_y_continuous</span>(<span class="st">&quot;CO2 par habitant&quot;</span>) <span class="op">+</span></span>
+<span id="cb76-24"><a href="02-API-worldstat.html#cb76-24"></a><span class="st">                  </span><span class="kw">ggtitle</span>(<span class="dt">label =</span> <span class="kw">paste</span>(<span class="st">&quot;Développement dans le Monde en &quot;</span>, year),</span>
+<span id="cb76-25"><a href="02-API-worldstat.html#cb76-25"></a>                          <span class="dt">subtitle =</span> <span class="st">&quot;Source : Banque Mondiale - API wbstat&quot;</span>)</span>
+<span id="cb76-26"><a href="02-API-worldstat.html#cb76-26"></a></span>
+<span id="cb76-27"><a href="02-API-worldstat.html#cb76-27"></a>p</span>
+<span id="cb76-28"><a href="02-API-worldstat.html#cb76-28"></a>}</span>
+<span id="cb76-29"><a href="02-API-worldstat.html#cb76-29"></a></span>
+<span id="cb76-30"><a href="02-API-worldstat.html#cb76-30"></a><span class="kw">mongraphique</span>(<span class="dv">1996</span>,<span class="dv">50</span>)</span>
+<span id="cb76-31"><a href="02-API-worldstat.html#cb76-31"></a><span class="kw">mongraphique</span>(<span class="dv">2016</span>,<span class="dv">50</span>)</span></code></pre></div>
 </div>
 
 </div>

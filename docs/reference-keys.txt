@@ -58,11 +58,11 @@ objectifs-1
 quel-fonds-de-carte-choisir
 le-fonds-de-carte-countries110-175-unités
 le-fonds-de-carte-sovereignty110-171-unités
-le-fonds-de-carte-tinycountries110
 le-fonds-de-carte-countries50
 autres-fonds-de-carte
 exemple-de-combinaison-des-api-wbstats-et-naturalearth
 etape-1-récupération-des-données-statistiques
 etape-2-récupération-du-fonds-de-carte
 etape-3-jointure-du-fonds-de-carte-et-des-statistiques
-etape-4-visualisation-avec-plotly
+etape-4-visualisation-avec-ggplot
+etape-5-visualisation-avec-plotly
