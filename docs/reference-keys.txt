@@ -123,3 +123,6 @@ création-graphique-à-partir-de-lapi
 création-tableau-à-partir-de-lapi
 conclusion-7
 section
+tab:unnamed-chunk-8
+tab:unnamed-chunk-9
+tab:unnamed-chunk-20
