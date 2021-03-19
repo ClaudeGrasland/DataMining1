@@ -1,0 +1,2178 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapitre 4 TRAVAUX D’ETUDIANTS 2021 | DATA MINING</title>
+  <meta name="description" content="Titre du cours" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapitre 4 TRAVAUX D’ETUDIANTS 2021 | DATA MINING" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Titre du cours" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapitre 4 TRAVAUX D’ETUDIANTS 2021 | DATA MINING" />
+  
+  <meta name="twitter:description" content="Titre du cours" />
+  
+
+<meta name="author" content="Claude Grasland, Professeur de Géographie, Université de Paris (Diderot)" />
+
+
+<meta name="date" content="2021-03-19" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="03-API-worldmap.html"/>
+
+<script src="libs/header-attrs-2.4/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    background-color: #ffffff;
+    color: #a0a0a0;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #a0a0a0;  padding-left: 4px; }
+div.sourceCode
+  { color: #1f1c1b; background-color: #ffffff; }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span. { color: #1f1c1b; } /* Normal */
+code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
+code span.an { color: #ca60ca; } /* Annotation */
+code span.at { color: #0057ae; } /* Attribute */
+code span.bn { color: #b08000; } /* BaseN */
+code span.bu { color: #644a9b; font-weight: bold; } /* BuiltIn */
+code span.cf { color: #1f1c1b; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #924c9d; } /* Char */
+code span.cn { color: #aa5500; } /* Constant */
+code span.co { color: #898887; } /* Comment */
+code span.cv { color: #0095ff; } /* CommentVar */
+code span.do { color: #607880; } /* Documentation */
+code span.dt { color: #0057ae; } /* DataType */
+code span.dv { color: #b08000; } /* DecVal */
+code span.er { color: #bf0303; text-decoration: underline; } /* Error */
+code span.ex { color: #0095ff; font-weight: bold; } /* Extension */
+code span.fl { color: #b08000; } /* Float */
+code span.fu { color: #644a9b; } /* Function */
+code span.im { color: #ff5500; } /* Import */
+code span.in { color: #b08000; } /* Information */
+code span.kw { color: #1f1c1b; font-weight: bold; } /* Keyword */
+code span.op { color: #1f1c1b; } /* Operator */
+code span.ot { color: #006e28; } /* Other */
+code span.pp { color: #006e28; } /* Preprocessor */
+code span.re { color: #0057ae; background-color: #e0e9f8; } /* RegionMarker */
+code span.sc { color: #3daee9; } /* SpecialChar */
+code span.ss { color: #ff5500; } /* SpecialString */
+code span.st { color: #bf0303; } /* String */
+code span.va { color: #0057ae; } /* Variable */
+code span.vs { color: #bf0303; } /* VerbatimString */
+code span.wa { color: #bf0303; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="css/tidyverse.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./index.html">Data Mining:  <em>C. Grasland (2021)</em></a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html"><i class="fa fa-check"></i>Présentation</a>
+<ul>
+<li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html#à-propos-de-ce-document"><i class="fa fa-check"></i>À propos de ce document</a></li>
+<li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html#prérequis"><i class="fa fa-check"></i>Prérequis</a></li>
+<li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html#remerciements"><i class="fa fa-check"></i>Remerciements</a></li>
+<li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html#licence"><i class="fa fa-check"></i>Licence</a></li>
+</ul></li>
+<li class="chapter" data-level="1" data-path="01-API-intro.html"><a href="01-API-intro.html"><i class="fa fa-check"></i><b>1</b> Collecter des données à l’aide d’une API</a>
+<ul>
+<li class="chapter" data-level="1.1" data-path="01-API-intro.html"><a href="01-API-intro.html#quest-ce-quune-api"><i class="fa fa-check"></i><b>1.1</b> Qu’est-ce qu’une API ?</a>
+<ul>
+<li class="chapter" data-level="1.1.1" data-path="01-API-intro.html"><a href="01-API-intro.html#définitions"><i class="fa fa-check"></i><b>1.1.1</b> Définitions</a></li>
+<li class="chapter" data-level="1.1.2" data-path="01-API-intro.html"><a href="01-API-intro.html#domaine-dapplication"><i class="fa fa-check"></i><b>1.1.2</b> Domaine d’application</a></li>
+<li class="chapter" data-level="1.1.3" data-path="01-API-intro.html"><a href="01-API-intro.html#système-client-serveur"><i class="fa fa-check"></i><b>1.1.3</b> Système client-serveur</a></li>
+</ul></li>
+<li class="chapter" data-level="1.2" data-path="01-API-intro.html"><a href="01-API-intro.html#comment-utiliser-une-api-dans-r"><i class="fa fa-check"></i><b>1.2</b> Comment utiliser une API dans R ?</a>
+<ul>
+<li class="chapter" data-level="1.2.1" data-path="01-API-intro.html"><a href="01-API-intro.html#pourquoi-utiliser-des-api"><i class="fa fa-check"></i><b>1.2.1</b> Pourquoi utiliser des API ?</a></li>
+<li class="chapter" data-level="1.2.2" data-path="01-API-intro.html"><a href="01-API-intro.html#installer-les-packages-jsonlite-et-httr"><i class="fa fa-check"></i><b>1.2.2</b> Installer les packages jsonlite et httr</a></li>
+<li class="chapter" data-level="1.2.3" data-path="01-API-intro.html"><a href="01-API-intro.html#structure-dune-requête"><i class="fa fa-check"></i><b>1.2.3</b> Structure d’une requête</a></li>
+<li class="chapter" data-level="1.2.4" data-path="01-API-intro.html"><a href="01-API-intro.html#extraction-des-données"><i class="fa fa-check"></i><b>1.2.4</b> Extraction des données</a></li>
+<li class="chapter" data-level="1.2.5" data-path="01-API-intro.html"><a href="01-API-intro.html#api-et-mise-à-jour-en-temps-réel"><i class="fa fa-check"></i><b>1.2.5</b> API et mise à jour en temps réel</a></li>
+<li class="chapter" data-level="1.2.6" data-path="01-API-intro.html"><a href="01-API-intro.html#api-et-requête-paramétrique"><i class="fa fa-check"></i><b>1.2.6</b> API et requête paramétrique</a></li>
+</ul></li>
+<li class="chapter" data-level="1.3" data-path="01-API-intro.html"><a href="01-API-intro.html#api-ou-data-packages"><i class="fa fa-check"></i><b>1.3</b> API ou data packages ?</a>
+<ul>
+<li class="chapter" data-level="1.3.1" data-path="01-API-intro.html"><a href="01-API-intro.html#installation-et-chargement-du-package"><i class="fa fa-check"></i><b>1.3.1</b> Installation et chargement du package</a></li>
+<li class="chapter" data-level="1.3.2" data-path="01-API-intro.html"><a href="01-API-intro.html#chargement-de-la-liste-des-tableaux"><i class="fa fa-check"></i><b>1.3.2</b> Chargement de la liste des tableaux</a></li>
+<li class="chapter" data-level="1.3.3" data-path="01-API-intro.html"><a href="01-API-intro.html#examen-des-séries-présentes-dans-un-tableau"><i class="fa fa-check"></i><b>1.3.3</b> Examen des séries présentes dans un tableau</a></li>
+<li class="chapter" data-level="1.3.4" data-path="01-API-intro.html"><a href="01-API-intro.html#extraction-dune-série-à-laide-de-son-identifiant"><i class="fa fa-check"></i><b>1.3.4</b> Extraction d’une série à l’aide de son identifiant</a></li>
+<li class="chapter" data-level="1.3.5" data-path="01-API-intro.html"><a href="01-API-intro.html#extraction-dun-ensemble-de-séries-dun-même-tableau"><i class="fa fa-check"></i><b>1.3.5</b> Extraction d’un ensemble de séries d’un même tableau</a></li>
+<li class="chapter" data-level="1.3.6" data-path="01-API-intro.html"><a href="01-API-intro.html#recupération-et-nettoyage-des-données"><i class="fa fa-check"></i><b>1.3.6</b> Recupération et nettoyage des données</a></li>
+<li class="chapter" data-level="1.3.7" data-path="01-API-intro.html"><a href="01-API-intro.html#construction-dun-graphique"><i class="fa fa-check"></i><b>1.3.7</b> Construction d’un graphique</a></li>
+<li class="chapter" data-level="1.3.8" data-path="01-API-intro.html"><a href="01-API-intro.html#discussion"><i class="fa fa-check"></i><b>1.3.8</b> Discussion</a></li>
+</ul></li>
+<li class="chapter" data-level="1.4" data-path="01-API-intro.html"><a href="01-API-intro.html#exercices"><i class="fa fa-check"></i><b>1.4</b> Exercices</a>
+<ul>
+<li class="chapter" data-level="1.4.1" data-path="01-API-intro.html"><a href="01-API-intro.html#exercice-1-utilisation-de-httr-et-jsonlite"><i class="fa fa-check"></i><b>1.4.1</b> Exercice 1 : utilisation de httr et jsonlite</a></li>
+<li class="chapter" data-level="1.4.2" data-path="01-API-intro.html"><a href="01-API-intro.html#exercice-2-utilisation-du-package-insee"><i class="fa fa-check"></i><b>1.4.2</b> Exercice 2 : utilisation du package ‘insee’</a></li>
+<li class="chapter" data-level="1.4.3" data-path="01-API-intro.html"><a href="01-API-intro.html#exercice-3-osrm"><i class="fa fa-check"></i><b>1.4.3</b> Exercice 3 : Osrm</a></li>
+<li class="chapter" data-level="1.4.4" data-path="01-API-intro.html"><a href="01-API-intro.html#exercice-4-exploration-de-nouvelles-api"><i class="fa fa-check"></i><b>1.4.4</b> Exercice 4 : Exploration de nouvelles API</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="2" data-path="02-API-worldstat.html"><a href="02-API-worldstat.html"><i class="fa fa-check"></i><b>2</b> L’API Wbstats (Banque Mondiale)</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="02-API-worldstat.html"><a href="02-API-worldstat.html#objectifs"><i class="fa fa-check"></i><b>2.1</b> Objectifs</a></li>
+<li class="chapter" data-level="2.2" data-path="02-API-worldstat.html"><a href="02-API-worldstat.html#le-tableau-countries"><i class="fa fa-check"></i><b>2.2</b> Le tableau “countries”</a></li>
+<li class="chapter" data-level="2.3" data-path="02-API-worldstat.html"><a href="02-API-worldstat.html#le-tableau-indicators"><i class="fa fa-check"></i><b>2.3</b> Le tableau indicators</a>
+<ul>
+<li class="chapter" data-level="2.3.1" data-path="02-API-worldstat.html"><a href="02-API-worldstat.html#recherche-du-code-dun-indicateur"><i class="fa fa-check"></i><b>2.3.1</b> Recherche du code d’un indicateur</a></li>
+<li class="chapter" data-level="2.3.2" data-path="02-API-worldstat.html"><a href="02-API-worldstat.html#extraction-des-métadonnées"><i class="fa fa-check"></i><b>2.3.2</b> Extraction des métadonnées</a></li>
+</ul></li>
+<li class="chapter" data-level="2.4" data-path="02-API-worldstat.html"><a href="02-API-worldstat.html#lextraction-des-données"><i class="fa fa-check"></i><b>2.4</b> L’extraction des données</a>
+<ul>
+<li class="chapter" data-level="2.4.1" data-path="02-API-worldstat.html"><a href="02-API-worldstat.html#le-paramètre-indicator"><i class="fa fa-check"></i><b>2.4.1</b> le paramètre <code>indicator =</code></a></li>
+<li class="chapter" data-level="2.4.2" data-path="02-API-worldstat.html"><a href="02-API-worldstat.html#le-choix-dune-période-de-temps"><i class="fa fa-check"></i><b>2.4.2</b> le choix d’une période de temps</a></li>
+<li class="chapter" data-level="2.4.3" data-path="02-API-worldstat.html"><a href="02-API-worldstat.html#le-choix-des-unités-géographiques"><i class="fa fa-check"></i><b>2.4.3</b> Le choix des unités géographiques</a></li>
+<li class="chapter" data-level="2.4.4" data-path="02-API-worldstat.html"><a href="02-API-worldstat.html#le-format-de-sortie-du-tableau"><i class="fa fa-check"></i><b>2.4.4</b> Le format de sortie du tableau</a></li>
+</ul></li>
+<li class="chapter" data-level="2.5" data-path="02-API-worldstat.html"><a href="02-API-worldstat.html#exercices-1"><i class="fa fa-check"></i><b>2.5</b> Exercices</a>
+<ul>
+<li class="chapter" data-level="2.5.1" data-path="02-API-worldstat.html"><a href="02-API-worldstat.html#exercice-1"><i class="fa fa-check"></i><b>2.5.1</b> Exercice 1</a></li>
+<li class="chapter" data-level="2.5.2" data-path="02-API-worldstat.html"><a href="02-API-worldstat.html#exercice-2"><i class="fa fa-check"></i><b>2.5.2</b> Exercice 2</a></li>
+<li class="chapter" data-level="2.5.3" data-path="02-API-worldstat.html"><a href="02-API-worldstat.html#exercice-3"><i class="fa fa-check"></i><b>2.5.3</b> Exercice 3</a></li>
+<li class="chapter" data-level="2.5.4" data-path="02-API-worldstat.html"><a href="02-API-worldstat.html#exercice-4"><i class="fa fa-check"></i><b>2.5.4</b> Exercice 4</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html"><i class="fa fa-check"></i><b>3</b> L’API Natural Earth</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#objectifs-1"><i class="fa fa-check"></i><b>3.1</b> Objectifs</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#quel-fonds-de-carte-choisir"><i class="fa fa-check"></i><b>3.1.1</b> Quel fonds de carte choisir ?</a></li>
+<li class="chapter" data-level="3.1.2" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#le-fonds-de-carte-countries110-175-unités"><i class="fa fa-check"></i><b>3.1.2</b> le fonds de carte <em>countries110</em> (175 unités)</a></li>
+<li class="chapter" data-level="3.1.3" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#le-fonds-de-carte-sovereignty110-171-unités"><i class="fa fa-check"></i><b>3.1.3</b> le fonds de carte <em>sovereignty110</em> (171 unités)</a></li>
+<li class="chapter" data-level="3.1.4" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#le-fonds-de-carte-countries50"><i class="fa fa-check"></i><b>3.1.4</b> Le fonds de carte <em>countries50</em></a></li>
+<li class="chapter" data-level="3.1.5" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#autres-fonds-de-carte"><i class="fa fa-check"></i><b>3.1.5</b> Autres fonds de carte :</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#exemple-de-combinaison-des-api-wbstats-et-naturalearth"><i class="fa fa-check"></i><b>3.2</b> Exemple de combinaison des API wbstats et naturalearth</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#etape-1-récupération-des-données-statistiques"><i class="fa fa-check"></i><b>3.2.1</b> Etape 1 : récupération des données statistiques</a></li>
+<li class="chapter" data-level="3.2.2" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#etape-2-récupération-du-fonds-de-carte"><i class="fa fa-check"></i><b>3.2.2</b> Etape 2 : Récupération du fonds de carte</a></li>
+<li class="chapter" data-level="3.2.3" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#etape-3-jointure-du-fonds-de-carte-et-des-statistiques"><i class="fa fa-check"></i><b>3.2.3</b> Etape 3 : Jointure du fonds de carte et des statistiques</a></li>
+<li class="chapter" data-level="3.2.4" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#etape-4-visualisation-avec-ggplot"><i class="fa fa-check"></i><b>3.2.4</b> Etape 4 : Visualisation avec ggplot</a></li>
+<li class="chapter" data-level="3.2.5" data-path="03-API-worldmap.html"><a href="03-API-worldmap.html#etape-5-visualisation-avec-plotly"><i class="fa fa-check"></i><b>3.2.5</b> Etape 5 :Visualisation avec plotly</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html"><i class="fa fa-check"></i><b>4</b> TRAVAUX D’ETUDIANTS 2021</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#léa-b."><i class="fa fa-check"></i><b>4.1</b> Léa B.</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#choix-de-lapi-retenue"><i class="fa fa-check"></i><b>4.1.1</b> Choix de l’API retenue</a></li>
+<li class="chapter" data-level="4.1.2" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#création-dun-tableau"><i class="fa fa-check"></i><b>4.1.2</b> Création d’un tableau</a></li>
+<li class="chapter" data-level="4.1.3" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#création-dune-figure"><i class="fa fa-check"></i><b>4.1.3</b> Création d’une figure</a></li>
+<li class="chapter" data-level="4.1.4" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#conclusion"><i class="fa fa-check"></i><b>4.1.4</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="4.2" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#mohadji-m."><i class="fa fa-check"></i><b>4.2</b> Mohadji M.</a></li>
+<li class="chapter" data-level="4.3" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#olha-h."><i class="fa fa-check"></i><b>4.3</b> Olha H.</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#choix-de-lapi-retenue-1"><i class="fa fa-check"></i><b>4.3.1</b> Choix de l’API retenue</a></li>
+<li class="chapter" data-level="4.3.2" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#création-dun-tableau-1"><i class="fa fa-check"></i><b>4.3.2</b> Création d’un tableau</a></li>
+<li class="chapter" data-level="4.3.3" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#création-dune-figure-1"><i class="fa fa-check"></i><b>4.3.3</b> Création d’une figure</a></li>
+<li class="chapter" data-level="4.3.4" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#conclusion-1"><i class="fa fa-check"></i><b>4.3.4</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#myriam-j."><i class="fa fa-check"></i><b>4.4</b> Myriam J.</a>
+<ul>
+<li class="chapter" data-level="4.4.1" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#choix-de-lapi-retenue-2"><i class="fa fa-check"></i><b>4.4.1</b> Choix de l’API retenue</a></li>
+<li class="chapter" data-level="4.4.2" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#création-dun-tableau-2"><i class="fa fa-check"></i><b>4.4.2</b> Création d’un tableau</a></li>
+<li class="chapter" data-level="4.4.3" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#création-dune-figure-2"><i class="fa fa-check"></i><b>4.4.3</b> Création d’une figure</a></li>
+<li class="chapter" data-level="4.4.4" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#conclusion-2"><i class="fa fa-check"></i><b>4.4.4</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="4.5" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#aswija-r."><i class="fa fa-check"></i><b>4.5</b> Aswija R.</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#choix-de-lapi-retenue-3"><i class="fa fa-check"></i><b>4.5.1</b> Choix de l’API retenue</a></li>
+<li class="chapter" data-level="4.5.2" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#création-dun-tableau-3"><i class="fa fa-check"></i><b>4.5.2</b> Création d’un tableau</a></li>
+<li class="chapter" data-level="4.5.3" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#création-dune-figure-3"><i class="fa fa-check"></i><b>4.5.3</b> Création d’une figure</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#youba-b."><i class="fa fa-check"></i><b>4.6</b> Youba B.</a>
+<ul>
+<li class="chapter" data-level="4.6.1" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#choix-de-lapi-retenue-4"><i class="fa fa-check"></i><b>4.6.1</b> Choix de l’API retenue</a></li>
+<li class="chapter" data-level="4.6.2" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#création-dun-tableau-4"><i class="fa fa-check"></i><b>4.6.2</b> Création d’un tableau</a></li>
+<li class="chapter" data-level="4.6.3" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#création-dune-figure-4"><i class="fa fa-check"></i><b>4.6.3</b> Création d’une figure</a></li>
+<li class="chapter" data-level="4.6.4" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#conclusion-3"><i class="fa fa-check"></i><b>4.6.4</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="4.7" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#richard-p."><i class="fa fa-check"></i><b>4.7</b> Richard P.</a>
+<ul>
+<li class="chapter" data-level="4.7.1" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#choix-de-lapi-retenue-5"><i class="fa fa-check"></i><b>4.7.1</b> Choix de l’API retenue</a></li>
+<li class="chapter" data-level="4.7.2" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#création-dun-tableau-5"><i class="fa fa-check"></i><b>4.7.2</b> Création d’un tableau</a></li>
+<li class="chapter" data-level="4.7.3" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#le-graphique"><i class="fa fa-check"></i><b>4.7.3</b> Le graphique</a></li>
+<li class="chapter" data-level="4.7.4" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#brève-analyse"><i class="fa fa-check"></i><b>4.7.4</b> Brève analyse :</a></li>
+<li class="chapter" data-level="4.7.5" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#conclusion-4"><i class="fa fa-check"></i><b>4.7.5</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="4.8" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#nicolas-j."><i class="fa fa-check"></i><b>4.8</b> Nicolas J.</a>
+<ul>
+<li class="chapter" data-level="4.8.1" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#choix-de-lapi-retenue-6"><i class="fa fa-check"></i><b>4.8.1</b> Choix de l’API retenue</a></li>
+<li class="chapter" data-level="4.8.2" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#création-dun-tableau-6"><i class="fa fa-check"></i><b>4.8.2</b> Création d’un tableau</a></li>
+<li class="chapter" data-level="4.8.3" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#le-graphique-1"><i class="fa fa-check"></i><b>4.8.3</b> Le graphique :</a></li>
+<li class="chapter" data-level="4.8.4" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#conclusion-5"><i class="fa fa-check"></i><b>4.8.4</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="4.9" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#ouali-b."><i class="fa fa-check"></i><b>4.9</b> Ouali B.</a>
+<ul>
+<li class="chapter" data-level="4.9.1" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#choix-de-lapi-retenue-7"><i class="fa fa-check"></i><b>4.9.1</b> Choix de l’API retenue</a></li>
+<li class="chapter" data-level="4.9.2" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#création-dun-tableau-7"><i class="fa fa-check"></i><b>4.9.2</b> Création d’un tableau</a></li>
+<li class="chapter" data-level="4.9.3" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#création-dune-figure-5"><i class="fa fa-check"></i><b>4.9.3</b> Création d’une figure</a></li>
+<li class="chapter" data-level="4.9.4" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#conclusion-6"><i class="fa fa-check"></i><b>4.9.4</b> Conclusion</a></li>
+</ul></li>
+<li class="chapter" data-level="4.10" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#robinson-g."><i class="fa fa-check"></i><b>4.10</b> Robinson G.</a>
+<ul>
+<li class="chapter" data-level="4.10.1" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#choix-de-lapi-insee"><i class="fa fa-check"></i><b>4.10.1</b> Choix de l’API (Insee)</a></li>
+<li class="chapter" data-level="4.10.2" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#création-graphique-à-partir-de-lapi"><i class="fa fa-check"></i><b>4.10.2</b> Création graphique à partir de l’api</a></li>
+<li class="chapter" data-level="4.10.3" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#création-tableau-à-partir-de-lapi"><i class="fa fa-check"></i><b>4.10.3</b> Création tableau à partir de l’api</a></li>
+<li class="chapter" data-level="4.10.4" data-path="04-API-Etudiants2021.html"><a href="04-API-Etudiants2021.html#conclusion-7"><i class="fa fa-check"></i><b>4.10.4</b> Conclusion</a></li>
+</ul></li>
+</ul></li>
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">DATA MINING</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="c03-API-Etudiants2021" class="section level1" number="4">
+<h1><span class="header-section-number">Chapitre 4</span> TRAVAUX D’ETUDIANTS 2021</h1>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="04-API-Etudiants2021.html#cb1-1"></a><span class="co">## Global options</span></span>
+<span id="cb1-2"><a href="04-API-Etudiants2021.html#cb1-2"></a><span class="kw">library</span>(knitr)</span>
+<span id="cb1-3"><a href="04-API-Etudiants2021.html#cb1-3"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb1-4"><a href="04-API-Etudiants2021.html#cb1-4"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb1-5"><a href="04-API-Etudiants2021.html#cb1-5"></a><span class="kw">library</span>(sf)</span>
+<span id="cb1-6"><a href="04-API-Etudiants2021.html#cb1-6"></a></span>
+<span id="cb1-7"><a href="04-API-Etudiants2021.html#cb1-7"></a></span>
+<span id="cb1-8"><a href="04-API-Etudiants2021.html#cb1-8"></a></span>
+<span id="cb1-9"><a href="04-API-Etudiants2021.html#cb1-9"></a>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">echo=</span><span class="ot">FALSE</span>,</span>
+<span id="cb1-10"><a href="04-API-Etudiants2021.html#cb1-10"></a>               <span class="dt">cache=</span><span class="ot">TRUE</span>,</span>
+<span id="cb1-11"><a href="04-API-Etudiants2021.html#cb1-11"></a>               <span class="dt">prompt=</span><span class="ot">FALSE</span>,</span>
+<span id="cb1-12"><a href="04-API-Etudiants2021.html#cb1-12"></a>               <span class="dt">tidy=</span><span class="ot">FALSE</span>,</span>
+<span id="cb1-13"><a href="04-API-Etudiants2021.html#cb1-13"></a>               <span class="dt">comment=</span><span class="ot">NA</span>,</span>
+<span id="cb1-14"><a href="04-API-Etudiants2021.html#cb1-14"></a>               <span class="dt">message=</span><span class="ot">FALSE</span>,</span>
+<span id="cb1-15"><a href="04-API-Etudiants2021.html#cb1-15"></a>               <span class="dt">warning=</span><span class="ot">FALSE</span>)</span></code></pre></div>
+<ul>
+<li><strong>Rappel des consignes</strong></li>
+</ul>
+<blockquote>
+<p>Vous devez identifier une API intéressante, accessible soit par un package R, soit par une combinaison de comandes GET() puis montrer son utilisation à l’aide d’un exemple de création d’un tableau puis d’un graphique.</p>
+</blockquote>
+<blockquote>
+<p>Vous présenterez le résultat sous la forme d’un document markdown d’une à deux pages maximum.</p>
+</blockquote>
+<hr />
+<div id="léa-b." class="section level2" number="4.1">
+<h2><span class="header-section-number">4.1</span> Léa B.</h2>
+<p>J’effectue ma mission d’apprentissage au sein du Département Pilotage de la Performance et Organisation du Travail, à la Direction Générale de Pôle Emploi. J’y suis Apprentie - Chargée d’analyse des données de pilotage.</p>
+<p>La principale problématique sur laquelle j’interviens est le rapprochement des agences Cap-Emploi au sein du réseau Pole Emploi. Les agences Cap Emploi sont spécialisées dans l’accompagnement des demandeurs d’emploi bénéficiaires de l’obligation d’emploi (BOE), c’est-à-dire principalement les travailleurs handicapés. Ce rapprochement doit permettre au réseau Cap Emploi de bénéficier d’outil de pilotage de la performance et d’aide à la décision, au même titre que ceux mis à disposition pour le réseau Pole Emploi.</p>
+<p>Dans un premier temps, nous avons donc mis au point ces tableaux de bord à l’aide d’outil BI (MicroStrategy). Ces tableaux de bord se déclinent en deux catégories :
+- Un tableau de bord consacré au suivi d’activité du réseau, recensant 11 domaines identifiés (offres / entretiens / accompagnement du demandeur d’emploi BOE / etc. )
+- Un tableau de bord recensant les indicateurs de résultats, se déclinant de la maille région jusqu’à la maille agence en passant par les mailles départementales et des cap emploi.
+<strong>Ces outils doivent permettre au réseau de mieux comprendre leur public, les objectifs, et l’évolution de l’activité dans le temps</strong></p>
+<p>Dans un second temps, la mission sera d’étudier ce public en faisant <em>in fine</em> une typologie afin de mieux adapter l’offre proposée. Cette typologie prendra en compte de nombreuses variables aussi bien socio-démographiques que professionnelles.
+<strong>L’idée est de classifier les demandeurs d’emploi BOE, et de construire une offre propre à chaque classe, répondant mieux au besoin des demandeurs.</strong></p>
+<div id="choix-de-lapi-retenue" class="section level3" number="4.1.1">
+<h3><span class="header-section-number">4.1.1</span> Choix de l’API retenue</h3>
+<p>Pole Emploi a pour but de mettre en relation des demandeurs d’emploi et des entreprises offrant un emploi.</p>
+<p>Pour cet exercice, il peut être intéressant d’étudier l’évolution du taux de chômage. Le taux de chômage est le rapport du nombre de chômeurs sur le nombre d’actifs.</p>
+<p>L’INSEE mesure ce taux de chômage tous les trimestres à travers l’enquête “Emploi” depuis 1975.</p>
+<p>Pour récupérer ces données, nous allons donc utiliser l’API de l’INSEE.</p>
+<p>Tout d’abord, il faut charger l’API <strong>insee</strong> dans R.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="04-API-Etudiants2021.html#cb2-1"></a><span class="kw">library</span>(insee)</span>
+<span id="cb2-2"><a href="04-API-Etudiants2021.html#cb2-2"></a><span class="kw">library</span>(tidyverse, <span class="dt">warn.conflicts =</span> F)</span>
+<span id="cb2-3"><a href="04-API-Etudiants2021.html#cb2-3"></a><span class="kw">library</span>(lubridate)</span>
+<span id="cb2-4"><a href="04-API-Etudiants2021.html#cb2-4"></a><span class="kw">library</span>(knitr)</span></code></pre></div>
+<p>Puis nous chargeons la liste des tableaux</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="04-API-Etudiants2021.html#cb3-1"></a>catalogue =<span class="st"> </span><span class="kw">get_dataset_list</span>()</span></code></pre></div>
+<pre><code>1/1 - Data download &amp; Dataframe build : 100%</code></pre>
+<pre><code>Data cached : C:\Users\claude\AppData\Local\Temp\RtmpUPn2Vv/6bce20f8021f2b83467819f1e4f74d9f.rds</code></pre>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="04-API-Etudiants2021.html#cb6-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(catalogue))</span></code></pre></div>
+<table>
+<colgroup>
+<col width="8%" />
+<col width="35%" />
+<col width="33%" />
+<col width="19%" />
+<col width="3%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">id</th>
+<th align="left">Name.fr</th>
+<th align="left">Name.en</th>
+<th align="left">url</th>
+<th align="right">n_series</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">BALANCE-PAIEMENTS</td>
+<td align="left">Balance des paiements</td>
+<td align="left">Balance of payments</td>
+<td align="left"><a href="https://www.insee.fr/fr/statistiques/series/103212755" class="uri">https://www.insee.fr/fr/statistiques/series/103212755</a></td>
+<td align="right">197</td>
+</tr>
+<tr class="even">
+<td align="left">CHOMAGE-TRIM-NATIONAL</td>
+<td align="left">Chômage, taux de chômage par sexe et âge (sens BIT)</td>
+<td align="left">Unemployment, unemployment rate and halo by sex and age (ILO)</td>
+<td align="left"><a href="https://www.insee.fr/fr/statistiques/series/103167923" class="uri">https://www.insee.fr/fr/statistiques/series/103167923</a></td>
+<td align="right">166</td>
+</tr>
+<tr class="odd">
+<td align="left">CLIMAT-AFFAIRES</td>
+<td align="left">Indicateurs synthétiques du climat des affaires</td>
+<td align="left">Business climate composite indicators</td>
+<td align="left"><a href="https://www.insee.fr/fr/statistiques/series/103047029" class="uri">https://www.insee.fr/fr/statistiques/series/103047029</a></td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">CNA-2010-CONSO-MEN</td>
+<td align="left">Consommation des ménages - Résultats par produit, fonction et durabilité</td>
+<td align="left">Households’ consumption - Results by product, function and durability</td>
+<td align="left"><a href="https://www.insee.fr/fr/statistiques/series/102331845" class="uri">https://www.insee.fr/fr/statistiques/series/102331845</a></td>
+<td align="right">2247</td>
+</tr>
+<tr class="odd">
+<td align="left">CNA-2010-CONSO-SI</td>
+<td align="left">Dépenses de consommation finale par secteur institutionnel - Résultats par opération et produit</td>
+<td align="left">Final consumption expenditure by institutional sectors - Results by transaction and product</td>
+<td align="left"><a href="https://www.insee.fr/fr/statistiques/series/102809534" class="uri">https://www.insee.fr/fr/statistiques/series/102809534</a></td>
+<td align="right">1391</td>
+</tr>
+<tr class="even">
+<td align="left">CNA-2010-CPEB</td>
+<td align="left">Comptes de production et d’exploitation par branche</td>
+<td align="left">Production and operating accounts by branch</td>
+<td align="left"><a href="https://www.insee.fr/fr/statistiques/series/102852781" class="uri">https://www.insee.fr/fr/statistiques/series/102852781</a></td>
+<td align="right">2739</td>
+</tr>
+</tbody>
+</table>
+<p>Ensuite, nous examinons les séries présentes dans un tableau</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="04-API-Etudiants2021.html#cb7-1"></a>var&lt;-<span class="kw">get_idbank_list</span>(<span class="st">&quot;CHOMAGE-TRIM-NATIONAL&quot;</span>)</span></code></pre></div>
+<pre><code>
+!!! The use of dim columns is DEPRECATED
+!!! First, please use datasets&#39; name as input of this function
+!!! Then, please use new columns&#39; name instead as FREQ and INDICATEUR etc
+This message is displayed once per R session</code></pre>
+<pre><code>Cached data has been used</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="04-API-Etudiants2021.html#cb10-1"></a><span class="co">#str(var)</span></span></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="04-API-Etudiants2021.html#cb11-1"></a>sel =<span class="st"> </span></span>
+<span id="cb11-2"><a href="04-API-Etudiants2021.html#cb11-2"></a><span class="st">  </span><span class="kw">get_idbank_list</span>(<span class="st">&quot;CHOMAGE-TRIM-NATIONAL&quot;</span>) <span class="op">%&gt;%</span></span>
+<span id="cb11-3"><a href="04-API-Etudiants2021.html#cb11-3"></a><span class="st">  </span><span class="kw">filter</span>(INDICATEUR<span class="op">==</span><span class="st">&quot;CTTXC&quot;</span>)<span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Taux de chomage</span></span>
+<span id="cb11-4"><a href="04-API-Etudiants2021.html#cb11-4"></a><span class="st">  </span><span class="kw">filter</span>(SEXE<span class="op">==</span><span class="st">&quot;0&quot;</span>)<span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Ensemble de la population</span></span>
+<span id="cb11-5"><a href="04-API-Etudiants2021.html#cb11-5"></a><span class="st">  </span><span class="kw">filter</span>(NATURE<span class="op">==</span><span class="st">&quot;TAUX&quot;</span>)<span class="op">%&gt;%</span><span class="st"> </span><span class="co">#(en %)</span></span>
+<span id="cb11-6"><a href="04-API-Etudiants2021.html#cb11-6"></a><span class="st">  </span><span class="kw">filter</span>(REF_AREA<span class="op">==</span><span class="st">&quot;FM&quot;</span>)<span class="op">%&gt;%</span><span class="st"> </span><span class="co">#France Métropolitaine</span></span>
+<span id="cb11-7"><a href="04-API-Etudiants2021.html#cb11-7"></a><span class="st">  </span><span class="kw">filter</span>(AGE<span class="op">==</span><span class="kw">c</span>(<span class="st">&quot;00-24&quot;</span>,<span class="st">&quot;25-49&quot;</span>,<span class="st">&quot;50-&quot;</span>))<span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Ensemble de la population, selon la classe d&#39;âge</span></span>
+<span id="cb11-8"><a href="04-API-Etudiants2021.html#cb11-8"></a><span class="st">  </span><span class="kw">filter</span>(FREQ<span class="op">==</span><span class="st">&quot;T&quot;</span>) <span class="co">#Trimestrielle</span></span></code></pre></div>
+<pre><code>Cached data has been used</code></pre>
+<pre><code>Warning in AGE == c(&quot;00-24&quot;, &quot;25-49&quot;, &quot;50-&quot;): la taille d&#39;un objet plus long
+n&#39;est pas multiple de la taille d&#39;un objet plus court</code></pre>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="04-API-Etudiants2021.html#cb14-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(sel))</span></code></pre></div>
+<table style="width:100%;">
+<colgroup>
+<col width="4%" />
+<col width="2%" />
+<col width="7%" />
+<col width="1%" />
+<col width="2%" />
+<col width="1%" />
+<col width="1%" />
+<col width="1%" />
+<col width="1%" />
+<col width="2%" />
+<col width="2%" />
+<col width="2%" />
+<col width="2%" />
+<col width="4%" />
+<col width="4%" />
+<col width="3%" />
+<col width="3%" />
+<col width="4%" />
+<col width="4%" />
+<col width="2%" />
+<col width="2%" />
+<col width="3%" />
+<col width="4%" />
+<col width="4%" />
+<col width="4%" />
+<col width="7%" />
+<col width="4%" />
+<col width="1%" />
+<col width="1%" />
+<col width="1%" />
+<col width="1%" />
+<col width="1%" />
+<col width="1%" />
+<col width="1%" />
+<col width="1%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">nomflow</th>
+<th align="left">idbank</th>
+<th align="left">cleFlow</th>
+<th align="left">FREQ</th>
+<th align="left">INDICATEUR</th>
+<th align="left">NATURE</th>
+<th align="left">REF_AREA</th>
+<th align="left">SEXE</th>
+<th align="left">AGE</th>
+<th align="left">UNIT_MEASURE</th>
+<th align="left">CORRECTION</th>
+<th align="left">FREQ_label_fr</th>
+<th align="left">FREQ_label_en</th>
+<th align="left">INDICATEUR_label_fr</th>
+<th align="left">INDICATEUR_label_en</th>
+<th align="left">NATURE_label_fr</th>
+<th align="left">NATURE_label_en</th>
+<th align="left">REF_AREA_label_fr</th>
+<th align="left">REF_AREA_label_en</th>
+<th align="left">SEXE_label_fr</th>
+<th align="left">SEXE_label_en</th>
+<th align="left">AGE_label_fr</th>
+<th align="left">AGE_label_en</th>
+<th align="left">UNIT_MEASURE_label_fr</th>
+<th align="left">UNIT_MEASURE_label_en</th>
+<th align="left">CORRECTION_label_fr</th>
+<th align="left">CORRECTION_label_en</th>
+<th align="left">dim1</th>
+<th align="left">dim2</th>
+<th align="left">dim3</th>
+<th align="left">dim4</th>
+<th align="left">dim5</th>
+<th align="left">dim6</th>
+<th align="left">dim7</th>
+<th align="left">dim8</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">CHOMAGE-TRIM-NATIONAL</td>
+<td align="left">001688528</td>
+<td align="left">T.CTTXC.TAUX.FM.0.25-49.POURCENT.CVS</td>
+<td align="left">T</td>
+<td align="left">CTTXC</td>
+<td align="left">TAUX</td>
+<td align="left">FM</td>
+<td align="left">0</td>
+<td align="left">25-49</td>
+<td align="left">POURCENT</td>
+<td align="left">CVS</td>
+<td align="left">Trimestrielle</td>
+<td align="left">Quarterly</td>
+<td align="left">Taux de chômage</td>
+<td align="left">Unemployment rate</td>
+<td align="left">Taux</td>
+<td align="left">Rate</td>
+<td align="left">France métropolitaine</td>
+<td align="left">Metropolitan France</td>
+<td align="left">Ensemble</td>
+<td align="left">All</td>
+<td align="left">De 25 à 49 ans</td>
+<td align="left">From 25 to 49 years old</td>
+<td align="left">%</td>
+<td align="left">%</td>
+<td align="left">Corrigé des variations saisonnières</td>
+<td align="left">Seasonal adjusted</td>
+<td align="left">T</td>
+<td align="left">CTTXC</td>
+<td align="left">TAUX</td>
+<td align="left">FM</td>
+<td align="left">0</td>
+<td align="left">25-49</td>
+<td align="left">POURCENT</td>
+<td align="left">CVS</td>
+</tr>
+<tr class="even">
+<td align="left">CHOMAGE-TRIM-NATIONAL</td>
+<td align="left">001688530</td>
+<td align="left">T.CTTXC.TAUX.FM.0.50-.POURCENT.CVS</td>
+<td align="left">T</td>
+<td align="left">CTTXC</td>
+<td align="left">TAUX</td>
+<td align="left">FM</td>
+<td align="left">0</td>
+<td align="left">50-</td>
+<td align="left">POURCENT</td>
+<td align="left">CVS</td>
+<td align="left">Trimestrielle</td>
+<td align="left">Quarterly</td>
+<td align="left">Taux de chômage</td>
+<td align="left">Unemployment rate</td>
+<td align="left">Taux</td>
+<td align="left">Rate</td>
+<td align="left">France métropolitaine</td>
+<td align="left">Metropolitan France</td>
+<td align="left">Ensemble</td>
+<td align="left">All</td>
+<td align="left">50 ans et plus</td>
+<td align="left">50 years old and over</td>
+<td align="left">%</td>
+<td align="left">%</td>
+<td align="left">Corrigé des variations saisonnières</td>
+<td align="left">Seasonal adjusted</td>
+<td align="left">T</td>
+<td align="left">CTTXC</td>
+<td align="left">TAUX</td>
+<td align="left">FM</td>
+<td align="left">0</td>
+<td align="left">50-</td>
+<td align="left">POURCENT</td>
+<td align="left">CVS</td>
+</tr>
+<tr class="odd">
+<td align="left">CHOMAGE-TRIM-NATIONAL</td>
+<td align="left">001688536</td>
+<td align="left">T.CTTXC.TAUX.FM.0.00-24.POURCENT.CVS</td>
+<td align="left">T</td>
+<td align="left">CTTXC</td>
+<td align="left">TAUX</td>
+<td align="left">FM</td>
+<td align="left">0</td>
+<td align="left">00-24</td>
+<td align="left">POURCENT</td>
+<td align="left">CVS</td>
+<td align="left">Trimestrielle</td>
+<td align="left">Quarterly</td>
+<td align="left">Taux de chômage</td>
+<td align="left">Unemployment rate</td>
+<td align="left">Taux</td>
+<td align="left">Rate</td>
+<td align="left">France métropolitaine</td>
+<td align="left">Metropolitan France</td>
+<td align="left">Ensemble</td>
+<td align="left">All</td>
+<td align="left">Moins de 25 ans</td>
+<td align="left">Below 25 years old</td>
+<td align="left">%</td>
+<td align="left">%</td>
+<td align="left">Corrigé des variations saisonnières</td>
+<td align="left">Seasonal adjusted</td>
+<td align="left">T</td>
+<td align="left">CTTXC</td>
+<td align="left">TAUX</td>
+<td align="left">FM</td>
+<td align="left">0</td>
+<td align="left">00-24</td>
+<td align="left">POURCENT</td>
+<td align="left">CVS</td>
+</tr>
+</tbody>
+</table>
+<p>On récupère les données grâce à l’id stocké dans la variable <em>sel</em> à l’étape précédente</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="04-API-Etudiants2021.html#cb15-1"></a>don =<span class="st"> </span><span class="kw">get_insee_idbank</span>(sel<span class="op">$</span>idbank)</span></code></pre></div>
+<pre><code>1/1 - Data download &amp; Dataframe build :</code></pre>
+<pre><code>
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |=======================                                               |  33%
+  |                                                                            
+  |===============================================                       |  67%
+  |                                                                            
+  |======================================================================| 100%</code></pre>
+<pre><code></code></pre>
+<pre><code>Data cached : C:\Users\claude\AppData\Local\Temp\RtmpUPn2Vv/3357e8ff41578c27f27ef1411a5fa540.rds</code></pre>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="04-API-Etudiants2021.html#cb20-1"></a><span class="co">#str(don)</span></span></code></pre></div>
+</div>
+<div id="création-dun-tableau" class="section level3" number="4.1.2">
+<h3><span class="header-section-number">4.1.2</span> Création d’un tableau</h3>
+<p><em>Créer et enregistrer le tableau et enregistrer dans Data</em></p>
+<p>On nettoie les données pour ne garder que les variables qui nous interessent.</p>
+<p>Puis on transforme la variable <strong>IDBANK</strong> en une variable <strong>AGE</strong>.</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="04-API-Etudiants2021.html#cb21-1"></a>don2 &lt;-<span class="st"> </span>don <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="dt">TRIMESTRE =</span> DATE, <span class="dt">TXCHOMAGE =</span> OBS_VALUE, <span class="dt">IDBANK =</span> IDBANK)</span>
+<span id="cb21-2"><a href="04-API-Etudiants2021.html#cb21-2"></a>                     </span>
+<span id="cb21-3"><a href="04-API-Etudiants2021.html#cb21-3"></a>don2<span class="op">$</span>AGE &lt;-<span class="st"> </span><span class="kw">fct_recode</span>(don2<span class="op">$</span>IDBANK, <span class="st">&quot;15-24 ans&quot;</span> =<span class="st"> &quot;001688536&quot;</span>,</span>
+<span id="cb21-4"><a href="04-API-Etudiants2021.html#cb21-4"></a>                                    <span class="st">&quot;25-49 ans&quot;</span> =<span class="st"> &quot;001688528&quot;</span>,</span>
+<span id="cb21-5"><a href="04-API-Etudiants2021.html#cb21-5"></a>                                    <span class="st">&quot;50 ans et plus&quot;</span> =<span class="st"> &quot;001688530&quot;</span>)</span>
+<span id="cb21-6"><a href="04-API-Etudiants2021.html#cb21-6"></a></span>
+<span id="cb21-7"><a href="04-API-Etudiants2021.html#cb21-7"></a></span>
+<span id="cb21-8"><a href="04-API-Etudiants2021.html#cb21-8"></a><span class="kw">kable</span>(<span class="kw">head</span>(don2))</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">TRIMESTRE</th>
+<th align="right">TXCHOMAGE</th>
+<th align="left">IDBANK</th>
+<th align="left">AGE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">2020-10-01</td>
+<td align="right">7.2</td>
+<td align="left">001688528</td>
+<td align="left">25-49 ans</td>
+</tr>
+<tr class="even">
+<td align="left">2020-07-01</td>
+<td align="right">8.3</td>
+<td align="left">001688528</td>
+<td align="left">25-49 ans</td>
+</tr>
+<tr class="odd">
+<td align="left">2020-04-01</td>
+<td align="right">6.4</td>
+<td align="left">001688528</td>
+<td align="left">25-49 ans</td>
+</tr>
+<tr class="even">
+<td align="left">2020-01-01</td>
+<td align="right">7.0</td>
+<td align="left">001688528</td>
+<td align="left">25-49 ans</td>
+</tr>
+<tr class="odd">
+<td align="left">2019-10-01</td>
+<td align="right">7.1</td>
+<td align="left">001688528</td>
+<td align="left">25-49 ans</td>
+</tr>
+<tr class="even">
+<td align="left">2019-07-01</td>
+<td align="right">7.5</td>
+<td align="left">001688528</td>
+<td align="left">25-49 ans</td>
+</tr>
+</tbody>
+</table>
+<p>Ligne de programme pour sauvegarder le tableau dans le sous-dossier <em>Data</em> au format .csv</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="04-API-Etudiants2021.html#cb22-1"></a><span class="kw">write.csv2</span>(don2, <span class="dt">file =</span> <span class="st">&quot;data/data.csv&quot;</span>)</span></code></pre></div>
+</div>
+<div id="création-dune-figure" class="section level3" number="4.1.3">
+<h3><span class="header-section-number">4.1.3</span> Création d’une figure</h3>
+<p>Faire un graphique et enregistrer dans Image</p>
+<p>On charge la librairie <strong>ggplot2</strong> qui va nous servir pour faire le graphique</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="04-API-Etudiants2021.html#cb23-1"></a><span class="kw">library</span>(ggplot2)</span></code></pre></div>
+<p>On va représenter le taux de chômage depuis 1975 selon l’âge des chômeurs. Cela va nous permettre de comparer l’évolution de ces différentes séries.</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="04-API-Etudiants2021.html#cb24-1"></a>graphe &lt;-<span class="st"> </span><span class="kw">ggplot</span>(don2)<span class="op">+</span><span class="st"> </span></span>
+<span id="cb24-2"><a href="04-API-Etudiants2021.html#cb24-2"></a><span class="st">  </span><span class="kw">aes</span> (<span class="dt">x=</span>TRIMESTRE, <span class="dt">y=</span>TXCHOMAGE, <span class="dt">color=</span>AGE) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb24-3"><a href="04-API-Etudiants2021.html#cb24-3"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span></span>
+<span id="cb24-4"><a href="04-API-Etudiants2021.html#cb24-4"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="dt">label=</span><span class="st">&quot;Taux de chômage en France Métropolitaine selon l&#39;âge&quot;</span>, <span class="dt">subtitle =</span> <span class="st">&quot;Source : INSEE&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb24-5"><a href="04-API-Etudiants2021.html#cb24-5"></a><span class="st">  </span><span class="kw">scale_x_date</span>(<span class="st">&quot;Données trimestrielles&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb24-6"><a href="04-API-Etudiants2021.html#cb24-6"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="st">&quot;Taux de chômage&quot;</span>, <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="ot">NA</span>))</span>
+<span id="cb24-7"><a href="04-API-Etudiants2021.html#cb24-7"></a>graphe</span></code></pre></div>
+<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-11-1.svg" width="672" /></p>
+<p>Sur ce graphique, on observe en premier lieu que le taux de chômage chez les jeunes est bien supérieur à celui des 25-49 ans ou celui des 50 ans et plus. De plus, c’est également celui qui connaît les plus fortes variations négatives comme positives depuis 1975.</p>
+<p>Le taux de chômage chez les 25-49 ans et chez les plus de 50 ans est similaire. Cependant, celui des 50 ans et plus reste le plus bas sur toute la période.</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="04-API-Etudiants2021.html#cb25-1"></a><span class="kw">ggsave</span>(<span class="st">&quot;mongraphe.png&quot;</span>, <span class="dt">plot =</span> graphe, <span class="dt">path =</span> <span class="st">&quot;img/&quot;</span>)</span></code></pre></div>
+<pre><code>Saving 7 x 5 in image</code></pre>
+</div>
+<div id="conclusion" class="section level3" number="4.1.4">
+<h3><span class="header-section-number">4.1.4</span> Conclusion</h3>
+<p>L’avantage d’utiliser une API est la mise à jour automatiquement des données.</p>
+<p>Sur l’exemple ci-dessous, nous avons le taux de chômage jusqu’au quatrième trimestre 2020. Si dans un an j’exécute de nouveau ce programme, tout se mettra automatiquement à jour, c’est-à-dire que les trimestres de 2021 seront ajoutés au tableau mais aussi au graphique.</p>
+<p>Le second avantage de l’utilisation d’une API est la réduction des commandes à passer pour obtenir une information précise. Ici par exemple, sans avoir eu besoin d’ouvrir un navigateur Internet, nous avons obtenu les données INSEE du taux de chômage depuis 1975 en France Métropolitaine.</p>
+<hr />
+</div>
+</div>
+<div id="mohadji-m." class="section level2" number="4.2">
+<h2><span class="header-section-number">4.2</span> Mohadji M.</h2>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="04-API-Etudiants2021.html#cb27-1"></a><span class="co"># Chargement des données de L&#39;INSEE</span></span>
+<span id="cb27-2"><a href="04-API-Etudiants2021.html#cb27-2"></a><span class="kw">library</span>(insee)</span>
+<span id="cb27-3"><a href="04-API-Etudiants2021.html#cb27-3"></a>Esp &lt;-<span class="st"> </span><span class="kw">get_dataset_list</span>()</span></code></pre></div>
+<pre><code>Cached data has been used</code></pre>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="04-API-Etudiants2021.html#cb29-1"></a>Esp</span></code></pre></div>
+<pre><code># A tibble: 197 x 5
+   id        Name.fr               Name.en               url            n_series
+   &lt;chr&gt;     &lt;chr&gt;                 &lt;chr&gt;                 &lt;chr&gt;             &lt;dbl&gt;
+ 1 BALANCE-~ Balance des paiements Balance of payments   https://www.i~      197
+ 2 CHOMAGE-~ Chômage, taux de chô~ Unemployment, unempl~ https://www.i~      166
+ 3 CLIMAT-A~ Indicateurs synthéti~ Business climate com~ https://www.i~        3
+ 4 CNA-2010~ Consommation des mén~ Households&#39; consumpt~ https://www.i~     2247
+ 5 CNA-2010~ Dépenses de consomma~ Final consumption ex~ https://www.i~     1391
+ 6 CNA-2010~ Comptes de productio~ Production and opera~ https://www.i~     2739
+ 7 CNA-2010~ Comptes des secteurs~ Institutional sector~ https://www.i~     1173
+ 8 CNA-2010~ Dépenses des adminis~ General government e~ https://www.i~     4400
+ 9 CNA-2010~ Dette et déficit des~ Maastricht general g~ https://www.i~       72
+10 CNA-2010~ Emploi intérieur, du~ Domestic employment,~ https://www.i~      702
+# ... with 187 more rows</code></pre>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="04-API-Etudiants2021.html#cb31-1"></a>Esp1 &lt;-<span class="st"> </span><span class="kw">get_idbank_list</span>(<span class="st">&quot;VOV-2015-COMMERCE&quot;</span>)</span></code></pre></div>
+<pre><code>Cached data has been used</code></pre>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="04-API-Etudiants2021.html#cb33-1"></a>Esp2&lt;-<span class="st"> </span><span class="kw">get_insee_idbank</span>(<span class="st">&quot;010543195&quot;</span>)</span></code></pre></div>
+<pre><code>1/1 - Data download &amp; Dataframe build :</code></pre>
+<pre><code>
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |======================================================================| 100%</code></pre>
+<pre><code></code></pre>
+<pre><code>Data cached : C:\Users\claude\AppData\Local\Temp\RtmpUPn2Vv/8078a727955e08e4da4878cd998ed4ef.rds</code></pre>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="04-API-Etudiants2021.html#cb38-1"></a>Esp2</span></code></pre></div>
+<pre><code># A tibble: 192 x 16
+   DATE       TIME_PERIOD OBS_VALUE OBS_STATUS OBS_QUAL OBS_TYPE IDBANK FREQ 
+   &lt;date&gt;     &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;
+ 1 2020-12-01 2020-12         100.  A          DEF      A        01054~ M    
+ 2 2020-11-01 2020-11          96.5 A          DEF      A        01054~ M    
+ 3 2020-10-01 2020-10          98.0 A          DEF      A        01054~ M    
+ 4 2020-09-01 2020-09         100.  A          DEF      A        01054~ M    
+ 5 2020-08-01 2020-08         107.  A          DEF      A        01054~ M    
+ 6 2020-07-01 2020-07          90.5 A          DEF      A        01054~ M    
+ 7 2020-06-01 2020-06          94.8 A          DEF      A        01054~ M    
+ 8 2020-05-01 2020-05          77.6 A          DEF      A        01054~ M    
+ 9 2020-04-01 2020-04          54.2 A          DEF      A        01054~ M    
+10 2020-03-01 2020-03          81.4 A          DEF      A        01054~ M    
+# ... with 182 more rows, and 8 more variables: TITLE_FR &lt;chr&gt;, TITLE_EN &lt;chr&gt;,
+#   LAST_UPDATE &lt;chr&gt;, UNIT_MEASURE &lt;chr&gt;, UNIT_MULT &lt;chr&gt;, REF_AREA &lt;chr&gt;,
+#   DECIMALS &lt;chr&gt;, OBS_REV &lt;chr&gt;</code></pre>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="04-API-Etudiants2021.html#cb40-1"></a>Graph &lt;-<span class="st"> </span>Esp2 [<span class="kw">order</span>(Esp2<span class="op">$</span>DATE),<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</span>
+<span id="cb40-2"><a href="04-API-Etudiants2021.html#cb40-2"></a><span class="kw">plot</span> (Esp2<span class="op">$</span>DATE,Esp2<span class="op">$</span>OBS_VALUE,</span>
+<span id="cb40-3"><a href="04-API-Etudiants2021.html#cb40-3"></a>      <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>,</span>
+<span id="cb40-4"><a href="04-API-Etudiants2021.html#cb40-4"></a>      <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>,</span>
+<span id="cb40-5"><a href="04-API-Etudiants2021.html#cb40-5"></a>      <span class="dt">ylab =</span> <span class="st">&quot;Indice de volume de ventes&quot;</span>,</span>
+<span id="cb40-6"><a href="04-API-Etudiants2021.html#cb40-6"></a>      <span class="dt">xlab =</span> <span class="st">&quot;Année&quot;</span>,</span>
+<span id="cb40-7"><a href="04-API-Etudiants2021.html#cb40-7"></a>      <span class="dt">main =</span> <span class="st">&quot;Evolution de l&#39;indice de volume de ventes à distance&quot;</span>,</span>
+<span id="cb40-8"><a href="04-API-Etudiants2021.html#cb40-8"></a>      <span class="dt">sub =</span> <span class="st">&quot;Source Insee&quot;</span></span>
+<span id="cb40-9"><a href="04-API-Etudiants2021.html#cb40-9"></a>      )</span></code></pre></div>
+<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-16-1.svg" width="672" /></p>
+<hr />
+</div>
+<div id="olha-h." class="section level2" number="4.3">
+<h2><span class="header-section-number">4.3</span> Olha H.</h2>
+<p>Je fais mon alternance dans un cabinet de conseil spécialisé dans le secteur de la santé “Averroès”. Mon entreprise d’accueil conseille et oriente les établissements du secteur en matière de la stratégie, du management, de la gestion, des questions immobilières etc.</p>
+<p>L’intitulé de mon poste est “Chargée d’études en conseil santé”. Je viens en appui de missions du cabinet, à savoir, je recueille et traite des données nécessaires à l’élaboration de diagnostic stratégique et prépare, avec les consultants séniors, des supports et des livrables. Enfin, je participe à la rédaction de propositions commerciales.</p>
+<p>Actuellement, je travaille sur un Business Plan pour un groupe de cliniques privées (3ème plus grand operateur privé en France). À savoir, j’élabore une retrospective (de l’activitié, de la situation financière etc.) qui viendra nourrir les prévisions 2022-2025.</p>
+<div id="choix-de-lapi-retenue-1" class="section level3" number="4.3.1">
+<h3><span class="header-section-number">4.3.1</span> Choix de l’API retenue</h3>
+<p>J’ai essayé de nombreuses API afin d’atterir sur celle de l’INSEE.</p>
+<p><em>Remarque : le nom du tableau porte 6 lettres parce que c’est la 6ème tentative … </em></p>
+<p>J’ai l’habitude d’utiliser les données INSEE dans le cadre de mon travail car c’est une ressource fiable qui propose de nombreuses études qui nous interessent en tant que cabinet : les données demographiques des années passées, mais aussi les prévisions pour le futur ; les données sur la densité des médecins ; sur les revenus et les dépenses des ménages etc.</p>
+<p>Ces types de données nous sont très utiles en guise d’introduction lors de présentations pour le client qui, lui, souvent a une vision assez limitée en la matière.</p>
+<p>Par exemple, nous travaillons régulièrement sur les projets médicaux des établissements, c’est-à-dire les plans que les differentes structures de santé établissent pour les 5 ans à venir (obligatoire pour les hôpitaux publics). Dans ce cas, bien connaître le territoire sur lequel opère l’établissement est crucial : la population, le taux de natalité, le poids de personnes 75+, le nombre de médecins sur le territoire etc.</p>
+<p>Aujourd’hui je me suis interessée precisement au nombre de médecins, généralistes comme specialistes, en Île-de-France. J’ai besoin de connaître le chiffre absolu, pour le rapporter ensuite à la population de l’Île de France, mais aussi son évolution ces dernières années, pour, le cas écheant, degager et essayer d’expliquer la tendance et faire des prévision pour le futur.</p>
+</div>
+<div id="création-dun-tableau-1" class="section level3" number="4.3.2">
+<h3><span class="header-section-number">4.3.2</span> Création d’un tableau</h3>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="04-API-Etudiants2021.html#cb41-1"></a>AAAAAA&lt;-<span class="kw">get_dataset_list</span>()</span></code></pre></div>
+<pre><code>Cached data has been used</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="04-API-Etudiants2021.html#cb43-1"></a>AAAAAA</span></code></pre></div>
+<pre><code># A tibble: 197 x 5
+   id        Name.fr               Name.en               url            n_series
+   &lt;chr&gt;     &lt;chr&gt;                 &lt;chr&gt;                 &lt;chr&gt;             &lt;dbl&gt;
+ 1 BALANCE-~ Balance des paiements Balance of payments   https://www.i~      197
+ 2 CHOMAGE-~ Chômage, taux de chô~ Unemployment, unempl~ https://www.i~      166
+ 3 CLIMAT-A~ Indicateurs synthéti~ Business climate com~ https://www.i~        3
+ 4 CNA-2010~ Consommation des mén~ Households&#39; consumpt~ https://www.i~     2247
+ 5 CNA-2010~ Dépenses de consomma~ Final consumption ex~ https://www.i~     1391
+ 6 CNA-2010~ Comptes de productio~ Production and opera~ https://www.i~     2739
+ 7 CNA-2010~ Comptes des secteurs~ Institutional sector~ https://www.i~     1173
+ 8 CNA-2010~ Dépenses des adminis~ General government e~ https://www.i~     4400
+ 9 CNA-2010~ Dette et déficit des~ Maastricht general g~ https://www.i~       72
+10 CNA-2010~ Emploi intérieur, du~ Domestic employment,~ https://www.i~      702
+# ... with 187 more rows</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="04-API-Etudiants2021.html#cb45-1"></a>BBBBBB&lt;-<span class="kw">get_idbank_list</span>(<span class="st">&quot;TCRED-SANTE-PERSONNELS&quot;</span>) </span></code></pre></div>
+<pre><code>Cached data has been used</code></pre>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="04-API-Etudiants2021.html#cb47-1"></a><span class="co">#str(BBBBBB)</span></span></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="04-API-Etudiants2021.html#cb48-1"></a>CCCCCC&lt;-<span class="kw">get_insee_idbank</span>(<span class="st">&quot;001724192&quot;</span>)</span></code></pre></div>
+<pre><code>1/1 - Data download &amp; Dataframe build :</code></pre>
+<pre><code>
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |======================================================================| 100%</code></pre>
+<pre><code></code></pre>
+<pre><code>Data cached : C:\Users\claude\AppData\Local\Temp\RtmpUPn2Vv/c20804a323a4665f4829f30a8fc7e1f7.rds</code></pre>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="04-API-Etudiants2021.html#cb53-1"></a><span class="co">#CCCCCC</span></span></code></pre></div>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="04-API-Etudiants2021.html#cb54-1"></a>CCCCCC =<span class="st"> </span><span class="kw">subset</span>(CCCCCC, <span class="dt">select =</span> <span class="op">-</span><span class="kw">c</span>(OBS_QUAL, TITLE_EN, UNIT_MULT))</span></code></pre></div>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="04-API-Etudiants2021.html#cb55-1"></a>CCCCCC =<span class="st"> </span><span class="kw">subset</span>(CCCCCC, <span class="dt">select =</span> <span class="op">-</span><span class="kw">c</span>(OBS_STATUS, OBS_TYPE))</span></code></pre></div>
+<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="04-API-Etudiants2021.html#cb56-1"></a>CCCCCC =<span class="st"> </span><span class="kw">subset</span>(CCCCCC, <span class="dt">select =</span> <span class="op">-</span><span class="kw">c</span>(DECIMALS, FREQ))</span></code></pre></div>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="04-API-Etudiants2021.html#cb57-1"></a>CCCCCC </span></code></pre></div>
+<pre><code># A tibble: 12 x 8
+   DATE       TIME_PERIOD OBS_VALUE IDBANK TITLE_FR LAST_UPDATE UNIT_MEASURE
+   &lt;date&gt;     &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;       &lt;chr&gt;       
+ 1 2018-01-01 2018            48236 00172~ Nombre ~ 2020-04-03  INDIVIDUS   
+ 2 2017-01-01 2017            48302 00172~ Nombre ~ 2020-04-03  INDIVIDUS   
+ 3 2016-01-01 2016            48089 00172~ Nombre ~ 2020-04-03  INDIVIDUS   
+ 4 2015-01-01 2015            47929 00172~ Nombre ~ 2020-04-03  INDIVIDUS   
+ 5 2014-01-01 2014            47713 00172~ Nombre ~ 2020-04-03  INDIVIDUS   
+ 6 2013-01-01 2013            47491 00172~ Nombre ~ 2020-04-03  INDIVIDUS   
+ 7 2012-01-01 2012            47245 00172~ Nombre ~ 2020-04-03  INDIVIDUS   
+ 8 2011-01-01 2011              NaN 00172~ Nombre ~ 2020-04-03  INDIVIDUS   
+ 9 2010-01-01 2010            47683 00172~ Nombre ~ 2020-04-03  INDIVIDUS   
+10 2009-01-01 2009            47054 00172~ Nombre ~ 2020-04-03  INDIVIDUS   
+11 2008-01-01 2008            47289 00172~ Nombre ~ 2020-04-03  INDIVIDUS   
+12 2007-01-01 2007            47855 00172~ Nombre ~ 2020-04-03  INDIVIDUS   
+# ... with 1 more variable: REF_AREA &lt;chr&gt;</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="04-API-Etudiants2021.html#cb59-1"></a><span class="kw">write.table</span>(CCCCCC, <span class="st">&quot;data/Tableau.csv&quot;</span>)</span></code></pre></div>
+</div>
+<div id="création-dune-figure-1" class="section level3" number="4.3.3">
+<h3><span class="header-section-number">4.3.3</span> Création d’une figure</h3>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="04-API-Etudiants2021.html#cb60-1"></a>G=<span class="kw">ggplot</span>(CCCCCC, <span class="kw">aes</span>(<span class="dt">x=</span>TIME_PERIOD, <span class="dt">y=</span>OBS_VALUE))</span>
+<span id="cb60-2"><a href="04-API-Etudiants2021.html#cb60-2"></a><span class="co">#### CORRECTION : utiliser plutôt la date</span></span>
+<span id="cb60-3"><a href="04-API-Etudiants2021.html#cb60-3"></a>G=<span class="kw">ggplot</span>(CCCCCC, <span class="kw">aes</span>(<span class="dt">x=</span>DATE, <span class="dt">y=</span>OBS_VALUE))</span>
+<span id="cb60-4"><a href="04-API-Etudiants2021.html#cb60-4"></a><span class="co">#G</span></span></code></pre></div>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="04-API-Etudiants2021.html#cb61-1"></a><span class="co">#### CORRECTION : Ajouter Geom_line</span></span>
+<span id="cb61-2"><a href="04-API-Etudiants2021.html#cb61-2"></a></span>
+<span id="cb61-3"><a href="04-API-Etudiants2021.html#cb61-3"></a>GG=G<span class="op">+</span><span class="kw">geom_point</span>()<span class="op">+</span><span class="kw">geom_line</span>()</span>
+<span id="cb61-4"><a href="04-API-Etudiants2021.html#cb61-4"></a>GG</span></code></pre></div>
+<pre><code>Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
+<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-26-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="04-API-Etudiants2021.html#cb63-1"></a>GGG=GG<span class="op">+</span><span class="kw">ggtitle</span>(<span class="st">&quot;Évolution du nombre total de médecins en Ile-de-France en 2007-2018&quot;</span>)</span>
+<span id="cb63-2"><a href="04-API-Etudiants2021.html#cb63-2"></a></span>
+<span id="cb63-3"><a href="04-API-Etudiants2021.html#cb63-3"></a></span>
+<span id="cb63-4"><a href="04-API-Etudiants2021.html#cb63-4"></a></span>
+<span id="cb63-5"><a href="04-API-Etudiants2021.html#cb63-5"></a></span>
+<span id="cb63-6"><a href="04-API-Etudiants2021.html#cb63-6"></a>GGG</span></code></pre></div>
+<pre><code>Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
+<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-27-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="04-API-Etudiants2021.html#cb65-1"></a><span class="kw">save.image</span>(<span class="st">&quot;img/Figure.jpeg&quot;</span>)</span></code></pre></div>
+</div>
+<div id="conclusion-1" class="section level3" number="4.3.4">
+<h3><span class="header-section-number">4.3.4</span> Conclusion</h3>
+<p>Dans le cas de ma démarche, la figure n’aide pas vraiment à la compréhension, le tableau est plus lisible. Je continuerai d’experimenter avec les differentes fonctions de packages pour aboutir à une présentation plus adaptée.</p>
+<p>Néanmoins, je peux déjà tirer quelques conclusions sur l’utilité des API. Elles facilitent le travail avec de grandes bases données, ce qui est très important dans mon métier. API Insee s’averera, sans doute, encore plus utile dans le cas de visualisation de séries chronologiques qui portent sur plusieurs disaines d’années.</p>
+<p>P.S. je suis très ravie d’avoir réussi!!!</p>
+<hr />
+</div>
+</div>
+<div id="myriam-j." class="section level2" number="4.4">
+<h2><span class="header-section-number">4.4</span> Myriam J.</h2>
+<p>Je suis chargée de déploiement opérationnel au sein de l’entreprise Orange Events. C’est une branche de l’entité Orange qui propose des services technologiques à des prestataires d’évènements. Cela peut être une couverture Wi-fi, une retranscription Tv ou Internet en direct, le prêt de téléphone satellite, etc…
+Les équipes d’Orange Event travaillent avec un CRM (progiciel de gestion commun. Ce CRM a été mis en place il y a à peu prêt un an et il est sujet à des améliorations.
+Les utilisateurs nous sollicitent donc (mon tuteur, le chef de projet MOA, ou moi) pour nous demander une modification qui pourrait améliorer la fluidité, la cohérence, la rapidité de leur travail. C’est ensuite à nous de discerner si la demande est pertinente; c’est à dire est ce qu’il ne s’agit pas plutôt d’un problème de gestion, est ce que la demande ne rentre pas en contradiction avec le travail d’une autre personne, d’un autre service. Si la demande est jugée pertinente, elle est placée dans ce qu’on appelle un backlog ou un carnet de produit. Dans ce document se trouve toutes les Maintenances Story (demandes d’amélioration des utilisateurs). Le chef de projet et moi devont alors trier par priorité ces MS et les classer en Itérations (Liste des MS qui seront misent en productions à une date précise). Nous organisons ensuite des réunions avec le chef de projet MOE (les développeurs), nous discutons du chiffrage (coùt de chaque MS), puis, nous parlons d’éventuels bug remontés sur les anciennes MS déjà passées en productions. Je suis ensuite chargée de produire des Modes Opératoires pour informer les utilisateurs des nouvelles fonctionnalités du CRM et de la bonne utilisation de celles-ci.</p>
+<div id="choix-de-lapi-retenue-2" class="section level3" number="4.4.1">
+<h3><span class="header-section-number">4.4.1</span> Choix de l’API retenue</h3>
+<p>L’API retenue est Rest Countries. Elle contient des données sur les pays du monde (leur langue, leur région, leur coefficient de Gini, leur surface, leur population)</p>
+<p>Chargement des librairies</p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="04-API-Etudiants2021.html#cb66-1"></a><span class="kw">library</span>(knitr)</span>
+<span id="cb66-2"><a href="04-API-Etudiants2021.html#cb66-2"></a><span class="kw">library</span>(httr)</span>
+<span id="cb66-3"><a href="04-API-Etudiants2021.html#cb66-3"></a><span class="kw">library</span>(jsonlite)</span>
+<span id="cb66-4"><a href="04-API-Etudiants2021.html#cb66-4"></a><span class="kw">library</span>(ggplot2)</span></code></pre></div>
+<p>Chargement de l’API grâce à la commande GET</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="04-API-Etudiants2021.html#cb67-1"></a>plante &lt;-<span class="kw">GET</span>(<span class="st">&quot;https://restcountries.eu/rest/v2&quot;</span>)</span>
+<span id="cb67-2"><a href="04-API-Etudiants2021.html#cb67-2"></a>plante</span></code></pre></div>
+<pre><code>Response [https://restcountries.eu/rest/v2]
+  Date: 2021-03-19 16:22
+  Status: 200
+  Content-Type: application/json;charset=utf-8
+  Size: 264 kB</code></pre>
+<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="04-API-Etudiants2021.html#cb69-1"></a><span class="co">#str(plante)</span></span></code></pre></div>
+<p>Conversion du contenu de toto en mode character</p>
+<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="04-API-Etudiants2021.html#cb70-1"></a>plante2&lt;-<span class="kw">rawToChar</span>(plante<span class="op">$</span>content)</span></code></pre></div>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="04-API-Etudiants2021.html#cb71-1"></a><span class="co">#str(plante2)</span></span></code></pre></div>
+<p>Conversion en données utilisables pour R grâce à la fonction JSON</p>
+<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="04-API-Etudiants2021.html#cb72-1"></a>plante3&lt;-<span class="st"> </span><span class="kw">fromJSON</span>(plante2)</span>
+<span id="cb72-2"><a href="04-API-Etudiants2021.html#cb72-2"></a><span class="co">#str(plante3) (en commentaire car génère trop de ligne)</span></span></code></pre></div>
+<p>Sélection des colonnes qui nous intérèssent.</p>
+<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="04-API-Etudiants2021.html#cb73-1"></a>Plantation &lt;-<span class="st"> </span>plante3[,<span class="kw">c</span>(<span class="st">&quot;name&quot;</span>,<span class="st">&quot;capital&quot;</span>,<span class="st">&quot;region&quot;</span>,<span class="st">&quot;population&quot;</span>,<span class="st">&quot;area&quot;</span>,<span class="st">&quot;gini&quot;</span>)]</span></code></pre></div>
+<p>Nous avons la population et la surface de chaque pays. Créeons la variable Densité grâce à la formule suivante.</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="04-API-Etudiants2021.html#cb74-1"></a>Plantation<span class="op">$</span>DensPop&lt;-Plantation<span class="op">$</span>population<span class="op">/</span>Plantation<span class="op">$</span>area</span></code></pre></div>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="04-API-Etudiants2021.html#cb75-1"></a><span class="kw">summary</span>(Plantation<span class="op">$</span>DensPop)</span></code></pre></div>
+<pre><code>    Min.  1st Qu.   Median     Mean  3rd Qu.     Max.     NA&#39;s 
+    0.00    30.35    81.84   414.34   202.26 21636.67       10 </code></pre>
+<p>Nous avons la répartition en quartile de la densité de la population pour tous les pays. Nous voulons regrouper ces valeurs en catégories. Nous créeons donc la variable qualitative DensPop2 qui indiquera le niveau de densité du pays.</p>
+<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="04-API-Etudiants2021.html#cb77-1"></a>DensPop22&lt;-Plantation<span class="op">$</span>DensPop</span>
+<span id="cb77-2"><a href="04-API-Etudiants2021.html#cb77-2"></a>Plantation<span class="op">$</span>DensPop2&lt;-<span class="kw">cut</span>(Plantation<span class="op">$</span>DensPop, <span class="dt">breaks=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">30.35</span>,<span class="fl">81.84</span>,<span class="fl">414.34</span>,<span class="fl">21636.67</span>))</span>
+<span id="cb77-3"><a href="04-API-Etudiants2021.html#cb77-3"></a></span>
+<span id="cb77-4"><a href="04-API-Etudiants2021.html#cb77-4"></a><span class="kw">levels</span>(Plantation<span class="op">$</span>DensPop2)&lt;-<span class="kw">c</span>(<span class="st">&quot;Très faible densité&quot;</span>,<span class="st">&quot;Faible densité&quot;</span>,<span class="st">&quot;Forte densité&quot;</span>, <span class="st">&quot;Très forte densité&quot;</span>)</span>
+<span id="cb77-5"><a href="04-API-Etudiants2021.html#cb77-5"></a><span class="co">#Plantation$DensPop2</span></span></code></pre></div>
+</div>
+<div id="création-dun-tableau-2" class="section level3" number="4.4.2">
+<h3><span class="header-section-number">4.4.2</span> Création d’un tableau</h3>
+<p>Nous souhaitons obsever pour chaque pays d’Afrique (uniquement), quel est le niveau de densité par pays. Puis on enregistre le tableau.</p>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="04-API-Etudiants2021.html#cb78-1"></a>Semi&lt;-<span class="st"> </span>Plantation[Plantation<span class="op">$</span>region<span class="op">==</span><span class="st">&quot;Africa&quot;</span>,<span class="kw">c</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;DensPop2&quot;</span>)]</span>
+<span id="cb78-2"><a href="04-API-Etudiants2021.html#cb78-2"></a></span>
+<span id="cb78-3"><a href="04-API-Etudiants2021.html#cb78-3"></a></span>
+<span id="cb78-4"><a href="04-API-Etudiants2021.html#cb78-4"></a><span class="kw">write.table</span>(Semi, </span>
+<span id="cb78-5"><a href="04-API-Etudiants2021.html#cb78-5"></a>              <span class="st">&quot;data/Densité_Pays_Afrique.csv&quot;</span>, </span>
+<span id="cb78-6"><a href="04-API-Etudiants2021.html#cb78-6"></a>              <span class="dt">row.names =</span> F, </span>
+<span id="cb78-7"><a href="04-API-Etudiants2021.html#cb78-7"></a>              <span class="dt">sep=</span><span class="st">&quot;;&quot;</span>, </span>
+<span id="cb78-8"><a href="04-API-Etudiants2021.html#cb78-8"></a>              <span class="dt">dec =</span> <span class="st">&quot;.&quot;</span>, </span>
+<span id="cb78-9"><a href="04-API-Etudiants2021.html#cb78-9"></a>              <span class="dt">fileEncoding =</span> <span class="st">&quot;UTF-8&quot;</span>)</span>
+<span id="cb78-10"><a href="04-API-Etudiants2021.html#cb78-10"></a></span>
+<span id="cb78-11"><a href="04-API-Etudiants2021.html#cb78-11"></a> <span class="co">#Au format interne de R (.Rdata ou .RDS)</span></span>
+<span id="cb78-12"><a href="04-API-Etudiants2021.html#cb78-12"></a>  <span class="kw">saveRDS</span>(Semi, <span class="st">&quot;data/esp_vie_femme.Rdata&quot;</span>)</span>
+<span id="cb78-13"><a href="04-API-Etudiants2021.html#cb78-13"></a>  </span>
+<span id="cb78-14"><a href="04-API-Etudiants2021.html#cb78-14"></a>  Semi</span></code></pre></div>
+<pre><code># A tibble: 60 x 2
+   name                           DensPop2           
+   &lt;chr&gt;                          &lt;fct&gt;              
+ 1 Algeria                        Très faible densité
+ 2 Angola                         Très faible densité
+ 3 Benin                          Forte densité      
+ 4 Botswana                       Très faible densité
+ 5 British Indian Ocean Territory Faible densité     
+ 6 Burkina Faso                   Faible densité     
+ 7 Burundi                        Forte densité      
+ 8 Cameroon                       Faible densité     
+ 9 Cabo Verde                     Forte densité      
+10 Central African Republic       Très faible densité
+# ... with 50 more rows</code></pre>
+</div>
+<div id="création-dune-figure-2" class="section level3" number="4.4.3">
+<h3><span class="header-section-number">4.4.3</span> Création d’une figure</h3>
+<p>Nous avons choisi de faire une boxplot du niveau d’inégalité par région. Nous observons que la région où l’inégalité est la plus grand est en Amérique. On ne parle pas ici de la région la plus pauvre, mais bien de la région qui contient les plus grandes inégalités. Nous notons que de nombreuses données sont manquantes pour le coefficient de Gini.</p>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="04-API-Etudiants2021.html#cb80-1"></a>p=<span class="st"> </span><span class="kw">ggplot</span>(Plantation, <span class="kw">aes</span>(<span class="dt">x=</span>region, <span class="dt">y=</span>gini)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Niveau d&#39;inégalité par région (indice de Gini)&quot;</span>)</span>
+<span id="cb80-2"><a href="04-API-Etudiants2021.html#cb80-2"></a></span>
+<span id="cb80-3"><a href="04-API-Etudiants2021.html#cb80-3"></a><span class="co">#(3) Sauvegarde le graphique </span></span>
+<span id="cb80-4"><a href="04-API-Etudiants2021.html#cb80-4"></a><span class="kw">ggsave</span>(<span class="dt">filename =</span> <span class="st">&quot;img/gini_par_reg.png&quot;</span>, </span>
+<span id="cb80-5"><a href="04-API-Etudiants2021.html#cb80-5"></a>       <span class="dt">plot =</span> p, </span>
+<span id="cb80-6"><a href="04-API-Etudiants2021.html#cb80-6"></a>       <span class="dt">device =</span> <span class="st">&quot;png&quot;</span>, </span>
+<span id="cb80-7"><a href="04-API-Etudiants2021.html#cb80-7"></a>       <span class="dt">width =</span> <span class="dv">6</span>, </span>
+<span id="cb80-8"><a href="04-API-Etudiants2021.html#cb80-8"></a>       <span class="dt">height =</span> <span class="dv">6</span>)</span></code></pre></div>
+<pre><code>Warning: Removed 97 rows containing non-finite values (stat_boxplot).</code></pre>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="04-API-Etudiants2021.html#cb82-1"></a>p</span></code></pre></div>
+<pre><code>Warning: Removed 97 rows containing non-finite values (stat_boxplot).</code></pre>
+<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-40-1.svg" width="672" /></p>
+</div>
+<div id="conclusion-2" class="section level3" number="4.4.4">
+<h3><span class="header-section-number">4.4.4</span> Conclusion</h3>
+<p>Nous avons choisi cette API parce qu’elle était accéssibles mais de nombreuses autres ont retenus notre attention. L’une nous donnait des informations sur les mouvements et les phases de la lune et du soleil. une autre nous donnait toutes les informations connues et recensées sur les plantes. Malheureusement, nous avons pas réussis à extraire correctement ces données. Par ailleurs, les données de démographies et de richesses m’intérèssent également car j’aimerais m’orienter vers le développement des territoires (par exemple, au sein d’une entité telle que l’AFD)</p>
+<hr />
+</div>
+</div>
+<div id="aswija-r." class="section level2" number="4.5">
+<h2><span class="header-section-number">4.5</span> Aswija R.</h2>
+<p>J’effectue mon apprentissage dans le département des Financements Structurés (SFI) de l’entreprise <strong>Crédit Agricole Corporate and Investment Bank</strong> (CACIB), la filière banque de financement et d’investissement du groupe Crédit agricole. Le SFI sert à originer, structurer et financer, en France et à l’étranger, des opérations d’investissement, reposant sur des sûretés réelles (avions, bateaux, immobilier d’entreprise), ou des crédits complexes. Le programme sur lequel je travaille, <em>Loanscape</em> vise à déployer une application de gestion des contrats, appuyée par un système d’information prenant en compte les attentes des clients.</p>
+<p>Afin de mettre en oeuvre cet outil, il faut centraliser et “dictionnariser” les données qui serviront à l’application. Je travaille donc à l’élaboration du dictionnaire de données de <em>Loanscape</em> en collectant les données des anciennes applications et en consultant les analystes et utilisateurs de ces dernières. Ma tâche principale est d’effectuer un mapping des données du nouveau dictionnaire avec les dictionnaires des anciennes applications.</p>
+<div id="choix-de-lapi-retenue-3" class="section level3" number="4.5.1">
+<h3><span class="header-section-number">4.5.1</span> Choix de l’API retenue</h3>
+<p>Mon apprentissage m’amenant à traiter les besoins en gestion de contrat de CACIB aussi bien en Europe qu’aux États-Unis ou encore en Asie. La base de données de la <strong>Banque mondiale</strong> m’a paru être donc la plus appropriée. En effet La Banque mondiale est une institution financière internationale qui accorde des prêts à effet de levier à des pays en développement pour des projets d’investissement.
+Dans ce cas des indicateurs de développement pourraient être utilisés afin d’effectuer des observations du développement dans le monde. L’API choisie est <strong>World Development Indicators</strong>, (WDI) : <a href="https://datatopics.worldbank.org/world-development-indicators/" class="uri">https://datatopics.worldbank.org/world-development-indicators/</a></p>
+<p>WDI correspond également à un package dans R. Ce pacakge permet la recherche et le téléchargement des données à partir de plus de 40 bases de données hébergées par la Banque mondiale. Les base de données regroupent des indicateurs du développement mondial, afin d’effectuer des analyses et des compilations statistiques pertinentes, au niveau international. Dans le cadre de la lutte de la Banque mondiale contre la pauvreté, la base de données a été amenée à regrouper 1 400 indicateurs, vieux de plus de 50 ans pour certains. On y retrouve des données sur les statistiques de la dette internationale, l’indice du capital humain ou encore des indicateurs de pauvreté intranationale.</p>
+<div id="a-installation-de-wdi" class="section level4" number="4.5.1.1">
+<h4><span class="header-section-number">4.5.1.1</span> a) Installation de WDI</h4>
+<p>WDI est publié sur CRAN (site web où l’on peut trouver et télécharger du matériel concernant le logiciel de statistiques R) et peut donc être installé en tapant simplement ceci dans la console R : <em>install.packages(‘WDI’)</em></p>
+<p>Afin d’exploiter les données de WDI, il est nécessaire de charger les packages suivants pour l’analyse des données.</p>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="04-API-Etudiants2021.html#cb84-1"></a><span class="kw">library</span>(httr)</span>
+<span id="cb84-2"><a href="04-API-Etudiants2021.html#cb84-2"></a><span class="kw">library</span>(jsonlite)</span>
+<span id="cb84-3"><a href="04-API-Etudiants2021.html#cb84-3"></a><span class="kw">library</span>(knitr)</span>
+<span id="cb84-4"><a href="04-API-Etudiants2021.html#cb84-4"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb84-5"><a href="04-API-Etudiants2021.html#cb84-5"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb84-6"><a href="04-API-Etudiants2021.html#cb84-6"></a><span class="kw">library</span>(WDI)</span></code></pre></div>
+</div>
+</div>
+<div id="création-dun-tableau-3" class="section level3" number="4.5.2">
+<h3><span class="header-section-number">4.5.2</span> Création d’un tableau</h3>
+<div id="a-chargement-des-données" class="section level4" number="4.5.2.1">
+<h4><span class="header-section-number">4.5.2.1</span> a) Chargement des données</h4>
+<p>On commence par charger les données de WDI dans un “catalogue”.</p>
+<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="04-API-Etudiants2021.html#cb85-1"></a>catalogue &lt;-WDI_data</span></code></pre></div>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="04-API-Etudiants2021.html#cb86-1"></a><span class="co">#str(catalogue,max.level = 1)</span></span></code></pre></div>
+<p>Après avoir chargé les données, on constate que ces dernères sont regroupées en 2 listes, une pour les indicateurs (series) et une autre pour les locatisation géographiques (country).</p>
+</div>
+<div id="b-choix-des-données-et-conception-du-tableau" class="section level4" number="4.5.2.2">
+<h4><span class="header-section-number">4.5.2.2</span> b) Choix des données et Conception du tableau</h4>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="04-API-Etudiants2021.html#cb87-1"></a>pays&lt;-catalogue<span class="op">$</span>country</span>
+<span id="cb87-2"><a href="04-API-Etudiants2021.html#cb87-2"></a><span class="kw">dim</span>(pays)</span></code></pre></div>
+<pre><code>[1] 304   9</code></pre>
+<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="04-API-Etudiants2021.html#cb89-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(pays))</span></code></pre></div>
+<table>
+<colgroup>
+<col width="4%" />
+<col width="4%" />
+<col width="9%" />
+<col width="21%" />
+<col width="14%" />
+<col width="8%" />
+<col width="7%" />
+<col width="16%" />
+<col width="12%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">iso3c</th>
+<th align="left">iso2c</th>
+<th align="left">country</th>
+<th align="left">region</th>
+<th align="left">capital</th>
+<th align="left">longitude</th>
+<th align="left">latitude</th>
+<th align="left">income</th>
+<th align="left">lending</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">ABW</td>
+<td align="left">AW</td>
+<td align="left">Aruba</td>
+<td align="left">Latin America &amp; Caribbean</td>
+<td align="left">Oranjestad</td>
+<td align="left">-70.0167</td>
+<td align="left">12.5167</td>
+<td align="left">High income</td>
+<td align="left">Not classified</td>
+</tr>
+<tr class="even">
+<td align="left">AFG</td>
+<td align="left">AF</td>
+<td align="left">Afghanistan</td>
+<td align="left">South Asia</td>
+<td align="left">Kabul</td>
+<td align="left">69.1761</td>
+<td align="left">34.5228</td>
+<td align="left">Low income</td>
+<td align="left">IDA</td>
+</tr>
+<tr class="odd">
+<td align="left">AFR</td>
+<td align="left">A9</td>
+<td align="left">Africa</td>
+<td align="left">Aggregates</td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left"></td>
+<td align="left">Aggregates</td>
+<td align="left">Aggregates</td>
+</tr>
+<tr class="even">
+<td align="left">AGO</td>
+<td align="left">AO</td>
+<td align="left">Angola</td>
+<td align="left">Sub-Saharan Africa</td>
+<td align="left">Luanda</td>
+<td align="left">13.242</td>
+<td align="left">-8.81155</td>
+<td align="left">Lower middle income</td>
+<td align="left">IBRD</td>
+</tr>
+<tr class="odd">
+<td align="left">ALB</td>
+<td align="left">AL</td>
+<td align="left">Albania</td>
+<td align="left">Europe &amp; Central Asia</td>
+<td align="left">Tirane</td>
+<td align="left">19.8172</td>
+<td align="left">41.3317</td>
+<td align="left">Upper middle income</td>
+<td align="left">IBRD</td>
+</tr>
+<tr class="even">
+<td align="left">AND</td>
+<td align="left">AD</td>
+<td align="left">Andorra</td>
+<td align="left">Europe &amp; Central Asia</td>
+<td align="left">Andorra la Vella</td>
+<td align="left">1.5218</td>
+<td align="left">42.5075</td>
+<td align="left">High income</td>
+<td align="left">Not classified</td>
+</tr>
+</tbody>
+</table>
+<p>Le tableau des pays comporte 304 observations de 9 types différent (pays, capitales, régions…).</p>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="04-API-Etudiants2021.html#cb90-1"></a>indicateurs&lt;-catalogue<span class="op">$</span>series</span>
+<span id="cb90-2"><a href="04-API-Etudiants2021.html#cb90-2"></a><span class="kw">dim</span>(indicateurs)</span></code></pre></div>
+<pre><code>[1] 17467     5</code></pre>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="04-API-Etudiants2021.html#cb92-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(indicateurs))</span></code></pre></div>
+<table>
+<colgroup>
+<col width="6%" />
+<col width="13%" />
+<col width="51%" />
+<col width="4%" />
+<col width="23%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">indicator</th>
+<th align="left">name</th>
+<th align="left">description</th>
+<th align="left">sourceDatabase</th>
+<th align="left">sourceOrganization</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1.0.HCount.1.90usd</td>
+<td align="left">Poverty Headcount ($1.90 a day)</td>
+<td align="left">The poverty headcount index measures the proportion of the population with daily per capita income (in 2011 PPP) below the poverty line.</td>
+<td align="left">LAC Equity Lab</td>
+<td align="left">LAC Equity Lab tabulations of SEDLAC (CEDLAS and the World Bank).</td>
+</tr>
+<tr class="even">
+<td align="left">1.0.HCount.2.5usd</td>
+<td align="left">Poverty Headcount ($2.50 a day)</td>
+<td align="left">The poverty headcount index measures the proportion of the population with daily per capita income (in 2005 PPP) below the poverty line.</td>
+<td align="left">LAC Equity Lab</td>
+<td align="left">LAC Equity Lab tabulations of SEDLAC (CEDLAS and the World Bank).</td>
+</tr>
+<tr class="odd">
+<td align="left">1.0.HCount.Mid10to50</td>
+<td align="left">Middle Class ($10-50 a day) Headcount</td>
+<td align="left">The poverty headcount index measures the proportion of the population with daily per capita income (in 2005 PPP) below the poverty line.</td>
+<td align="left">LAC Equity Lab</td>
+<td align="left">LAC Equity Lab tabulations of SEDLAC (CEDLAS and the World Bank).</td>
+</tr>
+<tr class="even">
+<td align="left">1.0.HCount.Ofcl</td>
+<td align="left">Official Moderate Poverty Rate-National</td>
+<td align="left">The poverty headcount index measures the proportion of the population with daily per capita income below the official poverty line developed by each country.</td>
+<td align="left">LAC Equity Lab</td>
+<td align="left">LAC Equity Lab tabulations of data from National Statistical Offices.</td>
+</tr>
+<tr class="odd">
+<td align="left">1.0.HCount.Poor4uds</td>
+<td align="left">Poverty Headcount ($4 a day)</td>
+<td align="left">The poverty headcount index measures the proportion of the population with daily per capita income (in 2005 PPP) below the poverty line.</td>
+<td align="left">LAC Equity Lab</td>
+<td align="left">LAC Equity Lab tabulations of SEDLAC (CEDLAS and the World Bank).</td>
+</tr>
+<tr class="even">
+<td align="left">1.0.HCount.Vul4to10</td>
+<td align="left">Vulnerable ($4-10 a day) Headcount</td>
+<td align="left">The poverty headcount index measures the proportion of the population with daily per capita income (in 2005 PPP) below the poverty line.</td>
+<td align="left">LAC Equity Lab</td>
+<td align="left">LAC Equity Lab tabulations of SEDLAC (CEDLAS and the World Bank).</td>
+</tr>
+</tbody>
+</table>
+<p>Le tableau des indicateurs comporte 17467 observations.</p>
+<p>L’un des rôles de la banque mondial est de pallier l’absence ou la faible capacité d’aide financière de certains gouvernements, afin de permettre le développement d’un pays. Mon alternance concernant les moyens de financement et d’investissement de projets et d’actifs partout dans le monde. Je peux effectuer une analyse sur ce sujet. Il me faut dans un premier trouver les indicateurs sur ce sujet, en utilisant le mot “banks”, dans ma recherche d’indicateurs.</p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="04-API-Etudiants2021.html#cb93-1"></a>vars&lt;-<span class="kw">WDIsearch</span>(<span class="dt">string=</span><span class="st">&#39;banks&#39;</span>, <span class="dt">field=</span><span class="st">&#39;name&#39;</span>, <span class="dt">cache=</span><span class="ot">NULL</span>)</span>
+<span id="cb93-2"><a href="04-API-Etudiants2021.html#cb93-2"></a><span class="kw">head</span>(vars)</span></code></pre></div>
+<pre><code>     indicator            
+[1,] &quot;DT.AMT.PCBK.CD&quot;     
+[2,] &quot;DT.AMT.PCBK.GG.CD&quot;  
+[3,] &quot;DT.AMT.PCBK.OPS.CD&quot; 
+[4,] &quot;DT.AMT.PCBK.PRVG.CD&quot;
+[5,] &quot;DT.AMT.PCBK.PS.CD&quot;  
+[6,] &quot;DT.AMT.PNGC.CD&quot;     
+     name                                                          
+[1,] &quot;PPG, commercial banks (AMT, current US$)&quot;                    
+[2,] &quot;GG, commercial banks (AMT, current US$)&quot;                     
+[3,] &quot;OPS, commercial banks (AMT, current US$)&quot;                    
+[4,] &quot;PRVG, commercial banks (AMT, current US$)&quot;                   
+[5,] &quot;PS, commercial banks (AMT, current US$)&quot;                     
+[6,] &quot;PNG, commercial banks and other creditors (AMT, current US$)&quot;</code></pre>
+<p>Après avoir consulté les indicateurs, l’indicateur exprimé en pourcentage :</p>
+<ul>
+<li>Foreign banks among total banks (%), qui représente le pourcentage de banques étrangères parmi les banques présentes dans un pays pourra être utilisé / <em>GFDD.OI.15</em></li>
+</ul>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="04-API-Etudiants2021.html#cb95-1"></a>Banque_Etrangere =<span class="st"> </span><span class="kw">WDI</span>(<span class="dt">indicator =</span><span class="st">&quot;GFDD.OI.15&quot;</span>, <span class="dt">country =</span><span class="st">&quot;all&quot;</span>, <span class="dt">start =</span> <span class="dv">2000</span>, <span class="dt">end =</span>  <span class="dv">2020</span>)</span></code></pre></div>
+<p>On crée un tableau avec l’indicateur choisi pour l’année 2013 (dernière année avec le plus de données pour la majorité des pays). Dans la mesure où CACIB est principalement implanté en France, aux Etats-Unis, au Royaume-Uni, à Singapour et en Inde, on prendra les données de ces 5pays.</p>
+<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="04-API-Etudiants2021.html#cb96-1"></a>Tableau&lt;-<span class="st"> </span><span class="kw">WDI</span>(<span class="dt">indicator =</span> <span class="kw">c</span>(<span class="st">&quot;Banque_etr&quot;</span>=<span class="st">&quot;GFDD.OI.15&quot;</span>), <span class="dt">start =</span> <span class="dv">2013</span>, <span class="dt">end =</span> <span class="dv">2013</span>, <span class="dt">country=</span><span class="kw">c</span>(<span class="st">&quot;FR&quot;</span>,<span class="st">&quot;GB&quot;</span>,<span class="st">&quot;US&quot;</span>,<span class="st">&quot;IND&quot;</span>,<span class="st">&quot;SG&quot;</span>))</span></code></pre></div>
+<p>On peut télécharger le tableau</p>
+<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="04-API-Etudiants2021.html#cb97-1"></a><span class="kw">write.csv</span>(Tableau,<span class="dt">file=</span><span class="st">&quot;Tableau.xlsx&quot;</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="création-dune-figure-3" class="section level3" number="4.5.3">
+<h3><span class="header-section-number">4.5.3</span> Création d’une figure</h3>
+<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="04-API-Etudiants2021.html#cb98-1"></a>df&lt;-<span class="kw">data.frame</span>(<span class="dt">pays=</span><span class="kw">c</span>(<span class="st">&quot;France&quot;</span>,<span class="st">&quot;GB&quot;</span>,<span class="st">&quot;Inde&quot;</span>,<span class="st">&quot;Singapour&quot;</span>,<span class="st">&quot;US&quot;</span>), </span>
+<span id="cb98-2"><a href="04-API-Etudiants2021.html#cb98-2"></a>               <span class="dt">BanquEtrangere=</span><span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">58</span>,<span class="dv">12</span>,<span class="dv">55</span>,<span class="dv">31</span>))</span></code></pre></div>
+<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="04-API-Etudiants2021.html#cb99-1"></a><span class="co">#barplot(table(df), ylab = &quot;Présence des banque étrangères en pourcentage&quot;, xlab = &quot;Pays des sièges de CACIB&quot;, col = c(&quot;pink&quot;,&quot;yellow&quot;,&quot;purple&quot;,&quot;lightblue&quot;,&quot;red&quot;))</span></span>
+<span id="cb99-2"><a href="04-API-Etudiants2021.html#cb99-2"></a></span>
+<span id="cb99-3"><a href="04-API-Etudiants2021.html#cb99-3"></a><span class="co">### Correction : figure à revoir </span><span class="al">###</span></span>
+<span id="cb99-4"><a href="04-API-Etudiants2021.html#cb99-4"></a><span class="kw">barplot</span>(df<span class="op">$</span>BanquEtrangere, </span>
+<span id="cb99-5"><a href="04-API-Etudiants2021.html#cb99-5"></a>        <span class="dt">ylab =</span> <span class="st">&quot;Présence des banque étrangères en pourcentage&quot;</span>,</span>
+<span id="cb99-6"><a href="04-API-Etudiants2021.html#cb99-6"></a>        <span class="dt">xlab =</span> <span class="st">&quot;Pays des sièges de CACIB&quot;</span>, </span>
+<span id="cb99-7"><a href="04-API-Etudiants2021.html#cb99-7"></a>        <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;pink&quot;</span>,<span class="st">&quot;yellow&quot;</span>,<span class="st">&quot;purple&quot;</span>,<span class="st">&quot;lightblue&quot;</span>,<span class="st">&quot;red&quot;</span>),</span>
+<span id="cb99-8"><a href="04-API-Etudiants2021.html#cb99-8"></a>        <span class="dt">names.arg =</span> df<span class="op">$</span>pays)</span></code></pre></div>
+<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-51-1.svg" width="672" /></p>
+<hr />
+</div>
+</div>
+<div id="youba-b." class="section level2" number="4.6">
+<h2><span class="header-section-number">4.6</span> Youba B.</h2>
+<p>Rattaché au département Pilotage de la Performance, ma mission au sein de carrefour banque s’articule autours de l’accompagnement techniquement des équipes en place sur le projet de déploiement d’un outil de data visualisation (Power BI) au profit des directions des équipes commerciales du réseau d’agences ainsi que des équipes de relation clientèle du siège, et ce sur l’ensemble des phases suivante:</p>
+<ul>
+<li><p>Etre l’interlocuteur privilégié de l’équipe dans les échanges relatifs à la conception du cahier des charges.
+Valider les besoins fonctionnels attendus par les équipes avant développement des vues;</p></li>
+<li><p>Développer les vues nécessaires sous SAS, depuis le datawarehouse Oracle, afin d’alimenter les rapports disponibles, sur la base du cahier des charges rédigé par nos équipes fonctionnelles;</p></li>
+<li><p>Accompagner les équipes dans l’usage des tables/vues sous l’outil en question, ainsi que dans la conception des rapports et tableaux de bord;</p></li>
+<li><p>Valider l’automatisation des rapports end to end, avec l’approche des passerelles entre outils
+(CRM -&gt; SAS -&gt; PowerBI), et la gestion des accès aux rapports finaux, et aux différentes
+applications de l’environnement SAS.</p></li>
+</ul>
+<div id="choix-de-lapi-retenue-4" class="section level3" number="4.6.1">
+<h3><span class="header-section-number">4.6.1</span> Choix de l’API retenue</h3>
+<p>Durant cette analyse nous allons travailler avec l’API de l’insee.
+Le choix de cette API a été opéré sur la base de la connaissance et de la richesse de celle-ci. Elle est en effet d’un coté la seule API vue en cours avec celle de la NASA, et d’un autre coté elle me fournit de la donnée qui peut être reliée au domaine de mon entreprise d’accueil.
+Je vais pour cela exploiter la série “SERIE_LOYERS” pour étudier la variation des loyers au cours des années en France Métropolitaine.</p>
+</div>
+<div id="création-dun-tableau-4" class="section level3" number="4.6.2">
+<h3><span class="header-section-number">4.6.2</span> Création d’un tableau</h3>
+<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="04-API-Etudiants2021.html#cb100-1"></a><span class="co"># Charger le package</span></span>
+<span id="cb100-2"><a href="04-API-Etudiants2021.html#cb100-2"></a><span class="kw">library</span>(insee)</span></code></pre></div>
+<div id="chargement-du-catalogue" class="section level4" number="4.6.2.1">
+<h4><span class="header-section-number">4.6.2.1</span> Chargement du catalogue</h4>
+<p>on crée un catalogue pour voir les tableaux disponibles :</p>
+<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="04-API-Etudiants2021.html#cb101-1"></a>catalogue =<span class="st"> </span><span class="kw">get_dataset_list</span>()</span></code></pre></div>
+<pre><code>Cached data has been used</code></pre>
+</div>
+<div id="chargement-des-variables-dun-tableau" class="section level4" number="4.6.2.2">
+<h4><span class="header-section-number">4.6.2.2</span> Chargement des variables d’un tableau</h4>
+<p>On a donc besoin de la variable series_loyers pour l’exercice :</p>
+<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="04-API-Etudiants2021.html#cb103-1"></a>var&lt;-<span class="kw">get_idbank_list</span> (<span class="st">&quot;SERIES_LOYERS&quot;</span>)</span></code></pre></div>
+<pre><code>Cached data has been used</code></pre>
+<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="04-API-Etudiants2021.html#cb105-1"></a><span class="co"># Selectionne tous les codes de données remplissant certaines conditions</span></span>
+<span id="cb105-2"><a href="04-API-Etudiants2021.html#cb105-2"></a></span>
+<span id="cb105-3"><a href="04-API-Etudiants2021.html#cb105-3"></a>sel  =<span class="st"> </span></span>
+<span id="cb105-4"><a href="04-API-Etudiants2021.html#cb105-4"></a><span class="st">  </span><span class="kw">get_idbank_list</span>(<span class="st">&quot;SERIES_LOYERS&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb105-5"><a href="04-API-Etudiants2021.html#cb105-5"></a><span class="st">  </span><span class="kw">filter</span>(NATURE <span class="op">==</span><span class="st"> &quot;GLISSEMENT_ANNUEL&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Choix annuel</span></span>
+<span id="cb105-6"><a href="04-API-Etudiants2021.html#cb105-6"></a><span class="st">  </span><span class="kw">filter</span>(SECTEURS_LOYERS <span class="op">==</span><span class="st"> &quot;SECTEUR_LIBRE&quot;</span>)  <span class="co"># Filtre les secteur libre</span></span></code></pre></div>
+<pre><code>Cached data has been used</code></pre>
+<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="04-API-Etudiants2021.html#cb107-1"></a><span class="co"># Extrait ces données </span></span>
+<span id="cb107-2"><a href="04-API-Etudiants2021.html#cb107-2"></a>don =<span class="st"> </span></span>
+<span id="cb107-3"><a href="04-API-Etudiants2021.html#cb107-3"></a><span class="st">  </span><span class="kw">get_insee_idbank</span>(sel<span class="op">$</span>idbank) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># extraire les données</span></span>
+<span id="cb107-4"><a href="04-API-Etudiants2021.html#cb107-4"></a><span class="st">  </span><span class="kw">select</span>(<span class="dt">ANNEE =</span> DATE, <span class="dt">Variation =</span> OBS_VALUE ) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># selectionner et renommer les colonnes </span></span>
+<span id="cb107-5"><a href="04-API-Etudiants2021.html#cb107-5"></a><span class="st">  </span><span class="kw">arrange</span>(ANNEE) <span class="co"># trie par années</span></span></code></pre></div>
+<pre><code>1/1 - Data download &amp; Dataframe build :</code></pre>
+<pre><code>
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |======================================================================| 100%</code></pre>
+<pre><code></code></pre>
+<pre><code>Data cached : C:\Users\claude\AppData\Local\Temp\RtmpUPn2Vv/1c118693514a229bc40b9800cf0adb64.rds</code></pre>
+<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="04-API-Etudiants2021.html#cb112-1"></a><span class="co"># Sauvgarder des données (dans le dossier spécialisé : ex.data)</span></span>
+<span id="cb112-2"><a href="04-API-Etudiants2021.html#cb112-2"></a></span>
+<span id="cb112-3"><a href="04-API-Etudiants2021.html#cb112-3"></a><span class="co">## Au format .csv</span></span>
+<span id="cb112-4"><a href="04-API-Etudiants2021.html#cb112-4"></a><span class="kw">write.table</span>(don,</span>
+<span id="cb112-5"><a href="04-API-Etudiants2021.html#cb112-5"></a>            <span class="st">&quot;data/variation_loyers.csv&quot;</span>,</span>
+<span id="cb112-6"><a href="04-API-Etudiants2021.html#cb112-6"></a>            <span class="dt">row.names =</span> F,</span>
+<span id="cb112-7"><a href="04-API-Etudiants2021.html#cb112-7"></a>            <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>,</span>
+<span id="cb112-8"><a href="04-API-Etudiants2021.html#cb112-8"></a>            <span class="dt">dec =</span> <span class="st">&quot;.&quot;</span>,</span>
+<span id="cb112-9"><a href="04-API-Etudiants2021.html#cb112-9"></a>            <span class="dt">fileEncoding =</span> <span class="st">&quot;UTF-8&quot;</span>)</span>
+<span id="cb112-10"><a href="04-API-Etudiants2021.html#cb112-10"></a><span class="co"># row.names pour eviter de prendre les entete des colonnes et l&#39;UTF-8 pour éviter la dégradation de données lors de l&#39;enregistrement</span></span>
+<span id="cb112-11"><a href="04-API-Etudiants2021.html#cb112-11"></a></span>
+<span id="cb112-12"><a href="04-API-Etudiants2021.html#cb112-12"></a><span class="co">## Au format interne de R (.Rdata ou .RDS)</span></span>
+<span id="cb112-13"><a href="04-API-Etudiants2021.html#cb112-13"></a><span class="kw">saveRDS</span>(don, <span class="st">&quot;data/variation_loyers.Rdata&quot;</span>)</span></code></pre></div>
+</div>
+</div>
+<div id="création-dune-figure-4" class="section level3" number="4.6.3">
+<h3><span class="header-section-number">4.6.3</span> Création d’une figure</h3>
+<div id="graphique" class="section level4" number="4.6.3.1">
+<h4><span class="header-section-number">4.6.3.1</span> Graphique</h4>
+<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="04-API-Etudiants2021.html#cb113-1"></a><span class="co"># Le graphique est crée en 2 temps </span></span>
+<span id="cb113-2"><a href="04-API-Etudiants2021.html#cb113-2"></a><span class="co"># 1 Je crée un objet Graph et lui affecter les instruction de création d&#39;un graphique</span></span>
+<span id="cb113-3"><a href="04-API-Etudiants2021.html#cb113-3"></a>Graph =<span class="st"> </span></span>
+<span id="cb113-4"><a href="04-API-Etudiants2021.html#cb113-4"></a><span class="st">    </span><span class="kw">ggplot</span>(don) <span class="op">+</span><span class="st"> </span><span class="co"># je fais un graphique avec le tableau don</span></span>
+<span id="cb113-5"><a href="04-API-Etudiants2021.html#cb113-5"></a><span class="st">    </span><span class="kw">aes</span>(<span class="dt">x=</span>ANNEE,<span class="dt">y=</span>Variation) <span class="op">+</span><span class="st"> </span><span class="co"># les axes </span></span>
+<span id="cb113-6"><a href="04-API-Etudiants2021.html#cb113-6"></a><span class="st">    </span><span class="kw">geom_line</span>(<span class="dt">col=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># afficher les graphique en couleur rouge</span></span>
+<span id="cb113-7"><a href="04-API-Etudiants2021.html#cb113-7"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span> <span class="st">&quot;lm&quot;</span>,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)<span class="op">+</span><span class="st"> </span><span class="co"># droite de regression linéaire et couleur bleue</span></span>
+<span id="cb113-8"><a href="04-API-Etudiants2021.html#cb113-8"></a><span class="st">    </span><span class="kw">ggtitle</span>(<span class="dt">label=</span> <span class="st">&quot;Indice des loyers secteur libre en France Métropolitaine&quot;</span>,</span>
+<span id="cb113-9"><a href="04-API-Etudiants2021.html#cb113-9"></a>            <span class="dt">subtitle =</span> <span class="st">&quot;Source : INSEE&quot;</span>)<span class="op">+</span><span class="st"> </span></span>
+<span id="cb113-10"><a href="04-API-Etudiants2021.html#cb113-10"></a><span class="st">    </span><span class="kw">scale_x_date</span>(<span class="st">&quot;Année&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># nommer l&#39;axe des absices</span></span>
+<span id="cb113-11"><a href="04-API-Etudiants2021.html#cb113-11"></a><span class="st">    </span><span class="kw">scale_y_continuous</span>(<span class="st">&quot;Variation des loyers en %&quot;</span>) <span class="co"># nommer l&#39;axe des ordonné</span></span>
+<span id="cb113-12"><a href="04-API-Etudiants2021.html#cb113-12"></a></span>
+<span id="cb113-13"><a href="04-API-Etudiants2021.html#cb113-13"></a></span>
+<span id="cb113-14"><a href="04-API-Etudiants2021.html#cb113-14"></a><span class="co"># 2 afficher le graph</span></span>
+<span id="cb113-15"><a href="04-API-Etudiants2021.html#cb113-15"></a>Graph</span></code></pre></div>
+<pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-56-1.svg" width="672" /></p>
+<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="04-API-Etudiants2021.html#cb115-1"></a><span class="co"># Sauvgarder la figure</span></span>
+<span id="cb115-2"><a href="04-API-Etudiants2021.html#cb115-2"></a><span class="co"># au format png</span></span>
+<span id="cb115-3"><a href="04-API-Etudiants2021.html#cb115-3"></a><span class="kw">ggsave</span>(<span class="dt">filename =</span><span class="st">&quot;img/variation_loyers.png&quot;</span>,</span>
+<span id="cb115-4"><a href="04-API-Etudiants2021.html#cb115-4"></a>       <span class="dt">plot =</span> Graph,</span>
+<span id="cb115-5"><a href="04-API-Etudiants2021.html#cb115-5"></a>       <span class="dt">device =</span> <span class="st">&quot;png&quot;</span>, <span class="co"># format de sortie</span></span>
+<span id="cb115-6"><a href="04-API-Etudiants2021.html#cb115-6"></a>       <span class="dt">width =</span> <span class="dv">6</span>,</span>
+<span id="cb115-7"><a href="04-API-Etudiants2021.html#cb115-7"></a>       <span class="dt">height =</span> <span class="dv">6</span>)</span></code></pre></div>
+<pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="04-API-Etudiants2021.html#cb117-1"></a><span class="co"># au format pdf</span></span>
+<span id="cb117-2"><a href="04-API-Etudiants2021.html#cb117-2"></a><span class="kw">ggsave</span>(<span class="dt">filename =</span><span class="st">&quot;img/variation_loyers.pdf&quot;</span>,</span>
+<span id="cb117-3"><a href="04-API-Etudiants2021.html#cb117-3"></a>      <span class="dt">plot =</span> Graph,</span>
+<span id="cb117-4"><a href="04-API-Etudiants2021.html#cb117-4"></a>      <span class="dt">device =</span> <span class="st">&quot;pdf&quot;</span>, <span class="co"># format de sortie</span></span>
+<span id="cb117-5"><a href="04-API-Etudiants2021.html#cb117-5"></a>      <span class="dt">width =</span> <span class="dv">6</span>,</span>
+<span id="cb117-6"><a href="04-API-Etudiants2021.html#cb117-6"></a>      <span class="dt">height =</span> <span class="dv">6</span>)</span></code></pre></div>
+<pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="04-API-Etudiants2021.html#cb119-1"></a><span class="co"># ggplot à des + à la place des pipes comme dans dplyr</span></span></code></pre></div>
+</div>
+</div>
+<div id="conclusion-3" class="section level3" number="4.6.4">
+<h3><span class="header-section-number">4.6.4</span> Conclusion</h3>
+<p>L’analyse présentée au courant de ce projet va permettre, dans mon domaine professionnel, d’analyser le pouvoir d’achat de la population qui va servir les algorithmes du scoring de la banque.</p>
+<p>Cet indice qui est relié systématiquement au taux d’inflation moyenne relevée sur une période donnée, permet d’évaluer partiellement le pouvoir d’achat des demandeurs de crédit et donc leur capacité à rembourser leur prêts, cela permet en effet, en plus d’autres variables, d’évaluer le risque de crédit liée à la solvabilité des personnes contactant des crédits au sein de la banque.</p>
+<p>On peut remarquer facilement la volatilité de ce dermier au cours des années, ainsi qu’une nette baisse pendant toute la durée de l’étude (1983 à 2019).</p>
+<hr />
+</div>
+</div>
+<div id="richard-p." class="section level2" number="4.7">
+<h2><span class="header-section-number">4.7</span> Richard P.</h2>
+<p>J’effectue mon alternance au sein du Ministère des Armées dans le cadre d’une mission de gestion de projet à très fort enjeu.
+Il s’agit d’une apllication ouverte sur internet et intradef (intranet de la defense) destinée aux reservistes et à leurs gestionnaires.
+Intégrée au sein d’une équipe de personnels civils et miilitaires, notre travail est relativement varié. Notre mission première consiste à s’assurer du bon fonctionnement de l’applicatif sur les environnements mis à disposition par le ministère des armées car il y a une plateforme internet protégée, une passerelle, des système d’authentification sso etc …). Cependant, nous participons également activement aux recettes et aux ateliers d’expressions de besoins et de retour d’expérience utilisateur.
+Pour l’instant, j’ai personnellement travaillé aux activtés de recette, à de l’analyse de logs (notamment et surtout sur des logs hhtpr du back intradef de l’appli) et à la création de script vba et sql. Tout cela dans des objectif de suivi des quotas vis à vis des passerelles, de recherche de régressions applciatives et d’anonymisation de jeux de données à mettre à disposition de la MOE.</p>
+<div id="choix-de-lapi-retenue-5" class="section level3" number="4.7.1">
+<h3><span class="header-section-number">4.7.1</span> Choix de l’API retenue</h3>
+<p>J’ai choisi de m’orienter vers l’API de l’insee en raison de la diversité et de la richesse des données transmises. Plus particulèrement,
+je me suis dirigé vers l’évolution du nombre en décés en France (id=000436394). Notamment et surtout par curiosité, afin de comparer l’intensité de l’épisode covid avec d’autres épisodes précédents d’épidémies moins connues.</p>
+<p>En effet, nous traversons une période de pandémie mondiale frôlant la science fiction tant l’ampleur de ce virus impacte notre quotidien.
+Cependant, ce n’est pas la première fois qu’une telle épidémie frappe le monde et il m’a semblé intéréssant de regarder dans le passé, en France, l’impact qu’ont pu avoir d’autres épidémies.</p>
+<p>J’ai également choisi l’Insee car les quelques autres API que j’ai essayé de maîtriser ne disposait pas de séries temporelles. Par exemple, l’api airquality ne donne qu’une donnée en temps réel et il ne m’était pas possible d’opérer une comparaison dans le temps, mais uniquement dans l’espace. Je n’avais pas spécialement envie de travailler avec cette contrainte. Quant à d’autres que j’ai régardé, je n’ai tout simplement pas réussi à trouver une documentation claie à mes yeux.</p>
+</div>
+<div id="création-dun-tableau-5" class="section level3" number="4.7.2">
+<h3><span class="header-section-number">4.7.2</span> Création d’un tableau</h3>
+<div id="chargement-du-package-insee-puis-de-la-librairie" class="section level4" number="4.7.2.1">
+<h4><span class="header-section-number">4.7.2.1</span> Chargement du package Insee puis de la librairie</h4>
+<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="04-API-Etudiants2021.html#cb120-1"></a><span class="kw">library</span>(insee)</span>
+<span id="cb120-2"><a href="04-API-Etudiants2021.html#cb120-2"></a><span class="kw">library</span>(tidyverse,<span class="dt">warn.conflicts =</span> F)</span></code></pre></div>
+</div>
+<div id="extraction-de-la-série-relative-au-nombre-de-deces-mensuel-en-france-à-laide-de-son-id" class="section level4" number="4.7.2.2">
+<h4><span class="header-section-number">4.7.2.2</span> Extraction de la série relative au nombre de deces mensuel en France (à l’aide de son id)</h4>
+</div>
+<div id="création-du-tableau" class="section level4" number="4.7.2.3">
+<h4><span class="header-section-number">4.7.2.3</span> Création du tableau</h4>
+<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="04-API-Etudiants2021.html#cb121-1"></a>victoire1&lt;-victoire[<span class="kw">order</span>(victoire<span class="op">$</span>TIME_PERIOD),<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>]</span></code></pre></div>
+<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="04-API-Etudiants2021.html#cb122-1"></a><span class="kw">kable</span>(victoire1[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>),],<span class="dt">caption =</span> <span class="st">&quot;nombre deces / mois depuis le 01/01/1947 en France Métropoliitaine&quot;</span>,<span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">&#39;Année-Mois&#39;</span>,<span class="st">&#39;Nombre de Décés&#39;</span>))</span></code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-61">Table 4.1: </span>nombre deces / mois depuis le 01/01/1947 en France Métropoliitaine</caption>
+<thead>
+<tr class="header">
+<th align="left">Année-Mois</th>
+<th align="right">Nombre de Décés</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1946-01</td>
+<td align="right">70900</td>
+</tr>
+<tr class="even">
+<td align="left">1946-02</td>
+<td align="right">53958</td>
+</tr>
+<tr class="odd">
+<td align="left">1946-03</td>
+<td align="right">57287</td>
+</tr>
+<tr class="even">
+<td align="left">1946-04</td>
+<td align="right">45376</td>
+</tr>
+<tr class="odd">
+<td align="left">1946-05</td>
+<td align="right">42591</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="le-graphique" class="section level3" number="4.7.3">
+<h3><span class="header-section-number">4.7.3</span> Le graphique</h3>
+<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="04-API-Etudiants2021.html#cb123-1"></a>victoire2&lt;-victoire[<span class="kw">order</span>(victoire<span class="op">$</span>DATE),<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</span>
+<span id="cb123-2"><a href="04-API-Etudiants2021.html#cb123-2"></a><span class="kw">plot</span>(victoire2<span class="op">$</span>DATE,victoire2<span class="op">$</span>OBS_VALUE, </span>
+<span id="cb123-3"><a href="04-API-Etudiants2021.html#cb123-3"></a>     <span class="dt">type =</span><span class="st">&quot;l&quot;</span>, </span>
+<span id="cb123-4"><a href="04-API-Etudiants2021.html#cb123-4"></a>     <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, </span>
+<span id="cb123-5"><a href="04-API-Etudiants2021.html#cb123-5"></a>     <span class="dt">ylab =</span> <span class="st">&quot;Nombre de deces&quot;</span>,</span>
+<span id="cb123-6"><a href="04-API-Etudiants2021.html#cb123-6"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Evolution dans le temps (mesure mensuel)&quot;</span>,</span>
+<span id="cb123-7"><a href="04-API-Etudiants2021.html#cb123-7"></a>     <span class="dt">main =</span> <span class="st">&quot;Nombre de deces par mois depuis le 01/01/1947 en France Métropoliitaine&quot;</span>,</span>
+<span id="cb123-8"><a href="04-API-Etudiants2021.html#cb123-8"></a>     <span class="dt">sub =</span> <span class="st">&quot;Source : Insee&quot;</span>)</span></code></pre></div>
+<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-62-1.svg" width="672" /></p>
+</div>
+<div id="brève-analyse" class="section level3" number="4.7.4">
+<h3><span class="header-section-number">4.7.4</span> Brève analyse :</h3>
+<p>On constate qu’il y a 3 pics plus élevés (voir bien plus élevés) de nombres d’individus décédés que celui de la péridoe covid-19.
+Tout d’abord, sur la période 1948-1949 on frôle les 100 000 décés en un seul mois. C’est l’épisode dit de l’épidémie de grippe “italienne”. Ensuite, sur la période 1968-1970 (notamment décembre 1969), la France comme tant d’autres pays a du faire face à l’épidémie de grippe “de Hong Kong”. Enfin, on constate un nombre très élevé de décés en Janvier 2017, que l’on impute en partie à une épidémie de grippe hivernale amorcée fin 2016</p>
+</div>
+<div id="conclusion-4" class="section level3" number="4.7.5">
+<h3><span class="header-section-number">4.7.5</span> Conclusion</h3>
+<p>En somme, les épisodes d’épidémies meurtrières ne sont pas si exceptionnels que l’on pourrait le penser. A travers l’histoire récente (70 dernières années), on remarque assez facilement l’impact qu’ont pu avoir certains virus en France. A défaut d’être mondialisé et très médiatisé, ces épisodes épidémiques n’ont pas été moins meurtriers que la covid-19. Il n’est cependant pas possible de dresser une quelqconque hierarchie d’intensité entre ces différents épisodes, notamment le covid face aux autres pour plusieurs raisons. Le nombre de décés est une donnée absolue, non relative, et de fait, il est important de considérer que la croissance démographique fausse significativement toute comparaison. Par ailleurs, depuis plus d’une décénnie, le nombre de décès a tendance à augmenter du fait de l’arrivée des générations nombreuses du baby-boom à des âges de forte mortalité. Et dans l"autre sens, jamais des mesures aussi restrictives n’avait été mis en place pour contrer l’expansion d’un virus.</p>
+<hr />
+</div>
+</div>
+<div id="nicolas-j." class="section level2" number="4.8">
+<h2><span class="header-section-number">4.8</span> Nicolas J.</h2>
+<p>J’effectue mon alternance pour le Ministère des Armées, au sein de l’Etat-Major de l’Armée de Terre, à Balard, dans le cadre de la création d’un nouveau système d’information, le “SI Activités”.
+Ce SI a pour but de faciliter la programmation d’activité militaires au sein de l’Armée de Terre, dans une logique de “on ne saisit la donnée qu’une fois”, afin d’éviter l’utilisation de tableau excels, très volatiles et dont la qualité de la donnée est variable.</p>
+<p>Mes missions consistent à gérer le chantier de données pour ce nouveau SI. Cela inclue une assistance à la mise en place, et à l’évolution du modèle de données (MCD, MLD), la verification et la mise à jour de la documentation OPENApi 2 (Swagger) afin de s’assurer que l’outil respecte bien les contraintes imposées par le ministère. En outre, ce la permet au SI de mieux résister au temps, car cette documentation permet à chacun de comprendre comment il est construit, si besoin est de le modifier.</p>
+<p>Je suis aussi amené à organiser les test utilisateurs pour les différentes phases de développement, m’assurer de la bonne intégration des données en base, l’anonymisation des jeux de données fournis à l’industriel etc…</p>
+<div id="choix-de-lapi-retenue-6" class="section level3" number="4.8.1">
+<h3><span class="header-section-number">4.8.1</span> Choix de l’API retenue</h3>
+<p>J’ai choisi de m’orienter vers l’API wbstat de la WorldBank.</p>
+<p>J’étais au début parti sur l’API “crimedata”, qui est une API qui recense années par années les crimes dans différentes métropoles des Etats-Unis. J’ai réussi à extraire des données très intéressantes (données sur les crimes violents et leur évolution par années), mais les données n’étant pas toutes au format numérique, j’ai passé une grande quantité de temps à essayer d’en faire un plot, mais sans succès.</p>
+<p>J’ai donc fait le choix de m’orienter sur une API produisant des statistiques numériques, et la worldbank s’est donc révélée être un choix évident, puisqu’elle regorge de données statistiques. L’avantage de cette API est multiple :</p>
+<ul>
+<li><p><strong>La disponibilité et la richesse des données</strong></p>
+<ul>
+<li>La WorldBank est comparable dans sa mission à l’INSEE. Elle met à disposition une quantité énorme de données diverses, consultables par tous et pouvant être croisées entre elles. En ça, elle est un formidable outil pour comparer des indicateurs statistiques entre eux</li>
+</ul></li>
+<li><p><strong>L’existence d’un package dans R de la WorldBank : <em>wbstats</em></strong></p>
+<ul>
+<li>le package webstat de R permet d’avoir accès aux données de l’API de la WorldBank. Elle est très aboutie, et sa documentation est complète et fournie, ce qui permet de connaitre les commandes, leur syntaxe et leur utilité très facilement, ce qui est praticulièrement pratique pour comparer des indicateurs statistiques</li>
+</ul></li>
+</ul>
+<p>La documentation est accessible ici : <a href="https://cran.r-project.org/web/packages/wbstats/index.html" class="uri">https://cran.r-project.org/web/packages/wbstats/index.html</a></p>
+<p>Il n’a pas été évident de trouver des indicateurs intéressants à observer, au vu de l’immensité de la donnée proposée par WorldBank</p>
+<p>Il me semble très intéressant d’observer les conséquences et effets des grands chocs systémiques sur les indicateurs économiques ou sociaux d’un pays. Par exemple : l’effet d’une crise économique sur un pays, comme en 2008, ou encore, la chute de l’URSS et ses conséquences pour les pays etc..</p>
+<p>A cet effet, j’ai décidé de me pencher sur le développement économiques des pays de l’Ex-Yougoslavie, afin de voir les grandes tendances qui pourraient s’en dégager.</p>
+</div>
+<div id="création-dun-tableau-6" class="section level3" number="4.8.2">
+<h3><span class="header-section-number">4.8.2</span> Création d’un tableau</h3>
+<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="04-API-Etudiants2021.html#cb124-1"></a><span class="kw">library</span>(knitr)</span>
+<span id="cb124-2"><a href="04-API-Etudiants2021.html#cb124-2"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb124-3"><a href="04-API-Etudiants2021.html#cb124-3"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb124-4"><a href="04-API-Etudiants2021.html#cb124-4"></a><span class="kw">library</span>(ggthemes)</span>
+<span id="cb124-5"><a href="04-API-Etudiants2021.html#cb124-5"></a><span class="kw">library</span>(wbstats)</span>
+<span id="cb124-6"><a href="04-API-Etudiants2021.html#cb124-6"></a></span>
+<span id="cb124-7"><a href="04-API-Etudiants2021.html#cb124-7"></a><span class="co">#Extraction des données</span></span>
+<span id="cb124-8"><a href="04-API-Etudiants2021.html#cb124-8"></a>tab_yug &lt;-<span class="st"> </span><span class="kw">wb_data</span>(<span class="dt">indicator  =</span> <span class="kw">c</span>(<span class="st">&quot;SP.POP.TOTL&quot;</span>,<span class="st">&quot;NY.GDP.MKTP.CD&quot;</span>),</span>
+<span id="cb124-9"><a href="04-API-Etudiants2021.html#cb124-9"></a>                      <span class="dt">mrv =</span> <span class="dv">30</span>,</span>
+<span id="cb124-10"><a href="04-API-Etudiants2021.html#cb124-10"></a>                  <span class="dt">country =</span> <span class="kw">c</span>(<span class="st">&quot;SVN&quot;</span>,<span class="st">&quot;BIH&quot;</span>,<span class="st">&quot;HRV&quot;</span>,<span class="st">&quot;SRB&quot;</span>,<span class="st">&quot;MNE&quot;</span>,<span class="st">&quot;MKD&quot;</span>,<span class="st">&quot;XKX&quot;</span>))</span>
+<span id="cb124-11"><a href="04-API-Etudiants2021.html#cb124-11"></a></span>
+<span id="cb124-12"><a href="04-API-Etudiants2021.html#cb124-12"></a>tab_yug &lt;-<span class="st"> </span>tab_yug <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">PIBHAB =</span> NY.GDP.MKTP.CD<span class="op">/</span>SP.POP.TOTL) <span class="op">%&gt;%</span></span>
+<span id="cb124-13"><a href="04-API-Etudiants2021.html#cb124-13"></a><span class="st">                       </span><span class="kw">rename</span>(<span class="dt">Pays =</span> country, <span class="dt">Code =</span> iso3c, Année =<span class="st"> </span>date) <span class="op">%&gt;%</span></span>
+<span id="cb124-14"><a href="04-API-Etudiants2021.html#cb124-14"></a><span class="st">                       </span><span class="kw">select</span>(Code,Pays,Année,PIBHAB) <span class="op">%&gt;%</span></span>
+<span id="cb124-15"><a href="04-API-Etudiants2021.html#cb124-15"></a><span class="st">                       </span><span class="kw">arrange</span>(Année)</span></code></pre></div>
+<p>Je récupère deux indicateurs : la population par pays, et le PIB par pays, afin d’obtenir le PIB par habitants.
+Je selectionne pour les 6 pays de l’Ex-Yugoslavie, à savoir : la Slovénie, la Bosnie-Herzégovine, la Croatie, la Serbie, la Macédoine du Nord et le Kosovo, tout en définissant un périmètre des 30 dernières années (ce qui correspond grossièrement à la chute de la Yougoslavie, à maintenant).
+Enfin, je trie par date, afin d’avoir une visualition sur plusieurs pays, plutôt que plusieurs années d’un même pays.</p>
+<table>
+<caption><span id="tab:unnamed-chunk-64">Table 4.2: </span>Aperçu du tableau sur les pays de l’Ex Yougoslavie</caption>
+<thead>
+<tr class="header">
+<th align="center">Code</th>
+<th align="center">Pays</th>
+<th align="center">Année</th>
+<th align="center">PIBHAB</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">SVN</td>
+<td align="center">Slovenia</td>
+<td align="center">1994</td>
+<td align="center">7564.7407</td>
+</tr>
+<tr class="even">
+<td align="center">XKX</td>
+<td align="center">Kosovo</td>
+<td align="center">1994</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">BIH</td>
+<td align="center">Bosnia and Herzegovina</td>
+<td align="center">1995</td>
+<td align="center">487.4768</td>
+</tr>
+<tr class="even">
+<td align="center">HRV</td>
+<td align="center">Croatia</td>
+<td align="center">1995</td>
+<td align="center">4877.5275</td>
+</tr>
+<tr class="odd">
+<td align="center">MKD</td>
+<td align="center">North Macedonia</td>
+<td align="center">1995</td>
+<td align="center">2359.8003</td>
+</tr>
+<tr class="even">
+<td align="center">MNE</td>
+<td align="center">Montenegro</td>
+<td align="center">1995</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">SRB</td>
+<td align="center">Serbia</td>
+<td align="center">1995</td>
+<td align="center">2207.4506</td>
+</tr>
+<tr class="even">
+<td align="center">SVN</td>
+<td align="center">Slovenia</td>
+<td align="center">1995</td>
+<td align="center">10730.4510</td>
+</tr>
+<tr class="odd">
+<td align="center">XKX</td>
+<td align="center">Kosovo</td>
+<td align="center">1995</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">BIH</td>
+<td align="center">Bosnia and Herzegovina</td>
+<td align="center">1996</td>
+<td align="center">740.0985</td>
+</tr>
+<tr class="odd">
+<td align="center">HRV</td>
+<td align="center">Croatia</td>
+<td align="center">1996</td>
+<td align="center">5232.8144</td>
+</tr>
+<tr class="even">
+<td align="center">MKD</td>
+<td align="center">North Macedonia</td>
+<td align="center">1996</td>
+<td align="center">2338.0683</td>
+</tr>
+<tr class="odd">
+<td align="center">MNE</td>
+<td align="center">Montenegro</td>
+<td align="center">1996</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">SRB</td>
+<td align="center">Serbia</td>
+<td align="center">1996</td>
+<td align="center">2864.0847</td>
+</tr>
+<tr class="odd">
+<td align="center">SVN</td>
+<td align="center">Slovenia</td>
+<td align="center">1996</td>
+<td align="center">10815.1110</td>
+</tr>
+<tr class="even">
+<td align="center">XKX</td>
+<td align="center">Kosovo</td>
+<td align="center">1996</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">BIH</td>
+<td align="center">Bosnia and Herzegovina</td>
+<td align="center">1997</td>
+<td align="center">982.8018</td>
+</tr>
+<tr class="even">
+<td align="center">HRV</td>
+<td align="center">Croatia</td>
+<td align="center">1997</td>
+<td align="center">5263.4321</td>
+</tr>
+<tr class="odd">
+<td align="center">MKD</td>
+<td align="center">North Macedonia</td>
+<td align="center">1997</td>
+<td align="center">1964.8829</td>
+</tr>
+<tr class="even">
+<td align="center">MNE</td>
+<td align="center">Montenegro</td>
+<td align="center">1997</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">SRB</td>
+<td align="center">Serbia</td>
+<td align="center">1997</td>
+<td align="center">3380.0414</td>
+</tr>
+<tr class="even">
+<td align="center">SVN</td>
+<td align="center">Slovenia</td>
+<td align="center">1997</td>
+<td align="center">10454.9656</td>
+</tr>
+<tr class="odd">
+<td align="center">XKX</td>
+<td align="center">Kosovo</td>
+<td align="center">1997</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">BIH</td>
+<td align="center">Bosnia and Herzegovina</td>
+<td align="center">1998</td>
+<td align="center">1102.3910</td>
+</tr>
+<tr class="odd">
+<td align="center">HRV</td>
+<td align="center">Croatia</td>
+<td align="center">1998</td>
+<td align="center">5640.3162</td>
+</tr>
+<tr class="even">
+<td align="center">MKD</td>
+<td align="center">North Macedonia</td>
+<td align="center">1998</td>
+<td align="center">1866.8501</td>
+</tr>
+<tr class="odd">
+<td align="center">MNE</td>
+<td align="center">Montenegro</td>
+<td align="center">1998</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">SRB</td>
+<td align="center">Serbia</td>
+<td align="center">1998</td>
+<td align="center">2571.1727</td>
+</tr>
+<tr class="odd">
+<td align="center">SVN</td>
+<td align="center">Slovenia</td>
+<td align="center">1998</td>
+<td align="center">11175.7710</td>
+</tr>
+<tr class="even">
+<td align="center">XKX</td>
+<td align="center">Kosovo</td>
+<td align="center">1998</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">BIH</td>
+<td align="center">Bosnia and Herzegovina</td>
+<td align="center">1999</td>
+<td align="center">1251.7473</td>
+</tr>
+<tr class="even">
+<td align="center">HRV</td>
+<td align="center">Croatia</td>
+<td align="center">1999</td>
+<td align="center">5198.1240</td>
+</tr>
+<tr class="odd">
+<td align="center">MKD</td>
+<td align="center">North Macedonia</td>
+<td align="center">1999</td>
+<td align="center">1908.5926</td>
+</tr>
+<tr class="even">
+<td align="center">MNE</td>
+<td align="center">Montenegro</td>
+<td align="center">1999</td>
+<td align="center">NA</td>
+</tr>
+<tr class="odd">
+<td align="center">SRB</td>
+<td align="center">Serbia</td>
+<td align="center">1999</td>
+<td align="center">2571.3040</td>
+</tr>
+<tr class="even">
+<td align="center">SVN</td>
+<td align="center">Slovenia</td>
+<td align="center">1999</td>
+<td align="center">11452.7831</td>
+</tr>
+<tr class="odd">
+<td align="center">XKX</td>
+<td align="center">Kosovo</td>
+<td align="center">1999</td>
+<td align="center">NA</td>
+</tr>
+<tr class="even">
+<td align="center">BIH</td>
+<td align="center">Bosnia and Herzegovina</td>
+<td align="center">2000</td>
+<td align="center">1467.7765</td>
+</tr>
+<tr class="odd">
+<td align="center">HRV</td>
+<td align="center">Croatia</td>
+<td align="center">2000</td>
+<td align="center">4841.5867</td>
+</tr>
+<tr class="even">
+<td align="center">MKD</td>
+<td align="center">North Macedonia</td>
+<td align="center">2000</td>
+<td align="center">1854.1460</td>
+</tr>
+<tr class="odd">
+<td align="center">MNE</td>
+<td align="center">Montenegro</td>
+<td align="center">2000</td>
+<td align="center">1627.0726</td>
+</tr>
+<tr class="even">
+<td align="center">SRB</td>
+<td align="center">Serbia</td>
+<td align="center">2000</td>
+<td align="center">914.7857</td>
+</tr>
+<tr class="odd">
+<td align="center">SVN</td>
+<td align="center">Slovenia</td>
+<td align="center">2000</td>
+<td align="center">10201.3035</td>
+</tr>
+<tr class="even">
+<td align="center">XKX</td>
+<td align="center">Kosovo</td>
+<td align="center">2000</td>
+<td align="center">1087.7624</td>
+</tr>
+<tr class="odd">
+<td align="center">BIH</td>
+<td align="center">Bosnia and Herzegovina</td>
+<td align="center">2001</td>
+<td align="center">1530.8148</td>
+</tr>
+<tr class="even">
+<td align="center">HRV</td>
+<td align="center">Croatia</td>
+<td align="center">2001</td>
+<td align="center">5362.0229</td>
+</tr>
+<tr class="odd">
+<td align="center">MKD</td>
+<td align="center">North Macedonia</td>
+<td align="center">2001</td>
+<td align="center">1815.9201</td>
+</tr>
+</tbody>
+</table>
+<p>J’ai choisi de commencer la prévisualisation du tableau à partir de la 40ème ligne, car les 3 premières années comportent des valeurs manquantes.</p>
+</div>
+<div id="le-graphique-1" class="section level3" number="4.8.3">
+<h3><span class="header-section-number">4.8.3</span> Le graphique :</h3>
+<pre><code>Warning in theme_hc(bgc = &quot;darkunica&quot;): `bgcolor` is deprecated. Use `style`
+instead.</code></pre>
+<pre><code>Warning: Removed 34 row(s) containing missing values (geom_path).</code></pre>
+<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-66-1.svg" width="672" style="display: block; margin: auto;" /></p>
+<p>Tous les pays de l’Ex-Yougoslavie semblent dégager une tendance commune :</p>
+<ul>
+<li><p><strong>Première tendance</strong>
++Juste après la disparition de la Yougoslavie, pèriode de légère baisse puis relative stagnation jusqu’aux années 2000 (à l’exception de la Slovénie qui connait une légère croissance en 1995 et 1996, avant de stagner)</p></li>
+<li><p><strong>Seconde tendance</strong>
++A partir des années 2000, tous les pays connaissent une hausse du PIB moyen par habitants, et ce de manière continue jusqu’en 2008, au moment de la crise des sub primes.</p></li>
+<li><p><strong>Troisième tendance</strong>
++vers 2012/2013, une fois la crise économique passée, les économies repartent à la hausse jusqu’en 2018, où la croissance du PIB par habitants se met à stagner, hormis pour la Serbie qui croît mais plus lentement.</p></li>
+</ul>
+</div>
+<div id="conclusion-5" class="section level3" number="4.8.4">
+<h3><span class="header-section-number">4.8.4</span> Conclusion</h3>
+<p>Comme observé plus haut, on dénote facilement des tendances pour l’évolution du PIB par habitants pour ces 7 pays de l’Ex-Gougoslavie. A noter toutefois, la Slovénie a connu une croissance bien plus forte que les autres pays, étant plus proche du bloc européen. La croatie, aussi, mais dans une moindre mesure. On note l’entrée en 2004 de la Slovénie dans l’Union Européenne, et en 2013 de la Croatie.</p>
+<p>La séparation de ces pays semble, quelques années après leur séparation, avoir eu un effet bénéfique sur le niveau économique de ses habitants, qui n’a cessé d’augmenter à partir des années 2000, jusqu’à la crise mondiale. On note cependant que les économies de ces pays ont été fortement résistance à la recession des années 2000, et ont d’ailleurs connu une très forte croissance à partir de ce moment.</p>
+<p>Hors Slovénie et Croatie, les croissances de richesse sont, certes, présentes, mais peu élevées, en comparaison avec les deux pays précédemment cités</p>
+<p>Il sera intéressant de re regarder ce graphique dans 10 ans, quand on aura pu observer l’effet de l’adhésion à l’Union Européenne de la Croatie, et peut être même d’autres pays (Comme la Serbie).</p>
+<hr />
+</div>
+</div>
+<div id="ouali-b." class="section level2" number="4.9">
+<h2><span class="header-section-number">4.9</span> Ouali B.</h2>
+<p>Je suis actuellement dans une entreprise mutualiste appelée Garance. J’ai pour mission d’être une assistante à la maitrice d’ouvrage. J’aide à la mise en place des fonctionnalités des sites, aux tests et aux recettages des sites internet créés. Le but de mon alternance est de développer des compétences en gestion de projet comme avoir la capacité a écrire des cahiers de test et recette, des kick-off et des notes de cadrage. De plus, mon alternance me permet d’être force de proposition sur la création d’application et de développer une expertise sur ce dont à besoin l’entreprise pour améliorer son activité.</p>
+<div id="choix-de-lapi-retenue-7" class="section level3" number="4.9.1">
+<h3><span class="header-section-number">4.9.1</span> Choix de l’API retenue</h3>
+<p>J’ai décidé de choisir l’API Insee car je voulais avoir un peu plus d’information sur le secteur du conseil informatique. SOuhaitant me diriger dans ce secteur, je pense qu’il est préférable d’utiliser la pertinence de ce devoir pour voir l’evolution et répondre à quelques questions dont je m’interrogeais. “Est-ce que ce secteur est instable ? Est-ce les fluctuations sont fortes ? Est-ce qu’il est porteur ou risuqe t’il de s’essoufler au vu de la crise COVID-19 ?”</p>
+<p>Comme l’insee est un institut offrant de nombreuses données exploitables, l’utilisaition de cette API est l’idéale. Je trouverais surement l’évolution de ce secteur, le chiffre d’affaire créée et les potentiels fluctuations qu’il a pu subir.</p>
+</div>
+<div id="création-dun-tableau-7" class="section level3" number="4.9.2">
+<h3><span class="header-section-number">4.9.2</span> Création d’un tableau</h3>
+<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="04-API-Etudiants2021.html#cb127-1"></a><span class="co"># Installer le package( si nécessaire)</span></span>
+<span id="cb127-2"><a href="04-API-Etudiants2021.html#cb127-2"></a><span class="co"># install.packages(&quot;insee&quot;)</span></span>
+<span id="cb127-3"><a href="04-API-Etudiants2021.html#cb127-3"></a><span class="co">#charger le package ( à chaque fois )</span></span>
+<span id="cb127-4"><a href="04-API-Etudiants2021.html#cb127-4"></a><span class="kw">library</span>(insee)</span>
+<span id="cb127-5"><a href="04-API-Etudiants2021.html#cb127-5"></a><span class="kw">library</span>(tidyverse,<span class="dt">warn.conflicts =</span> F)</span>
+<span id="cb127-6"><a href="04-API-Etudiants2021.html#cb127-6"></a>catalogue =<span class="st"> </span><span class="kw">get_dataset_list</span>()</span></code></pre></div>
+<pre><code>Cached data has been used</code></pre>
+<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="04-API-Etudiants2021.html#cb129-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(catalogue))</span></code></pre></div>
+<table>
+<colgroup>
+<col width="8%" />
+<col width="35%" />
+<col width="33%" />
+<col width="19%" />
+<col width="3%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">id</th>
+<th align="left">Name.fr</th>
+<th align="left">Name.en</th>
+<th align="left">url</th>
+<th align="right">n_series</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">BALANCE-PAIEMENTS</td>
+<td align="left">Balance des paiements</td>
+<td align="left">Balance of payments</td>
+<td align="left"><a href="https://www.insee.fr/fr/statistiques/series/103212755" class="uri">https://www.insee.fr/fr/statistiques/series/103212755</a></td>
+<td align="right">197</td>
+</tr>
+<tr class="even">
+<td align="left">CHOMAGE-TRIM-NATIONAL</td>
+<td align="left">Chômage, taux de chômage par sexe et âge (sens BIT)</td>
+<td align="left">Unemployment, unemployment rate and halo by sex and age (ILO)</td>
+<td align="left"><a href="https://www.insee.fr/fr/statistiques/series/103167923" class="uri">https://www.insee.fr/fr/statistiques/series/103167923</a></td>
+<td align="right">166</td>
+</tr>
+<tr class="odd">
+<td align="left">CLIMAT-AFFAIRES</td>
+<td align="left">Indicateurs synthétiques du climat des affaires</td>
+<td align="left">Business climate composite indicators</td>
+<td align="left"><a href="https://www.insee.fr/fr/statistiques/series/103047029" class="uri">https://www.insee.fr/fr/statistiques/series/103047029</a></td>
+<td align="right">3</td>
+</tr>
+<tr class="even">
+<td align="left">CNA-2010-CONSO-MEN</td>
+<td align="left">Consommation des ménages - Résultats par produit, fonction et durabilité</td>
+<td align="left">Households’ consumption - Results by product, function and durability</td>
+<td align="left"><a href="https://www.insee.fr/fr/statistiques/series/102331845" class="uri">https://www.insee.fr/fr/statistiques/series/102331845</a></td>
+<td align="right">2247</td>
+</tr>
+<tr class="odd">
+<td align="left">CNA-2010-CONSO-SI</td>
+<td align="left">Dépenses de consommation finale par secteur institutionnel - Résultats par opération et produit</td>
+<td align="left">Final consumption expenditure by institutional sectors - Results by transaction and product</td>
+<td align="left"><a href="https://www.insee.fr/fr/statistiques/series/102809534" class="uri">https://www.insee.fr/fr/statistiques/series/102809534</a></td>
+<td align="right">1391</td>
+</tr>
+<tr class="even">
+<td align="left">CNA-2010-CPEB</td>
+<td align="left">Comptes de production et d’exploitation par branche</td>
+<td align="left">Production and operating accounts by branch</td>
+<td align="left"><a href="https://www.insee.fr/fr/statistiques/series/102852781" class="uri">https://www.insee.fr/fr/statistiques/series/102852781</a></td>
+<td align="right">2739</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="04-API-Etudiants2021.html#cb130-1"></a>var3&lt;-<span class="kw">get_idbank_list</span>(<span class="st">&quot;ICA-2015-SERVICES&quot;</span>)</span></code></pre></div>
+<pre><code>Cached data has been used</code></pre>
+<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="04-API-Etudiants2021.html#cb132-1"></a><span class="co">#str(var3)</span></span></code></pre></div>
+<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="04-API-Etudiants2021.html#cb133-1"></a>don2&lt;-<span class="kw">get_insee_idbank</span>(<span class="st">&quot;010543679&quot;</span>)</span></code></pre></div>
+<pre><code>1/1 - Data download &amp; Dataframe build :</code></pre>
+<pre><code>
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |======================================================================| 100%</code></pre>
+<pre><code></code></pre>
+<pre><code>Data cached : C:\Users\claude\AppData\Local\Temp\RtmpUPn2Vv/4ace5c4dd890a0a84897c550251b459b.rds</code></pre>
+<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="04-API-Etudiants2021.html#cb138-1"></a><span class="co">#str(don2)</span></span></code></pre></div>
+<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="04-API-Etudiants2021.html#cb139-1"></a>don2&lt;-don2[<span class="kw">order</span>(don2<span class="op">$</span>DATE),<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</span>
+<span id="cb139-2"><a href="04-API-Etudiants2021.html#cb139-2"></a><span class="kw">plot</span>(don2<span class="op">$</span>DATE,don2<span class="op">$</span>OBS_VALUE, </span>
+<span id="cb139-3"><a href="04-API-Etudiants2021.html#cb139-3"></a>     <span class="dt">type =</span><span class="st">&quot;l&quot;</span>, </span>
+<span id="cb139-4"><a href="04-API-Etudiants2021.html#cb139-4"></a>     <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, </span>
+<span id="cb139-5"><a href="04-API-Etudiants2021.html#cb139-5"></a>     <span class="dt">ylab =</span> <span class="st">&quot;CA mensuelle&quot;</span>,</span>
+<span id="cb139-6"><a href="04-API-Etudiants2021.html#cb139-6"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Données mensuelles&quot;</span>,</span>
+<span id="cb139-7"><a href="04-API-Etudiants2021.html#cb139-7"></a>     <span class="dt">main =</span> <span class="st">&quot;Evolution du chiffre d&#39;affaire des entreprises de conseil informatique &quot;</span>,</span>
+<span id="cb139-8"><a href="04-API-Etudiants2021.html#cb139-8"></a>     <span class="dt">sub =</span> <span class="st">&quot;Source : Insee&quot;</span>,</span>
+<span id="cb139-9"><a href="04-API-Etudiants2021.html#cb139-9"></a>  )</span></code></pre></div>
+<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-70-1.svg" width="672" /></p>
+<p>Ce document est un graphique courbe représentant le chiffre d’affaire des entreprises de conseil informatique de 1995 à 2020. Ce sont des données mensuelles brut en base 100 provenant de l’Insee.</p>
+<p>De prime abord, nous pouvons voir que le chiffre d’affaire fluctue énormement chaque année. Ces fluctuations sont l’expression des “bonnes périodes” de ce secteur.</p>
+<p>De plus, nous nous appercevons que le trend de ce graphique va à la hausse, c’est à dire, que plus les années passent et plus le chiffre d’affaire des entreprises augmente. L’accroissement du chiffre d’affaire des entreprises de conseil informatique s’explique par le fait que depuis la création d’internet, les entreprises se spécialisent dans ce domaine pour conseiller les entreprises qui developpent de nouvelles technologies pour améliorer leurs activités.</p>
+<p>Pourtant nous voyons un effet important en 2020 puisqu’il subit la plus grosse baisse depuis 1999, atteignant 110 base 100, comparé aux baisses des mois précédents de 120 base 100. Cela s’explique par l’effet des confinements du au Covid qui a ralentis les activités des entreprises.
+Neanmoins, il reprend son élan à la moitié de l’année 2020 pour atteindre 170 base 100.</p>
+</div>
+<div id="création-dune-figure-5" class="section level3" number="4.9.3">
+<h3><span class="header-section-number">4.9.3</span> Création d’une figure</h3>
+<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="04-API-Etudiants2021.html#cb140-1"></a>sel  =<span class="st"> </span></span>
+<span id="cb140-2"><a href="04-API-Etudiants2021.html#cb140-2"></a><span class="st">  </span><span class="kw">get_idbank_list</span>(<span class="st">&quot;ICA-2015-SERVICES&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb140-3"><a href="04-API-Etudiants2021.html#cb140-3"></a><span class="st">  </span><span class="kw">filter</span>(NAF2_label_fr <span class="op">==</span><span class="st"> &quot;62.02 - Conseil informatique&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb140-4"><a href="04-API-Etudiants2021.html#cb140-4"></a><span class="st">  </span><span class="kw">filter</span>(CORRECTION<span class="op">==</span><span class="st">&quot;CVS-CJO&quot;</span>)</span></code></pre></div>
+<pre><code>Cached data has been used</code></pre>
+<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="04-API-Etudiants2021.html#cb142-1"></a>sel</span></code></pre></div>
+<pre><code># A tibble: 1 x 39
+  nomflow idbank cleFlow FREQ  EUROSTAT_ICA_SE~ INDICATEUR NAF2  NATURE REF_AREA
+  &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;            &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;   
+1 ICA-20~ 01054~ M.BDM.~ M     BDM              ICASERV    62-02 INDIC~ FE      
+# ... with 30 more variables: UNIT_MEASURE &lt;chr&gt;, CORRECTION &lt;chr&gt;,
+#   BASIND &lt;chr&gt;, FREQ_label_fr &lt;chr&gt;, FREQ_label_en &lt;chr&gt;,
+#   EUROSTAT_ICA_SERVICES_label_fr &lt;chr&gt;, EUROSTAT_ICA_SERVICES_label_en &lt;chr&gt;,
+#   INDICATEUR_label_fr &lt;chr&gt;, INDICATEUR_label_en &lt;chr&gt;, NAF2_label_fr &lt;chr&gt;,
+#   NAF2_label_en &lt;chr&gt;, NATURE_label_fr &lt;chr&gt;, NATURE_label_en &lt;chr&gt;,
+#   REF_AREA_label_fr &lt;chr&gt;, REF_AREA_label_en &lt;chr&gt;,
+#   UNIT_MEASURE_label_fr &lt;chr&gt;, UNIT_MEASURE_label_en &lt;chr&gt;,
+#   CORRECTION_label_fr &lt;chr&gt;, CORRECTION_label_en &lt;chr&gt;,
+#   BASIND_label_fr &lt;chr&gt;, BASIND_label_en &lt;chr&gt;, dim1 &lt;chr&gt;, dim2 &lt;chr&gt;,
+#   dim3 &lt;chr&gt;, dim4 &lt;chr&gt;, dim5 &lt;chr&gt;, dim6 &lt;chr&gt;, dim7 &lt;chr&gt;, dim8 &lt;chr&gt;,
+#   dim9 &lt;chr&gt;</code></pre>
+<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="04-API-Etudiants2021.html#cb144-1"></a><span class="kw">library</span>(insee)</span>
+<span id="cb144-2"><a href="04-API-Etudiants2021.html#cb144-2"></a>don =<span class="st"> </span></span>
+<span id="cb144-3"><a href="04-API-Etudiants2021.html#cb144-3"></a><span class="st">     </span><span class="kw">get_insee_idbank</span>(sel<span class="op">$</span>idbank) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb144-4"><a href="04-API-Etudiants2021.html#cb144-4"></a><span class="st">      </span><span class="kw">select</span>(<span class="dt">ANNEE=</span> DATE, <span class="dt">CA=</span>OBS_VALUE) <span class="op">%&gt;%</span></span>
+<span id="cb144-5"><a href="04-API-Etudiants2021.html#cb144-5"></a><span class="st">     </span><span class="kw">arrange</span>(ANNEE)</span></code></pre></div>
+<pre><code>1/1 - Data download &amp; Dataframe build :</code></pre>
+<pre><code>
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |======================================================================| 100%</code></pre>
+<pre><code></code></pre>
+<pre><code>Data cached : C:\Users\claude\AppData\Local\Temp\RtmpUPn2Vv/28994629c0d00bf606d396602198cf19.rds</code></pre>
+<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="04-API-Etudiants2021.html#cb149-1"></a>don =<span class="st"> </span><span class="kw">get_insee_idbank</span>(sel<span class="op">$</span>idbank)</span></code></pre></div>
+<pre><code>Cached data has been used</code></pre>
+<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="04-API-Etudiants2021.html#cb151-1"></a>don3&lt;-don <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="dt">ANNEE =</span> DATE, <span class="dt">CA=</span> OBS_VALUE, <span class="dt">titre =</span> TITLE_FR) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb151-2"><a href="04-API-Etudiants2021.html#cb151-2"></a><span class="st">              </span><span class="kw">mutate</span>(<span class="dt">titre =</span> <span class="kw">as.factor</span>(titre)) <span class="op">%&gt;%</span><span class="st"> </span></span>
+<span id="cb151-3"><a href="04-API-Etudiants2021.html#cb151-3"></a><span class="st">              </span><span class="kw">arrange</span>(titre, ANNEE)</span>
+<span id="cb151-4"><a href="04-API-Etudiants2021.html#cb151-4"></a></span>
+<span id="cb151-5"><a href="04-API-Etudiants2021.html#cb151-5"></a><span class="kw">kable</span>(<span class="kw">head</span>(don2))</span></code></pre></div>
+<table>
+<thead>
+<tr class="header">
+<th align="left">DATE</th>
+<th align="left">TIME_PERIOD</th>
+<th align="right">OBS_VALUE</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">1999-01-01</td>
+<td align="left">1999-01</td>
+<td align="right">38.07</td>
+</tr>
+<tr class="even">
+<td align="left">1999-02-01</td>
+<td align="left">1999-02</td>
+<td align="right">48.69</td>
+</tr>
+<tr class="odd">
+<td align="left">1999-03-01</td>
+<td align="left">1999-03</td>
+<td align="right">48.35</td>
+</tr>
+<tr class="even">
+<td align="left">1999-04-01</td>
+<td align="left">1999-04</td>
+<td align="right">48.28</td>
+</tr>
+<tr class="odd">
+<td align="left">1999-05-01</td>
+<td align="left">1999-05</td>
+<td align="right">46.30</td>
+</tr>
+<tr class="even">
+<td align="left">1999-06-01</td>
+<td align="left">1999-06</td>
+<td align="right">51.67</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="04-API-Etudiants2021.html#cb152-1"></a>p&lt;-<span class="kw">ggplot</span>(don3) <span class="op">+</span><span class="st"> </span></span>
+<span id="cb152-2"><a href="04-API-Etudiants2021.html#cb152-2"></a><span class="st">   </span><span class="kw">aes</span>(<span class="dt">x=</span>ANNEE,<span class="dt">y=</span>CA) <span class="op">+</span></span>
+<span id="cb152-3"><a href="04-API-Etudiants2021.html#cb152-3"></a><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
+<span id="cb152-4"><a href="04-API-Etudiants2021.html#cb152-4"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span>lm) <span class="op">+</span></span>
+<span id="cb152-5"><a href="04-API-Etudiants2021.html#cb152-5"></a><span class="st">    </span><span class="kw">ggtitle</span>(<span class="dt">label=</span> <span class="st">&quot;CA des entreprises de conseil informatique&quot;</span>,</span>
+<span id="cb152-6"><a href="04-API-Etudiants2021.html#cb152-6"></a>            <span class="dt">subtitle =</span> <span class="st">&quot;Source : INSEE&quot;</span>)<span class="op">+</span></span>
+<span id="cb152-7"><a href="04-API-Etudiants2021.html#cb152-7"></a><span class="st">    </span><span class="kw">scale_x_date</span>(<span class="st">&quot;Données mensuelles CSJ-CVO&quot;</span>) <span class="op">+</span></span>
+<span id="cb152-8"><a href="04-API-Etudiants2021.html#cb152-8"></a><span class="st">    </span><span class="kw">scale_y_continuous</span>(<span class="st">&quot;CA&quot;</span>,<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">50</span>,<span class="ot">NA</span>))</span>
+<span id="cb152-9"><a href="04-API-Etudiants2021.html#cb152-9"></a>p</span></code></pre></div>
+<pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
+<pre><code>Warning: Removed 4 rows containing non-finite values (stat_smooth).</code></pre>
+<pre><code>Warning: Removed 4 rows containing missing values (geom_point).</code></pre>
+<pre><code>Warning: Removed 7 rows containing missing values (geom_smooth).</code></pre>
+<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-74-1.svg" width="672" /></p>
+<p>Ce document est un graphique courbe représentant le chiffre d’affaire des entreprises de conseil informatique de 1999 à 2020. Ce sont des données mensuelles comprenant la correction CSJ-CVO provenant de l’Insee.</p>
+<p>Nous voyons que le trend de ce graphique est une preuve des commentaires fait plus haut dans le graphique du chiffre d’affaire des entreprises dans le conseil informatique. Nous nous appercevons qu’avec la correction, la visibilité de la tendance est claire. Les entreprises voyent leurs chiffres d’affaires s’accélérer proportionnellement au temps, c’est à dire, que plus le temps passe, est plus d’entreprises font appellent aux conseils pour amener au mieux leur projet. Pourtant les effets de fluctuation sont moins importants. En corrigeant les effets de saisonnalité, le secteur est stable et subit moins de baisse que l’on peut supposer.</p>
+<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="04-API-Etudiants2021.html#cb157-1"></a><span class="kw">write.table</span>(don,<span class="st">&quot;data/CA_CI.csv&quot;</span>,</span>
+<span id="cb157-2"><a href="04-API-Etudiants2021.html#cb157-2"></a>              <span class="dt">row.names=</span>F,</span>
+<span id="cb157-3"><a href="04-API-Etudiants2021.html#cb157-3"></a>            <span class="dt">sep=</span><span class="st">&quot;;&quot;</span>,</span>
+<span id="cb157-4"><a href="04-API-Etudiants2021.html#cb157-4"></a>            <span class="dt">dec=</span><span class="st">&quot;.&quot;</span>)</span>
+<span id="cb157-5"><a href="04-API-Etudiants2021.html#cb157-5"></a></span>
+<span id="cb157-6"><a href="04-API-Etudiants2021.html#cb157-6"></a><span class="kw">saveRDS</span>(don,<span class="st">&quot;data/CA_CI.Rdata&quot;</span>)</span></code></pre></div>
+</div>
+<div id="conclusion-6" class="section level3" number="4.9.4">
+<h3><span class="header-section-number">4.9.4</span> Conclusion</h3>
+<p>Pour conclure, nous nous appercevons que de prime abord, le secteur du conseil informatique est un secteur très fluctuant. Mais lorsque nous utilisons des données corrigées, ce secteur ne fluctue pas autant que ce que nous pourrions voir dans le premier graphique.
+Nous pouvons dire que la santé de ce secteur est bonne. Il ne subit pas les effets des grandes crises telles que la crise des subprimes et suit le trend des secteurs informatiques. Bien que la crise du COVID 19 a été virulente pour un ensemble de secteur, la baisse du chiffre d’affaire avant 2020 est rattrapée quelque mois plutard pour atteindre le plus haut chiffre d’affaire obtenu depuis 1999.
+Au vue des resultats, nous pouvons dire que le secteur du conseil informatique pourrait voir son chiffre d’affaire augmenter et que la crise du covid ne lui sera pas fatal comparé à d’autres secteurs de service.</p>
+<hr />
+</div>
+</div>
+<div id="robinson-g." class="section level2" number="4.10">
+<h2><span class="header-section-number">4.10</span> Robinson G.</h2>
+<p>Cette année 2020-2021 j’effectue mon alternance dans une régie publicitaire nommée “366 communities”. Leur travail est de gérer l’espace publicitaire de toute la presse quotidienne française nationale (que ce soit au format papier ou digital). Ma mission à leur côtés est de finaliser la mise en production d’un logiciel de gestion relation client. Je suis amené à faire du travail de consolidation de données, de mapping entre différentes base de données.Je suis assistant à maîtrise d’ouvrage, mon rôle est donc de comprendre les besoins des commerciaux et ce qu’ils attendent du nouveau CRM. Je suis amené à manipuler des statistiques sur les commmerciaux, leurs rendez-vous avec des clients et leurs opportunités business. Notre CRM est fourni par un prestataire externe et leur documentation est mal renseigné. Nos données sont éparpillés, les API’s qu’il propose sont très mal adaptés à nos besoins. Actuellement je suis donc chargé de maintenir à jour le fichier backlog(fichier des différentes fonctionnalités attendues du CRM), c’est à dire repérer des nouvelles anomalies et supprimer celles qui ont été corrigé.</p>
+<div id="choix-de-lapi-insee" class="section level3" number="4.10.1">
+<h3><span class="header-section-number">4.10.1</span> Choix de l’API (Insee)</h3>
+<p>Travaillant uniquement sur des données nationales l’API de l’insee me semble tout à fait pertinente.
+Elle permet d’avoir accés à différents jeu de données sur l’évolution de l’économie et de la démographie en France.
+Les données remontent principalement jusqu’en 1975.
+L’accès à un jeu de données se fait en plusieurs étapes :</p>
+<ul>
+<li><p>on installe le package <strong>insee</strong>(on le charge)</p></li>
+<li><p>on stock la liste de datasets dans une variable, on peut ensuite voir l’ensemble des datasets présent de la bank des datasets</p></li>
+<li><p>ensuite on choisi un dataset et on sélectionne son ID</p></li>
+<li><p>grâce à la commande <strong>get_insee_idbank</strong> on stock le dataset sélectionné dans une autre variable</p></li>
+</ul>
+<p>On peut ensuite réaliser des graphiques et des tableaux avec les données du dataset.</p>
+<div id="appel-de-lapi-avec-des-package-r-spécial" class="section level4" number="4.10.1.1">
+<h4><span class="header-section-number">4.10.1.1</span> appel de l’api avec des package R spécial</h4>
+<p>installer le package <em>insee</em> et le charger.</p>
+<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="04-API-Etudiants2021.html#cb158-1"></a><span class="kw">library</span>(insee)</span>
+<span id="cb158-2"><a href="04-API-Etudiants2021.html#cb158-2"></a><span class="kw">library</span>(httr)</span>
+<span id="cb158-3"><a href="04-API-Etudiants2021.html#cb158-3"></a><span class="kw">library</span>(jsonlite)</span></code></pre></div>
+<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="04-API-Etudiants2021.html#cb159-1"></a>catalogue =<span class="st"> </span><span class="kw">get_dataset_list</span>()</span></code></pre></div>
+<pre><code>Cached data has been used</code></pre>
+<p>A défaut de trouver des jeu de données directement en lien avec mon secteur d’activités j’ai décider de travailler sur les données de chômages en France depuis 1975 jusqu’a la mi-année 2019</p>
+<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="04-API-Etudiants2021.html#cb161-1"></a>var&lt;-<span class="kw">get_idbank_list</span>(<span class="st">&quot;CHOMAGE-TRIM-NATIONAL&quot;</span>)</span></code></pre></div>
+<pre><code>Cached data has been used</code></pre>
+<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="04-API-Etudiants2021.html#cb163-1"></a><span class="co">#str(var)</span></span></code></pre></div>
+<p>J’ai choisi une ligne correspondant au taux de chômage des Hommes entre 25 et 49ans</p>
+<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="04-API-Etudiants2021.html#cb164-1"></a>don&lt;-<span class="kw">get_insee_idbank</span>(<span class="st">&quot;001688368&quot;</span>)</span></code></pre></div>
+<pre><code>1/1 - Data download &amp; Dataframe build :</code></pre>
+<pre><code>
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |======================================================================| 100%</code></pre>
+<pre><code></code></pre>
+<pre><code>Data cached : C:\Users\claude\AppData\Local\Temp\RtmpUPn2Vv/4fa745be144399bf3b2942b5d7ef7f28.rds</code></pre>
+</div>
+</div>
+<div id="création-graphique-à-partir-de-lapi" class="section level3" number="4.10.2">
+<h3><span class="header-section-number">4.10.2</span> Création graphique à partir de l’api</h3>
+<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="04-API-Etudiants2021.html#cb169-1"></a><span class="kw">plot</span>(don<span class="op">$</span>DATE,don<span class="op">$</span>OBS_VALUE, </span>
+<span id="cb169-2"><a href="04-API-Etudiants2021.html#cb169-2"></a>     <span class="dt">type =</span><span class="st">&quot;l&quot;</span>, </span>
+<span id="cb169-3"><a href="04-API-Etudiants2021.html#cb169-3"></a>     <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, </span>
+<span id="cb169-4"><a href="04-API-Etudiants2021.html#cb169-4"></a>     <span class="dt">ylab =</span> <span class="st">&quot;nombre de chômeurs en milliers&quot;</span>,</span>
+<span id="cb169-5"><a href="04-API-Etudiants2021.html#cb169-5"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Données trimestrielles&quot;</span>,</span>
+<span id="cb169-6"><a href="04-API-Etudiants2021.html#cb169-6"></a>     <span class="dt">main =</span> <span class="st">&quot;Evolution du chômage des hommes en France (25-49ans)&quot;</span>,</span>
+<span id="cb169-7"><a href="04-API-Etudiants2021.html#cb169-7"></a>     <span class="dt">sub =</span> <span class="st">&quot;Source : Insee&quot;</span>)</span></code></pre></div>
+<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-80-1.svg" width="672" /></p>
+<p>Début 1975 il y avait 121 000 hommes entre 25 et 49 ans au chômage contre 660 000 fin 2019. le nombre d’hommes au chômage a donc été multiplié par 5,5 sur la période . Cette évolution se justifie par une multiplication par 4 du taux de chômage et par une légère hausse de la population.
+Le pic du chômage pour les hommes à été atteint au 2ème trimestre 2015 avec 915 000 chômeurs.</p>
+<p>Ici j’extrait les mêmes données sur le chômage mais pour les Femmes.</p>
+<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="04-API-Etudiants2021.html#cb170-1"></a>don1&lt;-<span class="kw">get_insee_idbank</span>(<span class="st">&quot;001688365&quot;</span>)</span></code></pre></div>
+<pre><code>1/1 - Data download &amp; Dataframe build :</code></pre>
+<pre><code>
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |======================================================================| 100%</code></pre>
+<pre><code></code></pre>
+<pre><code>Data cached : C:\Users\claude\AppData\Local\Temp\RtmpUPn2Vv/38af88a6b8dd43db96d844c7448a4570.rds</code></pre>
+<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="04-API-Etudiants2021.html#cb175-1"></a><span class="kw">plot</span>(don1<span class="op">$</span>DATE,don1<span class="op">$</span>OBS_VALUE, </span>
+<span id="cb175-2"><a href="04-API-Etudiants2021.html#cb175-2"></a>     <span class="dt">type =</span><span class="st">&quot;l&quot;</span>, </span>
+<span id="cb175-3"><a href="04-API-Etudiants2021.html#cb175-3"></a>     <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, </span>
+<span id="cb175-4"><a href="04-API-Etudiants2021.html#cb175-4"></a>     <span class="dt">ylab =</span> <span class="st">&quot;nombre de chômeurs en milliers&quot;</span>,</span>
+<span id="cb175-5"><a href="04-API-Etudiants2021.html#cb175-5"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Données trimestrielles&quot;</span>,</span>
+<span id="cb175-6"><a href="04-API-Etudiants2021.html#cb175-6"></a>     <span class="dt">main =</span> <span class="st">&quot;Evolution du chômage des femmes en France (25-49ans)&quot;</span>,</span>
+<span id="cb175-7"><a href="04-API-Etudiants2021.html#cb175-7"></a>     <span class="dt">sub =</span> <span class="st">&quot;Source : Insee&quot;</span>)</span></code></pre></div>
+<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-82-1.svg" width="672" /></p>
+<p>Début 1975 il y avait 156 000 femmes entre 25 et 49 ans au chômage contre 660 000 fin 2019. le nombre de femmes au chômage a donc été multiplié par 5 sur la période .
+Le pic du chômage pour les femmes à été atteint au 3ème trimestre 1997 avec 919 000 chômeuses</p>
+</div>
+<div id="création-tableau-à-partir-de-lapi" class="section level3" number="4.10.3">
+<h3><span class="header-section-number">4.10.3</span> Création tableau à partir de l’api</h3>
+<blockquote>
+<p>Partie à revoir</p>
+</blockquote>
+</div>
+<div id="conclusion-7" class="section level3" number="4.10.4">
+<h3><span class="header-section-number">4.10.4</span> Conclusion</h3>
+<p>Le taux de chômage des Hommes et des Femmes a globalement connu la même évolution entre 1975 et 2019. Néanmoins on remarque une différence au niveau de la date des pics de chômages atteints.</p>
+
+</div>
+</div>
+</div>
+<script src="js/tidyverse.js"></script>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="03-API-worldmap.html" class="navigation navigation-prev navigation-unique" aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": false,
+"twitter": false,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"],
+"instapper": false
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": "https://github.com/ClaudeGrasland/DataMining1/blob/master/04-API-Etudiants2021.Rmd",
+"text": "Source"
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "section"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
