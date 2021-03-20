@@ -24,7 +24,7 @@
 <meta name="author" content="Claude Grasland, Professeur de Géographie, Université de Paris (Diderot)" />
 
 
-<meta name="date" content="2021-03-19" />
+<meta name="date" content="2021-03-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="03-API-worldmap.html"/>
 
-<script src="libs/header-attrs-2.4/header-attrs.js"></script>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -351,15 +351,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <p>L’INSEE mesure ce taux de chômage tous les trimestres à travers l’enquête “Emploi” depuis 1975.</p>
 <p>Pour récupérer ces données, nous allons donc utiliser l’API de l’INSEE.</p>
 <p>Tout d’abord, il faut charger l’API <strong>insee</strong> dans R.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="04-API-Etudiants2021.html#cb2-1"></a><span class="kw">library</span>(insee)</span>
-<span id="cb2-2"><a href="04-API-Etudiants2021.html#cb2-2"></a><span class="kw">library</span>(tidyverse, <span class="dt">warn.conflicts =</span> F)</span>
-<span id="cb2-3"><a href="04-API-Etudiants2021.html#cb2-3"></a><span class="kw">library</span>(lubridate)</span>
-<span id="cb2-4"><a href="04-API-Etudiants2021.html#cb2-4"></a><span class="kw">library</span>(knitr)</span></code></pre></div>
 <p>Puis nous chargeons la liste des tableaux</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="04-API-Etudiants2021.html#cb3-1"></a>catalogue =<span class="st"> </span><span class="kw">get_dataset_list</span>()</span></code></pre></div>
-<pre><code>1/1 - Data download &amp; Dataframe build : 100%</code></pre>
-<pre><code>Data cached : C:\Users\claude\AppData\Local\Temp\RtmpUPn2Vv/6bce20f8021f2b83467819f1e4f74d9f.rds</code></pre>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="04-API-Etudiants2021.html#cb6-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(catalogue))</span></code></pre></div>
 <table>
 <colgroup>
 <col width="8%" />
@@ -423,26 +415,6 @@ code span.wa { color: #bf0303; } /* Warning */
 </tbody>
 </table>
 <p>Ensuite, nous examinons les séries présentes dans un tableau</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="04-API-Etudiants2021.html#cb7-1"></a>var&lt;-<span class="kw">get_idbank_list</span>(<span class="st">&quot;CHOMAGE-TRIM-NATIONAL&quot;</span>)</span></code></pre></div>
-<pre><code>
-!!! The use of dim columns is DEPRECATED
-!!! First, please use datasets&#39; name as input of this function
-!!! Then, please use new columns&#39; name instead as FREQ and INDICATEUR etc
-This message is displayed once per R session</code></pre>
-<pre><code>Cached data has been used</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="04-API-Etudiants2021.html#cb10-1"></a><span class="co">#str(var)</span></span></code></pre></div>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="04-API-Etudiants2021.html#cb11-1"></a>sel =<span class="st"> </span></span>
-<span id="cb11-2"><a href="04-API-Etudiants2021.html#cb11-2"></a><span class="st">  </span><span class="kw">get_idbank_list</span>(<span class="st">&quot;CHOMAGE-TRIM-NATIONAL&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb11-3"><a href="04-API-Etudiants2021.html#cb11-3"></a><span class="st">  </span><span class="kw">filter</span>(INDICATEUR<span class="op">==</span><span class="st">&quot;CTTXC&quot;</span>)<span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Taux de chomage</span></span>
-<span id="cb11-4"><a href="04-API-Etudiants2021.html#cb11-4"></a><span class="st">  </span><span class="kw">filter</span>(SEXE<span class="op">==</span><span class="st">&quot;0&quot;</span>)<span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Ensemble de la population</span></span>
-<span id="cb11-5"><a href="04-API-Etudiants2021.html#cb11-5"></a><span class="st">  </span><span class="kw">filter</span>(NATURE<span class="op">==</span><span class="st">&quot;TAUX&quot;</span>)<span class="op">%&gt;%</span><span class="st"> </span><span class="co">#(en %)</span></span>
-<span id="cb11-6"><a href="04-API-Etudiants2021.html#cb11-6"></a><span class="st">  </span><span class="kw">filter</span>(REF_AREA<span class="op">==</span><span class="st">&quot;FM&quot;</span>)<span class="op">%&gt;%</span><span class="st"> </span><span class="co">#France Métropolitaine</span></span>
-<span id="cb11-7"><a href="04-API-Etudiants2021.html#cb11-7"></a><span class="st">  </span><span class="kw">filter</span>(AGE<span class="op">==</span><span class="kw">c</span>(<span class="st">&quot;00-24&quot;</span>,<span class="st">&quot;25-49&quot;</span>,<span class="st">&quot;50-&quot;</span>))<span class="op">%&gt;%</span><span class="st"> </span><span class="co">#Ensemble de la population, selon la classe d&#39;âge</span></span>
-<span id="cb11-8"><a href="04-API-Etudiants2021.html#cb11-8"></a><span class="st">  </span><span class="kw">filter</span>(FREQ<span class="op">==</span><span class="st">&quot;T&quot;</span>) <span class="co">#Trimestrielle</span></span></code></pre></div>
-<pre><code>Cached data has been used</code></pre>
-<pre><code>Warning in AGE == c(&quot;00-24&quot;, &quot;25-49&quot;, &quot;50-&quot;): la taille d&#39;un objet plus long
-n&#39;est pas multiple de la taille d&#39;un objet plus court</code></pre>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="04-API-Etudiants2021.html#cb14-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(sel))</span></code></pre></div>
 <table style="width:100%;">
 <colgroup>
 <col width="4%" />
@@ -635,8 +607,6 @@ n&#39;est pas multiple de la taille d&#39;un objet plus court</code></pre>
 </tbody>
 </table>
 <p>On récupère les données grâce à l’id stocké dans la variable <em>sel</em> à l’étape précédente</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb15-1"><a href="04-API-Etudiants2021.html#cb15-1"></a>don =<span class="st"> </span><span class="kw">get_insee_idbank</span>(sel<span class="op">$</span>idbank)</span></code></pre></div>
-<pre><code>1/1 - Data download &amp; Dataframe build :</code></pre>
 <pre><code>
   |                                                                            
   |                                                                      |   0%
@@ -646,23 +616,12 @@ n&#39;est pas multiple de la taille d&#39;un objet plus court</code></pre>
   |===============================================                       |  67%
   |                                                                            
   |======================================================================| 100%</code></pre>
-<pre><code></code></pre>
-<pre><code>Data cached : C:\Users\claude\AppData\Local\Temp\RtmpUPn2Vv/3357e8ff41578c27f27ef1411a5fa540.rds</code></pre>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="04-API-Etudiants2021.html#cb20-1"></a><span class="co">#str(don)</span></span></code></pre></div>
 </div>
 <div id="création-dun-tableau" class="section level3" number="4.1.2">
 <h3><span class="header-section-number">4.1.2</span> Création d’un tableau</h3>
 <p><em>Créer et enregistrer le tableau et enregistrer dans Data</em></p>
 <p>On nettoie les données pour ne garder que les variables qui nous interessent.</p>
 <p>Puis on transforme la variable <strong>IDBANK</strong> en une variable <strong>AGE</strong>.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="04-API-Etudiants2021.html#cb21-1"></a>don2 &lt;-<span class="st"> </span>don <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="dt">TRIMESTRE =</span> DATE, <span class="dt">TXCHOMAGE =</span> OBS_VALUE, <span class="dt">IDBANK =</span> IDBANK)</span>
-<span id="cb21-2"><a href="04-API-Etudiants2021.html#cb21-2"></a>                     </span>
-<span id="cb21-3"><a href="04-API-Etudiants2021.html#cb21-3"></a>don2<span class="op">$</span>AGE &lt;-<span class="st"> </span><span class="kw">fct_recode</span>(don2<span class="op">$</span>IDBANK, <span class="st">&quot;15-24 ans&quot;</span> =<span class="st"> &quot;001688536&quot;</span>,</span>
-<span id="cb21-4"><a href="04-API-Etudiants2021.html#cb21-4"></a>                                    <span class="st">&quot;25-49 ans&quot;</span> =<span class="st"> &quot;001688528&quot;</span>,</span>
-<span id="cb21-5"><a href="04-API-Etudiants2021.html#cb21-5"></a>                                    <span class="st">&quot;50 ans et plus&quot;</span> =<span class="st"> &quot;001688530&quot;</span>)</span>
-<span id="cb21-6"><a href="04-API-Etudiants2021.html#cb21-6"></a></span>
-<span id="cb21-7"><a href="04-API-Etudiants2021.html#cb21-7"></a></span>
-<span id="cb21-8"><a href="04-API-Etudiants2021.html#cb21-8"></a><span class="kw">kable</span>(<span class="kw">head</span>(don2))</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -712,26 +671,15 @@ n&#39;est pas multiple de la taille d&#39;un objet plus court</code></pre>
 </tbody>
 </table>
 <p>Ligne de programme pour sauvegarder le tableau dans le sous-dossier <em>Data</em> au format .csv</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="04-API-Etudiants2021.html#cb22-1"></a><span class="kw">write.csv2</span>(don2, <span class="dt">file =</span> <span class="st">&quot;data/data.csv&quot;</span>)</span></code></pre></div>
 </div>
 <div id="création-dune-figure" class="section level3" number="4.1.3">
 <h3><span class="header-section-number">4.1.3</span> Création d’une figure</h3>
 <p>Faire un graphique et enregistrer dans Image</p>
 <p>On charge la librairie <strong>ggplot2</strong> qui va nous servir pour faire le graphique</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="04-API-Etudiants2021.html#cb23-1"></a><span class="kw">library</span>(ggplot2)</span></code></pre></div>
 <p>On va représenter le taux de chômage depuis 1975 selon l’âge des chômeurs. Cela va nous permettre de comparer l’évolution de ces différentes séries.</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="04-API-Etudiants2021.html#cb24-1"></a>graphe &lt;-<span class="st"> </span><span class="kw">ggplot</span>(don2)<span class="op">+</span><span class="st"> </span></span>
-<span id="cb24-2"><a href="04-API-Etudiants2021.html#cb24-2"></a><span class="st">  </span><span class="kw">aes</span> (<span class="dt">x=</span>TRIMESTRE, <span class="dt">y=</span>TXCHOMAGE, <span class="dt">color=</span>AGE) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb24-3"><a href="04-API-Etudiants2021.html#cb24-3"></a><span class="st">  </span><span class="kw">geom_line</span>() <span class="op">+</span><span class="st"> </span></span>
-<span id="cb24-4"><a href="04-API-Etudiants2021.html#cb24-4"></a><span class="st">  </span><span class="kw">ggtitle</span>(<span class="dt">label=</span><span class="st">&quot;Taux de chômage en France Métropolitaine selon l&#39;âge&quot;</span>, <span class="dt">subtitle =</span> <span class="st">&quot;Source : INSEE&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb24-5"><a href="04-API-Etudiants2021.html#cb24-5"></a><span class="st">  </span><span class="kw">scale_x_date</span>(<span class="st">&quot;Données trimestrielles&quot;</span>) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb24-6"><a href="04-API-Etudiants2021.html#cb24-6"></a><span class="st">  </span><span class="kw">scale_y_continuous</span>(<span class="st">&quot;Taux de chômage&quot;</span>, <span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="ot">NA</span>))</span>
-<span id="cb24-7"><a href="04-API-Etudiants2021.html#cb24-7"></a>graphe</span></code></pre></div>
 <p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-11-1.svg" width="672" /></p>
 <p>Sur ce graphique, on observe en premier lieu que le taux de chômage chez les jeunes est bien supérieur à celui des 25-49 ans ou celui des 50 ans et plus. De plus, c’est également celui qui connaît les plus fortes variations négatives comme positives depuis 1975.</p>
 <p>Le taux de chômage chez les 25-49 ans et chez les plus de 50 ans est similaire. Cependant, celui des 50 ans et plus reste le plus bas sur toute la période.</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="04-API-Etudiants2021.html#cb25-1"></a><span class="kw">ggsave</span>(<span class="st">&quot;mongraphe.png&quot;</span>, <span class="dt">plot =</span> graphe, <span class="dt">path =</span> <span class="st">&quot;img/&quot;</span>)</span></code></pre></div>
-<pre><code>Saving 7 x 5 in image</code></pre>
 </div>
 <div id="conclusion" class="section level3" number="4.1.4">
 <h3><span class="header-section-number">4.1.4</span> Conclusion</h3>
@@ -743,62 +691,41 @@ n&#39;est pas multiple de la taille d&#39;un objet plus court</code></pre>
 </div>
 <div id="mohadji-m." class="section level2" number="4.2">
 <h2><span class="header-section-number">4.2</span> Mohadji M.</h2>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="04-API-Etudiants2021.html#cb27-1"></a><span class="co"># Chargement des données de L&#39;INSEE</span></span>
-<span id="cb27-2"><a href="04-API-Etudiants2021.html#cb27-2"></a><span class="kw">library</span>(insee)</span>
-<span id="cb27-3"><a href="04-API-Etudiants2021.html#cb27-3"></a>Esp &lt;-<span class="st"> </span><span class="kw">get_dataset_list</span>()</span></code></pre></div>
-<pre><code>Cached data has been used</code></pre>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="04-API-Etudiants2021.html#cb29-1"></a>Esp</span></code></pre></div>
 <pre><code># A tibble: 197 x 5
    id        Name.fr               Name.en               url            n_series
    &lt;chr&gt;     &lt;chr&gt;                 &lt;chr&gt;                 &lt;chr&gt;             &lt;dbl&gt;
- 1 BALANCE-~ Balance des paiements Balance of payments   https://www.i~      197
- 2 CHOMAGE-~ Chômage, taux de chô~ Unemployment, unempl~ https://www.i~      166
- 3 CLIMAT-A~ Indicateurs synthéti~ Business climate com~ https://www.i~        3
- 4 CNA-2010~ Consommation des mén~ Households&#39; consumpt~ https://www.i~     2247
- 5 CNA-2010~ Dépenses de consomma~ Final consumption ex~ https://www.i~     1391
- 6 CNA-2010~ Comptes de productio~ Production and opera~ https://www.i~     2739
- 7 CNA-2010~ Comptes des secteurs~ Institutional sector~ https://www.i~     1173
- 8 CNA-2010~ Dépenses des adminis~ General government e~ https://www.i~     4400
- 9 CNA-2010~ Dette et déficit des~ Maastricht general g~ https://www.i~       72
-10 CNA-2010~ Emploi intérieur, du~ Domestic employment,~ https://www.i~      702
-# ... with 187 more rows</code></pre>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="04-API-Etudiants2021.html#cb31-1"></a>Esp1 &lt;-<span class="st"> </span><span class="kw">get_idbank_list</span>(<span class="st">&quot;VOV-2015-COMMERCE&quot;</span>)</span></code></pre></div>
-<pre><code>Cached data has been used</code></pre>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="04-API-Etudiants2021.html#cb33-1"></a>Esp2&lt;-<span class="st"> </span><span class="kw">get_insee_idbank</span>(<span class="st">&quot;010543195&quot;</span>)</span></code></pre></div>
-<pre><code>1/1 - Data download &amp; Dataframe build :</code></pre>
+ 1 BALANCE-… Balance des paiements Balance of payments   https://www.i…      197
+ 2 CHOMAGE-… Chômage, taux de chô… Unemployment, unempl… https://www.i…      166
+ 3 CLIMAT-A… Indicateurs synthéti… Business climate com… https://www.i…        3
+ 4 CNA-2010… Consommation des mén… Households&#39; consumpt… https://www.i…     2247
+ 5 CNA-2010… Dépenses de consomma… Final consumption ex… https://www.i…     1391
+ 6 CNA-2010… Comptes de productio… Production and opera… https://www.i…     2739
+ 7 CNA-2010… Comptes des secteurs… Institutional sector… https://www.i…     1173
+ 8 CNA-2010… Dépenses des adminis… General government e… https://www.i…     4400
+ 9 CNA-2010… Dette et déficit des… Maastricht general g… https://www.i…       72
+10 CNA-2010… Emploi intérieur, du… Domestic employment,… https://www.i…      702
+# … with 187 more rows</code></pre>
 <pre><code>
   |                                                                            
   |                                                                      |   0%
   |                                                                            
   |======================================================================| 100%</code></pre>
-<pre><code></code></pre>
-<pre><code>Data cached : C:\Users\claude\AppData\Local\Temp\RtmpUPn2Vv/8078a727955e08e4da4878cd998ed4ef.rds</code></pre>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="04-API-Etudiants2021.html#cb38-1"></a>Esp2</span></code></pre></div>
 <pre><code># A tibble: 192 x 16
    DATE       TIME_PERIOD OBS_VALUE OBS_STATUS OBS_QUAL OBS_TYPE IDBANK FREQ 
    &lt;date&gt;     &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;    &lt;chr&gt;    &lt;chr&gt;  &lt;chr&gt;
- 1 2020-12-01 2020-12         100.  A          DEF      A        01054~ M    
- 2 2020-11-01 2020-11          96.5 A          DEF      A        01054~ M    
- 3 2020-10-01 2020-10          98.0 A          DEF      A        01054~ M    
- 4 2020-09-01 2020-09         100.  A          DEF      A        01054~ M    
- 5 2020-08-01 2020-08         107.  A          DEF      A        01054~ M    
- 6 2020-07-01 2020-07          90.5 A          DEF      A        01054~ M    
- 7 2020-06-01 2020-06          94.8 A          DEF      A        01054~ M    
- 8 2020-05-01 2020-05          77.6 A          DEF      A        01054~ M    
- 9 2020-04-01 2020-04          54.2 A          DEF      A        01054~ M    
-10 2020-03-01 2020-03          81.4 A          DEF      A        01054~ M    
-# ... with 182 more rows, and 8 more variables: TITLE_FR &lt;chr&gt;, TITLE_EN &lt;chr&gt;,
+ 1 2020-12-01 2020-12         100.  A          DEF      A        01054… M    
+ 2 2020-11-01 2020-11          96.5 A          DEF      A        01054… M    
+ 3 2020-10-01 2020-10          98.0 A          DEF      A        01054… M    
+ 4 2020-09-01 2020-09         100.  A          DEF      A        01054… M    
+ 5 2020-08-01 2020-08         107.  A          DEF      A        01054… M    
+ 6 2020-07-01 2020-07          90.5 A          DEF      A        01054… M    
+ 7 2020-06-01 2020-06          94.8 A          DEF      A        01054… M    
+ 8 2020-05-01 2020-05          77.6 A          DEF      A        01054… M    
+ 9 2020-04-01 2020-04          54.2 A          DEF      A        01054… M    
+10 2020-03-01 2020-03          81.4 A          DEF      A        01054… M    
+# … with 182 more rows, and 8 more variables: TITLE_FR &lt;chr&gt;, TITLE_EN &lt;chr&gt;,
 #   LAST_UPDATE &lt;chr&gt;, UNIT_MEASURE &lt;chr&gt;, UNIT_MULT &lt;chr&gt;, REF_AREA &lt;chr&gt;,
 #   DECIMALS &lt;chr&gt;, OBS_REV &lt;chr&gt;</code></pre>
-<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="04-API-Etudiants2021.html#cb40-1"></a>Graph &lt;-<span class="st"> </span>Esp2 [<span class="kw">order</span>(Esp2<span class="op">$</span>DATE),<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</span>
-<span id="cb40-2"><a href="04-API-Etudiants2021.html#cb40-2"></a><span class="kw">plot</span> (Esp2<span class="op">$</span>DATE,Esp2<span class="op">$</span>OBS_VALUE,</span>
-<span id="cb40-3"><a href="04-API-Etudiants2021.html#cb40-3"></a>      <span class="dt">type =</span> <span class="st">&quot;l&quot;</span>,</span>
-<span id="cb40-4"><a href="04-API-Etudiants2021.html#cb40-4"></a>      <span class="dt">col =</span> <span class="st">&quot;blue&quot;</span>,</span>
-<span id="cb40-5"><a href="04-API-Etudiants2021.html#cb40-5"></a>      <span class="dt">ylab =</span> <span class="st">&quot;Indice de volume de ventes&quot;</span>,</span>
-<span id="cb40-6"><a href="04-API-Etudiants2021.html#cb40-6"></a>      <span class="dt">xlab =</span> <span class="st">&quot;Année&quot;</span>,</span>
-<span id="cb40-7"><a href="04-API-Etudiants2021.html#cb40-7"></a>      <span class="dt">main =</span> <span class="st">&quot;Evolution de l&#39;indice de volume de ventes à distance&quot;</span>,</span>
-<span id="cb40-8"><a href="04-API-Etudiants2021.html#cb40-8"></a>      <span class="dt">sub =</span> <span class="st">&quot;Source Insee&quot;</span></span>
-<span id="cb40-9"><a href="04-API-Etudiants2021.html#cb40-9"></a>      )</span></code></pre></div>
 <p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-16-1.svg" width="672" /></p>
 <hr />
 </div>
@@ -818,79 +745,46 @@ n&#39;est pas multiple de la taille d&#39;un objet plus court</code></pre>
 </div>
 <div id="création-dun-tableau-1" class="section level3" number="4.3.2">
 <h3><span class="header-section-number">4.3.2</span> Création d’un tableau</h3>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="04-API-Etudiants2021.html#cb41-1"></a>AAAAAA&lt;-<span class="kw">get_dataset_list</span>()</span></code></pre></div>
-<pre><code>Cached data has been used</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="04-API-Etudiants2021.html#cb43-1"></a>AAAAAA</span></code></pre></div>
 <pre><code># A tibble: 197 x 5
    id        Name.fr               Name.en               url            n_series
    &lt;chr&gt;     &lt;chr&gt;                 &lt;chr&gt;                 &lt;chr&gt;             &lt;dbl&gt;
- 1 BALANCE-~ Balance des paiements Balance of payments   https://www.i~      197
- 2 CHOMAGE-~ Chômage, taux de chô~ Unemployment, unempl~ https://www.i~      166
- 3 CLIMAT-A~ Indicateurs synthéti~ Business climate com~ https://www.i~        3
- 4 CNA-2010~ Consommation des mén~ Households&#39; consumpt~ https://www.i~     2247
- 5 CNA-2010~ Dépenses de consomma~ Final consumption ex~ https://www.i~     1391
- 6 CNA-2010~ Comptes de productio~ Production and opera~ https://www.i~     2739
- 7 CNA-2010~ Comptes des secteurs~ Institutional sector~ https://www.i~     1173
- 8 CNA-2010~ Dépenses des adminis~ General government e~ https://www.i~     4400
- 9 CNA-2010~ Dette et déficit des~ Maastricht general g~ https://www.i~       72
-10 CNA-2010~ Emploi intérieur, du~ Domestic employment,~ https://www.i~      702
-# ... with 187 more rows</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="04-API-Etudiants2021.html#cb45-1"></a>BBBBBB&lt;-<span class="kw">get_idbank_list</span>(<span class="st">&quot;TCRED-SANTE-PERSONNELS&quot;</span>) </span></code></pre></div>
-<pre><code>Cached data has been used</code></pre>
-<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="04-API-Etudiants2021.html#cb47-1"></a><span class="co">#str(BBBBBB)</span></span></code></pre></div>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb48-1"><a href="04-API-Etudiants2021.html#cb48-1"></a>CCCCCC&lt;-<span class="kw">get_insee_idbank</span>(<span class="st">&quot;001724192&quot;</span>)</span></code></pre></div>
-<pre><code>1/1 - Data download &amp; Dataframe build :</code></pre>
+ 1 BALANCE-… Balance des paiements Balance of payments   https://www.i…      197
+ 2 CHOMAGE-… Chômage, taux de chô… Unemployment, unempl… https://www.i…      166
+ 3 CLIMAT-A… Indicateurs synthéti… Business climate com… https://www.i…        3
+ 4 CNA-2010… Consommation des mén… Households&#39; consumpt… https://www.i…     2247
+ 5 CNA-2010… Dépenses de consomma… Final consumption ex… https://www.i…     1391
+ 6 CNA-2010… Comptes de productio… Production and opera… https://www.i…     2739
+ 7 CNA-2010… Comptes des secteurs… Institutional sector… https://www.i…     1173
+ 8 CNA-2010… Dépenses des adminis… General government e… https://www.i…     4400
+ 9 CNA-2010… Dette et déficit des… Maastricht general g… https://www.i…       72
+10 CNA-2010… Emploi intérieur, du… Domestic employment,… https://www.i…      702
+# … with 187 more rows</code></pre>
 <pre><code>
   |                                                                            
   |                                                                      |   0%
   |                                                                            
   |======================================================================| 100%</code></pre>
-<pre><code></code></pre>
-<pre><code>Data cached : C:\Users\claude\AppData\Local\Temp\RtmpUPn2Vv/c20804a323a4665f4829f30a8fc7e1f7.rds</code></pre>
-<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="04-API-Etudiants2021.html#cb53-1"></a><span class="co">#CCCCCC</span></span></code></pre></div>
-<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="04-API-Etudiants2021.html#cb54-1"></a>CCCCCC =<span class="st"> </span><span class="kw">subset</span>(CCCCCC, <span class="dt">select =</span> <span class="op">-</span><span class="kw">c</span>(OBS_QUAL, TITLE_EN, UNIT_MULT))</span></code></pre></div>
-<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="04-API-Etudiants2021.html#cb55-1"></a>CCCCCC =<span class="st"> </span><span class="kw">subset</span>(CCCCCC, <span class="dt">select =</span> <span class="op">-</span><span class="kw">c</span>(OBS_STATUS, OBS_TYPE))</span></code></pre></div>
-<div class="sourceCode" id="cb56"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb56-1"><a href="04-API-Etudiants2021.html#cb56-1"></a>CCCCCC =<span class="st"> </span><span class="kw">subset</span>(CCCCCC, <span class="dt">select =</span> <span class="op">-</span><span class="kw">c</span>(DECIMALS, FREQ))</span></code></pre></div>
-<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="04-API-Etudiants2021.html#cb57-1"></a>CCCCCC </span></code></pre></div>
 <pre><code># A tibble: 12 x 8
    DATE       TIME_PERIOD OBS_VALUE IDBANK TITLE_FR LAST_UPDATE UNIT_MEASURE
    &lt;date&gt;     &lt;chr&gt;           &lt;dbl&gt; &lt;chr&gt;  &lt;chr&gt;    &lt;chr&gt;       &lt;chr&gt;       
- 1 2018-01-01 2018            48236 00172~ Nombre ~ 2020-04-03  INDIVIDUS   
- 2 2017-01-01 2017            48302 00172~ Nombre ~ 2020-04-03  INDIVIDUS   
- 3 2016-01-01 2016            48089 00172~ Nombre ~ 2020-04-03  INDIVIDUS   
- 4 2015-01-01 2015            47929 00172~ Nombre ~ 2020-04-03  INDIVIDUS   
- 5 2014-01-01 2014            47713 00172~ Nombre ~ 2020-04-03  INDIVIDUS   
- 6 2013-01-01 2013            47491 00172~ Nombre ~ 2020-04-03  INDIVIDUS   
- 7 2012-01-01 2012            47245 00172~ Nombre ~ 2020-04-03  INDIVIDUS   
- 8 2011-01-01 2011              NaN 00172~ Nombre ~ 2020-04-03  INDIVIDUS   
- 9 2010-01-01 2010            47683 00172~ Nombre ~ 2020-04-03  INDIVIDUS   
-10 2009-01-01 2009            47054 00172~ Nombre ~ 2020-04-03  INDIVIDUS   
-11 2008-01-01 2008            47289 00172~ Nombre ~ 2020-04-03  INDIVIDUS   
-12 2007-01-01 2007            47855 00172~ Nombre ~ 2020-04-03  INDIVIDUS   
-# ... with 1 more variable: REF_AREA &lt;chr&gt;</code></pre>
-<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="04-API-Etudiants2021.html#cb59-1"></a><span class="kw">write.table</span>(CCCCCC, <span class="st">&quot;data/Tableau.csv&quot;</span>)</span></code></pre></div>
+ 1 2018-01-01 2018            48236 00172… Nombre … 2020-04-03  INDIVIDUS   
+ 2 2017-01-01 2017            48302 00172… Nombre … 2020-04-03  INDIVIDUS   
+ 3 2016-01-01 2016            48089 00172… Nombre … 2020-04-03  INDIVIDUS   
+ 4 2015-01-01 2015            47929 00172… Nombre … 2020-04-03  INDIVIDUS   
+ 5 2014-01-01 2014            47713 00172… Nombre … 2020-04-03  INDIVIDUS   
+ 6 2013-01-01 2013            47491 00172… Nombre … 2020-04-03  INDIVIDUS   
+ 7 2012-01-01 2012            47245 00172… Nombre … 2020-04-03  INDIVIDUS   
+ 8 2011-01-01 2011              NaN 00172… Nombre … 2020-04-03  INDIVIDUS   
+ 9 2010-01-01 2010            47683 00172… Nombre … 2020-04-03  INDIVIDUS   
+10 2009-01-01 2009            47054 00172… Nombre … 2020-04-03  INDIVIDUS   
+11 2008-01-01 2008            47289 00172… Nombre … 2020-04-03  INDIVIDUS   
+12 2007-01-01 2007            47855 00172… Nombre … 2020-04-03  INDIVIDUS   
+# … with 1 more variable: REF_AREA &lt;chr&gt;</code></pre>
 </div>
 <div id="création-dune-figure-1" class="section level3" number="4.3.3">
 <h3><span class="header-section-number">4.3.3</span> Création d’une figure</h3>
-<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="04-API-Etudiants2021.html#cb60-1"></a>G=<span class="kw">ggplot</span>(CCCCCC, <span class="kw">aes</span>(<span class="dt">x=</span>TIME_PERIOD, <span class="dt">y=</span>OBS_VALUE))</span>
-<span id="cb60-2"><a href="04-API-Etudiants2021.html#cb60-2"></a><span class="co">#### CORRECTION : utiliser plutôt la date</span></span>
-<span id="cb60-3"><a href="04-API-Etudiants2021.html#cb60-3"></a>G=<span class="kw">ggplot</span>(CCCCCC, <span class="kw">aes</span>(<span class="dt">x=</span>DATE, <span class="dt">y=</span>OBS_VALUE))</span>
-<span id="cb60-4"><a href="04-API-Etudiants2021.html#cb60-4"></a><span class="co">#G</span></span></code></pre></div>
-<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="04-API-Etudiants2021.html#cb61-1"></a><span class="co">#### CORRECTION : Ajouter Geom_line</span></span>
-<span id="cb61-2"><a href="04-API-Etudiants2021.html#cb61-2"></a></span>
-<span id="cb61-3"><a href="04-API-Etudiants2021.html#cb61-3"></a>GG=G<span class="op">+</span><span class="kw">geom_point</span>()<span class="op">+</span><span class="kw">geom_line</span>()</span>
-<span id="cb61-4"><a href="04-API-Etudiants2021.html#cb61-4"></a>GG</span></code></pre></div>
-<pre><code>Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
 <p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-26-1.svg" width="672" /></p>
-<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="04-API-Etudiants2021.html#cb63-1"></a>GGG=GG<span class="op">+</span><span class="kw">ggtitle</span>(<span class="st">&quot;Évolution du nombre total de médecins en Ile-de-France en 2007-2018&quot;</span>)</span>
-<span id="cb63-2"><a href="04-API-Etudiants2021.html#cb63-2"></a></span>
-<span id="cb63-3"><a href="04-API-Etudiants2021.html#cb63-3"></a></span>
-<span id="cb63-4"><a href="04-API-Etudiants2021.html#cb63-4"></a></span>
-<span id="cb63-5"><a href="04-API-Etudiants2021.html#cb63-5"></a></span>
-<span id="cb63-6"><a href="04-API-Etudiants2021.html#cb63-6"></a>GGG</span></code></pre></div>
-<pre><code>Warning: Removed 1 rows containing missing values (geom_point).</code></pre>
 <p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-27-1.svg" width="672" /></p>
-<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="04-API-Etudiants2021.html#cb65-1"></a><span class="kw">save.image</span>(<span class="st">&quot;img/Figure.jpeg&quot;</span>)</span></code></pre></div>
 </div>
 <div id="conclusion-1" class="section level3" number="4.3.4">
 <h3><span class="header-section-number">4.3.4</span> Conclusion</h3>
@@ -909,56 +803,23 @@ Les utilisateurs nous sollicitent donc (mon tuteur, le chef de projet MOA, ou mo
 <h3><span class="header-section-number">4.4.1</span> Choix de l’API retenue</h3>
 <p>L’API retenue est Rest Countries. Elle contient des données sur les pays du monde (leur langue, leur région, leur coefficient de Gini, leur surface, leur population)</p>
 <p>Chargement des librairies</p>
-<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="04-API-Etudiants2021.html#cb66-1"></a><span class="kw">library</span>(knitr)</span>
-<span id="cb66-2"><a href="04-API-Etudiants2021.html#cb66-2"></a><span class="kw">library</span>(httr)</span>
-<span id="cb66-3"><a href="04-API-Etudiants2021.html#cb66-3"></a><span class="kw">library</span>(jsonlite)</span>
-<span id="cb66-4"><a href="04-API-Etudiants2021.html#cb66-4"></a><span class="kw">library</span>(ggplot2)</span></code></pre></div>
 <p>Chargement de l’API grâce à la commande GET</p>
-<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="04-API-Etudiants2021.html#cb67-1"></a>plante &lt;-<span class="kw">GET</span>(<span class="st">&quot;https://restcountries.eu/rest/v2&quot;</span>)</span>
-<span id="cb67-2"><a href="04-API-Etudiants2021.html#cb67-2"></a>plante</span></code></pre></div>
 <pre><code>Response [https://restcountries.eu/rest/v2]
-  Date: 2021-03-19 16:22
+  Date: 2021-03-20 13:12
   Status: 200
   Content-Type: application/json;charset=utf-8
   Size: 264 kB</code></pre>
-<div class="sourceCode" id="cb69"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb69-1"><a href="04-API-Etudiants2021.html#cb69-1"></a><span class="co">#str(plante)</span></span></code></pre></div>
 <p>Conversion du contenu de toto en mode character</p>
-<div class="sourceCode" id="cb70"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb70-1"><a href="04-API-Etudiants2021.html#cb70-1"></a>plante2&lt;-<span class="kw">rawToChar</span>(plante<span class="op">$</span>content)</span></code></pre></div>
-<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="04-API-Etudiants2021.html#cb71-1"></a><span class="co">#str(plante2)</span></span></code></pre></div>
 <p>Conversion en données utilisables pour R grâce à la fonction JSON</p>
-<div class="sourceCode" id="cb72"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb72-1"><a href="04-API-Etudiants2021.html#cb72-1"></a>plante3&lt;-<span class="st"> </span><span class="kw">fromJSON</span>(plante2)</span>
-<span id="cb72-2"><a href="04-API-Etudiants2021.html#cb72-2"></a><span class="co">#str(plante3) (en commentaire car génère trop de ligne)</span></span></code></pre></div>
 <p>Sélection des colonnes qui nous intérèssent.</p>
-<div class="sourceCode" id="cb73"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb73-1"><a href="04-API-Etudiants2021.html#cb73-1"></a>Plantation &lt;-<span class="st"> </span>plante3[,<span class="kw">c</span>(<span class="st">&quot;name&quot;</span>,<span class="st">&quot;capital&quot;</span>,<span class="st">&quot;region&quot;</span>,<span class="st">&quot;population&quot;</span>,<span class="st">&quot;area&quot;</span>,<span class="st">&quot;gini&quot;</span>)]</span></code></pre></div>
 <p>Nous avons la population et la surface de chaque pays. Créeons la variable Densité grâce à la formule suivante.</p>
-<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="04-API-Etudiants2021.html#cb74-1"></a>Plantation<span class="op">$</span>DensPop&lt;-Plantation<span class="op">$</span>population<span class="op">/</span>Plantation<span class="op">$</span>area</span></code></pre></div>
-<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="04-API-Etudiants2021.html#cb75-1"></a><span class="kw">summary</span>(Plantation<span class="op">$</span>DensPop)</span></code></pre></div>
 <pre><code>    Min.  1st Qu.   Median     Mean  3rd Qu.     Max.     NA&#39;s 
     0.00    30.35    81.84   414.34   202.26 21636.67       10 </code></pre>
 <p>Nous avons la répartition en quartile de la densité de la population pour tous les pays. Nous voulons regrouper ces valeurs en catégories. Nous créeons donc la variable qualitative DensPop2 qui indiquera le niveau de densité du pays.</p>
-<div class="sourceCode" id="cb77"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb77-1"><a href="04-API-Etudiants2021.html#cb77-1"></a>DensPop22&lt;-Plantation<span class="op">$</span>DensPop</span>
-<span id="cb77-2"><a href="04-API-Etudiants2021.html#cb77-2"></a>Plantation<span class="op">$</span>DensPop2&lt;-<span class="kw">cut</span>(Plantation<span class="op">$</span>DensPop, <span class="dt">breaks=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="fl">30.35</span>,<span class="fl">81.84</span>,<span class="fl">414.34</span>,<span class="fl">21636.67</span>))</span>
-<span id="cb77-3"><a href="04-API-Etudiants2021.html#cb77-3"></a></span>
-<span id="cb77-4"><a href="04-API-Etudiants2021.html#cb77-4"></a><span class="kw">levels</span>(Plantation<span class="op">$</span>DensPop2)&lt;-<span class="kw">c</span>(<span class="st">&quot;Très faible densité&quot;</span>,<span class="st">&quot;Faible densité&quot;</span>,<span class="st">&quot;Forte densité&quot;</span>, <span class="st">&quot;Très forte densité&quot;</span>)</span>
-<span id="cb77-5"><a href="04-API-Etudiants2021.html#cb77-5"></a><span class="co">#Plantation$DensPop2</span></span></code></pre></div>
 </div>
 <div id="création-dun-tableau-2" class="section level3" number="4.4.2">
 <h3><span class="header-section-number">4.4.2</span> Création d’un tableau</h3>
 <p>Nous souhaitons obsever pour chaque pays d’Afrique (uniquement), quel est le niveau de densité par pays. Puis on enregistre le tableau.</p>
-<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="04-API-Etudiants2021.html#cb78-1"></a>Semi&lt;-<span class="st"> </span>Plantation[Plantation<span class="op">$</span>region<span class="op">==</span><span class="st">&quot;Africa&quot;</span>,<span class="kw">c</span>(<span class="st">&quot;name&quot;</span>, <span class="st">&quot;DensPop2&quot;</span>)]</span>
-<span id="cb78-2"><a href="04-API-Etudiants2021.html#cb78-2"></a></span>
-<span id="cb78-3"><a href="04-API-Etudiants2021.html#cb78-3"></a></span>
-<span id="cb78-4"><a href="04-API-Etudiants2021.html#cb78-4"></a><span class="kw">write.table</span>(Semi, </span>
-<span id="cb78-5"><a href="04-API-Etudiants2021.html#cb78-5"></a>              <span class="st">&quot;data/Densité_Pays_Afrique.csv&quot;</span>, </span>
-<span id="cb78-6"><a href="04-API-Etudiants2021.html#cb78-6"></a>              <span class="dt">row.names =</span> F, </span>
-<span id="cb78-7"><a href="04-API-Etudiants2021.html#cb78-7"></a>              <span class="dt">sep=</span><span class="st">&quot;;&quot;</span>, </span>
-<span id="cb78-8"><a href="04-API-Etudiants2021.html#cb78-8"></a>              <span class="dt">dec =</span> <span class="st">&quot;.&quot;</span>, </span>
-<span id="cb78-9"><a href="04-API-Etudiants2021.html#cb78-9"></a>              <span class="dt">fileEncoding =</span> <span class="st">&quot;UTF-8&quot;</span>)</span>
-<span id="cb78-10"><a href="04-API-Etudiants2021.html#cb78-10"></a></span>
-<span id="cb78-11"><a href="04-API-Etudiants2021.html#cb78-11"></a> <span class="co">#Au format interne de R (.Rdata ou .RDS)</span></span>
-<span id="cb78-12"><a href="04-API-Etudiants2021.html#cb78-12"></a>  <span class="kw">saveRDS</span>(Semi, <span class="st">&quot;data/esp_vie_femme.Rdata&quot;</span>)</span>
-<span id="cb78-13"><a href="04-API-Etudiants2021.html#cb78-13"></a>  </span>
-<span id="cb78-14"><a href="04-API-Etudiants2021.html#cb78-14"></a>  Semi</span></code></pre></div>
 <pre><code># A tibble: 60 x 2
    name                           DensPop2           
    &lt;chr&gt;                          &lt;fct&gt;              
@@ -972,22 +833,11 @@ Les utilisateurs nous sollicitent donc (mon tuteur, le chef de projet MOA, ou mo
  8 Cameroon                       Faible densité     
  9 Cabo Verde                     Forte densité      
 10 Central African Republic       Très faible densité
-# ... with 50 more rows</code></pre>
+# … with 50 more rows</code></pre>
 </div>
 <div id="création-dune-figure-2" class="section level3" number="4.4.3">
 <h3><span class="header-section-number">4.4.3</span> Création d’une figure</h3>
 <p>Nous avons choisi de faire une boxplot du niveau d’inégalité par région. Nous observons que la région où l’inégalité est la plus grand est en Amérique. On ne parle pas ici de la région la plus pauvre, mais bien de la région qui contient les plus grandes inégalités. Nous notons que de nombreuses données sont manquantes pour le coefficient de Gini.</p>
-<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="04-API-Etudiants2021.html#cb80-1"></a>p=<span class="st"> </span><span class="kw">ggplot</span>(Plantation, <span class="kw">aes</span>(<span class="dt">x=</span>region, <span class="dt">y=</span>gini)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_boxplot</span>() <span class="op">+</span><span class="st"> </span><span class="kw">xlab</span>(<span class="st">&quot;Niveau d&#39;inégalité par région (indice de Gini)&quot;</span>)</span>
-<span id="cb80-2"><a href="04-API-Etudiants2021.html#cb80-2"></a></span>
-<span id="cb80-3"><a href="04-API-Etudiants2021.html#cb80-3"></a><span class="co">#(3) Sauvegarde le graphique </span></span>
-<span id="cb80-4"><a href="04-API-Etudiants2021.html#cb80-4"></a><span class="kw">ggsave</span>(<span class="dt">filename =</span> <span class="st">&quot;img/gini_par_reg.png&quot;</span>, </span>
-<span id="cb80-5"><a href="04-API-Etudiants2021.html#cb80-5"></a>       <span class="dt">plot =</span> p, </span>
-<span id="cb80-6"><a href="04-API-Etudiants2021.html#cb80-6"></a>       <span class="dt">device =</span> <span class="st">&quot;png&quot;</span>, </span>
-<span id="cb80-7"><a href="04-API-Etudiants2021.html#cb80-7"></a>       <span class="dt">width =</span> <span class="dv">6</span>, </span>
-<span id="cb80-8"><a href="04-API-Etudiants2021.html#cb80-8"></a>       <span class="dt">height =</span> <span class="dv">6</span>)</span></code></pre></div>
-<pre><code>Warning: Removed 97 rows containing non-finite values (stat_boxplot).</code></pre>
-<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="04-API-Etudiants2021.html#cb82-1"></a>p</span></code></pre></div>
-<pre><code>Warning: Removed 97 rows containing non-finite values (stat_boxplot).</code></pre>
 <p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-40-1.svg" width="672" /></p>
 </div>
 <div id="conclusion-2" class="section level3" number="4.4.4">
@@ -1009,12 +859,6 @@ Dans ce cas des indicateurs de développement pourraient être utilisés afin d�
 <h4><span class="header-section-number">4.5.1.1</span> a) Installation de WDI</h4>
 <p>WDI est publié sur CRAN (site web où l’on peut trouver et télécharger du matériel concernant le logiciel de statistiques R) et peut donc être installé en tapant simplement ceci dans la console R : <em>install.packages(‘WDI’)</em></p>
 <p>Afin d’exploiter les données de WDI, il est nécessaire de charger les packages suivants pour l’analyse des données.</p>
-<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="04-API-Etudiants2021.html#cb84-1"></a><span class="kw">library</span>(httr)</span>
-<span id="cb84-2"><a href="04-API-Etudiants2021.html#cb84-2"></a><span class="kw">library</span>(jsonlite)</span>
-<span id="cb84-3"><a href="04-API-Etudiants2021.html#cb84-3"></a><span class="kw">library</span>(knitr)</span>
-<span id="cb84-4"><a href="04-API-Etudiants2021.html#cb84-4"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb84-5"><a href="04-API-Etudiants2021.html#cb84-5"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb84-6"><a href="04-API-Etudiants2021.html#cb84-6"></a><span class="kw">library</span>(WDI)</span></code></pre></div>
 </div>
 </div>
 <div id="création-dun-tableau-3" class="section level3" number="4.5.2">
@@ -1022,16 +866,11 @@ Dans ce cas des indicateurs de développement pourraient être utilisés afin d�
 <div id="a-chargement-des-données" class="section level4" number="4.5.2.1">
 <h4><span class="header-section-number">4.5.2.1</span> a) Chargement des données</h4>
 <p>On commence par charger les données de WDI dans un “catalogue”.</p>
-<div class="sourceCode" id="cb85"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb85-1"><a href="04-API-Etudiants2021.html#cb85-1"></a>catalogue &lt;-WDI_data</span></code></pre></div>
-<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="04-API-Etudiants2021.html#cb86-1"></a><span class="co">#str(catalogue,max.level = 1)</span></span></code></pre></div>
 <p>Après avoir chargé les données, on constate que ces dernères sont regroupées en 2 listes, une pour les indicateurs (series) et une autre pour les locatisation géographiques (country).</p>
 </div>
 <div id="b-choix-des-données-et-conception-du-tableau" class="section level4" number="4.5.2.2">
 <h4><span class="header-section-number">4.5.2.2</span> b) Choix des données et Conception du tableau</h4>
-<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="04-API-Etudiants2021.html#cb87-1"></a>pays&lt;-catalogue<span class="op">$</span>country</span>
-<span id="cb87-2"><a href="04-API-Etudiants2021.html#cb87-2"></a><span class="kw">dim</span>(pays)</span></code></pre></div>
 <pre><code>[1] 304   9</code></pre>
-<div class="sourceCode" id="cb89"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb89-1"><a href="04-API-Etudiants2021.html#cb89-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(pays))</span></code></pre></div>
 <table>
 <colgroup>
 <col width="4%" />
@@ -1127,10 +966,7 @@ Dans ce cas des indicateurs de développement pourraient être utilisés afin d�
 </tbody>
 </table>
 <p>Le tableau des pays comporte 304 observations de 9 types différent (pays, capitales, régions…).</p>
-<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="04-API-Etudiants2021.html#cb90-1"></a>indicateurs&lt;-catalogue<span class="op">$</span>series</span>
-<span id="cb90-2"><a href="04-API-Etudiants2021.html#cb90-2"></a><span class="kw">dim</span>(indicateurs)</span></code></pre></div>
 <pre><code>[1] 17467     5</code></pre>
-<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="04-API-Etudiants2021.html#cb92-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(indicateurs))</span></code></pre></div>
 <table>
 <colgroup>
 <col width="6%" />
@@ -1195,8 +1031,6 @@ Dans ce cas des indicateurs de développement pourraient être utilisés afin d�
 </table>
 <p>Le tableau des indicateurs comporte 17467 observations.</p>
 <p>L’un des rôles de la banque mondial est de pallier l’absence ou la faible capacité d’aide financière de certains gouvernements, afin de permettre le développement d’un pays. Mon alternance concernant les moyens de financement et d’investissement de projets et d’actifs partout dans le monde. Je peux effectuer une analyse sur ce sujet. Il me faut dans un premier trouver les indicateurs sur ce sujet, en utilisant le mot “banks”, dans ma recherche d’indicateurs.</p>
-<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="04-API-Etudiants2021.html#cb93-1"></a>vars&lt;-<span class="kw">WDIsearch</span>(<span class="dt">string=</span><span class="st">&#39;banks&#39;</span>, <span class="dt">field=</span><span class="st">&#39;name&#39;</span>, <span class="dt">cache=</span><span class="ot">NULL</span>)</span>
-<span id="cb93-2"><a href="04-API-Etudiants2021.html#cb93-2"></a><span class="kw">head</span>(vars)</span></code></pre></div>
 <pre><code>     indicator            
 [1,] &quot;DT.AMT.PCBK.CD&quot;     
 [2,] &quot;DT.AMT.PCBK.GG.CD&quot;  
@@ -1215,25 +1049,12 @@ Dans ce cas des indicateurs de développement pourraient être utilisés afin d�
 <ul>
 <li>Foreign banks among total banks (%), qui représente le pourcentage de banques étrangères parmi les banques présentes dans un pays pourra être utilisé / <em>GFDD.OI.15</em></li>
 </ul>
-<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="04-API-Etudiants2021.html#cb95-1"></a>Banque_Etrangere =<span class="st"> </span><span class="kw">WDI</span>(<span class="dt">indicator =</span><span class="st">&quot;GFDD.OI.15&quot;</span>, <span class="dt">country =</span><span class="st">&quot;all&quot;</span>, <span class="dt">start =</span> <span class="dv">2000</span>, <span class="dt">end =</span>  <span class="dv">2020</span>)</span></code></pre></div>
 <p>On crée un tableau avec l’indicateur choisi pour l’année 2013 (dernière année avec le plus de données pour la majorité des pays). Dans la mesure où CACIB est principalement implanté en France, aux Etats-Unis, au Royaume-Uni, à Singapour et en Inde, on prendra les données de ces 5pays.</p>
-<div class="sourceCode" id="cb96"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb96-1"><a href="04-API-Etudiants2021.html#cb96-1"></a>Tableau&lt;-<span class="st"> </span><span class="kw">WDI</span>(<span class="dt">indicator =</span> <span class="kw">c</span>(<span class="st">&quot;Banque_etr&quot;</span>=<span class="st">&quot;GFDD.OI.15&quot;</span>), <span class="dt">start =</span> <span class="dv">2013</span>, <span class="dt">end =</span> <span class="dv">2013</span>, <span class="dt">country=</span><span class="kw">c</span>(<span class="st">&quot;FR&quot;</span>,<span class="st">&quot;GB&quot;</span>,<span class="st">&quot;US&quot;</span>,<span class="st">&quot;IND&quot;</span>,<span class="st">&quot;SG&quot;</span>))</span></code></pre></div>
 <p>On peut télécharger le tableau</p>
-<div class="sourceCode" id="cb97"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb97-1"><a href="04-API-Etudiants2021.html#cb97-1"></a><span class="kw">write.csv</span>(Tableau,<span class="dt">file=</span><span class="st">&quot;Tableau.xlsx&quot;</span>, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="création-dune-figure-3" class="section level3" number="4.5.3">
 <h3><span class="header-section-number">4.5.3</span> Création d’une figure</h3>
-<div class="sourceCode" id="cb98"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb98-1"><a href="04-API-Etudiants2021.html#cb98-1"></a>df&lt;-<span class="kw">data.frame</span>(<span class="dt">pays=</span><span class="kw">c</span>(<span class="st">&quot;France&quot;</span>,<span class="st">&quot;GB&quot;</span>,<span class="st">&quot;Inde&quot;</span>,<span class="st">&quot;Singapour&quot;</span>,<span class="st">&quot;US&quot;</span>), </span>
-<span id="cb98-2"><a href="04-API-Etudiants2021.html#cb98-2"></a>               <span class="dt">BanquEtrangere=</span><span class="kw">c</span>(<span class="dv">4</span>,<span class="dv">58</span>,<span class="dv">12</span>,<span class="dv">55</span>,<span class="dv">31</span>))</span></code></pre></div>
-<div class="sourceCode" id="cb99"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb99-1"><a href="04-API-Etudiants2021.html#cb99-1"></a><span class="co">#barplot(table(df), ylab = &quot;Présence des banque étrangères en pourcentage&quot;, xlab = &quot;Pays des sièges de CACIB&quot;, col = c(&quot;pink&quot;,&quot;yellow&quot;,&quot;purple&quot;,&quot;lightblue&quot;,&quot;red&quot;))</span></span>
-<span id="cb99-2"><a href="04-API-Etudiants2021.html#cb99-2"></a></span>
-<span id="cb99-3"><a href="04-API-Etudiants2021.html#cb99-3"></a><span class="co">### Correction : figure à revoir </span><span class="al">###</span></span>
-<span id="cb99-4"><a href="04-API-Etudiants2021.html#cb99-4"></a><span class="kw">barplot</span>(df<span class="op">$</span>BanquEtrangere, </span>
-<span id="cb99-5"><a href="04-API-Etudiants2021.html#cb99-5"></a>        <span class="dt">ylab =</span> <span class="st">&quot;Présence des banque étrangères en pourcentage&quot;</span>,</span>
-<span id="cb99-6"><a href="04-API-Etudiants2021.html#cb99-6"></a>        <span class="dt">xlab =</span> <span class="st">&quot;Pays des sièges de CACIB&quot;</span>, </span>
-<span id="cb99-7"><a href="04-API-Etudiants2021.html#cb99-7"></a>        <span class="dt">col =</span> <span class="kw">c</span>(<span class="st">&quot;pink&quot;</span>,<span class="st">&quot;yellow&quot;</span>,<span class="st">&quot;purple&quot;</span>,<span class="st">&quot;lightblue&quot;</span>,<span class="st">&quot;red&quot;</span>),</span>
-<span id="cb99-8"><a href="04-API-Etudiants2021.html#cb99-8"></a>        <span class="dt">names.arg =</span> df<span class="op">$</span>pays)</span></code></pre></div>
 <p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-51-1.svg" width="672" /></p>
 <hr />
 </div>
@@ -1258,91 +1079,25 @@ Je vais pour cela exploiter la série “SERIE_LOYERS” pour étudier la variat
 </div>
 <div id="création-dun-tableau-4" class="section level3" number="4.6.2">
 <h3><span class="header-section-number">4.6.2</span> Création d’un tableau</h3>
-<div class="sourceCode" id="cb100"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb100-1"><a href="04-API-Etudiants2021.html#cb100-1"></a><span class="co"># Charger le package</span></span>
-<span id="cb100-2"><a href="04-API-Etudiants2021.html#cb100-2"></a><span class="kw">library</span>(insee)</span></code></pre></div>
 <div id="chargement-du-catalogue" class="section level4" number="4.6.2.1">
 <h4><span class="header-section-number">4.6.2.1</span> Chargement du catalogue</h4>
 <p>on crée un catalogue pour voir les tableaux disponibles :</p>
-<div class="sourceCode" id="cb101"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb101-1"><a href="04-API-Etudiants2021.html#cb101-1"></a>catalogue =<span class="st"> </span><span class="kw">get_dataset_list</span>()</span></code></pre></div>
-<pre><code>Cached data has been used</code></pre>
 </div>
 <div id="chargement-des-variables-dun-tableau" class="section level4" number="4.6.2.2">
 <h4><span class="header-section-number">4.6.2.2</span> Chargement des variables d’un tableau</h4>
 <p>On a donc besoin de la variable series_loyers pour l’exercice :</p>
-<div class="sourceCode" id="cb103"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb103-1"><a href="04-API-Etudiants2021.html#cb103-1"></a>var&lt;-<span class="kw">get_idbank_list</span> (<span class="st">&quot;SERIES_LOYERS&quot;</span>)</span></code></pre></div>
-<pre><code>Cached data has been used</code></pre>
-<div class="sourceCode" id="cb105"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb105-1"><a href="04-API-Etudiants2021.html#cb105-1"></a><span class="co"># Selectionne tous les codes de données remplissant certaines conditions</span></span>
-<span id="cb105-2"><a href="04-API-Etudiants2021.html#cb105-2"></a></span>
-<span id="cb105-3"><a href="04-API-Etudiants2021.html#cb105-3"></a>sel  =<span class="st"> </span></span>
-<span id="cb105-4"><a href="04-API-Etudiants2021.html#cb105-4"></a><span class="st">  </span><span class="kw">get_idbank_list</span>(<span class="st">&quot;SERIES_LOYERS&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb105-5"><a href="04-API-Etudiants2021.html#cb105-5"></a><span class="st">  </span><span class="kw">filter</span>(NATURE <span class="op">==</span><span class="st"> &quot;GLISSEMENT_ANNUEL&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># Choix annuel</span></span>
-<span id="cb105-6"><a href="04-API-Etudiants2021.html#cb105-6"></a><span class="st">  </span><span class="kw">filter</span>(SECTEURS_LOYERS <span class="op">==</span><span class="st"> &quot;SECTEUR_LIBRE&quot;</span>)  <span class="co"># Filtre les secteur libre</span></span></code></pre></div>
-<pre><code>Cached data has been used</code></pre>
-<div class="sourceCode" id="cb107"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb107-1"><a href="04-API-Etudiants2021.html#cb107-1"></a><span class="co"># Extrait ces données </span></span>
-<span id="cb107-2"><a href="04-API-Etudiants2021.html#cb107-2"></a>don =<span class="st"> </span></span>
-<span id="cb107-3"><a href="04-API-Etudiants2021.html#cb107-3"></a><span class="st">  </span><span class="kw">get_insee_idbank</span>(sel<span class="op">$</span>idbank) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># extraire les données</span></span>
-<span id="cb107-4"><a href="04-API-Etudiants2021.html#cb107-4"></a><span class="st">  </span><span class="kw">select</span>(<span class="dt">ANNEE =</span> DATE, <span class="dt">Variation =</span> OBS_VALUE ) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># selectionner et renommer les colonnes </span></span>
-<span id="cb107-5"><a href="04-API-Etudiants2021.html#cb107-5"></a><span class="st">  </span><span class="kw">arrange</span>(ANNEE) <span class="co"># trie par années</span></span></code></pre></div>
-<pre><code>1/1 - Data download &amp; Dataframe build :</code></pre>
 <pre><code>
   |                                                                            
   |                                                                      |   0%
   |                                                                            
   |======================================================================| 100%</code></pre>
-<pre><code></code></pre>
-<pre><code>Data cached : C:\Users\claude\AppData\Local\Temp\RtmpUPn2Vv/1c118693514a229bc40b9800cf0adb64.rds</code></pre>
-<div class="sourceCode" id="cb112"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb112-1"><a href="04-API-Etudiants2021.html#cb112-1"></a><span class="co"># Sauvgarder des données (dans le dossier spécialisé : ex.data)</span></span>
-<span id="cb112-2"><a href="04-API-Etudiants2021.html#cb112-2"></a></span>
-<span id="cb112-3"><a href="04-API-Etudiants2021.html#cb112-3"></a><span class="co">## Au format .csv</span></span>
-<span id="cb112-4"><a href="04-API-Etudiants2021.html#cb112-4"></a><span class="kw">write.table</span>(don,</span>
-<span id="cb112-5"><a href="04-API-Etudiants2021.html#cb112-5"></a>            <span class="st">&quot;data/variation_loyers.csv&quot;</span>,</span>
-<span id="cb112-6"><a href="04-API-Etudiants2021.html#cb112-6"></a>            <span class="dt">row.names =</span> F,</span>
-<span id="cb112-7"><a href="04-API-Etudiants2021.html#cb112-7"></a>            <span class="dt">sep =</span> <span class="st">&quot;;&quot;</span>,</span>
-<span id="cb112-8"><a href="04-API-Etudiants2021.html#cb112-8"></a>            <span class="dt">dec =</span> <span class="st">&quot;.&quot;</span>,</span>
-<span id="cb112-9"><a href="04-API-Etudiants2021.html#cb112-9"></a>            <span class="dt">fileEncoding =</span> <span class="st">&quot;UTF-8&quot;</span>)</span>
-<span id="cb112-10"><a href="04-API-Etudiants2021.html#cb112-10"></a><span class="co"># row.names pour eviter de prendre les entete des colonnes et l&#39;UTF-8 pour éviter la dégradation de données lors de l&#39;enregistrement</span></span>
-<span id="cb112-11"><a href="04-API-Etudiants2021.html#cb112-11"></a></span>
-<span id="cb112-12"><a href="04-API-Etudiants2021.html#cb112-12"></a><span class="co">## Au format interne de R (.Rdata ou .RDS)</span></span>
-<span id="cb112-13"><a href="04-API-Etudiants2021.html#cb112-13"></a><span class="kw">saveRDS</span>(don, <span class="st">&quot;data/variation_loyers.Rdata&quot;</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="création-dune-figure-4" class="section level3" number="4.6.3">
 <h3><span class="header-section-number">4.6.3</span> Création d’une figure</h3>
 <div id="graphique" class="section level4" number="4.6.3.1">
 <h4><span class="header-section-number">4.6.3.1</span> Graphique</h4>
-<div class="sourceCode" id="cb113"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb113-1"><a href="04-API-Etudiants2021.html#cb113-1"></a><span class="co"># Le graphique est crée en 2 temps </span></span>
-<span id="cb113-2"><a href="04-API-Etudiants2021.html#cb113-2"></a><span class="co"># 1 Je crée un objet Graph et lui affecter les instruction de création d&#39;un graphique</span></span>
-<span id="cb113-3"><a href="04-API-Etudiants2021.html#cb113-3"></a>Graph =<span class="st"> </span></span>
-<span id="cb113-4"><a href="04-API-Etudiants2021.html#cb113-4"></a><span class="st">    </span><span class="kw">ggplot</span>(don) <span class="op">+</span><span class="st"> </span><span class="co"># je fais un graphique avec le tableau don</span></span>
-<span id="cb113-5"><a href="04-API-Etudiants2021.html#cb113-5"></a><span class="st">    </span><span class="kw">aes</span>(<span class="dt">x=</span>ANNEE,<span class="dt">y=</span>Variation) <span class="op">+</span><span class="st"> </span><span class="co"># les axes </span></span>
-<span id="cb113-6"><a href="04-API-Etudiants2021.html#cb113-6"></a><span class="st">    </span><span class="kw">geom_line</span>(<span class="dt">col=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># afficher les graphique en couleur rouge</span></span>
-<span id="cb113-7"><a href="04-API-Etudiants2021.html#cb113-7"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span> <span class="st">&quot;lm&quot;</span>,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)<span class="op">+</span><span class="st"> </span><span class="co"># droite de regression linéaire et couleur bleue</span></span>
-<span id="cb113-8"><a href="04-API-Etudiants2021.html#cb113-8"></a><span class="st">    </span><span class="kw">ggtitle</span>(<span class="dt">label=</span> <span class="st">&quot;Indice des loyers secteur libre en France Métropolitaine&quot;</span>,</span>
-<span id="cb113-9"><a href="04-API-Etudiants2021.html#cb113-9"></a>            <span class="dt">subtitle =</span> <span class="st">&quot;Source : INSEE&quot;</span>)<span class="op">+</span><span class="st"> </span></span>
-<span id="cb113-10"><a href="04-API-Etudiants2021.html#cb113-10"></a><span class="st">    </span><span class="kw">scale_x_date</span>(<span class="st">&quot;Année&quot;</span>) <span class="op">+</span><span class="st"> </span><span class="co"># nommer l&#39;axe des absices</span></span>
-<span id="cb113-11"><a href="04-API-Etudiants2021.html#cb113-11"></a><span class="st">    </span><span class="kw">scale_y_continuous</span>(<span class="st">&quot;Variation des loyers en %&quot;</span>) <span class="co"># nommer l&#39;axe des ordonné</span></span>
-<span id="cb113-12"><a href="04-API-Etudiants2021.html#cb113-12"></a></span>
-<span id="cb113-13"><a href="04-API-Etudiants2021.html#cb113-13"></a></span>
-<span id="cb113-14"><a href="04-API-Etudiants2021.html#cb113-14"></a><span class="co"># 2 afficher le graph</span></span>
-<span id="cb113-15"><a href="04-API-Etudiants2021.html#cb113-15"></a>Graph</span></code></pre></div>
-<pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
 <p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-56-1.svg" width="672" /></p>
-<div class="sourceCode" id="cb115"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb115-1"><a href="04-API-Etudiants2021.html#cb115-1"></a><span class="co"># Sauvgarder la figure</span></span>
-<span id="cb115-2"><a href="04-API-Etudiants2021.html#cb115-2"></a><span class="co"># au format png</span></span>
-<span id="cb115-3"><a href="04-API-Etudiants2021.html#cb115-3"></a><span class="kw">ggsave</span>(<span class="dt">filename =</span><span class="st">&quot;img/variation_loyers.png&quot;</span>,</span>
-<span id="cb115-4"><a href="04-API-Etudiants2021.html#cb115-4"></a>       <span class="dt">plot =</span> Graph,</span>
-<span id="cb115-5"><a href="04-API-Etudiants2021.html#cb115-5"></a>       <span class="dt">device =</span> <span class="st">&quot;png&quot;</span>, <span class="co"># format de sortie</span></span>
-<span id="cb115-6"><a href="04-API-Etudiants2021.html#cb115-6"></a>       <span class="dt">width =</span> <span class="dv">6</span>,</span>
-<span id="cb115-7"><a href="04-API-Etudiants2021.html#cb115-7"></a>       <span class="dt">height =</span> <span class="dv">6</span>)</span></code></pre></div>
-<pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<div class="sourceCode" id="cb117"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb117-1"><a href="04-API-Etudiants2021.html#cb117-1"></a><span class="co"># au format pdf</span></span>
-<span id="cb117-2"><a href="04-API-Etudiants2021.html#cb117-2"></a><span class="kw">ggsave</span>(<span class="dt">filename =</span><span class="st">&quot;img/variation_loyers.pdf&quot;</span>,</span>
-<span id="cb117-3"><a href="04-API-Etudiants2021.html#cb117-3"></a>      <span class="dt">plot =</span> Graph,</span>
-<span id="cb117-4"><a href="04-API-Etudiants2021.html#cb117-4"></a>      <span class="dt">device =</span> <span class="st">&quot;pdf&quot;</span>, <span class="co"># format de sortie</span></span>
-<span id="cb117-5"><a href="04-API-Etudiants2021.html#cb117-5"></a>      <span class="dt">width =</span> <span class="dv">6</span>,</span>
-<span id="cb117-6"><a href="04-API-Etudiants2021.html#cb117-6"></a>      <span class="dt">height =</span> <span class="dv">6</span>)</span></code></pre></div>
-<pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<div class="sourceCode" id="cb119"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb119-1"><a href="04-API-Etudiants2021.html#cb119-1"></a><span class="co"># ggplot à des + à la place des pipes comme dans dplyr</span></span></code></pre></div>
 </div>
 </div>
 <div id="conclusion-3" class="section level3" number="4.6.4">
@@ -1371,16 +1126,12 @@ Cependant, ce n’est pas la première fois qu’une telle épidémie frappe le 
 <h3><span class="header-section-number">4.7.2</span> Création d’un tableau</h3>
 <div id="chargement-du-package-insee-puis-de-la-librairie" class="section level4" number="4.7.2.1">
 <h4><span class="header-section-number">4.7.2.1</span> Chargement du package Insee puis de la librairie</h4>
-<div class="sourceCode" id="cb120"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb120-1"><a href="04-API-Etudiants2021.html#cb120-1"></a><span class="kw">library</span>(insee)</span>
-<span id="cb120-2"><a href="04-API-Etudiants2021.html#cb120-2"></a><span class="kw">library</span>(tidyverse,<span class="dt">warn.conflicts =</span> F)</span></code></pre></div>
 </div>
 <div id="extraction-de-la-série-relative-au-nombre-de-deces-mensuel-en-france-à-laide-de-son-id" class="section level4" number="4.7.2.2">
 <h4><span class="header-section-number">4.7.2.2</span> Extraction de la série relative au nombre de deces mensuel en France (à l’aide de son id)</h4>
 </div>
 <div id="création-du-tableau" class="section level4" number="4.7.2.3">
 <h4><span class="header-section-number">4.7.2.3</span> Création du tableau</h4>
-<div class="sourceCode" id="cb121"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb121-1"><a href="04-API-Etudiants2021.html#cb121-1"></a>victoire1&lt;-victoire[<span class="kw">order</span>(victoire<span class="op">$</span>TIME_PERIOD),<span class="dv">2</span><span class="op">:</span><span class="dv">3</span>]</span></code></pre></div>
-<div class="sourceCode" id="cb122"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb122-1"><a href="04-API-Etudiants2021.html#cb122-1"></a><span class="kw">kable</span>(victoire1[<span class="kw">c</span>(<span class="dv">1</span><span class="op">:</span><span class="dv">5</span>),],<span class="dt">caption =</span> <span class="st">&quot;nombre deces / mois depuis le 01/01/1947 en France Métropoliitaine&quot;</span>,<span class="dt">col.names =</span> <span class="kw">c</span>(<span class="st">&#39;Année-Mois&#39;</span>,<span class="st">&#39;Nombre de Décés&#39;</span>))</span></code></pre></div>
 <table>
 <caption><span id="tab:unnamed-chunk-61">Table 4.1: </span>nombre deces / mois depuis le 01/01/1947 en France Métropoliitaine</caption>
 <thead>
@@ -1416,14 +1167,6 @@ Cependant, ce n’est pas la première fois qu’une telle épidémie frappe le 
 </div>
 <div id="le-graphique" class="section level3" number="4.7.3">
 <h3><span class="header-section-number">4.7.3</span> Le graphique</h3>
-<div class="sourceCode" id="cb123"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb123-1"><a href="04-API-Etudiants2021.html#cb123-1"></a>victoire2&lt;-victoire[<span class="kw">order</span>(victoire<span class="op">$</span>DATE),<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</span>
-<span id="cb123-2"><a href="04-API-Etudiants2021.html#cb123-2"></a><span class="kw">plot</span>(victoire2<span class="op">$</span>DATE,victoire2<span class="op">$</span>OBS_VALUE, </span>
-<span id="cb123-3"><a href="04-API-Etudiants2021.html#cb123-3"></a>     <span class="dt">type =</span><span class="st">&quot;l&quot;</span>, </span>
-<span id="cb123-4"><a href="04-API-Etudiants2021.html#cb123-4"></a>     <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, </span>
-<span id="cb123-5"><a href="04-API-Etudiants2021.html#cb123-5"></a>     <span class="dt">ylab =</span> <span class="st">&quot;Nombre de deces&quot;</span>,</span>
-<span id="cb123-6"><a href="04-API-Etudiants2021.html#cb123-6"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Evolution dans le temps (mesure mensuel)&quot;</span>,</span>
-<span id="cb123-7"><a href="04-API-Etudiants2021.html#cb123-7"></a>     <span class="dt">main =</span> <span class="st">&quot;Nombre de deces par mois depuis le 01/01/1947 en France Métropoliitaine&quot;</span>,</span>
-<span id="cb123-8"><a href="04-API-Etudiants2021.html#cb123-8"></a>     <span class="dt">sub =</span> <span class="st">&quot;Source : Insee&quot;</span>)</span></code></pre></div>
 <p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-62-1.svg" width="672" /></p>
 </div>
 <div id="brève-analyse" class="section level3" number="4.7.4">
@@ -1465,21 +1208,6 @@ Ce SI a pour but de faciliter la programmation d’activité militaires au sein 
 </div>
 <div id="création-dun-tableau-6" class="section level3" number="4.8.2">
 <h3><span class="header-section-number">4.8.2</span> Création d’un tableau</h3>
-<div class="sourceCode" id="cb124"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb124-1"><a href="04-API-Etudiants2021.html#cb124-1"></a><span class="kw">library</span>(knitr)</span>
-<span id="cb124-2"><a href="04-API-Etudiants2021.html#cb124-2"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb124-3"><a href="04-API-Etudiants2021.html#cb124-3"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb124-4"><a href="04-API-Etudiants2021.html#cb124-4"></a><span class="kw">library</span>(ggthemes)</span>
-<span id="cb124-5"><a href="04-API-Etudiants2021.html#cb124-5"></a><span class="kw">library</span>(wbstats)</span>
-<span id="cb124-6"><a href="04-API-Etudiants2021.html#cb124-6"></a></span>
-<span id="cb124-7"><a href="04-API-Etudiants2021.html#cb124-7"></a><span class="co">#Extraction des données</span></span>
-<span id="cb124-8"><a href="04-API-Etudiants2021.html#cb124-8"></a>tab_yug &lt;-<span class="st"> </span><span class="kw">wb_data</span>(<span class="dt">indicator  =</span> <span class="kw">c</span>(<span class="st">&quot;SP.POP.TOTL&quot;</span>,<span class="st">&quot;NY.GDP.MKTP.CD&quot;</span>),</span>
-<span id="cb124-9"><a href="04-API-Etudiants2021.html#cb124-9"></a>                      <span class="dt">mrv =</span> <span class="dv">30</span>,</span>
-<span id="cb124-10"><a href="04-API-Etudiants2021.html#cb124-10"></a>                  <span class="dt">country =</span> <span class="kw">c</span>(<span class="st">&quot;SVN&quot;</span>,<span class="st">&quot;BIH&quot;</span>,<span class="st">&quot;HRV&quot;</span>,<span class="st">&quot;SRB&quot;</span>,<span class="st">&quot;MNE&quot;</span>,<span class="st">&quot;MKD&quot;</span>,<span class="st">&quot;XKX&quot;</span>))</span>
-<span id="cb124-11"><a href="04-API-Etudiants2021.html#cb124-11"></a></span>
-<span id="cb124-12"><a href="04-API-Etudiants2021.html#cb124-12"></a>tab_yug &lt;-<span class="st"> </span>tab_yug <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">mutate</span>(<span class="dt">PIBHAB =</span> NY.GDP.MKTP.CD<span class="op">/</span>SP.POP.TOTL) <span class="op">%&gt;%</span></span>
-<span id="cb124-13"><a href="04-API-Etudiants2021.html#cb124-13"></a><span class="st">                       </span><span class="kw">rename</span>(<span class="dt">Pays =</span> country, <span class="dt">Code =</span> iso3c, Année =<span class="st"> </span>date) <span class="op">%&gt;%</span></span>
-<span id="cb124-14"><a href="04-API-Etudiants2021.html#cb124-14"></a><span class="st">                       </span><span class="kw">select</span>(Code,Pays,Année,PIBHAB) <span class="op">%&gt;%</span></span>
-<span id="cb124-15"><a href="04-API-Etudiants2021.html#cb124-15"></a><span class="st">                       </span><span class="kw">arrange</span>(Année)</span></code></pre></div>
 <p>Je récupère deux indicateurs : la population par pays, et le PIB par pays, afin d’obtenir le PIB par habitants.
 Je selectionne pour les 6 pays de l’Ex-Yugoslavie, à savoir : la Slovénie, la Bosnie-Herzégovine, la Croatie, la Serbie, la Macédoine du Nord et le Kosovo, tout en définissant un périmètre des 30 dernières années (ce qui correspond grossièrement à la chute de la Yougoslavie, à maintenant).
 Enfin, je trie par date, afin d’avoir une visualition sur plusieurs pays, plutôt que plusieurs années d’un même pays.</p>
@@ -1782,9 +1510,6 @@ Enfin, je trie par date, afin d’avoir une visualition sur plusieurs pays, plut
 </div>
 <div id="le-graphique-1" class="section level3" number="4.8.3">
 <h3><span class="header-section-number">4.8.3</span> Le graphique :</h3>
-<pre><code>Warning in theme_hc(bgc = &quot;darkunica&quot;): `bgcolor` is deprecated. Use `style`
-instead.</code></pre>
-<pre><code>Warning: Removed 34 row(s) containing missing values (geom_path).</code></pre>
 <p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-66-1.svg" width="672" style="display: block; margin: auto;" /></p>
 <p>Tous les pays de l’Ex-Yougoslavie semblent dégager une tendance commune :</p>
 <ul>
@@ -1815,14 +1540,6 @@ instead.</code></pre>
 </div>
 <div id="création-dun-tableau-7" class="section level3" number="4.9.2">
 <h3><span class="header-section-number">4.9.2</span> Création d’un tableau</h3>
-<div class="sourceCode" id="cb127"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb127-1"><a href="04-API-Etudiants2021.html#cb127-1"></a><span class="co"># Installer le package( si nécessaire)</span></span>
-<span id="cb127-2"><a href="04-API-Etudiants2021.html#cb127-2"></a><span class="co"># install.packages(&quot;insee&quot;)</span></span>
-<span id="cb127-3"><a href="04-API-Etudiants2021.html#cb127-3"></a><span class="co">#charger le package ( à chaque fois )</span></span>
-<span id="cb127-4"><a href="04-API-Etudiants2021.html#cb127-4"></a><span class="kw">library</span>(insee)</span>
-<span id="cb127-5"><a href="04-API-Etudiants2021.html#cb127-5"></a><span class="kw">library</span>(tidyverse,<span class="dt">warn.conflicts =</span> F)</span>
-<span id="cb127-6"><a href="04-API-Etudiants2021.html#cb127-6"></a>catalogue =<span class="st"> </span><span class="kw">get_dataset_list</span>()</span></code></pre></div>
-<pre><code>Cached data has been used</code></pre>
-<div class="sourceCode" id="cb129"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb129-1"><a href="04-API-Etudiants2021.html#cb129-1"></a><span class="kw">kable</span>(<span class="kw">head</span>(catalogue))</span></code></pre></div>
 <table>
 <colgroup>
 <col width="8%" />
@@ -1885,28 +1602,11 @@ instead.</code></pre>
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb130"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb130-1"><a href="04-API-Etudiants2021.html#cb130-1"></a>var3&lt;-<span class="kw">get_idbank_list</span>(<span class="st">&quot;ICA-2015-SERVICES&quot;</span>)</span></code></pre></div>
-<pre><code>Cached data has been used</code></pre>
-<div class="sourceCode" id="cb132"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb132-1"><a href="04-API-Etudiants2021.html#cb132-1"></a><span class="co">#str(var3)</span></span></code></pre></div>
-<div class="sourceCode" id="cb133"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb133-1"><a href="04-API-Etudiants2021.html#cb133-1"></a>don2&lt;-<span class="kw">get_insee_idbank</span>(<span class="st">&quot;010543679&quot;</span>)</span></code></pre></div>
-<pre><code>1/1 - Data download &amp; Dataframe build :</code></pre>
 <pre><code>
   |                                                                            
   |                                                                      |   0%
   |                                                                            
   |======================================================================| 100%</code></pre>
-<pre><code></code></pre>
-<pre><code>Data cached : C:\Users\claude\AppData\Local\Temp\RtmpUPn2Vv/4ace5c4dd890a0a84897c550251b459b.rds</code></pre>
-<div class="sourceCode" id="cb138"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb138-1"><a href="04-API-Etudiants2021.html#cb138-1"></a><span class="co">#str(don2)</span></span></code></pre></div>
-<div class="sourceCode" id="cb139"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb139-1"><a href="04-API-Etudiants2021.html#cb139-1"></a>don2&lt;-don2[<span class="kw">order</span>(don2<span class="op">$</span>DATE),<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</span>
-<span id="cb139-2"><a href="04-API-Etudiants2021.html#cb139-2"></a><span class="kw">plot</span>(don2<span class="op">$</span>DATE,don2<span class="op">$</span>OBS_VALUE, </span>
-<span id="cb139-3"><a href="04-API-Etudiants2021.html#cb139-3"></a>     <span class="dt">type =</span><span class="st">&quot;l&quot;</span>, </span>
-<span id="cb139-4"><a href="04-API-Etudiants2021.html#cb139-4"></a>     <span class="dt">col=</span><span class="st">&quot;blue&quot;</span>, </span>
-<span id="cb139-5"><a href="04-API-Etudiants2021.html#cb139-5"></a>     <span class="dt">ylab =</span> <span class="st">&quot;CA mensuelle&quot;</span>,</span>
-<span id="cb139-6"><a href="04-API-Etudiants2021.html#cb139-6"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Données mensuelles&quot;</span>,</span>
-<span id="cb139-7"><a href="04-API-Etudiants2021.html#cb139-7"></a>     <span class="dt">main =</span> <span class="st">&quot;Evolution du chiffre d&#39;affaire des entreprises de conseil informatique &quot;</span>,</span>
-<span id="cb139-8"><a href="04-API-Etudiants2021.html#cb139-8"></a>     <span class="dt">sub =</span> <span class="st">&quot;Source : Insee&quot;</span>,</span>
-<span id="cb139-9"><a href="04-API-Etudiants2021.html#cb139-9"></a>  )</span></code></pre></div>
 <p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-70-1.svg" width="672" /></p>
 <p>Ce document est un graphique courbe représentant le chiffre d’affaire des entreprises de conseil informatique de 1995 à 2020. Ce sont des données mensuelles brut en base 100 provenant de l’Insee.</p>
 <p>De prime abord, nous pouvons voir que le chiffre d’affaire fluctue énormement chaque année. Ces fluctuations sont l’expression des “bonnes périodes” de ce secteur.</p>
@@ -1916,18 +1616,12 @@ Neanmoins, il reprend son élan à la moitié de l’année 2020 pour atteindre 
 </div>
 <div id="création-dune-figure-5" class="section level3" number="4.9.3">
 <h3><span class="header-section-number">4.9.3</span> Création d’une figure</h3>
-<div class="sourceCode" id="cb140"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb140-1"><a href="04-API-Etudiants2021.html#cb140-1"></a>sel  =<span class="st"> </span></span>
-<span id="cb140-2"><a href="04-API-Etudiants2021.html#cb140-2"></a><span class="st">  </span><span class="kw">get_idbank_list</span>(<span class="st">&quot;ICA-2015-SERVICES&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb140-3"><a href="04-API-Etudiants2021.html#cb140-3"></a><span class="st">  </span><span class="kw">filter</span>(NAF2_label_fr <span class="op">==</span><span class="st"> &quot;62.02 - Conseil informatique&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb140-4"><a href="04-API-Etudiants2021.html#cb140-4"></a><span class="st">  </span><span class="kw">filter</span>(CORRECTION<span class="op">==</span><span class="st">&quot;CVS-CJO&quot;</span>)</span></code></pre></div>
-<pre><code>Cached data has been used</code></pre>
-<div class="sourceCode" id="cb142"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb142-1"><a href="04-API-Etudiants2021.html#cb142-1"></a>sel</span></code></pre></div>
 <pre><code># A tibble: 1 x 39
-  nomflow idbank cleFlow FREQ  EUROSTAT_ICA_SE~ INDICATEUR NAF2  NATURE REF_AREA
+  nomflow idbank cleFlow FREQ  EUROSTAT_ICA_SE… INDICATEUR NAF2  NATURE REF_AREA
   &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt;            &lt;chr&gt;      &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;   
-1 ICA-20~ 01054~ M.BDM.~ M     BDM              ICASERV    62-02 INDIC~ FE      
-# ... with 30 more variables: UNIT_MEASURE &lt;chr&gt;, CORRECTION &lt;chr&gt;,
-#   BASIND &lt;chr&gt;, FREQ_label_fr &lt;chr&gt;, FREQ_label_en &lt;chr&gt;,
+1 ICA-20… 01054… M.BDM.… M     BDM              ICASERV    62-02 INDIC… FE      
+# … with 30 more variables: UNIT_MEASURE &lt;chr&gt;, CORRECTION &lt;chr&gt;, BASIND &lt;chr&gt;,
+#   FREQ_label_fr &lt;chr&gt;, FREQ_label_en &lt;chr&gt;,
 #   EUROSTAT_ICA_SERVICES_label_fr &lt;chr&gt;, EUROSTAT_ICA_SERVICES_label_en &lt;chr&gt;,
 #   INDICATEUR_label_fr &lt;chr&gt;, INDICATEUR_label_en &lt;chr&gt;, NAF2_label_fr &lt;chr&gt;,
 #   NAF2_label_en &lt;chr&gt;, NATURE_label_fr &lt;chr&gt;, NATURE_label_en &lt;chr&gt;,
@@ -1937,26 +1631,11 @@ Neanmoins, il reprend son élan à la moitié de l’année 2020 pour atteindre 
 #   BASIND_label_fr &lt;chr&gt;, BASIND_label_en &lt;chr&gt;, dim1 &lt;chr&gt;, dim2 &lt;chr&gt;,
 #   dim3 &lt;chr&gt;, dim4 &lt;chr&gt;, dim5 &lt;chr&gt;, dim6 &lt;chr&gt;, dim7 &lt;chr&gt;, dim8 &lt;chr&gt;,
 #   dim9 &lt;chr&gt;</code></pre>
-<div class="sourceCode" id="cb144"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb144-1"><a href="04-API-Etudiants2021.html#cb144-1"></a><span class="kw">library</span>(insee)</span>
-<span id="cb144-2"><a href="04-API-Etudiants2021.html#cb144-2"></a>don =<span class="st"> </span></span>
-<span id="cb144-3"><a href="04-API-Etudiants2021.html#cb144-3"></a><span class="st">     </span><span class="kw">get_insee_idbank</span>(sel<span class="op">$</span>idbank) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb144-4"><a href="04-API-Etudiants2021.html#cb144-4"></a><span class="st">      </span><span class="kw">select</span>(<span class="dt">ANNEE=</span> DATE, <span class="dt">CA=</span>OBS_VALUE) <span class="op">%&gt;%</span></span>
-<span id="cb144-5"><a href="04-API-Etudiants2021.html#cb144-5"></a><span class="st">     </span><span class="kw">arrange</span>(ANNEE)</span></code></pre></div>
-<pre><code>1/1 - Data download &amp; Dataframe build :</code></pre>
 <pre><code>
   |                                                                            
   |                                                                      |   0%
   |                                                                            
   |======================================================================| 100%</code></pre>
-<pre><code></code></pre>
-<pre><code>Data cached : C:\Users\claude\AppData\Local\Temp\RtmpUPn2Vv/28994629c0d00bf606d396602198cf19.rds</code></pre>
-<div class="sourceCode" id="cb149"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb149-1"><a href="04-API-Etudiants2021.html#cb149-1"></a>don =<span class="st"> </span><span class="kw">get_insee_idbank</span>(sel<span class="op">$</span>idbank)</span></code></pre></div>
-<pre><code>Cached data has been used</code></pre>
-<div class="sourceCode" id="cb151"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb151-1"><a href="04-API-Etudiants2021.html#cb151-1"></a>don3&lt;-don <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="dt">ANNEE =</span> DATE, <span class="dt">CA=</span> OBS_VALUE, <span class="dt">titre =</span> TITLE_FR) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb151-2"><a href="04-API-Etudiants2021.html#cb151-2"></a><span class="st">              </span><span class="kw">mutate</span>(<span class="dt">titre =</span> <span class="kw">as.factor</span>(titre)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb151-3"><a href="04-API-Etudiants2021.html#cb151-3"></a><span class="st">              </span><span class="kw">arrange</span>(titre, ANNEE)</span>
-<span id="cb151-4"><a href="04-API-Etudiants2021.html#cb151-4"></a></span>
-<span id="cb151-5"><a href="04-API-Etudiants2021.html#cb151-5"></a><span class="kw">kable</span>(<span class="kw">head</span>(don2))</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1998,28 +1677,9 @@ Neanmoins, il reprend son élan à la moitié de l’année 2020 pour atteindre 
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb152"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb152-1"><a href="04-API-Etudiants2021.html#cb152-1"></a>p&lt;-<span class="kw">ggplot</span>(don3) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb152-2"><a href="04-API-Etudiants2021.html#cb152-2"></a><span class="st">   </span><span class="kw">aes</span>(<span class="dt">x=</span>ANNEE,<span class="dt">y=</span>CA) <span class="op">+</span></span>
-<span id="cb152-3"><a href="04-API-Etudiants2021.html#cb152-3"></a><span class="st">    </span><span class="kw">geom_point</span>() <span class="op">+</span></span>
-<span id="cb152-4"><a href="04-API-Etudiants2021.html#cb152-4"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span>lm) <span class="op">+</span></span>
-<span id="cb152-5"><a href="04-API-Etudiants2021.html#cb152-5"></a><span class="st">    </span><span class="kw">ggtitle</span>(<span class="dt">label=</span> <span class="st">&quot;CA des entreprises de conseil informatique&quot;</span>,</span>
-<span id="cb152-6"><a href="04-API-Etudiants2021.html#cb152-6"></a>            <span class="dt">subtitle =</span> <span class="st">&quot;Source : INSEE&quot;</span>)<span class="op">+</span></span>
-<span id="cb152-7"><a href="04-API-Etudiants2021.html#cb152-7"></a><span class="st">    </span><span class="kw">scale_x_date</span>(<span class="st">&quot;Données mensuelles CSJ-CVO&quot;</span>) <span class="op">+</span></span>
-<span id="cb152-8"><a href="04-API-Etudiants2021.html#cb152-8"></a><span class="st">    </span><span class="kw">scale_y_continuous</span>(<span class="st">&quot;CA&quot;</span>,<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">50</span>,<span class="ot">NA</span>))</span>
-<span id="cb152-9"><a href="04-API-Etudiants2021.html#cb152-9"></a>p</span></code></pre></div>
-<pre><code>`geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<pre><code>Warning: Removed 4 rows containing non-finite values (stat_smooth).</code></pre>
-<pre><code>Warning: Removed 4 rows containing missing values (geom_point).</code></pre>
-<pre><code>Warning: Removed 7 rows containing missing values (geom_smooth).</code></pre>
 <p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-74-1.svg" width="672" /></p>
 <p>Ce document est un graphique courbe représentant le chiffre d’affaire des entreprises de conseil informatique de 1999 à 2020. Ce sont des données mensuelles comprenant la correction CSJ-CVO provenant de l’Insee.</p>
 <p>Nous voyons que le trend de ce graphique est une preuve des commentaires fait plus haut dans le graphique du chiffre d’affaire des entreprises dans le conseil informatique. Nous nous appercevons qu’avec la correction, la visibilité de la tendance est claire. Les entreprises voyent leurs chiffres d’affaires s’accélérer proportionnellement au temps, c’est à dire, que plus le temps passe, est plus d’entreprises font appellent aux conseils pour amener au mieux leur projet. Pourtant les effets de fluctuation sont moins importants. En corrigeant les effets de saisonnalité, le secteur est stable et subit moins de baisse que l’on peut supposer.</p>
-<div class="sourceCode" id="cb157"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb157-1"><a href="04-API-Etudiants2021.html#cb157-1"></a><span class="kw">write.table</span>(don,<span class="st">&quot;data/CA_CI.csv&quot;</span>,</span>
-<span id="cb157-2"><a href="04-API-Etudiants2021.html#cb157-2"></a>              <span class="dt">row.names=</span>F,</span>
-<span id="cb157-3"><a href="04-API-Etudiants2021.html#cb157-3"></a>            <span class="dt">sep=</span><span class="st">&quot;;&quot;</span>,</span>
-<span id="cb157-4"><a href="04-API-Etudiants2021.html#cb157-4"></a>            <span class="dt">dec=</span><span class="st">&quot;.&quot;</span>)</span>
-<span id="cb157-5"><a href="04-API-Etudiants2021.html#cb157-5"></a></span>
-<span id="cb157-6"><a href="04-API-Etudiants2021.html#cb157-6"></a><span class="kw">saveRDS</span>(don,<span class="st">&quot;data/CA_CI.Rdata&quot;</span>)</span></code></pre></div>
 </div>
 <div id="conclusion-6" class="section level3" number="4.9.4">
 <h3><span class="header-section-number">4.9.4</span> Conclusion</h3>
@@ -2048,56 +1708,26 @@ L’accès à un jeu de données se fait en plusieurs étapes :</p>
 <div id="appel-de-lapi-avec-des-package-r-spécial" class="section level4" number="4.10.1.1">
 <h4><span class="header-section-number">4.10.1.1</span> appel de l’api avec des package R spécial</h4>
 <p>installer le package <em>insee</em> et le charger.</p>
-<div class="sourceCode" id="cb158"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb158-1"><a href="04-API-Etudiants2021.html#cb158-1"></a><span class="kw">library</span>(insee)</span>
-<span id="cb158-2"><a href="04-API-Etudiants2021.html#cb158-2"></a><span class="kw">library</span>(httr)</span>
-<span id="cb158-3"><a href="04-API-Etudiants2021.html#cb158-3"></a><span class="kw">library</span>(jsonlite)</span></code></pre></div>
-<div class="sourceCode" id="cb159"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb159-1"><a href="04-API-Etudiants2021.html#cb159-1"></a>catalogue =<span class="st"> </span><span class="kw">get_dataset_list</span>()</span></code></pre></div>
-<pre><code>Cached data has been used</code></pre>
 <p>A défaut de trouver des jeu de données directement en lien avec mon secteur d’activités j’ai décider de travailler sur les données de chômages en France depuis 1975 jusqu’a la mi-année 2019</p>
-<div class="sourceCode" id="cb161"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb161-1"><a href="04-API-Etudiants2021.html#cb161-1"></a>var&lt;-<span class="kw">get_idbank_list</span>(<span class="st">&quot;CHOMAGE-TRIM-NATIONAL&quot;</span>)</span></code></pre></div>
-<pre><code>Cached data has been used</code></pre>
-<div class="sourceCode" id="cb163"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb163-1"><a href="04-API-Etudiants2021.html#cb163-1"></a><span class="co">#str(var)</span></span></code></pre></div>
 <p>J’ai choisi une ligne correspondant au taux de chômage des Hommes entre 25 et 49ans</p>
-<div class="sourceCode" id="cb164"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb164-1"><a href="04-API-Etudiants2021.html#cb164-1"></a>don&lt;-<span class="kw">get_insee_idbank</span>(<span class="st">&quot;001688368&quot;</span>)</span></code></pre></div>
-<pre><code>1/1 - Data download &amp; Dataframe build :</code></pre>
 <pre><code>
   |                                                                            
   |                                                                      |   0%
   |                                                                            
   |======================================================================| 100%</code></pre>
-<pre><code></code></pre>
-<pre><code>Data cached : C:\Users\claude\AppData\Local\Temp\RtmpUPn2Vv/4fa745be144399bf3b2942b5d7ef7f28.rds</code></pre>
 </div>
 </div>
 <div id="création-graphique-à-partir-de-lapi" class="section level3" number="4.10.2">
 <h3><span class="header-section-number">4.10.2</span> Création graphique à partir de l’api</h3>
-<div class="sourceCode" id="cb169"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb169-1"><a href="04-API-Etudiants2021.html#cb169-1"></a><span class="kw">plot</span>(don<span class="op">$</span>DATE,don<span class="op">$</span>OBS_VALUE, </span>
-<span id="cb169-2"><a href="04-API-Etudiants2021.html#cb169-2"></a>     <span class="dt">type =</span><span class="st">&quot;l&quot;</span>, </span>
-<span id="cb169-3"><a href="04-API-Etudiants2021.html#cb169-3"></a>     <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, </span>
-<span id="cb169-4"><a href="04-API-Etudiants2021.html#cb169-4"></a>     <span class="dt">ylab =</span> <span class="st">&quot;nombre de chômeurs en milliers&quot;</span>,</span>
-<span id="cb169-5"><a href="04-API-Etudiants2021.html#cb169-5"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Données trimestrielles&quot;</span>,</span>
-<span id="cb169-6"><a href="04-API-Etudiants2021.html#cb169-6"></a>     <span class="dt">main =</span> <span class="st">&quot;Evolution du chômage des hommes en France (25-49ans)&quot;</span>,</span>
-<span id="cb169-7"><a href="04-API-Etudiants2021.html#cb169-7"></a>     <span class="dt">sub =</span> <span class="st">&quot;Source : Insee&quot;</span>)</span></code></pre></div>
 <p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-80-1.svg" width="672" /></p>
 <p>Début 1975 il y avait 121 000 hommes entre 25 et 49 ans au chômage contre 660 000 fin 2019. le nombre d’hommes au chômage a donc été multiplié par 5,5 sur la période . Cette évolution se justifie par une multiplication par 4 du taux de chômage et par une légère hausse de la population.
 Le pic du chômage pour les hommes à été atteint au 2ème trimestre 2015 avec 915 000 chômeurs.</p>
 <p>Ici j’extrait les mêmes données sur le chômage mais pour les Femmes.</p>
-<div class="sourceCode" id="cb170"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb170-1"><a href="04-API-Etudiants2021.html#cb170-1"></a>don1&lt;-<span class="kw">get_insee_idbank</span>(<span class="st">&quot;001688365&quot;</span>)</span></code></pre></div>
-<pre><code>1/1 - Data download &amp; Dataframe build :</code></pre>
 <pre><code>
   |                                                                            
   |                                                                      |   0%
   |                                                                            
   |======================================================================| 100%</code></pre>
-<pre><code></code></pre>
-<pre><code>Data cached : C:\Users\claude\AppData\Local\Temp\RtmpUPn2Vv/38af88a6b8dd43db96d844c7448a4570.rds</code></pre>
-<div class="sourceCode" id="cb175"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb175-1"><a href="04-API-Etudiants2021.html#cb175-1"></a><span class="kw">plot</span>(don1<span class="op">$</span>DATE,don1<span class="op">$</span>OBS_VALUE, </span>
-<span id="cb175-2"><a href="04-API-Etudiants2021.html#cb175-2"></a>     <span class="dt">type =</span><span class="st">&quot;l&quot;</span>, </span>
-<span id="cb175-3"><a href="04-API-Etudiants2021.html#cb175-3"></a>     <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, </span>
-<span id="cb175-4"><a href="04-API-Etudiants2021.html#cb175-4"></a>     <span class="dt">ylab =</span> <span class="st">&quot;nombre de chômeurs en milliers&quot;</span>,</span>
-<span id="cb175-5"><a href="04-API-Etudiants2021.html#cb175-5"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Données trimestrielles&quot;</span>,</span>
-<span id="cb175-6"><a href="04-API-Etudiants2021.html#cb175-6"></a>     <span class="dt">main =</span> <span class="st">&quot;Evolution du chômage des femmes en France (25-49ans)&quot;</span>,</span>
-<span id="cb175-7"><a href="04-API-Etudiants2021.html#cb175-7"></a>     <span class="dt">sub =</span> <span class="st">&quot;Source : Insee&quot;</span>)</span></code></pre></div>
 <p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-82-1.svg" width="672" /></p>
 <p>Début 1975 il y avait 156 000 femmes entre 25 et 49 ans au chômage contre 660 000 fin 2019. le nombre de femmes au chômage a donc été multiplié par 5 sur la période .
 Le pic du chômage pour les femmes à été atteint au 3ème trimestre 1997 avec 919 000 chômeuses</p>
