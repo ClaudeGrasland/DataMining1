@@ -1,5 +1,8 @@
-tab:unnamed-chunk-61
-tab:unnamed-chunk-64
+tab:unnamed-chunk-8
+tab:unnamed-chunk-9
+tab:unnamed-chunk-20
+tab:unnamed-chunk-122
+tab:unnamed-chunk-125
 c01-API
 quest-ce-quune-api
 définitions
@@ -122,7 +125,3 @@ appel-de-lapi-avec-des-package-r-spécial
 création-graphique-à-partir-de-lapi
 création-tableau-à-partir-de-lapi
 conclusion-7
-section
-tab:unnamed-chunk-8
-tab:unnamed-chunk-9
-tab:unnamed-chunk-20

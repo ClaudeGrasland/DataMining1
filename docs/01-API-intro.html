@@ -24,7 +24,7 @@
 <meta name="author" content="Claude Grasland, Professeur de Géographie, Université de Paris (Diderot)" />
 
 
-<meta name="date" content="2021-03-19" />
+<meta name="date" content="2021-03-20" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,7 +33,7 @@
   
 <link rel="prev" href="00-presentation.html"/>
 <link rel="next" href="02-API-worldstat.html"/>
-<script src="libs/header-attrs-2.4/header-attrs.js"></script>
+<script src="libs/header-attrs-2.6/header-attrs.js"></script>
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
@@ -52,6 +52,13 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2.2/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -381,7 +388,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="01-API-intro.html#cb4-1"></a>toto &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;http://api.open-notify.org/astros.json&quot;</span>)</span>
 <span id="cb4-2"><a href="01-API-intro.html#cb4-2"></a>toto</span></code></pre></div>
 <pre><code>Response [http://api.open-notify.org/astros.json]
-  Date: 2021-03-19 16:28
+  Date: 2021-03-20 13:18
   Status: 200
   Content-Type: application/json
   Size: 356 B</code></pre>
@@ -399,7 +406,7 @@ code span.wa { color: #bf0303; } /* Warning */
  $ status_code: int 200
  $ headers    :List of 6
   ..$ server                     : chr &quot;nginx/1.10.3&quot;
-  ..$ date                       : chr &quot;Fri, 19 Mar 2021 16:28:04 GMT&quot;
+  ..$ date                       : chr &quot;Sat, 20 Mar 2021 13:18:10 GMT&quot;
   ..$ content-type               : chr &quot;application/json&quot;
   ..$ content-length             : chr &quot;356&quot;
   ..$ connection                 : chr &quot;keep-alive&quot;
@@ -411,7 +418,7 @@ code span.wa { color: #bf0303; } /* Warning */
   .. ..$ version: chr &quot;HTTP/1.1&quot;
   .. ..$ headers:List of 6
   .. .. ..$ server                     : chr &quot;nginx/1.10.3&quot;
-  .. .. ..$ date                       : chr &quot;Fri, 19 Mar 2021 16:28:04 GMT&quot;
+  .. .. ..$ date                       : chr &quot;Sat, 20 Mar 2021 13:18:10 GMT&quot;
   .. .. ..$ content-type               : chr &quot;application/json&quot;
   .. .. ..$ content-length             : chr &quot;356&quot;
   .. .. ..$ connection                 : chr &quot;keep-alive&quot;
@@ -426,8 +433,8 @@ code span.wa { color: #bf0303; } /* Warning */
   ..$ name      : logi(0) 
   ..$ value     : logi(0) 
  $ content    : raw [1:356] 7b 22 6d 65 ...
- $ date       : POSIXct[1:1], format: &quot;2021-03-19 16:28:04&quot;
- $ times      : Named num [1:6] 0 0.00287 0.14945 0.14955 0.29765 ...
+ $ date       : POSIXct[1:1], format: &quot;2021-03-20 13:18:10&quot;
+ $ times      : Named num [1:6] 0 0.0783 0.2283 0.2283 0.3795 ...
   ..- attr(*, &quot;names&quot;)= chr [1:6] &quot;redirect&quot; &quot;namelookup&quot; &quot;connect&quot; &quot;pretransfer&quot; ...
  $ request    :List of 7
   ..$ method    : chr &quot;GET&quot;
@@ -566,9 +573,9 @@ code span.wa { color: #bf0303; } /* Warning */
 <pre><code># A tibble: 3 x 2
   duration   risetime
      &lt;int&gt;      &lt;int&gt;
-1      443 1616192096
-2      651 1616197762
-3      616 1616203603</code></pre>
+1      260 1616275763
+2      634 1616281333
+3      634 1616287143</code></pre>
 <p>Le résultat paraît à première vue assez déconcertant. Mais la lecture de la documentation de l’API indique que les deux variables du tableau correspondent respectivement :</p>
 <ul>
 <li><em>duration</em> : nombre de secondes pendant lesquelles la station sera à la verticale du point avec un angle de + ou - 10 degrés.</li>
@@ -587,16 +594,16 @@ code span.wa { color: #bf0303; } /* Warning */
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">443</td>
-<td align="left">2021-03-19 22:14:56</td>
+<td align="right">260</td>
+<td align="left">2021-03-20 21:29:23</td>
 </tr>
 <tr class="even">
-<td align="right">651</td>
-<td align="left">2021-03-19 23:49:22</td>
+<td align="right">634</td>
+<td align="left">2021-03-20 23:02:13</td>
 </tr>
 <tr class="odd">
-<td align="right">616</td>
-<td align="left">2021-03-20 01:26:43</td>
+<td align="right">634</td>
+<td align="left">2021-03-21 00:39:03</td>
 </tr>
 </tbody>
 </table>
@@ -692,7 +699,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <p>Une fois que l’on a choisi un tableau, on peut examiner plus en détail les différentes séries qui y sont présentes à l’aide de la commande <em>get_idbank_list()</em>. On va par exemple examiner le contenu de la base de données “DECES-MORTALITE” :</p>
 <div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="01-API-intro.html#cb23-1"></a>var&lt;-<span class="kw">get_idbank_list</span>(<span class="st">&quot;DECES-MORTALITE&quot;</span>)</span>
 <span id="cb23-2"><a href="01-API-intro.html#cb23-2"></a><span class="kw">str</span>(var)</span></code></pre></div>
-<pre><code>FALSE tibble [1,905 x 39] (S3: tbl_df/tbl/data.frame)
+<pre><code>FALSE tibble [1,905 × 39] (S3: tbl_df/tbl/data.frame)
 FALSE  $ nomflow              : chr [1:1905] &quot;DECES-MORTALITE&quot; &quot;DECES-MORTALITE&quot; &quot;DECES-MORTALITE&quot; &quot;DECES-MORTALITE&quot; ...
 FALSE  $ idbank               : chr [1:1905] &quot;000436398&quot; &quot;001641606&quot; &quot;000869058&quot; &quot;001780755&quot; ...
 FALSE  $ cleFlow              : chr [1:1905] &quot;M.TAUX_MORTALITE.TAUX.TXMORINF.FM.0.SO.SO.BRUT&quot; &quot;M.TAUX_MORTALITE.TAUX.TXMORINF.FR-D976.0.SO.SO.BRUT&quot; &quot;A.DECES_DOMICILIES.VALEUR_ABSOLUE.DECES-DOM.AU.SO.SO.NOMBRE.BRUT&quot; &quot;A.DECES_DOMICILIES.VALEUR_ABSOLUE.DECES-DOM.F_H_IDF.SO.SO.NOMBRE.BRUT&quot; ...
@@ -1201,31 +1208,7 @@ FALSE  $ dim9                 : chr [1:1905] &quot;BRUT&quot; &quot;BRUT&quot; &
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">374</td>
-<td align="left">2021-03-19 17:39:13</td>
-</tr>
-<tr class="even">
-<td align="right">625</td>
-<td align="left">2021-03-19 19:13:02</td>
-</tr>
-<tr class="odd">
-<td align="right">656</td>
-<td align="left">2021-03-19 20:49:24</td>
-</tr>
-<tr class="even">
-<td align="right">651</td>
-<td align="left">2021-03-19 22:26:29</td>
-</tr>
-<tr class="odd">
-<td align="right">654</td>
-<td align="left">2021-03-20 00:03:26</td>
-</tr>
-<tr class="even">
-<td align="right">585</td>
-<td align="left">2021-03-20 01:40:25</td>
-</tr>
-<tr class="odd">
-<td align="right">147</td>
+<td align="right">146</td>
 <td align="left">2021-03-20 16:54:06</td>
 </tr>
 <tr class="even">
@@ -1234,11 +1217,35 @@ FALSE  $ dim9                 : chr [1:1905] &quot;BRUT&quot; &quot;BRUT&quot; &
 </tr>
 <tr class="odd">
 <td align="right">655</td>
-<td align="left">2021-03-20 20:02:01</td>
+<td align="left">2021-03-20 20:02:02</td>
 </tr>
 <tr class="even">
 <td align="right">651</td>
 <td align="left">2021-03-20 21:39:03</td>
+</tr>
+<tr class="odd">
+<td align="right">655</td>
+<td align="left">2021-03-20 23:16:03</td>
+</tr>
+<tr class="even">
+<td align="right">617</td>
+<td align="left">2021-03-21 00:52:57</td>
+</tr>
+<tr class="odd">
+<td align="right">331</td>
+<td align="left">2021-03-21 02:31:12</td>
+</tr>
+<tr class="even">
+<td align="right">553</td>
+<td align="left">2021-03-21 17:39:15</td>
+</tr>
+<tr class="odd">
+<td align="right">652</td>
+<td align="left">2021-03-21 19:14:43</td>
+</tr>
+<tr class="even">
+<td align="right">652</td>
+<td align="left">2021-03-21 20:51:36</td>
 </tr>
 </tbody>
 </table>

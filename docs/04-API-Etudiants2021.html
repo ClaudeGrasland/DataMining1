@@ -52,6 +52,13 @@
 
 
 <script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
+<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+<script src="libs/plotly-binding-4.9.2.2/plotly.js"></script>
+<script src="libs/typedarray-0.1/typedarray.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
+<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
 
 
 <style type="text/css">
@@ -309,21 +316,21 @@ code span.wa { color: #bf0303; } /* Warning */
             <section class="normal" id="section-">
 <div id="c03-API-Etudiants2021" class="section level1" number="4">
 <h1><span class="header-section-number">Chapitre 4</span> TRAVAUX D’ETUDIANTS 2021</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="04-API-Etudiants2021.html#cb1-1"></a><span class="co">## Global options</span></span>
-<span id="cb1-2"><a href="04-API-Etudiants2021.html#cb1-2"></a><span class="kw">library</span>(knitr)</span>
-<span id="cb1-3"><a href="04-API-Etudiants2021.html#cb1-3"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb1-4"><a href="04-API-Etudiants2021.html#cb1-4"></a><span class="kw">library</span>(ggplot2)</span>
-<span id="cb1-5"><a href="04-API-Etudiants2021.html#cb1-5"></a><span class="kw">library</span>(sf)</span>
-<span id="cb1-6"><a href="04-API-Etudiants2021.html#cb1-6"></a></span>
-<span id="cb1-7"><a href="04-API-Etudiants2021.html#cb1-7"></a></span>
-<span id="cb1-8"><a href="04-API-Etudiants2021.html#cb1-8"></a></span>
-<span id="cb1-9"><a href="04-API-Etudiants2021.html#cb1-9"></a>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">echo=</span><span class="ot">FALSE</span>,</span>
-<span id="cb1-10"><a href="04-API-Etudiants2021.html#cb1-10"></a>               <span class="dt">cache=</span><span class="ot">TRUE</span>,</span>
-<span id="cb1-11"><a href="04-API-Etudiants2021.html#cb1-11"></a>               <span class="dt">prompt=</span><span class="ot">FALSE</span>,</span>
-<span id="cb1-12"><a href="04-API-Etudiants2021.html#cb1-12"></a>               <span class="dt">tidy=</span><span class="ot">FALSE</span>,</span>
-<span id="cb1-13"><a href="04-API-Etudiants2021.html#cb1-13"></a>               <span class="dt">comment=</span><span class="ot">NA</span>,</span>
-<span id="cb1-14"><a href="04-API-Etudiants2021.html#cb1-14"></a>               <span class="dt">message=</span><span class="ot">FALSE</span>,</span>
-<span id="cb1-15"><a href="04-API-Etudiants2021.html#cb1-15"></a>               <span class="dt">warning=</span><span class="ot">FALSE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="04-API-Etudiants2021.html#cb88-1"></a><span class="co">## Global options</span></span>
+<span id="cb88-2"><a href="04-API-Etudiants2021.html#cb88-2"></a><span class="kw">library</span>(knitr)</span>
+<span id="cb88-3"><a href="04-API-Etudiants2021.html#cb88-3"></a><span class="kw">library</span>(dplyr)</span>
+<span id="cb88-4"><a href="04-API-Etudiants2021.html#cb88-4"></a><span class="kw">library</span>(ggplot2)</span>
+<span id="cb88-5"><a href="04-API-Etudiants2021.html#cb88-5"></a><span class="kw">library</span>(sf)</span>
+<span id="cb88-6"><a href="04-API-Etudiants2021.html#cb88-6"></a></span>
+<span id="cb88-7"><a href="04-API-Etudiants2021.html#cb88-7"></a></span>
+<span id="cb88-8"><a href="04-API-Etudiants2021.html#cb88-8"></a></span>
+<span id="cb88-9"><a href="04-API-Etudiants2021.html#cb88-9"></a>opts_chunk<span class="op">$</span><span class="kw">set</span>(<span class="dt">echo=</span><span class="ot">FALSE</span>,</span>
+<span id="cb88-10"><a href="04-API-Etudiants2021.html#cb88-10"></a>               <span class="dt">cache=</span><span class="ot">TRUE</span>,</span>
+<span id="cb88-11"><a href="04-API-Etudiants2021.html#cb88-11"></a>               <span class="dt">prompt=</span><span class="ot">FALSE</span>,</span>
+<span id="cb88-12"><a href="04-API-Etudiants2021.html#cb88-12"></a>               <span class="dt">tidy=</span><span class="ot">FALSE</span>,</span>
+<span id="cb88-13"><a href="04-API-Etudiants2021.html#cb88-13"></a>               <span class="dt">comment=</span><span class="ot">NA</span>,</span>
+<span id="cb88-14"><a href="04-API-Etudiants2021.html#cb88-14"></a>               <span class="dt">message=</span><span class="ot">FALSE</span>,</span>
+<span id="cb88-15"><a href="04-API-Etudiants2021.html#cb88-15"></a>               <span class="dt">warning=</span><span class="ot">FALSE</span>)</span></code></pre></div>
 <ul>
 <li><strong>Rappel des consignes</strong></li>
 </ul>
@@ -677,7 +684,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <p>Faire un graphique et enregistrer dans Image</p>
 <p>On charge la librairie <strong>ggplot2</strong> qui va nous servir pour faire le graphique</p>
 <p>On va représenter le taux de chômage depuis 1975 selon l’âge des chômeurs. Cela va nous permettre de comparer l’évolution de ces différentes séries.</p>
-<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-11-1.svg" width="672" /></p>
+<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-72-1.svg" width="672" /></p>
 <p>Sur ce graphique, on observe en premier lieu que le taux de chômage chez les jeunes est bien supérieur à celui des 25-49 ans ou celui des 50 ans et plus. De plus, c’est également celui qui connaît les plus fortes variations négatives comme positives depuis 1975.</p>
 <p>Le taux de chômage chez les 25-49 ans et chez les plus de 50 ans est similaire. Cependant, celui des 50 ans et plus reste le plus bas sur toute la période.</p>
 </div>
@@ -726,7 +733,7 @@ code span.wa { color: #bf0303; } /* Warning */
 # … with 182 more rows, and 8 more variables: TITLE_FR &lt;chr&gt;, TITLE_EN &lt;chr&gt;,
 #   LAST_UPDATE &lt;chr&gt;, UNIT_MEASURE &lt;chr&gt;, UNIT_MULT &lt;chr&gt;, REF_AREA &lt;chr&gt;,
 #   DECIMALS &lt;chr&gt;, OBS_REV &lt;chr&gt;</code></pre>
-<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-16-1.svg" width="672" /></p>
+<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-77-1.svg" width="672" /></p>
 <hr />
 </div>
 <div id="olha-h." class="section level2" number="4.3">
@@ -783,8 +790,8 @@ code span.wa { color: #bf0303; } /* Warning */
 </div>
 <div id="création-dune-figure-1" class="section level3" number="4.3.3">
 <h3><span class="header-section-number">4.3.3</span> Création d’une figure</h3>
-<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-26-1.svg" width="672" /></p>
-<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-27-1.svg" width="672" /></p>
+<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-87-1.svg" width="672" /></p>
+<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-88-1.svg" width="672" /></p>
 </div>
 <div id="conclusion-1" class="section level3" number="4.3.4">
 <h3><span class="header-section-number">4.3.4</span> Conclusion</h3>
@@ -805,7 +812,7 @@ Les utilisateurs nous sollicitent donc (mon tuteur, le chef de projet MOA, ou mo
 <p>Chargement des librairies</p>
 <p>Chargement de l’API grâce à la commande GET</p>
 <pre><code>Response [https://restcountries.eu/rest/v2]
-  Date: 2021-03-20 13:12
+  Date: 2021-03-20 13:18
   Status: 200
   Content-Type: application/json;charset=utf-8
   Size: 264 kB</code></pre>
@@ -838,7 +845,7 @@ Les utilisateurs nous sollicitent donc (mon tuteur, le chef de projet MOA, ou mo
 <div id="création-dune-figure-2" class="section level3" number="4.4.3">
 <h3><span class="header-section-number">4.4.3</span> Création d’une figure</h3>
 <p>Nous avons choisi de faire une boxplot du niveau d’inégalité par région. Nous observons que la région où l’inégalité est la plus grand est en Amérique. On ne parle pas ici de la région la plus pauvre, mais bien de la région qui contient les plus grandes inégalités. Nous notons que de nombreuses données sont manquantes pour le coefficient de Gini.</p>
-<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-40-1.svg" width="672" /></p>
+<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-101-1.svg" width="672" /></p>
 </div>
 <div id="conclusion-2" class="section level3" number="4.4.4">
 <h3><span class="header-section-number">4.4.4</span> Conclusion</h3>
@@ -1055,7 +1062,7 @@ Dans ce cas des indicateurs de développement pourraient être utilisés afin d�
 </div>
 <div id="création-dune-figure-3" class="section level3" number="4.5.3">
 <h3><span class="header-section-number">4.5.3</span> Création d’une figure</h3>
-<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-51-1.svg" width="672" /></p>
+<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-112-1.svg" width="672" /></p>
 <hr />
 </div>
 </div>
@@ -1097,7 +1104,7 @@ Je vais pour cela exploiter la série “SERIE_LOYERS” pour étudier la variat
 <h3><span class="header-section-number">4.6.3</span> Création d’une figure</h3>
 <div id="graphique" class="section level4" number="4.6.3.1">
 <h4><span class="header-section-number">4.6.3.1</span> Graphique</h4>
-<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-56-1.svg" width="672" /></p>
+<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-117-1.svg" width="672" /></p>
 </div>
 </div>
 <div id="conclusion-3" class="section level3" number="4.6.4">
@@ -1133,7 +1140,7 @@ Cependant, ce n’est pas la première fois qu’une telle épidémie frappe le 
 <div id="création-du-tableau" class="section level4" number="4.7.2.3">
 <h4><span class="header-section-number">4.7.2.3</span> Création du tableau</h4>
 <table>
-<caption><span id="tab:unnamed-chunk-61">Table 4.1: </span>nombre deces / mois depuis le 01/01/1947 en France Métropoliitaine</caption>
+<caption><span id="tab:unnamed-chunk-122">Table 4.1: </span>nombre deces / mois depuis le 01/01/1947 en France Métropoliitaine</caption>
 <thead>
 <tr class="header">
 <th align="left">Année-Mois</th>
@@ -1167,7 +1174,7 @@ Cependant, ce n’est pas la première fois qu’une telle épidémie frappe le 
 </div>
 <div id="le-graphique" class="section level3" number="4.7.3">
 <h3><span class="header-section-number">4.7.3</span> Le graphique</h3>
-<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-62-1.svg" width="672" /></p>
+<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-123-1.svg" width="672" /></p>
 </div>
 <div id="brève-analyse" class="section level3" number="4.7.4">
 <h3><span class="header-section-number">4.7.4</span> Brève analyse :</h3>
@@ -1212,7 +1219,7 @@ Ce SI a pour but de faciliter la programmation d’activité militaires au sein 
 Je selectionne pour les 6 pays de l’Ex-Yugoslavie, à savoir : la Slovénie, la Bosnie-Herzégovine, la Croatie, la Serbie, la Macédoine du Nord et le Kosovo, tout en définissant un périmètre des 30 dernières années (ce qui correspond grossièrement à la chute de la Yougoslavie, à maintenant).
 Enfin, je trie par date, afin d’avoir une visualition sur plusieurs pays, plutôt que plusieurs années d’un même pays.</p>
 <table>
-<caption><span id="tab:unnamed-chunk-64">Table 4.2: </span>Aperçu du tableau sur les pays de l’Ex Yougoslavie</caption>
+<caption><span id="tab:unnamed-chunk-125">Table 4.2: </span>Aperçu du tableau sur les pays de l’Ex Yougoslavie</caption>
 <thead>
 <tr class="header">
 <th align="center">Code</th>
@@ -1510,7 +1517,7 @@ Enfin, je trie par date, afin d’avoir une visualition sur plusieurs pays, plut
 </div>
 <div id="le-graphique-1" class="section level3" number="4.8.3">
 <h3><span class="header-section-number">4.8.3</span> Le graphique :</h3>
-<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-66-1.svg" width="672" style="display: block; margin: auto;" /></p>
+<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-127-1.svg" width="672" style="display: block; margin: auto;" /></p>
 <p>Tous les pays de l’Ex-Yougoslavie semblent dégager une tendance commune :</p>
 <ul>
 <li><p><strong>Première tendance</strong>
@@ -1607,7 +1614,7 @@ Enfin, je trie par date, afin d’avoir une visualition sur plusieurs pays, plut
   |                                                                      |   0%
   |                                                                            
   |======================================================================| 100%</code></pre>
-<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-70-1.svg" width="672" /></p>
+<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-131-1.svg" width="672" /></p>
 <p>Ce document est un graphique courbe représentant le chiffre d’affaire des entreprises de conseil informatique de 1995 à 2020. Ce sont des données mensuelles brut en base 100 provenant de l’Insee.</p>
 <p>De prime abord, nous pouvons voir que le chiffre d’affaire fluctue énormement chaque année. Ces fluctuations sont l’expression des “bonnes périodes” de ce secteur.</p>
 <p>De plus, nous nous appercevons que le trend de ce graphique va à la hausse, c’est à dire, que plus les années passent et plus le chiffre d’affaire des entreprises augmente. L’accroissement du chiffre d’affaire des entreprises de conseil informatique s’explique par le fait que depuis la création d’internet, les entreprises se spécialisent dans ce domaine pour conseiller les entreprises qui developpent de nouvelles technologies pour améliorer leurs activités.</p>
@@ -1677,7 +1684,7 @@ Neanmoins, il reprend son élan à la moitié de l’année 2020 pour atteindre 
 </tr>
 </tbody>
 </table>
-<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-74-1.svg" width="672" /></p>
+<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-135-1.svg" width="672" /></p>
 <p>Ce document est un graphique courbe représentant le chiffre d’affaire des entreprises de conseil informatique de 1999 à 2020. Ce sont des données mensuelles comprenant la correction CSJ-CVO provenant de l’Insee.</p>
 <p>Nous voyons que le trend de ce graphique est une preuve des commentaires fait plus haut dans le graphique du chiffre d’affaire des entreprises dans le conseil informatique. Nous nous appercevons qu’avec la correction, la visibilité de la tendance est claire. Les entreprises voyent leurs chiffres d’affaires s’accélérer proportionnellement au temps, c’est à dire, que plus le temps passe, est plus d’entreprises font appellent aux conseils pour amener au mieux leur projet. Pourtant les effets de fluctuation sont moins importants. En corrigeant les effets de saisonnalité, le secteur est stable et subit moins de baisse que l’on peut supposer.</p>
 </div>
@@ -1719,7 +1726,7 @@ L’accès à un jeu de données se fait en plusieurs étapes :</p>
 </div>
 <div id="création-graphique-à-partir-de-lapi" class="section level3" number="4.10.2">
 <h3><span class="header-section-number">4.10.2</span> Création graphique à partir de l’api</h3>
-<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-80-1.svg" width="672" /></p>
+<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-141-1.svg" width="672" /></p>
 <p>Début 1975 il y avait 121 000 hommes entre 25 et 49 ans au chômage contre 660 000 fin 2019. le nombre d’hommes au chômage a donc été multiplié par 5,5 sur la période . Cette évolution se justifie par une multiplication par 4 du taux de chômage et par une légère hausse de la population.
 Le pic du chômage pour les hommes à été atteint au 2ème trimestre 2015 avec 915 000 chômeurs.</p>
 <p>Ici j’extrait les mêmes données sur le chômage mais pour les Femmes.</p>
@@ -1728,7 +1735,7 @@ Le pic du chômage pour les hommes à été atteint au 2ème trimestre 2015 avec
   |                                                                      |   0%
   |                                                                            
   |======================================================================| 100%</code></pre>
-<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-82-1.svg" width="672" /></p>
+<p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-143-1.svg" width="672" /></p>
 <p>Début 1975 il y avait 156 000 femmes entre 25 et 49 ans au chômage contre 660 000 fin 2019. le nombre de femmes au chômage a donc été multiplié par 5 sur la période .
 Le pic du chômage pour les femmes à été atteint au 3ème trimestre 1997 avec 919 000 chômeuses</p>
 </div>
@@ -1745,6 +1752,12 @@ Le pic du chômage pour les femmes à été atteint au 3ème trimestre 1997 avec
 </div>
 </div>
 </div>
+
+
+
+
+
+
 <script src="js/tidyverse.js"></script>
             </section>
 
