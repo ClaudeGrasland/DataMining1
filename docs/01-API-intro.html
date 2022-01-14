@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <title>Chapitre 1 Collecter des données à l’aide d’une API | DATA MINING</title>
   <meta name="description" content="Titre du cours" />
-  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+  <meta name="generator" content="bookdown 0.24 and GitBook 2.6.7" />
 
   <meta property="og:title" content="Chapitre 1 Collecter des données à l’aide d’une API | DATA MINING" />
   <meta property="og:type" content="book" />
@@ -24,7 +24,7 @@
 <meta name="author" content="Claude Grasland, Professeur de Géographie, Université de Paris (Diderot)" />
 
 
-<meta name="date" content="2021-03-20" />
+<meta name="date" content="2022-01-14" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -33,8 +33,9 @@
   
 <link rel="prev" href="00-presentation.html"/>
 <link rel="next" href="02-API-worldstat.html"/>
-<script src="libs/header-attrs-2.6/header-attrs.js"></script>
-<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
+<script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -50,21 +51,15 @@
 
 
 
-
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
-<script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
-<script src="libs/plotly-binding-4.9.2.2/plotly.js"></script>
-<script src="libs/typedarray-0.1/typedarray.min.js"></script>
-<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
-<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
-<link href="libs/plotly-htmlwidgets-css-1.52.2/plotly-htmlwidgets.css" rel="stylesheet" />
-<script src="libs/plotly-main-1.52.2/plotly-latest.min.js"></script>
+<link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
 pre > code.sourceCode { white-space: pre; position: relative; }
 pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
@@ -95,7 +90,7 @@ div.sourceCode
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span. { color: #1f1c1b; } /* Normal */
+code span { color: #1f1c1b; } /* Normal */
 code span.al { color: #bf0303; background-color: #f7e6e6; font-weight: bold; } /* Alert */
 code span.an { color: #ca60ca; } /* Annotation */
 code span.at { color: #0057ae; } /* Attribute */
@@ -128,6 +123,7 @@ code span.vs { color: #bf0303; } /* VerbatimString */
 code span.wa { color: #bf0303; } /* Warning */
 </style>
 
+
 <link rel="stylesheet" href="css/tidyverse.css" type="text/css" />
 </head>
 
@@ -141,7 +137,7 @@ code span.wa { color: #bf0303; } /* Warning */
       <nav role="navigation">
 
 <ul class="summary">
-<li><a href="./index.html">Data Mining:  <em>C. Grasland (2021)</em></a></li>
+<li><a href="./index.html">Data Mining:  <em>C. Grasland</em></a></li>
 
 <li class="divider"></li>
 <li class="chapter" data-level="" data-path="00-presentation.html"><a href="00-presentation.html"><i class="fa fa-check"></i>Présentation</a>
@@ -316,12 +312,12 @@ code span.wa { color: #bf0303; } /* Warning */
             <section class="normal" id="section-">
 <div id="c01-API" class="section level1" number="1">
 <h1><span class="header-section-number">Chapitre 1</span> Collecter des données à l’aide d’une API</h1>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="01-API-intro.html#cb1-1"></a><span class="kw">library</span>(knitr)</span>
-<span id="cb1-2"><a href="01-API-intro.html#cb1-2"></a><span class="kw">library</span>(httr)</span>
-<span id="cb1-3"><a href="01-API-intro.html#cb1-3"></a><span class="kw">library</span>(jsonlite)</span>
-<span id="cb1-4"><a href="01-API-intro.html#cb1-4"></a><span class="kw">library</span>(insee)</span>
-<span id="cb1-5"><a href="01-API-intro.html#cb1-5"></a><span class="kw">library</span>(dplyr)</span>
-<span id="cb1-6"><a href="01-API-intro.html#cb1-6"></a><span class="kw">library</span>(lubridate)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="01-API-intro.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb1-2"><a href="01-API-intro.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr)</span>
+<span id="cb1-3"><a href="01-API-intro.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jsonlite)</span>
+<span id="cb1-4"><a href="01-API-intro.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(insee)</span>
+<span id="cb1-5"><a href="01-API-intro.html#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb1-6"><a href="01-API-intro.html#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span></code></pre></div>
 <div id="quest-ce-quune-api" class="section level2" number="1.1">
 <h2><span class="header-section-number">1.1</span> Qu’est-ce qu’une API ?</h2>
 <div id="définitions" class="section level3" number="1.1.1">
@@ -374,24 +370,24 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="installer-les-packages-jsonlite-et-httr" class="section level3" number="1.2.2">
 <h3><span class="header-section-number">1.2.2</span> Installer les packages jsonlite et httr</h3>
 <p>Pour travailler avec des API dans R, nous devons intégrer certaines bibliothèques (<em>library</em>). Ces bibliothèques prennent toutes les complexités d’une requête d’API et les enveloppent dans des fonctions que nous pouvons utiliser dans des lignes de code uniques. Les bibliothèques R que nous utiliserons sont <code>httr</code> et <code>jsonlite</code>. Elles remplissent des rôles différents dans notre introduction des API, mais les deux sont essentiels.Si vous ne disposez pas de ces bibliothèques dans votre console R ou RStudio, vous devez d’abord les télécharger.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="01-API-intro.html#cb2-1"></a><span class="kw">library</span>(httr)</span>
-<span id="cb2-2"><a href="01-API-intro.html#cb2-2"></a><span class="kw">library</span>(jsonlite)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="01-API-intro.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(httr)</span>
+<span id="cb2-2"><a href="01-API-intro.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jsonlite)</span></code></pre></div>
 </div>
 <div id="structure-dune-requête" class="section level3" number="1.2.3">
 <h3><span class="header-section-number">1.2.3</span> Structure d’une requête</h3>
 <p>Une requête adressé à une API va suivre le schéma suivant :</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="01-API-intro.html#cb3-1"></a>knitr<span class="op">::</span><span class="kw">include_graphics</span>(<span class="st">&quot;img/API_GET.png&quot;</span>,)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="01-API-intro.html#cb3-1" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">include_graphics</span>(<span class="st">&quot;img/API_GET.png&quot;</span>,)</span></code></pre></div>
 <p><img src="img/API_GET.png" width="226" /></p>
 <p>Il existe plusieurs types de requêtes que l’on peut adresser à un serveur API. Pour nos besoins, nous allons simplement demander des données, ce qui correspond à une demande <strong>GET</strong>. Les autres types de requêtes sont POST et PUT, mais nous n’avons pas à nous en préoccuper dans l’immédiat</p>
 <p>Afin de créer une requête GET, nous devons utiliser la fonction <em>GET()</em> de la bibliothèque <code>httr</code>. La fonction GET() nécessite une URL, qui spécifie l’adresse du serveur auquel la demande doit être envoyée. A titre d’exemple, C. Pascual propose de travailler avec l’<strong>API Open Notify</strong>, qui donne accès à des données sur divers projets de la NASA. À l’aide de l’API Open Notify, nous pouvons notamment en savoir plus sur l’emplacement de la Station spatiale internationale et sur le nombre de personnes actuellement dans l’espace.</p>
 <p>Notre programme télécharge les données disponibles à l’adresse du serveur et les stocke dans un objet auquel on peut donner le nom que l’on souhaite, par exemple <em>toto</em></p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="01-API-intro.html#cb4-1"></a>toto &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;http://api.open-notify.org/astros.json&quot;</span>)</span>
-<span id="cb4-2"><a href="01-API-intro.html#cb4-2"></a>toto</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="01-API-intro.html#cb4-1" aria-hidden="true" tabindex="-1"></a>toto <span class="ot">&lt;-</span> <span class="fu">GET</span>(<span class="st">&quot;http://api.open-notify.org/astros.json&quot;</span>)</span>
+<span id="cb4-2"><a href="01-API-intro.html#cb4-2" aria-hidden="true" tabindex="-1"></a>toto</span></code></pre></div>
 <pre><code>Response [http://api.open-notify.org/astros.json]
-  Date: 2021-03-20 13:18
+  Date: 2022-01-14 14:09
   Status: 200
   Content-Type: application/json
-  Size: 356 B</code></pre>
+  Size: 497 B</code></pre>
 <p>Lorsqu’on affiche la réponse, on obtient ici quatre informations :</p>
 <ul>
 <li><strong>Date</strong> : le moment exact du téléchargement, très utile pour suivre les mises à jour</li>
@@ -400,15 +396,15 @@ code span.wa { color: #bf0303; } /* Warning */
 <li><strong>Size</strong> : la taille du fichier résultant du transfert.</li>
 </ul>
 <p>On pourrait également en savoir plus en tapant la commande <em>str()</em> qui nous indique que le résultat est une liste comportant 10 branches et de nombreuses sous-branches :</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="01-API-intro.html#cb6-1"></a><span class="kw">str</span>(toto)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="01-API-intro.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(toto)</span></code></pre></div>
 <pre><code>List of 10
  $ url        : chr &quot;http://api.open-notify.org/astros.json&quot;
  $ status_code: int 200
  $ headers    :List of 6
   ..$ server                     : chr &quot;nginx/1.10.3&quot;
-  ..$ date                       : chr &quot;Sat, 20 Mar 2021 13:18:10 GMT&quot;
+  ..$ date                       : chr &quot;Fri, 14 Jan 2022 14:09:25 GMT&quot;
   ..$ content-type               : chr &quot;application/json&quot;
-  ..$ content-length             : chr &quot;356&quot;
+  ..$ content-length             : chr &quot;497&quot;
   ..$ connection                 : chr &quot;keep-alive&quot;
   ..$ access-control-allow-origin: chr &quot;*&quot;
   ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;insensitive&quot; &quot;list&quot;
@@ -418,9 +414,9 @@ code span.wa { color: #bf0303; } /* Warning */
   .. ..$ version: chr &quot;HTTP/1.1&quot;
   .. ..$ headers:List of 6
   .. .. ..$ server                     : chr &quot;nginx/1.10.3&quot;
-  .. .. ..$ date                       : chr &quot;Sat, 20 Mar 2021 13:18:10 GMT&quot;
+  .. .. ..$ date                       : chr &quot;Fri, 14 Jan 2022 14:09:25 GMT&quot;
   .. .. ..$ content-type               : chr &quot;application/json&quot;
-  .. .. ..$ content-length             : chr &quot;356&quot;
+  .. .. ..$ content-length             : chr &quot;497&quot;
   .. .. ..$ connection                 : chr &quot;keep-alive&quot;
   .. .. ..$ access-control-allow-origin: chr &quot;*&quot;
   .. .. ..- attr(*, &quot;class&quot;)= chr [1:2] &quot;insensitive&quot; &quot;list&quot;
@@ -432,9 +428,9 @@ code span.wa { color: #bf0303; } /* Warning */
   ..$ expiration: &#39;POSIXct&#39; num(0) 
   ..$ name      : logi(0) 
   ..$ value     : logi(0) 
- $ content    : raw [1:356] 7b 22 6d 65 ...
- $ date       : POSIXct[1:1], format: &quot;2021-03-20 13:18:10&quot;
- $ times      : Named num [1:6] 0 0.0783 0.2283 0.2283 0.3795 ...
+ $ content    : raw [1:497] 7b 22 70 65 ...
+ $ date       : POSIXct[1:1], format: &quot;2022-01-14 14:09:25&quot;
+ $ times      : Named num [1:6] 0 0.00215 0.1604 0.1605 0.32683 ...
   ..- attr(*, &quot;names&quot;)= chr [1:6] &quot;redirect&quot; &quot;namelookup&quot; &quot;connect&quot; &quot;pretransfer&quot; ...
  $ request    :List of 7
   ..$ method    : chr &quot;GET&quot;
@@ -443,7 +439,7 @@ code span.wa { color: #bf0303; } /* Warning */
   .. ..- attr(*, &quot;names&quot;)= chr &quot;Accept&quot;
   ..$ fields    : NULL
   ..$ options   :List of 2
-  .. ..$ useragent: chr &quot;libcurl/7.64.1 r-curl/4.3 httr/1.4.2&quot;
+  .. ..$ useragent: chr &quot;libcurl/7.64.1 r-curl/4.3.2 httr/1.4.2&quot;
   .. ..$ httpget  : logi TRUE
   ..$ auth_token: NULL
   ..$ output    : list()
@@ -457,28 +453,28 @@ code span.wa { color: #bf0303; } /* Warning */
 <h3><span class="header-section-number">1.2.4</span> Extraction des données</h3>
 <p>Les données contenues dans la réponse ont été stockées au format <em>JSON (JavaScript Object Notation)</em> qui est devenu un standard pour les échanges de données. Sans entrer dans le détail de ce langage, on retiendra qu’il va falloir convertir les données JSON dans un format de tableau lisible par R ce qui se fait ici en deux étapes.</p>
 <p>Tout d’abord extraire le champ content et le convertir en mode caractère :</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="01-API-intro.html#cb8-1"></a><span class="co"># conversion du contenu de toto en mode character</span></span>
-<span id="cb8-2"><a href="01-API-intro.html#cb8-2"></a>toto2&lt;-<span class="kw">rawToChar</span>(toto<span class="op">$</span>content)</span>
-<span id="cb8-3"><a href="01-API-intro.html#cb8-3"></a>toto2</span></code></pre></div>
-<pre><code>[1] &quot;{\&quot;message\&quot;: \&quot;success\&quot;, \&quot;number\&quot;: 7, \&quot;people\&quot;: [{\&quot;craft\&quot;: \&quot;ISS\&quot;, \&quot;name\&quot;: \&quot;Sergey Ryzhikov\&quot;}, {\&quot;craft\&quot;: \&quot;ISS\&quot;, \&quot;name\&quot;: \&quot;Kate Rubins\&quot;}, {\&quot;craft\&quot;: \&quot;ISS\&quot;, \&quot;name\&quot;: \&quot;Sergey Kud-Sverchkov\&quot;}, {\&quot;craft\&quot;: \&quot;ISS\&quot;, \&quot;name\&quot;: \&quot;Mike Hopkins\&quot;}, {\&quot;craft\&quot;: \&quot;ISS\&quot;, \&quot;name\&quot;: \&quot;Victor Glover\&quot;}, {\&quot;craft\&quot;: \&quot;ISS\&quot;, \&quot;name\&quot;: \&quot;Shannon Walker\&quot;}, {\&quot;craft\&quot;: \&quot;ISS\&quot;, \&quot;name\&quot;: \&quot;Soichi Noguchi\&quot;}]}&quot;</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="01-API-intro.html#cb10-1"></a><span class="kw">str</span>(toto2)</span></code></pre></div>
-<pre><code> chr &quot;{\&quot;message\&quot;: \&quot;success\&quot;, \&quot;number\&quot;: 7, \&quot;people\&quot;: [{\&quot;craft\&quot;: \&quot;ISS\&quot;, \&quot;name\&quot;: \&quot;Sergey Ryzhikov\&quot;}, {\&quot;&quot;| __truncated__</code></pre>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="01-API-intro.html#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># conversion du contenu de toto en mode character</span></span>
+<span id="cb8-2"><a href="01-API-intro.html#cb8-2" aria-hidden="true" tabindex="-1"></a>toto2<span class="ot">&lt;-</span><span class="fu">rawToChar</span>(toto<span class="sc">$</span>content)</span>
+<span id="cb8-3"><a href="01-API-intro.html#cb8-3" aria-hidden="true" tabindex="-1"></a>toto2</span></code></pre></div>
+<pre><code>[1] &quot;{\&quot;people\&quot;: [{\&quot;craft\&quot;: \&quot;ISS\&quot;, \&quot;name\&quot;: \&quot;Mark Vande Hei\&quot;}, {\&quot;craft\&quot;: \&quot;ISS\&quot;, \&quot;name\&quot;: \&quot;Pyotr Dubrov\&quot;}, {\&quot;craft\&quot;: \&quot;ISS\&quot;, \&quot;name\&quot;: \&quot;Anton Shkaplerov\&quot;}, {\&quot;craft\&quot;: \&quot;Shenzhou 13\&quot;, \&quot;name\&quot;: \&quot;Zhai Zhigang\&quot;}, {\&quot;craft\&quot;: \&quot;Shenzhou 13\&quot;, \&quot;name\&quot;: \&quot;Wang Yaping\&quot;}, {\&quot;craft\&quot;: \&quot;Shenzhou 13\&quot;, \&quot;name\&quot;: \&quot;Ye Guangfu\&quot;}, {\&quot;craft\&quot;: \&quot;ISS\&quot;, \&quot;name\&quot;: \&quot;Raja Chari\&quot;}, {\&quot;craft\&quot;: \&quot;ISS\&quot;, \&quot;name\&quot;: \&quot;Tom Marshburn\&quot;}, {\&quot;craft\&quot;: \&quot;ISS\&quot;, \&quot;name\&quot;: \&quot;Kayla Barron\&quot;}, {\&quot;craft\&quot;: \&quot;ISS\&quot;, \&quot;name\&quot;: \&quot;Matthias Maurer\&quot;}], \&quot;message\&quot;: \&quot;success\&quot;, \&quot;number\&quot;: 10}&quot;</code></pre>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="01-API-intro.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(toto2)</span></code></pre></div>
+<pre><code> chr &quot;{\&quot;people\&quot;: [{\&quot;craft\&quot;: \&quot;ISS\&quot;, \&quot;name\&quot;: \&quot;Mark Vande Hei\&quot;}, {\&quot;craft\&quot;: \&quot;ISS\&quot;, \&quot;name\&quot;: \&quot;Pyotr Dubrov&quot;| __truncated__</code></pre>
 <p>Puis convertir ces données de type JSON en données utilisables par R à l’aide de la fonction <em>fromJson()</em> du package <code>jsonlite()</code></p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="01-API-intro.html#cb12-1"></a>toto3 &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(toto2)</span>
-<span id="cb12-2"><a href="01-API-intro.html#cb12-2"></a><span class="kw">str</span>(toto3)</span></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb12-1"><a href="01-API-intro.html#cb12-1" aria-hidden="true" tabindex="-1"></a>toto3 <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(toto2)</span>
+<span id="cb12-2"><a href="01-API-intro.html#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(toto3)</span></code></pre></div>
 <pre><code>List of 3
+ $ people :&#39;data.frame&#39;:    10 obs. of  2 variables:
+  ..$ craft: chr [1:10] &quot;ISS&quot; &quot;ISS&quot; &quot;ISS&quot; &quot;Shenzhou 13&quot; ...
+  ..$ name : chr [1:10] &quot;Mark Vande Hei&quot; &quot;Pyotr Dubrov&quot; &quot;Anton Shkaplerov&quot; &quot;Zhai Zhigang&quot; ...
  $ message: chr &quot;success&quot;
- $ number : int 7
- $ people :&#39;data.frame&#39;:    7 obs. of  2 variables:
-  ..$ craft: chr [1:7] &quot;ISS&quot; &quot;ISS&quot; &quot;ISS&quot; &quot;ISS&quot; ...
-  ..$ name : chr [1:7] &quot;Sergey Ryzhikov&quot; &quot;Kate Rubins&quot; &quot;Sergey Kud-Sverchkov&quot; &quot;Mike Hopkins&quot; ...</code></pre>
+ $ number : int 10</code></pre>
 <p>On obtient finalement une liste de trois éléments dont le dernier est un <em>data.frame</em> décrivant les astronautes présents dans la station spatiale internationale au moment de l’execution du programme.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="01-API-intro.html#cb14-1"></a>toto4&lt;-toto3<span class="op">$</span>people</span>
-<span id="cb14-2"><a href="01-API-intro.html#cb14-2"></a><span class="kw">str</span>(toto4)</span></code></pre></div>
-<pre><code>&#39;data.frame&#39;:   7 obs. of  2 variables:
- $ craft: chr  &quot;ISS&quot; &quot;ISS&quot; &quot;ISS&quot; &quot;ISS&quot; ...
- $ name : chr  &quot;Sergey Ryzhikov&quot; &quot;Kate Rubins&quot; &quot;Sergey Kud-Sverchkov&quot; &quot;Mike Hopkins&quot; ...</code></pre>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="01-API-intro.html#cb16-1"></a><span class="kw">kable</span>(toto4,<span class="dt">caption =</span> <span class="st">&quot;Passagers de l&#39;ISS en temps réel&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="01-API-intro.html#cb14-1" aria-hidden="true" tabindex="-1"></a>toto4<span class="ot">&lt;-</span>toto3<span class="sc">$</span>people</span>
+<span id="cb14-2"><a href="01-API-intro.html#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(toto4)</span></code></pre></div>
+<pre><code>&#39;data.frame&#39;:   10 obs. of  2 variables:
+ $ craft: chr  &quot;ISS&quot; &quot;ISS&quot; &quot;ISS&quot; &quot;Shenzhou 13&quot; ...
+ $ name : chr  &quot;Mark Vande Hei&quot; &quot;Pyotr Dubrov&quot; &quot;Anton Shkaplerov&quot; &quot;Zhai Zhigang&quot; ...</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="01-API-intro.html#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(toto4,<span class="at">caption =</span> <span class="st">&quot;Passagers de l&#39;ISS en temps réel&quot;</span>)</span></code></pre></div>
 <table>
 <caption><span id="tab:unnamed-chunk-8">Table 1.1: </span>Passagers de l’ISS en temps réel</caption>
 <thead>
@@ -490,31 +486,43 @@ code span.wa { color: #bf0303; } /* Warning */
 <tbody>
 <tr class="odd">
 <td align="left">ISS</td>
-<td align="left">Sergey Ryzhikov</td>
+<td align="left">Mark Vande Hei</td>
 </tr>
 <tr class="even">
 <td align="left">ISS</td>
-<td align="left">Kate Rubins</td>
+<td align="left">Pyotr Dubrov</td>
 </tr>
 <tr class="odd">
 <td align="left">ISS</td>
-<td align="left">Sergey Kud-Sverchkov</td>
+<td align="left">Anton Shkaplerov</td>
+</tr>
+<tr class="even">
+<td align="left">Shenzhou 13</td>
+<td align="left">Zhai Zhigang</td>
+</tr>
+<tr class="odd">
+<td align="left">Shenzhou 13</td>
+<td align="left">Wang Yaping</td>
+</tr>
+<tr class="even">
+<td align="left">Shenzhou 13</td>
+<td align="left">Ye Guangfu</td>
+</tr>
+<tr class="odd">
+<td align="left">ISS</td>
+<td align="left">Raja Chari</td>
 </tr>
 <tr class="even">
 <td align="left">ISS</td>
-<td align="left">Mike Hopkins</td>
+<td align="left">Tom Marshburn</td>
 </tr>
 <tr class="odd">
 <td align="left">ISS</td>
-<td align="left">Victor Glover</td>
+<td align="left">Kayla Barron</td>
 </tr>
 <tr class="even">
 <td align="left">ISS</td>
-<td align="left">Shannon Walker</td>
-</tr>
-<tr class="odd">
-<td align="left">ISS</td>
-<td align="left">Soichi Noguchi</td>
+<td align="left">Matthias Maurer</td>
 </tr>
 </tbody>
 </table>
@@ -565,26 +573,26 @@ code span.wa { color: #bf0303; } /* Warning */
 <p>L’exemple précédent consistait à télécharger la totalité d’un tableau et ne demandait donc pas de paramètres particuliers. Mais il peut aussi arriver (par exemple si une base de données est très volumineuse) que l’on précise à l’aide de paramètres ce que l’on veut précisément télécharger.</p>
 <p>A titre d’exemple, C. Pascual propose d’utiliser une autre API de la NASA intitulée <a href="http://open-notify.org/Open-Notify-API/ISS-Pass-Times/">ISS Pass Time</a> qui permet de savoir à quel moment la station ISS passera au dessus d’un certain point du globe.</p>
 <p>L’exemple choisi par C.Pascual est la recherche des trois prochaines dates de passage de l’ISS au dessus de New York dont les coordonnées de latitude et de longitude sont 40.7 et -74.0 :</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="01-API-intro.html#cb17-1"></a>titi &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;http://api.open-notify.org/iss-pass.json&quot;</span>,</span>
-<span id="cb17-2"><a href="01-API-intro.html#cb17-2"></a>            <span class="dt">query =</span> <span class="kw">list</span>(<span class="dt">lat =</span> <span class="fl">40.7</span>, <span class="dt">lon =</span> <span class="dv">-74</span>, <span class="dt">n=</span><span class="dv">3</span>))</span>
-<span id="cb17-3"><a href="01-API-intro.html#cb17-3"></a>titi2 &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(<span class="kw">rawToChar</span>(titi<span class="op">$</span>content))</span>
-<span id="cb17-4"><a href="01-API-intro.html#cb17-4"></a>titi3 &lt;-<span class="st"> </span>titi2<span class="op">$</span>response</span>
-<span id="cb17-5"><a href="01-API-intro.html#cb17-5"></a>titi3</span></code></pre></div>
-<pre><code># A tibble: 3 x 2
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb17-1"><a href="01-API-intro.html#cb17-1" aria-hidden="true" tabindex="-1"></a>titi <span class="ot">&lt;-</span> <span class="fu">GET</span>(<span class="st">&quot;http://api.open-notify.org/iss-pass.json&quot;</span>,</span>
+<span id="cb17-2"><a href="01-API-intro.html#cb17-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">query =</span> <span class="fu">list</span>(<span class="at">lat =</span> <span class="fl">40.7</span>, <span class="at">lon =</span> <span class="sc">-</span><span class="dv">74</span>, <span class="at">n=</span><span class="dv">3</span>))</span>
+<span id="cb17-3"><a href="01-API-intro.html#cb17-3" aria-hidden="true" tabindex="-1"></a>titi2 <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(<span class="fu">rawToChar</span>(titi<span class="sc">$</span>content))</span>
+<span id="cb17-4"><a href="01-API-intro.html#cb17-4" aria-hidden="true" tabindex="-1"></a>titi3 <span class="ot">&lt;-</span> titi2<span class="sc">$</span>response</span>
+<span id="cb17-5"><a href="01-API-intro.html#cb17-5" aria-hidden="true" tabindex="-1"></a>titi3</span></code></pre></div>
+<pre><code># A tibble: 3 × 2
   duration   risetime
      &lt;int&gt;      &lt;int&gt;
-1      260 1616275763
-2      634 1616281333
-3      634 1616287143</code></pre>
+1      488 1642202594
+2      650 1642208287
+3      604 1642214136</code></pre>
 <p>Le résultat paraît à première vue assez déconcertant. Mais la lecture de la documentation de l’API indique que les deux variables du tableau correspondent respectivement :</p>
 <ul>
 <li><em>duration</em> : nombre de secondes pendant lesquelles la station sera à la verticale du point avec un angle de + ou - 10 degrés.</li>
 <li><em>risetime</em> : moment de passage exprimé en <a href="https://en.wikipedia.org/wiki/Unix_time">Unix Time</a> c’est-à-dire en nombre de secondes écoulées depuis le 1er Janvier 1970 UTC.</li>
 </ul>
 <p>Si l’on veut se ramener à une date précise, il faut donc convertir ce temps à l’aide d’une fonction R. Le plus simple est pour cela d’utiliser la fonction <em>as_datetime()</em> du package <code>lubridate</code>.</p>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="01-API-intro.html#cb19-1"></a><span class="kw">library</span>(lubridate)</span>
-<span id="cb19-2"><a href="01-API-intro.html#cb19-2"></a>titi3<span class="op">$</span>risetime&lt;-<span class="kw">as_datetime</span>(titi3<span class="op">$</span>risetime)</span>
-<span id="cb19-3"><a href="01-API-intro.html#cb19-3"></a><span class="kw">kable</span>(titi3)</span></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="01-API-intro.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(lubridate)</span>
+<span id="cb19-2"><a href="01-API-intro.html#cb19-2" aria-hidden="true" tabindex="-1"></a>titi3<span class="sc">$</span>risetime<span class="ot">&lt;-</span><span class="fu">as_datetime</span>(titi3<span class="sc">$</span>risetime)</span>
+<span id="cb19-3"><a href="01-API-intro.html#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(titi3)</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -594,16 +602,16 @@ code span.wa { color: #bf0303; } /* Warning */
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">260</td>
-<td align="left">2021-03-20 21:29:23</td>
+<td align="right">488</td>
+<td align="left">2022-01-14 23:23:14</td>
 </tr>
 <tr class="even">
-<td align="right">634</td>
-<td align="left">2021-03-20 23:02:13</td>
+<td align="right">650</td>
+<td align="left">2022-01-15 00:58:07</td>
 </tr>
 <tr class="odd">
-<td align="right">634</td>
-<td align="left">2021-03-21 00:39:03</td>
+<td align="right">604</td>
+<td align="left">2022-01-15 02:35:36</td>
 </tr>
 </tbody>
 </table>
@@ -620,16 +628,16 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="installation-et-chargement-du-package" class="section level3" number="1.3.1">
 <h3><span class="header-section-number">1.3.1</span> Installation et chargement du package</h3>
 <p>On commence par installer le package <code>insee</code> ce qui peut prendre quelques minutes mais sera fait une seule fois (sauf mise à jour).</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="01-API-intro.html#cb20-1"></a><span class="co"># install.packages(&quot;insee&quot;)</span></span></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="01-API-intro.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># install.packages(&quot;insee&quot;)</span></span></code></pre></div>
 <p>On peut ensuite lancer le package pour l’utiliser avec <em>library()</em> et on ajoute le package <em>tidyverse</em> que l’INSEE semble privilégier pour l’exploitation des données :</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="01-API-intro.html#cb21-1"></a><span class="kw">library</span>(insee)</span>
-<span id="cb21-2"><a href="01-API-intro.html#cb21-2"></a><span class="kw">library</span>(tidyverse,<span class="dt">warn.conflicts =</span> F)</span></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb21-1"><a href="01-API-intro.html#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(insee)</span>
+<span id="cb21-2"><a href="01-API-intro.html#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse,<span class="at">warn.conflicts =</span> F)</span></code></pre></div>
 </div>
 <div id="chargement-de-la-liste-des-tableaux" class="section level3" number="1.3.2">
 <h3><span class="header-section-number">1.3.2</span> Chargement de la liste des tableaux</h3>
 <p>On commence par télécharger le catalogue des tableaux de données disponibles,à l’aide de la commande <em>get_dataset_list()</em></p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="01-API-intro.html#cb22-1"></a>catalogue =<span class="st"> </span><span class="kw">get_dataset_list</span>()</span>
-<span id="cb22-2"><a href="01-API-intro.html#cb22-2"></a><span class="kw">kable</span>(<span class="kw">head</span>(catalogue))</span></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb22-1"><a href="01-API-intro.html#cb22-1" aria-hidden="true" tabindex="-1"></a>catalogue <span class="ot">=</span> <span class="fu">get_dataset_list</span>()</span>
+<span id="cb22-2"><a href="01-API-intro.html#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(catalogue))</span></code></pre></div>
 <table>
 <colgroup>
 <col width="8%" />
@@ -660,7 +668,7 @@ code span.wa { color: #bf0303; } /* Warning */
 <td align="left">Chômage, taux de chômage par sexe et âge (sens BIT)</td>
 <td align="left">Unemployment, unemployment rate and halo by sex and age (ILO)</td>
 <td align="left"><a href="https://www.insee.fr/fr/statistiques/series/103167923" class="uri">https://www.insee.fr/fr/statistiques/series/103167923</a></td>
-<td align="right">166</td>
+<td align="right">169</td>
 </tr>
 <tr class="odd">
 <td align="left">CLIMAT-AFFAIRES</td>
@@ -697,67 +705,60 @@ code span.wa { color: #bf0303; } /* Warning */
 <div id="examen-des-séries-présentes-dans-un-tableau" class="section level3" number="1.3.3">
 <h3><span class="header-section-number">1.3.3</span> Examen des séries présentes dans un tableau</h3>
 <p>Une fois que l’on a choisi un tableau, on peut examiner plus en détail les différentes séries qui y sont présentes à l’aide de la commande <em>get_idbank_list()</em>. On va par exemple examiner le contenu de la base de données “DECES-MORTALITE” :</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="01-API-intro.html#cb23-1"></a>var&lt;-<span class="kw">get_idbank_list</span>(<span class="st">&quot;DECES-MORTALITE&quot;</span>)</span>
-<span id="cb23-2"><a href="01-API-intro.html#cb23-2"></a><span class="kw">str</span>(var)</span></code></pre></div>
-<pre><code>FALSE tibble [1,905 × 39] (S3: tbl_df/tbl/data.frame)
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="01-API-intro.html#cb23-1" aria-hidden="true" tabindex="-1"></a>var<span class="ot">&lt;-</span><span class="fu">get_idbank_list</span>(<span class="st">&quot;DECES-MORTALITE&quot;</span>) </span>
+<span id="cb23-2"><a href="01-API-intro.html#cb23-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(var)</span></code></pre></div>
+<pre><code>FALSE tibble [1,905 × 32] (S3: tbl_df/tbl/data.frame)
 FALSE  $ nomflow              : chr [1:1905] &quot;DECES-MORTALITE&quot; &quot;DECES-MORTALITE&quot; &quot;DECES-MORTALITE&quot; &quot;DECES-MORTALITE&quot; ...
-FALSE  $ idbank               : chr [1:1905] &quot;000436398&quot; &quot;001641606&quot; &quot;000869058&quot; &quot;001780755&quot; ...
-FALSE  $ cleFlow              : chr [1:1905] &quot;M.TAUX_MORTALITE.TAUX.TXMORINF.FM.0.SO.SO.BRUT&quot; &quot;M.TAUX_MORTALITE.TAUX.TXMORINF.FR-D976.0.SO.SO.BRUT&quot; &quot;A.DECES_DOMICILIES.VALEUR_ABSOLUE.DECES-DOM.AU.SO.SO.NOMBRE.BRUT&quot; &quot;A.DECES_DOMICILIES.VALEUR_ABSOLUE.DECES-DOM.F_H_IDF.SO.SO.NOMBRE.BRUT&quot; ...
-FALSE  $ FREQ                 : chr [1:1905] &quot;M&quot; &quot;M&quot; &quot;A&quot; &quot;A&quot; ...
-FALSE  $ INDICATEUR           : chr [1:1905] &quot;TAUX_MORTALITE&quot; &quot;TAUX_MORTALITE&quot; &quot;DECES_DOMICILIES&quot; &quot;DECES_DOMICILIES&quot; ...
-FALSE  $ NATURE               : chr [1:1905] &quot;TAUX&quot; &quot;TAUX&quot; &quot;VALEUR_ABSOLUE&quot; &quot;VALEUR_ABSOLUE&quot; ...
-FALSE  $ DEMOGRAPHIE          : chr [1:1905] &quot;TXMORINF&quot; &quot;TXMORINF&quot; &quot;DECES-DOM&quot; &quot;DECES-DOM&quot; ...
-FALSE  $ REF_AREA             : chr [1:1905] &quot;FM&quot; &quot;FR-D976&quot; &quot;AU&quot; &quot;F_H_IDF&quot; ...
-FALSE  $ SEXE                 : chr [1:1905] &quot;0&quot; &quot;0&quot; &quot;SO&quot; &quot;SO&quot; ...
-FALSE  $ AGE                  : chr [1:1905] &quot;SO&quot; &quot;SO&quot; &quot;SO&quot; &quot;SO&quot; ...
-FALSE  $ UNIT_MEASURE         : chr [1:1905] &quot;SO&quot; &quot;SO&quot; &quot;NOMBRE&quot; &quot;NOMBRE&quot; ...
+FALSE  $ idbank               : chr [1:1905] &quot;000067679&quot; &quot;000067680&quot; &quot;000067681&quot; &quot;000436394&quot; ...
+FALSE  $ cleFlow              : chr [1:1905] &quot;A.NOMBRE_DECES.VALEUR_ABSOLUE.DECES.FM.0.SO.INDIVIDUS.BRUT&quot; &quot;A.TAUX_MORTALITE.TAUX.TXMOR.FM.0.SO.DECES_1000_PERS.BRUT&quot; &quot;A.TAUX_MORTALITE.TAUX.TXMORINF.FM.0.SO.P1000.BRUT&quot; &quot;M.NOMBRE_DECES.VALEUR_ABSOLUE.DECES.FM.0.SO.INDIVIDUS.BRUT&quot; ...
+FALSE  $ FREQ                 : chr [1:1905] &quot;A&quot; &quot;A&quot; &quot;A&quot; &quot;M&quot; ...
+FALSE  $ INDICATEUR           : chr [1:1905] &quot;NOMBRE_DECES&quot; &quot;TAUX_MORTALITE&quot; &quot;TAUX_MORTALITE&quot; &quot;NOMBRE_DECES&quot; ...
+FALSE  $ NATURE               : chr [1:1905] &quot;VALEUR_ABSOLUE&quot; &quot;TAUX&quot; &quot;TAUX&quot; &quot;VALEUR_ABSOLUE&quot; ...
+FALSE  $ REF_AREA             : chr [1:1905] &quot;FM&quot; &quot;FM&quot; &quot;FM&quot; &quot;FM&quot; ...
+FALSE  $ UNIT_MEASURE         : chr [1:1905] &quot;INDIVIDUS&quot; &quot;DECES_1000_PERS&quot; &quot;P1000&quot; &quot;INDIVIDUS&quot; ...
 FALSE  $ CORRECTION           : chr [1:1905] &quot;BRUT&quot; &quot;BRUT&quot; &quot;BRUT&quot; &quot;BRUT&quot; ...
-FALSE  $ FREQ_label_fr        : chr [1:1905] &quot;Mensuelle&quot; &quot;Mensuelle&quot; &quot;Annuelle&quot; &quot;Annuelle&quot; ...
-FALSE  $ FREQ_label_en        : chr [1:1905] &quot;Monthly&quot; &quot;Monthly&quot; &quot;Annual&quot; &quot;Annual&quot; ...
-FALSE  $ INDICATEUR_label_fr  : chr [1:1905] &quot;Taux de mortalité&quot; &quot;Taux de mortalité&quot; &quot;Décès domiciliés&quot; &quot;Décès domiciliés&quot; ...
-FALSE  $ INDICATEUR_label_en  : chr [1:1905] &quot;Mortality rate&quot; &quot;Mortality rate&quot; &quot;Deaths domiciled&quot; &quot;Deaths domiciled&quot; ...
-FALSE  $ NATURE_label_fr      : chr [1:1905] &quot;Taux&quot; &quot;Taux&quot; &quot;Valeur absolue&quot; &quot;Valeur absolue&quot; ...
-FALSE  $ NATURE_label_en      : chr [1:1905] &quot;Rate&quot; &quot;Rate&quot; &quot;Absolute value&quot; &quot;Absolute value&quot; ...
-FALSE  $ DEMOGRAPHIE_label_fr : chr [1:1905] &quot;Taux de mortalité infantile&quot; &quot;Taux de mortalité infantile&quot; &quot;Décès de tous âges, domiciliés&quot; &quot;Décès de tous âges, domiciliés&quot; ...
-FALSE  $ DEMOGRAPHIE_label_en : chr [1:1905] &quot;Infant mortality rate&quot; &quot;Infant mortality rate&quot; &quot;Deaths of all ages, with home address&quot; &quot;Deaths of all ages, with home address&quot; ...
-FALSE  $ REF_AREA_label_fr    : chr [1:1905] &quot;France métropolitaine&quot; &quot;France hors Mayotte&quot; &quot;Territoires d&#39;outre-mer (TOM) + Étranger&quot; &quot;France métropolitaine hors Île-de-France&quot; ...
-FALSE  $ REF_AREA_label_en    : chr [1:1905] &quot;Metropolitan France&quot; &quot;France excluding Mayotte&quot; &quot;French overseas territories (TOM) + Abroad&quot; &quot;Metropolitan France excluding Île-de-France&quot; ...
-FALSE  $ SEXE_label_fr        : chr [1:1905] &quot;Ensemble&quot; &quot;Ensemble&quot; &quot;Sans objet&quot; &quot;Sans objet&quot; ...
-FALSE  $ SEXE_label_en        : chr [1:1905] &quot;All&quot; &quot;All&quot; &quot;Not applicable&quot; &quot;Not applicable&quot; ...
-FALSE  $ AGE_label_fr         : chr [1:1905] &quot;Sans objet&quot; &quot;Sans objet&quot; &quot;Sans objet&quot; &quot;Sans objet&quot; ...
-FALSE  $ AGE_label_en         : chr [1:1905] &quot;Not applicable&quot; &quot;Not applicable&quot; &quot;Not applicable&quot; &quot;Not applicable&quot; ...
-FALSE  $ UNIT_MEASURE_label_fr: chr [1:1905] &quot;sans objet&quot; &quot;sans objet&quot; &quot;nombre&quot; &quot;nombre&quot; ...
-FALSE  $ UNIT_MEASURE_label_en: chr [1:1905] &quot;not applicable&quot; &quot;not applicable&quot; &quot;number&quot; &quot;number&quot; ...
+FALSE  $ SEXE                 : chr [1:1905] &quot;0&quot; &quot;0&quot; &quot;0&quot; &quot;0&quot; ...
+FALSE  $ AGE                  : chr [1:1905] &quot;SO&quot; &quot;SO&quot; &quot;SO&quot; &quot;SO&quot; ...
+FALSE  $ DEMOGRAPHIE          : chr [1:1905] &quot;DECES&quot; &quot;TXMOR&quot; &quot;TXMORINF&quot; &quot;DECES&quot; ...
+FALSE  $ FREQ_label_fr        : chr [1:1905] &quot;Annuelle&quot; &quot;Annuelle&quot; &quot;Annuelle&quot; &quot;Mensuelle&quot; ...
+FALSE  $ FREQ_label_en        : chr [1:1905] &quot;Annual&quot; &quot;Annual&quot; &quot;Annual&quot; &quot;Monthly&quot; ...
+FALSE  $ INDICATEUR_label_fr  : chr [1:1905] &quot;Nombre de décès&quot; &quot;Taux de mortalité&quot; &quot;Taux de mortalité&quot; &quot;Nombre de décès&quot; ...
+FALSE  $ INDICATEUR_label_en  : chr [1:1905] &quot;Number of dead&quot; &quot;Mortality rate&quot; &quot;Mortality rate&quot; &quot;Number of dead&quot; ...
+FALSE  $ NATURE_label_fr      : chr [1:1905] &quot;Valeur absolue&quot; &quot;Taux&quot; &quot;Taux&quot; &quot;Valeur absolue&quot; ...
+FALSE  $ NATURE_label_en      : chr [1:1905] &quot;Absolute value&quot; &quot;Rate&quot; &quot;Rate&quot; &quot;Absolute value&quot; ...
+FALSE  $ REF_AREA_label_fr    : chr [1:1905] &quot;France métropolitaine&quot; &quot;France métropolitaine&quot; &quot;France métropolitaine&quot; &quot;France métropolitaine&quot; ...
+FALSE  $ REF_AREA_label_en    : chr [1:1905] &quot;Metropolitan France&quot; &quot;Metropolitan France&quot; &quot;Metropolitan France&quot; &quot;Metropolitan France&quot; ...
+FALSE  $ UNIT_MEASURE_label_fr: chr [1:1905] &quot;individus&quot; &quot;nombre de décès pour 1 000 personnes&quot; &quot;pour mille&quot; &quot;individus&quot; ...
+FALSE  $ UNIT_MEASURE_label_en: chr [1:1905] &quot;individuals&quot; &quot;number of deaths per 1,000 inhabitants&quot; &quot;per thousand&quot; &quot;individuals&quot; ...
 FALSE  $ CORRECTION_label_fr  : chr [1:1905] &quot;Non corrigé&quot; &quot;Non corrigé&quot; &quot;Non corrigé&quot; &quot;Non corrigé&quot; ...
 FALSE  $ CORRECTION_label_en  : chr [1:1905] &quot;Uncorrected&quot; &quot;Uncorrected&quot; &quot;Uncorrected&quot; &quot;Uncorrected&quot; ...
-FALSE  $ dim1                 : chr [1:1905] &quot;M&quot; &quot;M&quot; &quot;A&quot; &quot;A&quot; ...
-FALSE  $ dim2                 : chr [1:1905] &quot;TAUX_MORTALITE&quot; &quot;TAUX_MORTALITE&quot; &quot;DECES_DOMICILIES&quot; &quot;DECES_DOMICILIES&quot; ...
-FALSE  $ dim3                 : chr [1:1905] &quot;TAUX&quot; &quot;TAUX&quot; &quot;VALEUR_ABSOLUE&quot; &quot;VALEUR_ABSOLUE&quot; ...
-FALSE  $ dim4                 : chr [1:1905] &quot;TXMORINF&quot; &quot;TXMORINF&quot; &quot;DECES-DOM&quot; &quot;DECES-DOM&quot; ...
-FALSE  $ dim5                 : chr [1:1905] &quot;FM&quot; &quot;FR-D976&quot; &quot;AU&quot; &quot;F_H_IDF&quot; ...
-FALSE  $ dim6                 : chr [1:1905] &quot;0&quot; &quot;0&quot; &quot;SO&quot; &quot;SO&quot; ...
-FALSE  $ dim7                 : chr [1:1905] &quot;SO&quot; &quot;SO&quot; &quot;SO&quot; &quot;SO&quot; ...
-FALSE  $ dim8                 : chr [1:1905] &quot;SO&quot; &quot;SO&quot; &quot;NOMBRE&quot; &quot;NOMBRE&quot; ...
-FALSE  $ dim9                 : chr [1:1905] &quot;BRUT&quot; &quot;BRUT&quot; &quot;BRUT&quot; &quot;BRUT&quot; ...</code></pre>
+FALSE  $ SEXE_label_fr        : chr [1:1905] &quot;Ensemble&quot; &quot;Ensemble&quot; &quot;Ensemble&quot; &quot;Ensemble&quot; ...
+FALSE  $ SEXE_label_en        : chr [1:1905] &quot;All&quot; &quot;All&quot; &quot;All&quot; &quot;All&quot; ...
+FALSE  $ AGE_label_fr         : chr [1:1905] &quot;Sans objet&quot; &quot;Sans objet&quot; &quot;Sans objet&quot; &quot;Sans objet&quot; ...
+FALSE  $ AGE_label_en         : chr [1:1905] &quot;Not applicable&quot; &quot;Not applicable&quot; &quot;Not applicable&quot; &quot;Not applicable&quot; ...
+FALSE  $ DEMOGRAPHIE_label_fr : chr [1:1905] &quot;Décès de tous âges&quot; &quot;Taux de mortalité&quot; &quot;Taux de mortalité infantile&quot; &quot;Décès de tous âges&quot; ...
+FALSE  $ DEMOGRAPHIE_label_en : chr [1:1905] &quot;Deaths of all ages&quot; &quot;Mortality rate&quot; &quot;Infant mortality rate&quot; &quot;Deaths of all ages&quot; ...
+FALSE  $ title_fr             : chr [1:1905] &quot;Démographie - Décès de tous âges - France métropolitaine&quot; &quot;Démographie - Taux de mortalité pour 1000 habitants - France métropolitaine&quot; &quot;Démographie - Taux de mortalité infantile pour 1000 enfants nés vivants - France métropolitaine&quot; &quot;Démographie - Nombre de décès - France métropolitaine&quot; ...
+FALSE  $ title_en             : chr [1:1905] &quot;Demography - Deaths of all ages - Metropolitan France&quot; &quot;Demography - Mortality rate per 1,000 inhabitants - Metropolitan France&quot; &quot;Demography - Infant mortality rate per 1,000 live births - Metropolitan France&quot; &quot;Demography - Number of deaths - Metropolitan France&quot; ...</code></pre>
 <p>Le résultat est un tibble comportant 1905 lignes et 39 colonnes. Il correspond en pratique aux 1905 séries chronologiques que l’on peut extraire de la base de données. Chaque série dispose d’un code unique contenu dans la variable <em>idbank</em>.</p>
 </div>
 <div id="extraction-dune-série-à-laide-de-son-identifiant" class="section level3" number="1.3.4">
 <h3><span class="header-section-number">1.3.4</span> Extraction d’une série à l’aide de son identifiant</h3>
 <p>Une première solution pour extraire une série consiste à parcourir le tableau des variables jusqu’à repérer la ligne qui nous intéresse puis à noter son idbank et à extraire la série correspondante à l’aide de la fonction <strong>get_insee_idbank()</strong>. Par exemple, la première ligne du tableau des variables dont le code est “000436398” va renvoyer un tableau du taux brut de mortalité infantile en France métropolitaine de Janvier 1975 à Décembre 2014. On peut en faire rapidement un graphique avec la fonction <em>plot()</em> de R-Base</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="01-API-intro.html#cb25-1"></a>don&lt;-<span class="kw">get_insee_idbank</span>(<span class="st">&quot;000436398&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb25-1"><a href="01-API-intro.html#cb25-1" aria-hidden="true" tabindex="-1"></a>don<span class="ot">&lt;-</span><span class="fu">get_insee_idbank</span>(<span class="st">&quot;000436398&quot;</span>)</span></code></pre></div>
 <pre><code>FALSE 
   |                                                                            
   |                                                                      |   0%
   |                                                                            
   |======================================================================| 100%</code></pre>
-<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="01-API-intro.html#cb27-1"></a>don&lt;-don[<span class="kw">order</span>(don<span class="op">$</span>DATE),<span class="dv">1</span><span class="op">:</span><span class="dv">3</span>]</span>
-<span id="cb27-2"><a href="01-API-intro.html#cb27-2"></a><span class="kw">plot</span>(don<span class="op">$</span>DATE,don<span class="op">$</span>OBS_VALUE, </span>
-<span id="cb27-3"><a href="01-API-intro.html#cb27-3"></a>     <span class="dt">type =</span><span class="st">&quot;l&quot;</span>, </span>
-<span id="cb27-4"><a href="01-API-intro.html#cb27-4"></a>     <span class="dt">col=</span><span class="st">&quot;red&quot;</span>, </span>
-<span id="cb27-5"><a href="01-API-intro.html#cb27-5"></a>     <span class="dt">ylab =</span> <span class="st">&quot;Décès 0-1 ans pour  1000 naissances&quot;</span>,</span>
-<span id="cb27-6"><a href="01-API-intro.html#cb27-6"></a>     <span class="dt">xlab =</span> <span class="st">&quot;Données mensuelles&quot;</span>,</span>
-<span id="cb27-7"><a href="01-API-intro.html#cb27-7"></a>     <span class="dt">main =</span> <span class="st">&quot;Evolution de la mortalité infantile en France (1975-2014)&quot;</span>,</span>
-<span id="cb27-8"><a href="01-API-intro.html#cb27-8"></a>     <span class="dt">sub =</span> <span class="st">&quot;Source : Insee&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb27"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb27-1"><a href="01-API-intro.html#cb27-1" aria-hidden="true" tabindex="-1"></a>don<span class="ot">&lt;-</span>don[<span class="fu">order</span>(don<span class="sc">$</span>DATE),<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]</span>
+<span id="cb27-2"><a href="01-API-intro.html#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(don<span class="sc">$</span>DATE,don<span class="sc">$</span>OBS_VALUE, </span>
+<span id="cb27-3"><a href="01-API-intro.html#cb27-3" aria-hidden="true" tabindex="-1"></a>     <span class="at">type =</span><span class="st">&quot;l&quot;</span>, </span>
+<span id="cb27-4"><a href="01-API-intro.html#cb27-4" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="st">&quot;red&quot;</span>, </span>
+<span id="cb27-5"><a href="01-API-intro.html#cb27-5" aria-hidden="true" tabindex="-1"></a>     <span class="at">ylab =</span> <span class="st">&quot;Décès 0-1 ans pour  1000 naissances&quot;</span>,</span>
+<span id="cb27-6"><a href="01-API-intro.html#cb27-6" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab =</span> <span class="st">&quot;Données mensuelles&quot;</span>,</span>
+<span id="cb27-7"><a href="01-API-intro.html#cb27-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">main =</span> <span class="st">&quot;Evolution de la mortalité infantile en France (1975-2014)&quot;</span>,</span>
+<span id="cb27-8"><a href="01-API-intro.html#cb27-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">sub =</span> <span class="st">&quot;Source : Insee&quot;</span>)</span></code></pre></div>
 <p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-16-1.svg" width="672" /></p>
 <p>On remarque que la courbe a des oscillations saisonnières beaucoup moins fortes après 1995 ce qui est sans doute lié à un changement dans le mode de collecte des données plutôt qu’à la réalité.</p>
 <p>On note aussi que les données s’arrêtent en 2014 ce qui est bizarre puisque l’API devrait nous donner les chiffres les plus récents. en fait les données plus récentes sont disponibles mais elles font partie d’une autre série de données.</p>
@@ -765,55 +766,48 @@ FALSE  $ dim9                 : chr [1:1905] &quot;BRUT&quot; &quot;BRUT&quot; &
 <div id="extraction-dun-ensemble-de-séries-dun-même-tableau" class="section level3" number="1.3.5">
 <h3><span class="header-section-number">1.3.5</span> Extraction d’un ensemble de séries d’un même tableau</h3>
 <p>Supposons que l’on veuille extraire trois courbes décrivant l’espérance de vie des hommes en France métropolitaine, à 20, 40 et 60 ans. Nous lançons alors une requête pour ne retenir dans le tableau des variables que les lignes qui nous intéressent.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="01-API-intro.html#cb28-1"></a>sel  =<span class="st"> </span></span>
-<span id="cb28-2"><a href="01-API-intro.html#cb28-2"></a><span class="st">  </span><span class="kw">get_idbank_list</span>(<span class="st">&quot;DECES-MORTALITE&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb28-3"><a href="01-API-intro.html#cb28-3"></a><span class="st">  </span><span class="kw">filter</span>(SEXE <span class="op">==</span><span class="st"> &quot;1&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb28-4"><a href="01-API-intro.html#cb28-4"></a><span class="st">  </span><span class="kw">filter</span>(FREQ <span class="op">==</span><span class="st"> &quot;A&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#données annuelles</span></span>
-<span id="cb28-5"><a href="01-API-intro.html#cb28-5"></a><span class="st">  </span><span class="kw">filter</span>(REF_AREA <span class="op">==</span><span class="st"> &quot;FM&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#France métropolitaine</span></span>
-<span id="cb28-6"><a href="01-API-intro.html#cb28-6"></a><span class="st">  </span><span class="kw">filter</span>(DEMOGRAPHIE <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ESPV-20&quot;</span>,<span class="st">&quot;ESPV-40&quot;</span>,<span class="st">&quot;ESPV-60&quot;</span>)) <span class="co"># Espérance de vie</span></span>
-<span id="cb28-7"><a href="01-API-intro.html#cb28-7"></a></span>
-<span id="cb28-8"><a href="01-API-intro.html#cb28-8"></a><span class="kw">kable</span>(<span class="kw">head</span>(sel))</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="01-API-intro.html#cb28-1" aria-hidden="true" tabindex="-1"></a>sel  <span class="ot">=</span> </span>
+<span id="cb28-2"><a href="01-API-intro.html#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_idbank_list</span>(<span class="st">&quot;DECES-MORTALITE&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb28-3"><a href="01-API-intro.html#cb28-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(SEXE <span class="sc">==</span> <span class="st">&quot;1&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb28-4"><a href="01-API-intro.html#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(FREQ <span class="sc">==</span> <span class="st">&quot;A&quot;</span>) <span class="sc">%&gt;%</span> <span class="co">#données annuelles</span></span>
+<span id="cb28-5"><a href="01-API-intro.html#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(REF_AREA <span class="sc">==</span> <span class="st">&quot;FM&quot;</span>) <span class="sc">%&gt;%</span> <span class="co">#France métropolitaine</span></span>
+<span id="cb28-6"><a href="01-API-intro.html#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(DEMOGRAPHIE <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;ESPV-20&quot;</span>,<span class="st">&quot;ESPV-40&quot;</span>,<span class="st">&quot;ESPV-60&quot;</span>)) <span class="co"># Espérance de vie</span></span>
+<span id="cb28-7"><a href="01-API-intro.html#cb28-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-8"><a href="01-API-intro.html#cb28-8" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(sel))</span></code></pre></div>
 <table>
 <colgroup>
 <col width="2%" />
 <col width="1%" />
-<col width="10%" />
+<col width="9%" />
 <col width="0%" />
 <col width="2%" />
 <col width="2%" />
+<col width="1%" />
 <col width="2%" />
 <col width="1%" />
 <col width="0%" />
 <col width="0%" />
-<col width="2%" />
 <col width="1%" />
 <col width="2%" />
 <col width="2%" />
 <col width="3%" />
 <col width="3%" />
+<col width="2%" />
+<col width="2%" />
+<col width="3%" />
+<col width="3%" />
+<col width="3%" />
+<col width="3%" />
+<col width="3%" />
+<col width="3%" />
+<col width="2%" />
+<col width="2%" />
 <col width="2%" />
 <col width="2%" />
 <col width="4%" />
 <col width="4%" />
-<col width="3%" />
-<col width="3%" />
-<col width="2%" />
-<col width="2%" />
-<col width="2%" />
-<col width="2%" />
-<col width="3%" />
-<col width="3%" />
-<col width="3%" />
-<col width="3%" />
-<col width="0%" />
-<col width="2%" />
-<col width="2%" />
-<col width="1%" />
-<col width="0%" />
-<col width="0%" />
-<col width="0%" />
-<col width="1%" />
-<col width="0%" />
+<col width="9%" />
+<col width="8%" />
 </colgroup>
 <thead>
 <tr class="header">
@@ -823,39 +817,32 @@ FALSE  $ dim9                 : chr [1:1905] &quot;BRUT&quot; &quot;BRUT&quot; &
 <th align="left">FREQ</th>
 <th align="left">INDICATEUR</th>
 <th align="left">NATURE</th>
-<th align="left">DEMOGRAPHIE</th>
 <th align="left">REF_AREA</th>
-<th align="left">SEXE</th>
-<th align="left">AGE</th>
 <th align="left">UNIT_MEASURE</th>
 <th align="left">CORRECTION</th>
+<th align="left">SEXE</th>
+<th align="left">AGE</th>
+<th align="left">DEMOGRAPHIE</th>
 <th align="left">FREQ_label_fr</th>
 <th align="left">FREQ_label_en</th>
 <th align="left">INDICATEUR_label_fr</th>
 <th align="left">INDICATEUR_label_en</th>
 <th align="left">NATURE_label_fr</th>
 <th align="left">NATURE_label_en</th>
-<th align="left">DEMOGRAPHIE_label_fr</th>
-<th align="left">DEMOGRAPHIE_label_en</th>
 <th align="left">REF_AREA_label_fr</th>
 <th align="left">REF_AREA_label_en</th>
-<th align="left">SEXE_label_fr</th>
-<th align="left">SEXE_label_en</th>
-<th align="left">AGE_label_fr</th>
-<th align="left">AGE_label_en</th>
 <th align="left">UNIT_MEASURE_label_fr</th>
 <th align="left">UNIT_MEASURE_label_en</th>
 <th align="left">CORRECTION_label_fr</th>
 <th align="left">CORRECTION_label_en</th>
-<th align="left">dim1</th>
-<th align="left">dim2</th>
-<th align="left">dim3</th>
-<th align="left">dim4</th>
-<th align="left">dim5</th>
-<th align="left">dim6</th>
-<th align="left">dim7</th>
-<th align="left">dim8</th>
-<th align="left">dim9</th>
+<th align="left">SEXE_label_fr</th>
+<th align="left">SEXE_label_en</th>
+<th align="left">AGE_label_fr</th>
+<th align="left">AGE_label_en</th>
+<th align="left">DEMOGRAPHIE_label_fr</th>
+<th align="left">DEMOGRAPHIE_label_en</th>
+<th align="left">title_fr</th>
+<th align="left">title_en</th>
 </tr>
 </thead>
 <tbody>
@@ -866,39 +853,32 @@ FALSE  $ dim9                 : chr [1:1905] &quot;BRUT&quot; &quot;BRUT&quot; &
 <td align="left">A</td>
 <td align="left">ESPERANCE_VIE</td>
 <td align="left">VALEUR_ABSOLUE</td>
-<td align="left">ESPV-20</td>
 <td align="left">FM</td>
-<td align="left">1</td>
-<td align="left">SO</td>
 <td align="left">ANNEES</td>
 <td align="left">BRUT</td>
+<td align="left">1</td>
+<td align="left">SO</td>
+<td align="left">ESPV-20</td>
 <td align="left">Annuelle</td>
 <td align="left">Annual</td>
 <td align="left">Espérance de vie</td>
 <td align="left">Life expectancy</td>
 <td align="left">Valeur absolue</td>
 <td align="left">Absolute value</td>
-<td align="left">Espérance de vie à 20 ans</td>
-<td align="left">Life expectancy at 20 years</td>
 <td align="left">France métropolitaine</td>
 <td align="left">Metropolitan France</td>
-<td align="left">Hommes</td>
-<td align="left">Men</td>
-<td align="left">Sans objet</td>
-<td align="left">Not applicable</td>
 <td align="left">nombre d’années</td>
 <td align="left">number of years</td>
 <td align="left">Non corrigé</td>
 <td align="left">Uncorrected</td>
-<td align="left">A</td>
-<td align="left">ESPERANCE_VIE</td>
-<td align="left">VALEUR_ABSOLUE</td>
-<td align="left">ESPV-20</td>
-<td align="left">FM</td>
-<td align="left">1</td>
-<td align="left">SO</td>
-<td align="left">ANNEES</td>
-<td align="left">BRUT</td>
+<td align="left">Hommes</td>
+<td align="left">Men</td>
+<td align="left">Sans objet</td>
+<td align="left">Not applicable</td>
+<td align="left">Espérance de vie à 20 ans</td>
+<td align="left">Life expectancy at 20 years</td>
+<td align="left">Espérance de vie à 20 ans - Hommes - France métropolitaine</td>
+<td align="left">Life expectancy at 20 years - Men - Metropolitan France</td>
 </tr>
 <tr class="even">
 <td align="left">DECES-MORTALITE</td>
@@ -907,39 +887,32 @@ FALSE  $ dim9                 : chr [1:1905] &quot;BRUT&quot; &quot;BRUT&quot; &
 <td align="left">A</td>
 <td align="left">ESPERANCE_VIE</td>
 <td align="left">VALEUR_ABSOLUE</td>
-<td align="left">ESPV-40</td>
 <td align="left">FM</td>
-<td align="left">1</td>
-<td align="left">SO</td>
 <td align="left">ANNEES</td>
 <td align="left">BRUT</td>
+<td align="left">1</td>
+<td align="left">SO</td>
+<td align="left">ESPV-40</td>
 <td align="left">Annuelle</td>
 <td align="left">Annual</td>
 <td align="left">Espérance de vie</td>
 <td align="left">Life expectancy</td>
 <td align="left">Valeur absolue</td>
 <td align="left">Absolute value</td>
-<td align="left">Espérance de vie à 40 ans</td>
-<td align="left">Life expectancy at 40 years</td>
 <td align="left">France métropolitaine</td>
 <td align="left">Metropolitan France</td>
-<td align="left">Hommes</td>
-<td align="left">Men</td>
-<td align="left">Sans objet</td>
-<td align="left">Not applicable</td>
 <td align="left">nombre d’années</td>
 <td align="left">number of years</td>
 <td align="left">Non corrigé</td>
 <td align="left">Uncorrected</td>
-<td align="left">A</td>
-<td align="left">ESPERANCE_VIE</td>
-<td align="left">VALEUR_ABSOLUE</td>
-<td align="left">ESPV-40</td>
-<td align="left">FM</td>
-<td align="left">1</td>
-<td align="left">SO</td>
-<td align="left">ANNEES</td>
-<td align="left">BRUT</td>
+<td align="left">Hommes</td>
+<td align="left">Men</td>
+<td align="left">Sans objet</td>
+<td align="left">Not applicable</td>
+<td align="left">Espérance de vie à 40 ans</td>
+<td align="left">Life expectancy at 40 years</td>
+<td align="left">Espérance de vie à 40 ans - Hommes - France métropolitaine</td>
+<td align="left">Life expectancy at 40 years - Men - Metropolitan France</td>
 </tr>
 <tr class="odd">
 <td align="left">DECES-MORTALITE</td>
@@ -948,39 +921,32 @@ FALSE  $ dim9                 : chr [1:1905] &quot;BRUT&quot; &quot;BRUT&quot; &
 <td align="left">A</td>
 <td align="left">ESPERANCE_VIE</td>
 <td align="left">VALEUR_ABSOLUE</td>
-<td align="left">ESPV-60</td>
 <td align="left">FM</td>
-<td align="left">1</td>
-<td align="left">SO</td>
 <td align="left">ANNEES</td>
 <td align="left">BRUT</td>
+<td align="left">1</td>
+<td align="left">SO</td>
+<td align="left">ESPV-60</td>
 <td align="left">Annuelle</td>
 <td align="left">Annual</td>
 <td align="left">Espérance de vie</td>
 <td align="left">Life expectancy</td>
 <td align="left">Valeur absolue</td>
 <td align="left">Absolute value</td>
-<td align="left">Espérance de vie à 60 ans</td>
-<td align="left">Life expectancy at 60 years</td>
 <td align="left">France métropolitaine</td>
 <td align="left">Metropolitan France</td>
-<td align="left">Hommes</td>
-<td align="left">Men</td>
-<td align="left">Sans objet</td>
-<td align="left">Not applicable</td>
 <td align="left">nombre d’années</td>
 <td align="left">number of years</td>
 <td align="left">Non corrigé</td>
 <td align="left">Uncorrected</td>
-<td align="left">A</td>
-<td align="left">ESPERANCE_VIE</td>
-<td align="left">VALEUR_ABSOLUE</td>
-<td align="left">ESPV-60</td>
-<td align="left">FM</td>
-<td align="left">1</td>
-<td align="left">SO</td>
-<td align="left">ANNEES</td>
-<td align="left">BRUT</td>
+<td align="left">Hommes</td>
+<td align="left">Men</td>
+<td align="left">Sans objet</td>
+<td align="left">Not applicable</td>
+<td align="left">Espérance de vie à 60 ans</td>
+<td align="left">Life expectancy at 60 years</td>
+<td align="left">Espérance de vie à 60 ans - Hommes - France métropolitaine</td>
+<td align="left">Life expectancy at 60 years - Men - Metropolitan France</td>
 </tr>
 <tr class="even">
 <td align="left">DECES-MORTALITE</td>
@@ -989,39 +955,32 @@ FALSE  $ dim9                 : chr [1:1905] &quot;BRUT&quot; &quot;BRUT&quot; &
 <td align="left">A</td>
 <td align="left">ESPERANCE_VIE</td>
 <td align="left">VALEUR_ABSOLUE</td>
-<td align="left">ESPV-20</td>
 <td align="left">FM</td>
-<td align="left">1</td>
-<td align="left">SO</td>
 <td align="left">ANNEES</td>
 <td align="left">BRUT</td>
+<td align="left">1</td>
+<td align="left">SO</td>
+<td align="left">ESPV-20</td>
 <td align="left">Annuelle</td>
 <td align="left">Annual</td>
 <td align="left">Espérance de vie</td>
 <td align="left">Life expectancy</td>
 <td align="left">Valeur absolue</td>
 <td align="left">Absolute value</td>
-<td align="left">Espérance de vie à 20 ans</td>
-<td align="left">Life expectancy at 20 years</td>
 <td align="left">France métropolitaine</td>
 <td align="left">Metropolitan France</td>
-<td align="left">Hommes</td>
-<td align="left">Men</td>
-<td align="left">Sans objet</td>
-<td align="left">Not applicable</td>
 <td align="left">nombre d’années</td>
 <td align="left">number of years</td>
 <td align="left">Non corrigé</td>
 <td align="left">Uncorrected</td>
-<td align="left">A</td>
-<td align="left">ESPERANCE_VIE</td>
-<td align="left">VALEUR_ABSOLUE</td>
-<td align="left">ESPV-20</td>
-<td align="left">FM</td>
-<td align="left">1</td>
-<td align="left">SO</td>
-<td align="left">ANNEES</td>
-<td align="left">BRUT</td>
+<td align="left">Hommes</td>
+<td align="left">Men</td>
+<td align="left">Sans objet</td>
+<td align="left">Not applicable</td>
+<td align="left">Espérance de vie à 20 ans</td>
+<td align="left">Life expectancy at 20 years</td>
+<td align="left">Espérance de vie à 20 ans - Hommes - France métropolitaine</td>
+<td align="left">Life expectancy at 20 years - Men - Metropolitan France</td>
 </tr>
 <tr class="odd">
 <td align="left">DECES-MORTALITE</td>
@@ -1030,39 +989,32 @@ FALSE  $ dim9                 : chr [1:1905] &quot;BRUT&quot; &quot;BRUT&quot; &
 <td align="left">A</td>
 <td align="left">ESPERANCE_VIE</td>
 <td align="left">VALEUR_ABSOLUE</td>
-<td align="left">ESPV-40</td>
 <td align="left">FM</td>
-<td align="left">1</td>
-<td align="left">SO</td>
 <td align="left">ANNEES</td>
 <td align="left">BRUT</td>
+<td align="left">1</td>
+<td align="left">SO</td>
+<td align="left">ESPV-40</td>
 <td align="left">Annuelle</td>
 <td align="left">Annual</td>
 <td align="left">Espérance de vie</td>
 <td align="left">Life expectancy</td>
 <td align="left">Valeur absolue</td>
 <td align="left">Absolute value</td>
-<td align="left">Espérance de vie à 40 ans</td>
-<td align="left">Life expectancy at 40 years</td>
 <td align="left">France métropolitaine</td>
 <td align="left">Metropolitan France</td>
-<td align="left">Hommes</td>
-<td align="left">Men</td>
-<td align="left">Sans objet</td>
-<td align="left">Not applicable</td>
 <td align="left">nombre d’années</td>
 <td align="left">number of years</td>
 <td align="left">Non corrigé</td>
 <td align="left">Uncorrected</td>
-<td align="left">A</td>
-<td align="left">ESPERANCE_VIE</td>
-<td align="left">VALEUR_ABSOLUE</td>
-<td align="left">ESPV-40</td>
-<td align="left">FM</td>
-<td align="left">1</td>
-<td align="left">SO</td>
-<td align="left">ANNEES</td>
-<td align="left">BRUT</td>
+<td align="left">Hommes</td>
+<td align="left">Men</td>
+<td align="left">Sans objet</td>
+<td align="left">Not applicable</td>
+<td align="left">Espérance de vie à 40 ans</td>
+<td align="left">Life expectancy at 40 years</td>
+<td align="left">Espérance de vie à 40 ans - Hommes - France métropolitaine</td>
+<td align="left">Life expectancy at 40 years - Men - Metropolitan France</td>
 </tr>
 <tr class="even">
 <td align="left">DECES-MORTALITE</td>
@@ -1071,39 +1023,32 @@ FALSE  $ dim9                 : chr [1:1905] &quot;BRUT&quot; &quot;BRUT&quot; &
 <td align="left">A</td>
 <td align="left">ESPERANCE_VIE</td>
 <td align="left">VALEUR_ABSOLUE</td>
-<td align="left">ESPV-60</td>
 <td align="left">FM</td>
-<td align="left">1</td>
-<td align="left">SO</td>
 <td align="left">ANNEES</td>
 <td align="left">BRUT</td>
+<td align="left">1</td>
+<td align="left">SO</td>
+<td align="left">ESPV-60</td>
 <td align="left">Annuelle</td>
 <td align="left">Annual</td>
 <td align="left">Espérance de vie</td>
 <td align="left">Life expectancy</td>
 <td align="left">Valeur absolue</td>
 <td align="left">Absolute value</td>
-<td align="left">Espérance de vie à 60 ans</td>
-<td align="left">Life expectancy at 60 years</td>
 <td align="left">France métropolitaine</td>
 <td align="left">Metropolitan France</td>
-<td align="left">Hommes</td>
-<td align="left">Men</td>
-<td align="left">Sans objet</td>
-<td align="left">Not applicable</td>
 <td align="left">nombre d’années</td>
 <td align="left">number of years</td>
 <td align="left">Non corrigé</td>
 <td align="left">Uncorrected</td>
-<td align="left">A</td>
-<td align="left">ESPERANCE_VIE</td>
-<td align="left">VALEUR_ABSOLUE</td>
-<td align="left">ESPV-60</td>
-<td align="left">FM</td>
-<td align="left">1</td>
-<td align="left">SO</td>
-<td align="left">ANNEES</td>
-<td align="left">BRUT</td>
+<td align="left">Hommes</td>
+<td align="left">Men</td>
+<td align="left">Sans objet</td>
+<td align="left">Not applicable</td>
+<td align="left">Espérance de vie à 60 ans</td>
+<td align="left">Life expectancy at 60 years</td>
+<td align="left">Espérance de vie à 60 ans - Hommes - France métropolitaine</td>
+<td align="left">Life expectancy at 60 years - Men - Metropolitan France</td>
 </tr>
 </tbody>
 </table>
@@ -1112,27 +1057,27 @@ FALSE  $ dim9                 : chr [1:1905] &quot;BRUT&quot; &quot;BRUT&quot; &
 <div id="recupération-et-nettoyage-des-données" class="section level3" number="1.3.6">
 <h3><span class="header-section-number">1.3.6</span> Recupération et nettoyage des données</h3>
 <p>On récupère les données puis on procède à un petit nettoyage du tableau pour ne conserver que les colonnes utiles.</p>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="01-API-intro.html#cb29-1"></a>don =<span class="st"> </span><span class="kw">get_insee_idbank</span>(sel<span class="op">$</span>idbank)</span></code></pre></div>
+<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb29-1"><a href="01-API-intro.html#cb29-1" aria-hidden="true" tabindex="-1"></a>don <span class="ot">=</span> <span class="fu">get_insee_idbank</span>(sel<span class="sc">$</span>idbank)</span></code></pre></div>
 <pre><code>FALSE 
   |                                                                            
   |                                                                      |   0%
   |                                                                            
-  |=====                                                                 |   7%
+  |==================                                                    |  26%
   |                                                                            
-  |==========                                                            |  14%
+  |====================================                                  |  51%
   |                                                                            
-  |===============                                                       |  22%
+  |======================================================                |  77%
   |                                                                            
-  |=================================                                     |  48%
+  |===========================================================           |  85%
   |                                                                            
-  |====================================================                  |  74%
+  |=================================================================     |  92%
   |                                                                            
   |======================================================================| 100%</code></pre>
-<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="01-API-intro.html#cb31-1"></a>don2&lt;-don <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">select</span>(<span class="dt">ANNEE =</span> DATE, <span class="dt">ESPVIE=</span> OBS_VALUE, <span class="dt">AGE =</span> TITLE_FR) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb31-2"><a href="01-API-intro.html#cb31-2"></a><span class="st">              </span><span class="kw">mutate</span>(<span class="dt">AGE =</span> <span class="kw">as.factor</span>(AGE)) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb31-3"><a href="01-API-intro.html#cb31-3"></a><span class="st">              </span><span class="kw">arrange</span>(AGE, ANNEE)</span>
-<span id="cb31-4"><a href="01-API-intro.html#cb31-4"></a><span class="kw">levels</span>(don2<span class="op">$</span>AGE) &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;20 ans&quot;</span>, <span class="st">&quot;40 ans&quot;</span>,<span class="st">&quot;60 ans&quot;</span>)</span>
-<span id="cb31-5"><a href="01-API-intro.html#cb31-5"></a><span class="kw">kable</span>(<span class="kw">head</span>(don2))</span></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="01-API-intro.html#cb31-1" aria-hidden="true" tabindex="-1"></a>don2<span class="ot">&lt;-</span>don <span class="sc">%&gt;%</span> <span class="fu">select</span>(<span class="at">ANNEE =</span> DATE, <span class="at">ESPVIE=</span> OBS_VALUE, <span class="at">AGE =</span> TITLE_FR) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-2"><a href="01-API-intro.html#cb31-2" aria-hidden="true" tabindex="-1"></a>              <span class="fu">mutate</span>(<span class="at">AGE =</span> <span class="fu">as.factor</span>(AGE)) <span class="sc">%&gt;%</span> </span>
+<span id="cb31-3"><a href="01-API-intro.html#cb31-3" aria-hidden="true" tabindex="-1"></a>              <span class="fu">arrange</span>(AGE, ANNEE)</span>
+<span id="cb31-4"><a href="01-API-intro.html#cb31-4" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(don2<span class="sc">$</span>AGE) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&quot;20 ans&quot;</span>, <span class="st">&quot;40 ans&quot;</span>,<span class="st">&quot;60 ans&quot;</span>)</span>
+<span id="cb31-5"><a href="01-API-intro.html#cb31-5" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(<span class="fu">head</span>(don2))</span></code></pre></div>
 <table>
 <thead>
 <tr class="header">
@@ -1178,14 +1123,14 @@ FALSE  $ dim9                 : chr [1:1905] &quot;BRUT&quot; &quot;BRUT&quot; &
 <div id="construction-dun-graphique" class="section level3" number="1.3.7">
 <h3><span class="header-section-number">1.3.7</span> Construction d’un graphique</h3>
 <p>On peut maintenant construire notre graphique à l’aide par exemple de <code>ggplot2</code> :</p>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="01-API-intro.html#cb32-1"></a>p&lt;-<span class="kw">ggplot</span>(don2) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb32-2"><a href="01-API-intro.html#cb32-2"></a><span class="st">   </span><span class="kw">aes</span>(<span class="dt">x=</span>ANNEE,<span class="dt">y=</span>ESPVIE, <span class="dt">color =</span> AGE) <span class="op">+</span></span>
-<span id="cb32-3"><a href="01-API-intro.html#cb32-3"></a><span class="st">    </span><span class="kw">geom_line</span>() <span class="op">+</span></span>
-<span id="cb32-4"><a href="01-API-intro.html#cb32-4"></a><span class="st">    </span><span class="kw">ggtitle</span>(<span class="dt">label=</span> <span class="st">&quot;Espérance de vie en France Métropolitaine&quot;</span>,</span>
-<span id="cb32-5"><a href="01-API-intro.html#cb32-5"></a>            <span class="dt">subtitle =</span> <span class="st">&quot;Source : INSEE&quot;</span>)<span class="op">+</span></span>
-<span id="cb32-6"><a href="01-API-intro.html#cb32-6"></a><span class="st">    </span><span class="kw">scale_x_date</span>(<span class="st">&quot;Données annuelles&quot;</span>) <span class="op">+</span></span>
-<span id="cb32-7"><a href="01-API-intro.html#cb32-7"></a><span class="st">    </span><span class="kw">scale_y_continuous</span>(<span class="st">&quot;Années de vie restantes&quot;</span>,<span class="dt">limits =</span> <span class="kw">c</span>(<span class="dv">0</span>,<span class="ot">NA</span>))</span>
-<span id="cb32-8"><a href="01-API-intro.html#cb32-8"></a>p</span></code></pre></div>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="01-API-intro.html#cb32-1" aria-hidden="true" tabindex="-1"></a>p<span class="ot">&lt;-</span><span class="fu">ggplot</span>(don2) <span class="sc">+</span> </span>
+<span id="cb32-2"><a href="01-API-intro.html#cb32-2" aria-hidden="true" tabindex="-1"></a>   <span class="fu">aes</span>(<span class="at">x=</span>ANNEE,<span class="at">y=</span>ESPVIE, <span class="at">color =</span> AGE) <span class="sc">+</span></span>
+<span id="cb32-3"><a href="01-API-intro.html#cb32-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb32-4"><a href="01-API-intro.html#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="at">label=</span> <span class="st">&quot;Espérance de vie en France Métropolitaine&quot;</span>,</span>
+<span id="cb32-5"><a href="01-API-intro.html#cb32-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">subtitle =</span> <span class="st">&quot;Source : INSEE&quot;</span>)<span class="sc">+</span></span>
+<span id="cb32-6"><a href="01-API-intro.html#cb32-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_date</span>(<span class="st">&quot;Données annuelles&quot;</span>) <span class="sc">+</span></span>
+<span id="cb32-7"><a href="01-API-intro.html#cb32-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="st">&quot;Années de vie restantes&quot;</span>,<span class="at">limits =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="cn">NA</span>))</span>
+<span id="cb32-8"><a href="01-API-intro.html#cb32-8" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
 <p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-19-1.svg" width="672" /></p>
 </div>
 <div id="discussion" class="section level3" number="1.3.8">
@@ -1208,54 +1153,54 @@ FALSE  $ dim9                 : chr [1:1905] &quot;BRUT&quot; &quot;BRUT&quot; &
 </thead>
 <tbody>
 <tr class="odd">
-<td align="right">146</td>
-<td align="left">2021-03-20 16:54:06</td>
+<td align="right">426</td>
+<td align="left">2022-01-14 18:47:32</td>
 </tr>
 <tr class="even">
-<td align="right">597</td>
-<td align="left">2021-03-20 18:26:03</td>
+<td align="right">631</td>
+<td align="left">2022-01-14 20:21:47</td>
 </tr>
 <tr class="odd">
-<td align="right">655</td>
-<td align="left">2021-03-20 20:02:02</td>
+<td align="right">653</td>
+<td align="left">2022-01-14 21:58:15</td>
 </tr>
 <tr class="even">
 <td align="right">651</td>
-<td align="left">2021-03-20 21:39:03</td>
+<td align="left">2022-01-14 23:35:18</td>
 </tr>
 <tr class="odd">
-<td align="right">655</td>
-<td align="left">2021-03-20 23:16:03</td>
+<td align="right">653</td>
+<td align="left">2022-01-15 01:12:10</td>
 </tr>
 <tr class="even">
-<td align="right">617</td>
-<td align="left">2021-03-21 00:52:57</td>
+<td align="right">567</td>
+<td align="left">2022-01-15 02:49:11</td>
 </tr>
 <tr class="odd">
-<td align="right">331</td>
-<td align="left">2021-03-21 02:31:12</td>
+<td align="right">269</td>
+<td align="left">2022-01-15 18:01:17</td>
 </tr>
 <tr class="even">
-<td align="right">553</td>
-<td align="left">2021-03-21 17:39:15</td>
+<td align="right">607</td>
+<td align="left">2022-01-15 19:34:14</td>
 </tr>
 <tr class="odd">
-<td align="right">652</td>
-<td align="left">2021-03-21 19:14:43</td>
+<td align="right">653</td>
+<td align="left">2022-01-15 21:10:20</td>
 </tr>
 <tr class="even">
-<td align="right">652</td>
-<td align="left">2021-03-21 20:51:36</td>
+<td align="right">649</td>
+<td align="left">2022-01-15 22:47:21</td>
 </tr>
 </tbody>
 </table>
 <div class="solution-exo">
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="01-API-intro.html#cb33-1"></a>titi &lt;-<span class="st"> </span><span class="kw">GET</span>(<span class="st">&quot;http://api.open-notify.org/iss-pass.json&quot;</span>,</span>
-<span id="cb33-2"><a href="01-API-intro.html#cb33-2"></a>            <span class="dt">query =</span> <span class="kw">list</span>(<span class="dt">lat =</span> <span class="fl">40.7</span>, <span class="dt">lon =</span> <span class="dv">-74</span>, <span class="dt">n=</span><span class="dv">3</span>))</span>
-<span id="cb33-3"><a href="01-API-intro.html#cb33-3"></a>titi2 &lt;-<span class="st"> </span><span class="kw">fromJSON</span>(<span class="kw">rawToChar</span>(titi<span class="op">$</span>content))</span>
-<span id="cb33-4"><a href="01-API-intro.html#cb33-4"></a>titi3 &lt;-<span class="st"> </span>titi2<span class="op">$</span>response</span>
-<span id="cb33-5"><a href="01-API-intro.html#cb33-5"></a>titi3<span class="op">$</span>time&lt;-<span class="kw">as_datetime</span>(titi3<span class="op">$</span>risetime)</span>
-<span id="cb33-6"><a href="01-API-intro.html#cb33-6"></a><span class="kw">kable</span>(titi3, <span class="dt">caption =</span> <span class="st">&quot;Prochains passages de l&#39;ISS au dessus de Paris&quot;</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb33-1"><a href="01-API-intro.html#cb33-1" aria-hidden="true" tabindex="-1"></a>titi <span class="ot">&lt;-</span> <span class="fu">GET</span>(<span class="st">&quot;http://api.open-notify.org/iss-pass.json&quot;</span>,</span>
+<span id="cb33-2"><a href="01-API-intro.html#cb33-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">query =</span> <span class="fu">list</span>(<span class="at">lat =</span> <span class="fl">40.7</span>, <span class="at">lon =</span> <span class="sc">-</span><span class="dv">74</span>, <span class="at">n=</span><span class="dv">3</span>))</span>
+<span id="cb33-3"><a href="01-API-intro.html#cb33-3" aria-hidden="true" tabindex="-1"></a>titi2 <span class="ot">&lt;-</span> <span class="fu">fromJSON</span>(<span class="fu">rawToChar</span>(titi<span class="sc">$</span>content))</span>
+<span id="cb33-4"><a href="01-API-intro.html#cb33-4" aria-hidden="true" tabindex="-1"></a>titi3 <span class="ot">&lt;-</span> titi2<span class="sc">$</span>response</span>
+<span id="cb33-5"><a href="01-API-intro.html#cb33-5" aria-hidden="true" tabindex="-1"></a>titi3<span class="sc">$</span>time<span class="ot">&lt;-</span><span class="fu">as_datetime</span>(titi3<span class="sc">$</span>risetime)</span>
+<span id="cb33-6"><a href="01-API-intro.html#cb33-6" aria-hidden="true" tabindex="-1"></a><span class="fu">kable</span>(titi3, <span class="at">caption =</span> <span class="st">&quot;Prochains passages de l&#39;ISS au dessus de Paris&quot;</span>)</span></code></pre></div>
 </div>
 </div>
 <div id="exercice-2-utilisation-du-package-insee" class="section level3" number="1.4.2">
@@ -1265,37 +1210,37 @@ FALSE  $ dim9                 : chr [1:1905] &quot;BRUT&quot; &quot;BRUT&quot; &
   |                                                                            
   |                                                                      |   0%
   |                                                                            
-  |===============                                                       |  21%
+  |======================================================                |  77%
   |                                                                            
   |======================================================================| 100%</code></pre>
 <p><img src="Data-Mining-1_files/figure-html/unnamed-chunk-22-1.svg" width="672" /></p>
 <div class="solution-exo">
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="01-API-intro.html#cb35-1"></a><span class="co">#library(insee)</span></span>
-<span id="cb35-2"><a href="01-API-intro.html#cb35-2"></a><span class="co">#library(tidyverse)</span></span>
-<span id="cb35-3"><a href="01-API-intro.html#cb35-3"></a></span>
-<span id="cb35-4"><a href="01-API-intro.html#cb35-4"></a>sel  =<span class="st"> </span></span>
-<span id="cb35-5"><a href="01-API-intro.html#cb35-5"></a><span class="st">  </span><span class="kw">get_idbank_list</span>(<span class="st">&quot;DECES-MORTALITE&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb35-6"><a href="01-API-intro.html#cb35-6"></a><span class="st">  </span><span class="kw">filter</span>(SEXE <span class="op">==</span><span class="st"> &quot;2&quot;</span>) <span class="op">%&gt;%</span></span>
-<span id="cb35-7"><a href="01-API-intro.html#cb35-7"></a><span class="st">  </span><span class="kw">filter</span>(FREQ <span class="op">==</span><span class="st"> &quot;A&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#données mensuelles</span></span>
-<span id="cb35-8"><a href="01-API-intro.html#cb35-8"></a><span class="st">  </span><span class="kw">filter</span>(REF_AREA <span class="op">==</span><span class="st"> &quot;FM&quot;</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co">#France métropolitaine</span></span>
-<span id="cb35-9"><a href="01-API-intro.html#cb35-9"></a><span class="st">  </span><span class="kw">filter</span>(DEMOGRAPHIE <span class="op">%in%</span><span class="st"> </span><span class="kw">c</span>(<span class="st">&quot;ESPV&quot;</span>)) <span class="co"># Espérance de vie</span></span>
-<span id="cb35-10"><a href="01-API-intro.html#cb35-10"></a></span>
-<span id="cb35-11"><a href="01-API-intro.html#cb35-11"></a>don =<span class="st"> </span></span>
-<span id="cb35-12"><a href="01-API-intro.html#cb35-12"></a><span class="st">  </span><span class="kw">get_insee_idbank</span>(sel<span class="op">$</span>idbank) <span class="op">%&gt;%</span></span>
-<span id="cb35-13"><a href="01-API-intro.html#cb35-13"></a><span class="st">  </span><span class="kw">select</span>(<span class="dt">ANNEE =</span> DATE, <span class="dt">ESPVIE=</span> OBS_VALUE) <span class="op">%&gt;%</span><span class="st"> </span></span>
-<span id="cb35-14"><a href="01-API-intro.html#cb35-14"></a><span class="st">  </span><span class="kw">arrange</span>(ANNEE)</span>
-<span id="cb35-15"><a href="01-API-intro.html#cb35-15"></a></span>
-<span id="cb35-16"><a href="01-API-intro.html#cb35-16"></a></span>
-<span id="cb35-17"><a href="01-API-intro.html#cb35-17"></a>p =<span class="st"> </span></span>
-<span id="cb35-18"><a href="01-API-intro.html#cb35-18"></a><span class="st">    </span><span class="kw">ggplot</span>(don) <span class="op">+</span><span class="st"> </span></span>
-<span id="cb35-19"><a href="01-API-intro.html#cb35-19"></a><span class="st">    </span><span class="kw">aes</span>(<span class="dt">x=</span>ANNEE,<span class="dt">y=</span>ESPVIE) <span class="op">+</span></span>
-<span id="cb35-20"><a href="01-API-intro.html#cb35-20"></a><span class="st">    </span><span class="kw">geom_line</span>(<span class="dt">col=</span><span class="st">&quot;red&quot;</span>) <span class="op">+</span></span>
-<span id="cb35-21"><a href="01-API-intro.html#cb35-21"></a><span class="st">    </span><span class="kw">geom_smooth</span>(<span class="dt">method=</span> <span class="st">&quot;lm&quot;</span>,<span class="dt">col=</span><span class="st">&quot;blue&quot;</span>)<span class="op">+</span></span>
-<span id="cb35-22"><a href="01-API-intro.html#cb35-22"></a><span class="st">    </span><span class="kw">ggtitle</span>(<span class="dt">label=</span> <span class="st">&quot;Espérance de vie à la naissance des femmes en France Métropolitaine&quot;</span>,</span>
-<span id="cb35-23"><a href="01-API-intro.html#cb35-23"></a>            <span class="dt">subtitle =</span> <span class="st">&quot;Source : INSEE&quot;</span>)<span class="op">+</span></span>
-<span id="cb35-24"><a href="01-API-intro.html#cb35-24"></a><span class="st">    </span><span class="kw">scale_x_date</span>(<span class="st">&quot;Année&quot;</span>, <span class="dt">limits =</span><span class="kw">as.Date</span>(<span class="kw">c</span>(<span class="st">&quot;1940-01-01&quot;</span>,<span class="st">&quot;2020-01-01&quot;</span>))) <span class="op">+</span></span>
-<span id="cb35-25"><a href="01-API-intro.html#cb35-25"></a><span class="st">    </span><span class="kw">scale_y_continuous</span>(<span class="st">&quot;Durée de vie moyenne&quot;</span>)</span>
-<span id="cb35-26"><a href="01-API-intro.html#cb35-26"></a>p</span></code></pre></div>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="01-API-intro.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co">#library(insee)</span></span>
+<span id="cb35-2"><a href="01-API-intro.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="co">#library(tidyverse)</span></span>
+<span id="cb35-3"><a href="01-API-intro.html#cb35-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-4"><a href="01-API-intro.html#cb35-4" aria-hidden="true" tabindex="-1"></a>sel  <span class="ot">=</span> </span>
+<span id="cb35-5"><a href="01-API-intro.html#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_idbank_list</span>(<span class="st">&quot;DECES-MORTALITE&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-6"><a href="01-API-intro.html#cb35-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(SEXE <span class="sc">==</span> <span class="st">&quot;2&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb35-7"><a href="01-API-intro.html#cb35-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(FREQ <span class="sc">==</span> <span class="st">&quot;A&quot;</span>) <span class="sc">%&gt;%</span> <span class="co">#données mensuelles</span></span>
+<span id="cb35-8"><a href="01-API-intro.html#cb35-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(REF_AREA <span class="sc">==</span> <span class="st">&quot;FM&quot;</span>) <span class="sc">%&gt;%</span> <span class="co">#France métropolitaine</span></span>
+<span id="cb35-9"><a href="01-API-intro.html#cb35-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(DEMOGRAPHIE <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;ESPV&quot;</span>)) <span class="co"># Espérance de vie</span></span>
+<span id="cb35-10"><a href="01-API-intro.html#cb35-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-11"><a href="01-API-intro.html#cb35-11" aria-hidden="true" tabindex="-1"></a>don <span class="ot">=</span> </span>
+<span id="cb35-12"><a href="01-API-intro.html#cb35-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">get_insee_idbank</span>(sel<span class="sc">$</span>idbank) <span class="sc">%&gt;%</span></span>
+<span id="cb35-13"><a href="01-API-intro.html#cb35-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">ANNEE =</span> DATE, <span class="at">ESPVIE=</span> OBS_VALUE) <span class="sc">%&gt;%</span> </span>
+<span id="cb35-14"><a href="01-API-intro.html#cb35-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(ANNEE)</span>
+<span id="cb35-15"><a href="01-API-intro.html#cb35-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-16"><a href="01-API-intro.html#cb35-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-17"><a href="01-API-intro.html#cb35-17" aria-hidden="true" tabindex="-1"></a>p <span class="ot">=</span> </span>
+<span id="cb35-18"><a href="01-API-intro.html#cb35-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(don) <span class="sc">+</span> </span>
+<span id="cb35-19"><a href="01-API-intro.html#cb35-19" aria-hidden="true" tabindex="-1"></a>    <span class="fu">aes</span>(<span class="at">x=</span>ANNEE,<span class="at">y=</span>ESPVIE) <span class="sc">+</span></span>
+<span id="cb35-20"><a href="01-API-intro.html#cb35-20" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">col=</span><span class="st">&quot;red&quot;</span>) <span class="sc">+</span></span>
+<span id="cb35-21"><a href="01-API-intro.html#cb35-21" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method=</span> <span class="st">&quot;lm&quot;</span>,<span class="at">col=</span><span class="st">&quot;blue&quot;</span>)<span class="sc">+</span></span>
+<span id="cb35-22"><a href="01-API-intro.html#cb35-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggtitle</span>(<span class="at">label=</span> <span class="st">&quot;Espérance de vie à la naissance des femmes en France Métropolitaine&quot;</span>,</span>
+<span id="cb35-23"><a href="01-API-intro.html#cb35-23" aria-hidden="true" tabindex="-1"></a>            <span class="at">subtitle =</span> <span class="st">&quot;Source : INSEE&quot;</span>)<span class="sc">+</span></span>
+<span id="cb35-24"><a href="01-API-intro.html#cb35-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_x_date</span>(<span class="st">&quot;Année&quot;</span>, <span class="at">limits =</span><span class="fu">as.Date</span>(<span class="fu">c</span>(<span class="st">&quot;1940-01-01&quot;</span>,<span class="st">&quot;2020-01-01&quot;</span>))) <span class="sc">+</span></span>
+<span id="cb35-25"><a href="01-API-intro.html#cb35-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="st">&quot;Durée de vie moyenne&quot;</span>)</span>
+<span id="cb35-26"><a href="01-API-intro.html#cb35-26" aria-hidden="true" tabindex="-1"></a>p</span></code></pre></div>
 </div>
 </div>
 <div id="exercice-3-osrm" class="section level3" number="1.4.3">
@@ -1332,7 +1277,6 @@ Rouen (49.443232.; 1.099971)</p>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
-<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
 <script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
 <script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
@@ -1351,6 +1295,7 @@ gitbook.start({
 "weibo": false,
 "instapaper": false,
 "vk": false,
+"whatsapp": false,
 "all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"],
 "instapper": false
 },
@@ -1372,6 +1317,10 @@ gitbook.start({
 "text": null
 },
 "download": null,
+"search": {
+"engine": "fuse",
+"options": null
+},
 "toc": {
 "collapse": "section"
 }

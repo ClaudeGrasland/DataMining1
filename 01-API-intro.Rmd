@@ -227,7 +227,7 @@ Une fois que l'on a choisi un tableau, on peut examiner plus en détail les diff
 
 
 ```{r, warning = F, comment = F, error = F, message =F}
-var<-get_idbank_list("DECES-MORTALITE")
+var<-get_idbank_list("DECES-MORTALITE") 
 str(var)
 ```
 
