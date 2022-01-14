@@ -4,7 +4,7 @@
 
 ## À propos de ce document {-}
 
-Ce document est la première version du cours de Data Mining dispensé aux étudiants de deuxième année de l' option Data du master MECI 
+Ce document est la seconde version du cours de Data Mining dispensé aux étudiants de deuxième année de l' option Data du master MECI 
 
 Il est basé sur `r R.Version()[["version.string"]]`.
 

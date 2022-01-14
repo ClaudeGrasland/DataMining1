@@ -77,7 +77,7 @@ kable(head(indic))
 Supposons qu'on recherche les données récentes sur les émissions de CO2. On va utiliser le mot-clé *CO2* pour rechercher les variables correspondantes dans le catalogue à l'aide de la fonction `wbsearch`, ce qui donne 45 réponses 
 
 ```{r}
-vars <- wbsearch(pattern = "CO2",fields="indicator")
+vars <- wb_search(pattern = "CO2",fields="indicator")
 kable(vars)
 ```
 
